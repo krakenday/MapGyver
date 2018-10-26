@@ -1,2 +1,2 @@
 # TeamMap
-paris est magique
+paris est tragique
