@@ -10,7 +10,7 @@
         <li class="nav-item">
           <a class="nav-link" href="<%=request.getContextPath()%>/mpg/voyages/">
             <i class="fas fa-fw fa-table"></i>
-            <span>voyages</span></a>
+            <span>Voyages</span></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

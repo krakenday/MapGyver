@@ -2,24 +2,24 @@
     pageEncoding="utf-8"%>
     
 <form method="get" name="formCRUD" id="formCRUD">
-	<div class="mb-3 px-3 text-center">
-		<div class="container col-md-6 offset-md-3 text-left">
+	<div class="mb-2 px-3 text-left">
+		<div class="container">
 		  <div class="form-group row">
-		    <label for="ObjetTitre" class="col-sm-2 col-form-label">Titre</label>
-		    <div class="col-sm-10">
+		    <label for="ObjetTitre" class="col-sm-3 col-form-label">Titre</label>
+		    <div class="col-sm-9">
 		      <input type="text" class="form-control" id="titre" name="titre" placeholder="titre">
 		    </div>
-		  </div>		
+		  </div>				
 		  <div class="form-group row">
-		    <label for="ObjetDesc" class="col-sm-2 col-form-label">Description</label>
-		    <div class="col-sm-10">
-		      <textarea class="form-control" id="desc" name="desc" rows="5" placeholder="Description succinte du document"></textarea>
+		    <label for="ObjetQuantite" class="col-sm-3 col-form-label">Nombre de participants</label>
+		    <div class="col-sm-9">
+		      <input type="number" class="form-control" id="quantite" name="quantite" placeholder="nombre de participants">
 		    </div>
 		  </div>		
 		  <div class="form-group row">
-		    <label for="ObjetQuantite" class="col-sm-2 col-form-label">quantite</label>
-		    <div class="col-sm-10">
-		      <input type="number" class="form-control" id="ObjetQuantite" name="quantite" placeholder="nombre d'exemplaire">
+		    <label for="ObjetQuantite" class="col-sm-3 col-form-label">Départ prévu le : </label>
+		    <div class="col-sm-9">
+		      <input type=date step=7 min=2014-09-08>
 		    </div>
 		  </div>		
 		</div>
