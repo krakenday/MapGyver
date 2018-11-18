@@ -1,6 +1,8 @@
 package webApp.uc4Voyage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -12,8 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import business.uc4Voyage.Document;
-import clientServeur.IServiceBiblio;
+import business.uc4Voyage.Voyage;
+import clientServeur.IServiceFacade;
 
 
 
@@ -22,30 +24,30 @@ import clientServeur.IServiceBiblio;
  */
 @WebServlet(
 		name = "ControleurBonbon", 
-		description = "Controleur document", 
+		description = "Controleur Voyage", 
 		urlPatterns = {"/voyages/*"}
 		)
 public class ControleurVoyage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private IServiceBiblio iServiceBiblio;
-	private static final String BIBLIO_SERVICE_LOOKUP = "ejb:/biblioEJB/ServiceBiblioBeanStateless!clientServeur.IServiceBiblio";
+
+	private IServiceFacade iServiceFacade;
+	private static final String VOYAGE_SERVICE_LOOKUP = "ejb:/mapGyverEJB/Facade!clientServeur.IServiceFacade";
 	@Override
 	public void init() throws ServletException {
 		try {
 			Context context = new InitialContext();
-			iServiceBiblio = (IServiceBiblio) context.lookup(BIBLIO_SERVICE_LOOKUP);
+			iServiceFacade = (IServiceFacade) context.lookup(VOYAGE_SERVICE_LOOKUP);
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		doErreur(request, response);
 	}
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getPathInfo();
 		if (path == null || path.equals("/")) 	{
@@ -56,14 +58,14 @@ public class ControleurVoyage extends HttpServlet {
 			doErreur(request, response);
 		}
 	}
-	
+
 	@Override
 	protected void finalize() throws Throwable {
 
 	}
-	
+
 	private void doService(HttpServletRequest request) throws ServletException, IOException {
-		affciherTrace("Controleur Document");
+		affciherTrace("Controleur Voyage");
 		if 		("create".equals(request.getParameter("todo"))) 	create(request);
 		else if ("update".equals(request.getParameter("todo"))) 	update(request);
 		else if ("delete".equals(request.getParameter("todo"))) 	delete(request);
@@ -87,54 +89,56 @@ public class ControleurVoyage extends HttpServlet {
 
 	private void create(HttpServletRequest request) {
 		affciherTrace("create");
-		Document document;
+		Voyage voyage;
 		try {
-			document = createDocumentFactory(request);
-			iServiceBiblio.create(document);
-			affciherTrace(document.toString());
+			affciherTrace("lancement factory request");
+			voyage = createVoyageFactory(request);
+			affciherTrace("request to voyage : " + voyage.toString());
+			iServiceFacade.createVoyage(voyage);
+			affciherTrace(voyage.toString());
 		} catch (ExceptionServiceVoyage e) {
-			affciherTrace("Exception" + e.getMessage());
+			affciherTrace("Exception " + e.getMessage());
 			//request.setAttribute("Exception", e.getMessage());	
 		}
 	}
-	
-	private Document createDocumentFactory(HttpServletRequest request) throws ExceptionServiceVoyage {
-			String titre = "inconnu";
-			String description = "inconnu";
-			int nbExemplaire = 0;
-			try {
-				nbExemplaire = Integer.parseInt(request.getParameter("quantite"));
-				titre = request.getParameter("titre");
-				description = request.getParameter("desc");
-				
-			} catch (Exception e) {
-				throw new ExceptionServiceVoyage();
-			}
-			return new Document(titre, description, nbExemplaire);
+
+	private Voyage createVoyageFactory(HttpServletRequest request) throws ExceptionServiceVoyage {
+		String nom = "inconnu";
+		LocalDate dateDebut = null;
+		int nbParticipant = 0;
+		try {
+			nbParticipant = Integer.parseInt(request.getParameter("quantite"));
+			nom = request.getParameter("titre");
+			dateDebut = null;
+
+		} catch (Exception e) {
+			throw new ExceptionServiceVoyage();
+		}
+		return new Voyage(0, nom, dateDebut, nbParticipant, null);
 	}
 
 	private void read (HttpServletRequest request) {
 		affciherTrace("read");
-		
+
 	}
 
 	private void update(HttpServletRequest request)  {
 		affciherTrace("update");
-		
+
 	}
 
 	private void delete(HttpServletRequest request) {
 		affciherTrace("delete");
-		
+
 	}
-	
+
 	private void deleteAll() {
 		affciherTrace("deleteAll");
-		
+
 	}
 
 	private void affciherTrace(String string) {
 		System.out.println("trace : " + string);
-		
+
 	}
 }

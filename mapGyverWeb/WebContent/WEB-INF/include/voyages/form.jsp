@@ -17,9 +17,9 @@
 		    </div>
 		  </div>		
 		  <div class="form-group row">
-		    <label for="ObjetQuantite" class="col-sm-3 col-form-label">Départ prévu le : </label>
+		    <label for="depart" class="col-sm-3 col-form-label">Départ prévu le : </label>
 		    <div class="col-sm-9">
-		      <input type=date step=7 min=2014-09-08>
+		      <input type=date id="depart" name="depart">
 		    </div>
 		  </div>		
 		</div>
