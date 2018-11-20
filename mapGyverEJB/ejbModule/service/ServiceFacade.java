@@ -1,9 +1,5 @@
 package service;
 
-import clientServeur.IServiceFacade;
-import dao.DaoFacade;
-import service.uc4Voyage.ServiceVoyage;
-
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -13,27 +9,30 @@ import javax.ejb.Stateless;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
+import clientServeur.IServiceFacade;
+import clientServeur.exception.ServiceFacadeErrorMessageVoyage;
+import clientServeur.exception.ServiceFacadeExceptionVoyage;
+import service.exception.uc4Voyage.ServiceVoyageException;
+import service.uc4Voyage.ServiceFacadeVoyage;
 
 /**
  * Session Bean implementation class Facade
  */
 @Stateless
 @Remote(IServiceFacade.class)
-public class Facade implements IServiceFacade {
-
-	//private ServiceVoyage serviceVoyage = new ServiceVoyage();
-	
+public class ServiceFacade implements IServiceFacade {
 
 	@EJB
-	DaoFacade daoFacade ;
-	
-	public Facade() {
-	}
+	private ServiceFacadeVoyage serviceFacadeVoyage;
 
 	@Override
-	public void createVoyage(Voyage voyage) {
-		System.out.println("do Facade.serviceVoyage.createVoyage(voyage) " + voyage);
-		daoFacade.createVoyage(voyage);		
+	public void createVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage {
+		try {
+			serviceFacadeVoyage.createVoyage(voyage);
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(),
+					e.getMessage());
+		}
 	}
 
 	@Override

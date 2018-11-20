@@ -70,7 +70,7 @@
 
 	<!-- scripts for this page-->
 	<script src="<%=request.getContextPath()%>/assets/js/voyages/carte.js"></script>
-
+	<script src="<%=request.getContextPath()%>/assets/js/voyages/organisation.js"></script>
 </body>
 
 </html>

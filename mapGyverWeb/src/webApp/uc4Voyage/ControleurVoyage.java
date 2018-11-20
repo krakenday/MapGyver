@@ -1,8 +1,6 @@
 package webApp.uc4Voyage;
 
 import java.io.IOException;
-import java.time.LocalDate;
-
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -16,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import business.uc4Voyage.Voyage;
 import clientServeur.IServiceFacade;
+import clientServeur.exception.ServiceFacadeExceptionVoyage;
 
 
 
@@ -28,10 +27,13 @@ import clientServeur.IServiceFacade;
 		urlPatterns = {"/voyages/*"}
 		)
 public class ControleurVoyage extends HttpServlet {
+	private static final String ZONE_EXCEPTION = "WebApp";
+
 	private static final long serialVersionUID = 1L;
 
 	private IServiceFacade iServiceFacade;
-	private static final String VOYAGE_SERVICE_LOOKUP = "ejb:/mapGyverEJB/Facade!clientServeur.IServiceFacade";
+	private static final String VOYAGE_SERVICE_LOOKUP = "ejb:/mapGyverEJB/ServiceFacade!clientServeur.IServiceFacade";
+
 	@Override
 	public void init() throws ServletException {
 		try {
@@ -39,6 +41,7 @@ public class ControleurVoyage extends HttpServlet {
 			iServiceFacade = (IServiceFacade) context.lookup(VOYAGE_SERVICE_LOOKUP);
 		} catch (NamingException e) {
 			e.printStackTrace();
+			// TODO gerer exception connexion service
 		}
 
 	}
@@ -88,33 +91,19 @@ public class ControleurVoyage extends HttpServlet {
 	}
 
 	private void create(HttpServletRequest request) {
-		affciherTrace("create");
-		Voyage voyage;
 		try {
-			affciherTrace("lancement factory request");
-			voyage = createVoyageFactory(request);
-			affciherTrace("request to voyage : " + voyage.toString());
+			FormVoyage formVoyage = new FormVoyage(request);
+			Voyage voyage = formVoyage.createVoyage();
 			iServiceFacade.createVoyage(voyage);
-			affciherTrace(voyage.toString());
+			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_INSERT.getMsg() 
+					+" : "+ voyage.getNom());
 		} catch (ExceptionServiceVoyage e) {
-			affciherTrace("Exception " + e.getMessage());
-			//request.setAttribute("Exception", e.getMessage());	
+			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
+					+" *Err. "+ e.getMessage());
+		} catch (ServiceFacadeExceptionVoyage e) {
+			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_INSERT.getSolution() 
+					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
 		}
-	}
-
-	private Voyage createVoyageFactory(HttpServletRequest request) throws ExceptionServiceVoyage {
-		String nom = "inconnu";
-		LocalDate dateDebut = null;
-		int nbParticipant = 0;
-		try {
-			nbParticipant = Integer.parseInt(request.getParameter("quantite"));
-			nom = request.getParameter("titre");
-			dateDebut = null;
-
-		} catch (Exception e) {
-			throw new ExceptionServiceVoyage();
-		}
-		return new Voyage(0, nom, dateDebut, nbParticipant, null);
 	}
 
 	private void read (HttpServletRequest request) {

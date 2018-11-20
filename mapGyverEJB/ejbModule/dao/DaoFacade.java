@@ -9,75 +9,83 @@ import javax.ejb.Singleton;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
-import dao.uc4Voyage.DaoVoyage;
+import dao.exception.uc4Voyage.DaoFacadeErrorMessageVoyage;
+import dao.exception.uc4Voyage.DaoFacadeExceptionVoyage;
+import dao.exception.uc4Voyage.DaoVoyageException;
+import dao.uc4Voyage.DaoFacadeVoyage;
 
 @Singleton
 @LocalBean
 public class DaoFacade {
 
+	private static final String ZONE_EXCEPTION_MSG = ".Voyage";
 	@EJB
-	DaoVoyage daoVoyage;
+	private DaoFacadeVoyage daoFacadeVoyage;
 
-	public void createVoyage(Voyage voyage) {
-		System.out.println("do DaoFacade.daoVoyage.createVoyage(voyage) " + voyage);
-		daoVoyage.createVoyage(voyage);		
+	public void createVoyage(Voyage voyage) throws DaoFacadeExceptionVoyage {
+		try {
+			daoFacadeVoyage.createVoyage(voyage);
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					ZONE_EXCEPTION_MSG+ e.getMessage());
+		}
 	}
 
 	public List<Voyage> readVoyageOrderByID() {
-		return daoVoyage.readVoyageOrderByID();	
+		return daoFacadeVoyage.readVoyageOrderByID();
 	}
 
 	public void updateVoyage(Voyage voyage) {
-		daoVoyage.updateVoyage(voyage);			
+		daoFacadeVoyage.updateVoyage(voyage);			
 	}
 	
 	public void deleteVoyage(int id) {
-		daoVoyage.deleteVoyage(id);
+		daoFacadeVoyage.deleteVoyage(id);
 	}
 
 	public Voyage findVoyagebyID(int id) {
-		return daoVoyage.findVoyagebyID(id);
+		return daoFacadeVoyage.findVoyagebyID(id);
 	}
 
 	public void createRoadBook(RoadBook roadBook) {
-		daoVoyage.createRoadBook(roadBook);	
+		daoFacadeVoyage.createRoadBook(roadBook);	
 	}
 
 	public List<RoadBook> readRoadBookOrderByID() {
-		return daoVoyage.readRoadBookOrderByID();	
+		return daoFacadeVoyage.readRoadBookOrderByID();	
 	}
 
 	public void updateRoadBook(RoadBook roadBook) {
-		daoVoyage.updateRoadBook(roadBook);	
+		daoFacadeVoyage.updateRoadBook(roadBook);	
 	}
 
 	public void deleteRoadBook(int id) {
-		daoVoyage.deleteRoadBook(id);	
+		daoFacadeVoyage.deleteRoadBook(id);	
 	}
 
 	public RoadBook findRoadBookbyID(int id) {
-		return daoVoyage.findRoadBookbyID(id);
+		return daoFacadeVoyage.findRoadBookbyID(id);
 	}
 
 	public void createPOInteret(PointInteret pointInteret) {
-		daoVoyage.createPOInteret(pointInteret);
+		daoFacadeVoyage.createPOInteret(pointInteret);
 		
 	}
 
 	public List<PointInteret> readPOInteretOrderByID() {
-		return daoVoyage.readPOInteretOrderByID();
+		return daoFacadeVoyage.readPOInteretOrderByID();
 	}
 
 	public void updatePOInteret(PointInteret pointInteret) {
-		daoVoyage.updatePOInteret(pointInteret);
+		daoFacadeVoyage.updatePOInteret(pointInteret);
 	}
 
 	public void deletePOInteret(int id) {
-		daoVoyage.deletePOInteret(id);		
+		daoFacadeVoyage.deletePOInteret(id);		
 	}
 
 	public PointInteret findPOInteretByID(int id) {
-		return daoVoyage.findPOInteretByID(id);	
+		return daoFacadeVoyage.findPOInteretByID(id);	
 	}
 
 	

@@ -16,7 +16,7 @@ import dao.util.UtilBdD;
 public class EntityVoyage {
 	
 	@Id
-	@Column(name="ref_voyage")
+	@Column(name="id_voyage")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int 					id;
 	

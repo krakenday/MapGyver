@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>MapGyver - Blank Page</title>
+    <title>MapGyver - Voyages - 404 Error</title>
 
 <jsp:include page="/WEB-INF/include/template.jsp" />
 
@@ -28,7 +28,7 @@
     <div id="wrapper">
 
       <!-- Sidebar -->
-     	<jsp:include page="/WEB-INF/include/sidebar.jsp" />
+      	<jsp:include page="/WEB-INF/include/sidebar.jsp" />
 
       <div id="content-wrapper">
 
@@ -39,18 +39,20 @@
             <li class="breadcrumb-item">
               <a href="<%=request.getContextPath()%>">MapGyver</a>
             </li>
-            <li class="breadcrumb-item active">Blank Page</li>
+            <li class="breadcrumb-item active">404 Error</li>
           </ol>
 
           <!-- Page Content -->
-          <h1>Blank Page</h1>
-          <hr>
-          <p>This is a great starting point for new custom pages.</p>
+          <h1 class="display-1">404</h1>
+          <p class="lead">Page not found. You can
+            <a href="javascript:history.back()">go back</a>
+            to the previous page, or
+            <a href="index.jsp">return home</a>.</p>
 
         </div>
         <!-- /.container-fluid -->
 
-        <!-- Sticky Footer -->
+         <!-- Sticky Footer -->
 		<jsp:include page="/WEB-INF/include/footer.jsp" />
 
       </div>

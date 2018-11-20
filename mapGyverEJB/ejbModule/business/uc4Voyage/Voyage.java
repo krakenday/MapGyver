@@ -46,6 +46,27 @@ public class Voyage implements Serializable {
 		this.nbParticipant = nbParticipant;
 		this.pointInteret = pointInteret;
 	}
+
+	/**
+	 * @param nom           : nom du voyage
+	 * @param dateDebut     : date de debut du voyage
+	 * @param nbParticipant : nb de personnes participant a ce voyage
+	 * @param pointInteret  : ensemble de lieux parcouru lors du voyage
+	 */
+	public Voyage(String nom, LocalDate dateDebut,
+			int nbParticipant, ArrayList<PointInteret> pointInteret) {
+		this.nom = nom;
+		this.dateDebut = dateDebut;
+		this.nbParticipant = nbParticipant;
+		this.pointInteret = pointInteret;
+	}
+
+	/**
+	 * @param nom           : nom du voyage
+	 */
+	public Voyage(String nom) {
+		this.nom = nom;
+	}
 	
 	/**
 	 * @return numero de reference du voyage

@@ -5,13 +5,14 @@ import java.util.List;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
+import clientServeur.exception.ServiceFacadeExceptionVoyage;
 
 
 
 public interface IServiceFacade {
 	
 	// Voyage, offre de service : CRUD
-	public void 				createVoyage(Voyage voyage);
+	public void 				createVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage;
 	public List<Voyage> 		readVoyageOrderByID();
 	public void 				updateVoyage(Voyage voyage);
 	public void 				deleteVoyage(int id);

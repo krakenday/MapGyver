@@ -9,82 +9,75 @@ import javax.ejb.Singleton;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
-import dao.DaoFacade;
-import dao.exception.uc4Voyage.DaoFacadeExceptionVoyage;
-import service.exception.uc4Voyage.ServiceVoyageErrorMessage;
 import service.exception.uc4Voyage.ServiceVoyageException;
+
 
 @Singleton
 @LocalBean
-public class ServiceVoyage {
+public class ServiceFacadeVoyage {
 
 	@EJB
-	private DaoFacade daoFacade;
+	private ServiceVoyage serviceVoyage;
 
 	public void createVoyage(Voyage voyage) throws ServiceVoyageException {
-		try {
-			daoFacade.createVoyage(voyage);
-		} catch (DaoFacadeExceptionVoyage e) {
-			throw new ServiceVoyageException(e.getCode(),
-					e.getMessage());
-		}
+		serviceVoyage.createVoyage(voyage);
 	}
 
 	public List<Voyage> readVoyageOrderByID() {
-		return daoFacade.readVoyageOrderByID();
+		return serviceVoyage.readVoyageOrderByID();
 	}
 
 	public void updateVoyage(Voyage voyage) {
-		daoFacade.updateVoyage(voyage);
+		serviceVoyage.updateVoyage(voyage);
 	}
 
 	public void deleteVoyage(int id) {
-		daoFacade.deleteVoyage(id);
+		serviceVoyage.deleteVoyage(id);
 	}
 
 	public Voyage findVoyagebyID(int id) {
-		return daoFacade.findVoyagebyID(id);
+		return serviceVoyage.findVoyagebyID(id);
 	}
 
 	public void createRoadBook(RoadBook roadBook) {
-		daoFacade.createRoadBook(roadBook);
+		serviceVoyage.createRoadBook(roadBook);
 	}
 
 	public List<RoadBook> readRoadBookOrderByID() {
-		return daoFacade.readRoadBookOrderByID();
+		return serviceVoyage.readRoadBookOrderByID();
 	}
 
 	public void updateRoadBook(RoadBook roadBook) {
-		daoFacade.updateRoadBook(roadBook);
+		serviceVoyage.updateRoadBook(roadBook);
 		
 	}
 
 	public void deleteRoadBook(int id) {
-		daoFacade.deleteRoadBook(id);
+		serviceVoyage.deleteRoadBook(id);
 	}
 
 	public RoadBook findRoadBookbyID(int id) {
-		return daoFacade.findRoadBookbyID(id);
+		return serviceVoyage.findRoadBookbyID(id);
 	}
 
 	public void createPOInteret(PointInteret pointInteret) {
-		daoFacade.createPOInteret(pointInteret);
+		serviceVoyage.createPOInteret(pointInteret);
 	}
 
 	public List<PointInteret> readPOInteretOrderByID() {
-		return daoFacade.readPOInteretOrderByID();
+		return serviceVoyage.readPOInteretOrderByID();
 	}
 
 	public void updatePOInteret(PointInteret pointInteret) {
-		daoFacade.updatePOInteret(pointInteret);
+		serviceVoyage.updatePOInteret(pointInteret);
 	}
 
 	public void deletePOInteret(int id) {
-		daoFacade.deletePOInteret(id);
+		serviceVoyage.deletePOInteret(id);
 	}
 
 	public PointInteret findPOInteretByID(int id) {
-		return daoFacade.findPOInteretByID(id);
+		return serviceVoyage.findPOInteretByID(id);
 	}
 
 
