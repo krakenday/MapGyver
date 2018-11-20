@@ -12,6 +12,11 @@
             <i class="fas fa-fw fa-table"></i>
             <span>voyages</span></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%=request.getContextPath()%>/mpg/souvenirs/"><!-- envoyer vers mon controleur souvenir -->
+            <i class="fas fa-fw fa-table"></i>
+            <span>souvenirs</span></a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-folder"></i>

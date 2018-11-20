@@ -7,19 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Organisation de la Bibliotheque">
-    <meta name="author" content="Idriss">
+    <meta name="author" content="Alejandro">
 
 
     <title>MapGyver - Souvenirs</title>
-<!--  
+
 <jsp:include page="/WEB-INF/include/template.jsp" />
-<jsp:include page="/WEB-INF/include/voyages/styles.jsp" />  	
--->
+
   </head>
 
   <body id="page-top">
-
-    <nav class="navbar navbar-expand navbar-dark bg-secondary static-top">
+  <nav class="navbar navbar-expand navbar-dark bg-secondary static-top">
 		<jsp:include page="/WEB-INF/include/start.jsp" />
       <!-- Navbar Search -->
 		<jsp:include page="/WEB-INF/include/search.jsp" />
@@ -42,10 +40,12 @@
             <li class="breadcrumb-item">
               <a href="<%=request.getContextPath()%>">MapGyver</a>
             </li>
-            <li class="breadcrumb-item active">Voyages</li>
+            <li class="breadcrumb-item active">Souvenirs</li>
           </ol>
           
-          <jsp:include page="/WEB-INF/include/souvenirs/classementsouvenirs.jsp" />
+          <!-- pages a include a tour de role (UC2 Souvenirs) -->
+         <%-- <jsp:include page="/WEB-INF/include/souvenirs/classementsouvenirs.jsp" />--%> 
+          <jsp:include page="/WEB-INF/include/souvenirs/consultsouvenirs.jsp" />
 
        </div>
         <!-- /.container-fluid -->
