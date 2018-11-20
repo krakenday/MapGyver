@@ -1,6 +1,6 @@
 package dao;
 
-
+<<<<<<< HEAD
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
@@ -28,4 +28,8 @@ public class DaoFacade {
 		
 		return user;
 	}
+=======
+public class DaoFacade {
+>>>>>>> featUC6
+
 }

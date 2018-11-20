@@ -1,6 +1,6 @@
 package service;
 
-
+<<<<<<< HEAD
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -22,5 +22,8 @@ public class ServiceFacade implements IServiceFacade {
 		Utilisateur user = serviceFacadeAdmin.getUserById(id);
 		return user;
 	}
+=======
+public class ServiceFacade {
+>>>>>>> featUC6
 
 }
