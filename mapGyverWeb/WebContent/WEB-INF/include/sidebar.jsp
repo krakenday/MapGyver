@@ -12,6 +12,15 @@
             <i class="fas fa-fw fa-table"></i>
             <span>voyages</span></a>
         </li>
+        
+        <!-- link UC3 Partager -->
+        <li class="nav-item">
+          <a class="nav-link" href="<%=request.getContextPath()%>/vue/vue.partager/dashboard.jsp">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Partager</span></a>
+        </li>
+        <!-- end link UC3 Partager -->
+        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-folder"></i>
