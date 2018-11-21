@@ -1,7 +1,5 @@
 package business.uc8Utilisateur;
 
-//import javax.persistence.Entity;
-
 
 public class Groupe extends Cercle {
 
