@@ -31,7 +31,7 @@
 <!-- contenu du site -->
 <body>
 	<!-- header menu  & sidebar -->
-	<jsp:include page="../../WEB-INF/include/include.partager/menu.jsp"/>
+	<jsp:include page="/WEB-INF/include/partager/menu.jsp"/>
 	
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
@@ -105,16 +105,16 @@
 		        		<div class="col-md-2"></div>
 		        		
 		        		<!-- formulaire description -->
-		        		<form action="">
+		        		<form action="" name="formulaire" id="formulaire">
 							<div class="card col-md-4">
 								<!-- groupe de partage -->
 								<div class="card-header text-center">Groupe de partage</div>
 								<fieldset data-role="controlgroup" data-iconpos="right" id="checkboxGroup">
-									<input name="checkbox1" id="checkbox1" type="checkbox" hidden=""/>
+									<input name="group1" id="checkbox1" value="Public" type="checkbox" onclick="checkBoxButton();" hidden=""/>
 									<label for="checkbox1">Public</label>
-									<input name="checkbox2" id="checkbox2" type="checkbox" hidden=""/>
+									<input name="group1" id="checkbox2" value="Amis" type="checkbox" onclick="checkBoxButton();" hidden=""/>
 									<label for="checkbox2">Amis</label>
-									<input name="checkbox3" id="checkbox3" type="checkbox" hidden=""/>
+									<input name="group1" id="checkbox3" value="Famille" type="checkbox" onclick="checkBoxButton();" hidden=""/>
 									<label for="checkbox3">Famille</label>
 								</fieldset>
 								<!-- end groupe de partage -->
@@ -122,11 +122,11 @@
 								<!-- type description -->
 								<div class="card-header text-center">Type de description</div>
 								<div class="ui-field-contain">
-									<select name="lblTypeDescription" id="lblTypeDescription" data-corners="false" data-iconpos="right">
-										<option value="" selected="selected" disabled="disabled">Sélectionner un type de description</option>
-										<option value="">Bon plan</option>
-										<option value="">Arnaque</option>
-										<option value="">Immanquable</option>
+									<select name="lblTypeDescription" id="lblTypeDescription" onclick="checkTypeDescription();" data-corners="false" data-iconpos="right">
+										<option value="0" selected="selected" disabled="disabled">Sélectionner un type de description</option>
+										<option value="1">Bon plan</option>
+										<option value="2">Arnaque</option>
+										<option value="3">Immanquable</option>
 									</select>
 								</div>
 								<!-- end type description -->
@@ -136,7 +136,7 @@
 									<div class="card-header text-center">Zone de texte</div>
 									<div data-role="controlgroup" id="btnGroupTxtArea">
 										<div class="zoneTxtArea">
-											<textarea name="txtAreaDescription" id="txtAreaDescription" data-clear-btn="true" placeholder="Veuillez saisir votre texte" maxlength="300" cols="40" rows="8"></textarea>
+											<textarea name="txtAreaDescription"  id="txtAreaDescription" data-clear-btn="true" placeholder="Veuillez saisir votre texte" maxlength="300" cols="40" rows="8"></textarea>
 										</div>
 										<!-- end texte area description -->
 										<hr>
@@ -154,12 +154,12 @@
 										<div class="radioButton">
 											<fieldset data-role="controlgroup" id="radioButtonGroup" data-type="horizontal">
 												<legend></legend>
-												<input name="radio-choice-1" id="radio-choice-1a" data-mini="true" value="Creer" type="radio" hidden="" checked="checked"/>
-												<label for="radio-choice-1a">Creer</label>
-												<input name="radio-choice-1" id="radio-choice-1b" data-mini="true" value="Modifier" type="radio" hidden=""/>
-												<label for="radio-choice-1b">Modifier</label>
-												<input name="radio-choice-1" id="radio-choice-1c" data-mini="true" value="Supprimer" type="radio" hidden=""/>
-												<label for="radio-choice-1c">Supprimer</label>
+												<input name="group2" id="btnRadioCreer" data-mini="true" value="Creer" type="radio" onclick="checkRadioButton();" hidden="" />
+												<label for="btnRadioCreer">Creer</label>
+												<input name="group2" id="btnRadioModifier" data-mini="true" value="Modifier" type="radio" onclick="checkRadioButton();" hidden=""/>
+												<label for="btnRadioModifier">Modifier</label>
+												<input name="group2" id="btnRadioSupprimer" data-mini="true" value="Supprimer" type="radio" onclick="checkRadioButton();" hidden=""/>
+												<label for="btnRadioSupprimer">Supprimer</label>
 											</fieldset>
 										</div>
 										<!-- end creation-Suppression-modification du formulaire -->
@@ -175,6 +175,7 @@
 										</div>
 										<!-- end reset & submit du formulaire -->
 									</div>
+									<div id="message">Formulaire incomplet</div>
 								</div>
 								
 							</div>
@@ -187,7 +188,7 @@
         <!-- end contenu du panel central -->
 	    		
 		<!-- footer -->
-		<jsp:include page="../../WEB-INF/include/include.partager/footer.jsp" />
+		<jsp:include page="/WEB-INF/include/partager/footer.jsp" />
 		<!-- end footer -->
 		
 	</div>
@@ -195,7 +196,8 @@
 <!-- end contenu du site -->
 
     <!--   import script   -->
-	<jsp:include page="/WEB-INF/include/include.partager/script.jsp" />
+	<jsp:include page="/WEB-INF/include/partager/script.jsp" />
+	<script src="<%= request.getContextPath() %>/assets/js/js.partager/partager.js"></script>
 	<!--   end import script   -->
 
 </html>

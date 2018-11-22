@@ -2,11 +2,12 @@ package dao.uc3Partager.gestion;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 
 import business.uc3Partager.Description;
+import dao.exception.ViolationPersistenceException;
 import dao.util.partager.UtilBdD;
 import entity.partager.DescriptionEntity;
 
@@ -17,13 +18,22 @@ public class DaoPartagerGestion {
 	@PersistenceContext(unitName = UtilBdD.PERSISTANCE_UNITNAME)
 	private EntityManager em;
 
-	public void addDescription(DescriptionEntity descriptionEntity) {
+	public void addDescription(DescriptionEntity descriptionEntity) throws ViolationPersistenceException {
 		try {
-			System.out.println(descriptionEntity);
+			descriptionEntity.setId(1);
+			System.out.println(descriptionEntity);								//TODO:A supprimer
 			em.persist(descriptionEntity);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("DAO_PARTAGER_GESTION >>> addDescription(Description description) - Erreur Persist");
+			em.flush();															
+		} catch (PersistenceException e) {
+			System.out.println("DAO_PARTAGER_GESTION >>> addDescription(Description description) - Erreur Persist");//TODO:A supprimer
+			throw new ViolationPersistenceException();
+//			//La méthode getCause() permet de rechercher le causeBy
+//			Throwable cause = e.getCause();
+//			
+//			while (cause != null && !(cause instanceof SQLIntegrityConstraintViolationException)) {
+//				cause = cause.getCause();
+//			}
+			
 		}
 	}
 

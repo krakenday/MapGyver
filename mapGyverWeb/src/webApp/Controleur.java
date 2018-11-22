@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(
 		name = "Controleur", 
 		description = "Controleur General", 
-		urlPatterns = {"/mpg/*"}
+		urlPatterns = {"/mapgyver/*"}
 		)
 public class Controleur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,9 +30,16 @@ public class Controleur extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		afficherTrace("Controleur Generale");
+		
+		// on recupere la methode d'envoi de la requete en minuscule
+		String methode = request.getMethod().toLowerCase();
+		afficherTrace(methode);
+		// on recupere le path à executer
 		String path = request.getPathInfo();
 		afficherTrace(path);
+		
 		if (path == null || path.equals("/")) {
 			doAccueil(request, response);
 		}
@@ -41,6 +48,12 @@ public class Controleur extends HttpServlet {
 		}
 		else if (path.matches("/voyages(.*)")) {
 			doPage(request, response, path);			
+		}
+		/*
+		 * Partager
+		 */
+		else if (methode.equals("get") && path.equals("")) {
+			
 		}
 		else {
 			doErreur(request, response);

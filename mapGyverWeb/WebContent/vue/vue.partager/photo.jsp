@@ -27,7 +27,7 @@
 <!-- contenu du site -->
 <body>
 	<!-- header menu  & sidebar -->
-	<jsp:include page="/WEB-INF/include/include.partager/menu.jsp" />
+	<jsp:include page="/WEB-INF/include/partager/menu.jsp" />
 	
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
@@ -114,7 +114,7 @@
         <!-- end contenu du panel central -->
 	    		
 		<!-- footer -->
-		<jsp:include page="../../WEB-INF/include/include.partager/footer.jsp" />
+		<jsp:include page="/WEB-INF/include/partager/footer.jsp" />
 		<!-- end footer -->
 		
 	</div>
@@ -122,7 +122,7 @@
 <!-- end contenu du site -->
 
     <!--   import script   -->
-	<jsp:include page="/WEB-INF/include/include.partager/script.jsp" />
+	<jsp:include page="/WEB-INF/include/partager/script.jsp" />
 	<!--   end import script   -->
 
 </html>

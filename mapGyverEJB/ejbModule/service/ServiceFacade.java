@@ -6,7 +6,10 @@ import javax.ejb.Stateless;
 
 import business.uc3Partager.Description;
 import client.serveur.partager.IGestion;
+import client.serveur.partager.exception.UserException;
+import service.exception.ViolationPersistenceException;
 import service.uc3Partager.ServiceFacadePartager;
+import utilitaire.partager.Erreur;
 
 @Stateless
 @Remote(IGestion.class)
@@ -24,11 +27,13 @@ public class ServiceFacade implements IGestion{
 	 * Création
 	 */
 	@Override
-	public void addDescription(Description description) {
+	public void addDescription(Description description) throws UserException {
+		if (description == null) throw new UserException(Erreur.DESC_NULL);
 		try {
 			serviceFacadePartager.addDescription(description);
-		} catch (Exception e) {
+		} catch (ViolationPersistenceException e) {
 			System.out.println("SERVICE_FACADE >>> addDescription(Description description) - Erreur");
+			throw new UserException(Erreur.DESC_DOUBLON);
 		}
 	}
 

@@ -3,14 +3,16 @@ package dao;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
+import javax.persistence.PersistenceException;
 
 import business.uc3Partager.Description;
+import dao.exception.ViolationPersistenceException;
 import dao.uc3Partager.DaoFacadePartager;
+
 
 @Singleton
 @LocalBean
 public class DaoFacade {
-	
 	
 	@EJB
 	private DaoFacadePartager daoFacadePartager;
@@ -18,11 +20,12 @@ public class DaoFacade {
 	/*
 	 * Création
 	 */
-	public void addDescription(Description description) {
+	public void addDescription(Description description) throws service.exception.ViolationPersistenceException {
 		try {
 			daoFacadePartager.addDescription(description);
-		} catch (Exception e) {
+		} catch (ViolationPersistenceException e) {
 			System.out.println("DAO_FACADE >>> addDescription(Description description) - Erreur");
+			throw new service.exception.ViolationPersistenceException();
 		}
 	}
 

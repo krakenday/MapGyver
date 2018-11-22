@@ -3,9 +3,11 @@ package service.uc3Partager.gestion;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
+import javax.persistence.PersistenceException;
 
 import business.uc3Partager.Description;
 import dao.DaoFacade;
+import service.exception.ViolationPersistenceException;
 
 @Singleton
 @LocalBean
@@ -19,12 +21,8 @@ public class ServicePartagerGestion {
 	/*
 	 * Création
 	 */
-	public void addDescription(Description description) {
-		try {
-			daoFacade.addDescription(description);
-		} catch (Exception e) {
-			System.out.println("SERVICE_PARTAGER_GESTION >>> addDescription(Description description) - Erreur");
-		}
+	public void addDescription(Description description) throws ViolationPersistenceException {
+		daoFacade.addDescription(description);
 	}
 
 	/*

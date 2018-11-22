@@ -5,6 +5,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import business.uc3Partager.Description;
+import service.exception.ViolationPersistenceException;
 import service.uc3Partager.gestion.ServicePartagerGestion;
 
 @Singleton
@@ -18,12 +19,8 @@ public class ServiceFacadePartager {
 	/*
 	 * Création
 	 */
-	public void addDescription(Description description) {
-		try {
-			servicePartagerGestion.addDescription(description);
-		} catch (Exception e) {
-			System.out.println("SERVICE_FACADE_PARTAGER >>> addDescription(Description description) - Erreur");
-		}
+	public void addDescription(Description description) throws ViolationPersistenceException{
+		servicePartagerGestion.addDescription(description);
 	}
 	
 	/*

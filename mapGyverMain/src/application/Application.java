@@ -8,11 +8,12 @@ import javax.naming.NamingException;
 
 import business.uc3Partager.Description;
 import client.serveur.partager.IGestion;
+import client.serveur.partager.exception.UserException;
 
 
 public class Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UserException {
 		
 		try {
 			Context context 			= new InitialContext();
@@ -42,7 +43,9 @@ public class Application {
 			
 		} catch (NamingException e) {
 			e.printStackTrace();
-		}
+		} catch (UserException e) {
+			System.out.println(e.getMessage());
 	}
+}
 
 }

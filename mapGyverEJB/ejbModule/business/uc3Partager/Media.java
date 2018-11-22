@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Media implements Serializable{
 
-	private static final long serialVersionUID = -7365008177553127164L;
+	private static final long serialVersionUID = 3376855106287451740L;
 	
 	private int id;
 
@@ -23,7 +23,7 @@ public class Media implements Serializable{
 
 	@Override
 	public String toString() {
-		return "CLASSE METIER MEDIA >>> Media [id=" + id + "]";
+		return "CLASSE METIER MEDIA >>>Media [id=" + id + "]";
 	}
 	
 	
