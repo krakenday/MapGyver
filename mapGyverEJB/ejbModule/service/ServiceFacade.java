@@ -1,9 +1,14 @@
 package service;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+<<<<<<< HEAD
 import business.uc3Partager.Description;
 import client.serveur.partager.IGestion;
 import client.serveur.partager.exception.UserException;
@@ -71,6 +76,24 @@ public class ServiceFacade implements IGestion{
 		} catch (Exception e) {
 			System.out.println("SERVICE_FACADE >>> deleteDescription(Description description) - Erreur");
 		}
+=======
+import business.uc8Utilisateur.Utilisateur;
+import clientServer.IServiceFacade;
+import service.exception.uc1Administrer.ServiceInexistantException;
+import service.uc1Administrer.ServiceFacadeAdmin;
+
+@Stateless
+@Remote(IServiceFacade.class)
+public class ServiceFacade implements IServiceFacade {
+	
+	@EJB
+	private ServiceFacadeAdmin serviceFacadeAdmin;
+	
+	@Override
+	public Utilisateur getUserById(int id) throws ServiceInexistantException {
+		Utilisateur user = serviceFacadeAdmin.getUserById(id);
+		return user;
+>>>>>>> dev
 	}
 
 }
