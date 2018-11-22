@@ -23,4 +23,10 @@ public class ServiceFacade implements IServiceFacade {
 		return user;
 	}
 
+	@Override
+	public Utilisateur getUserByEmail(String email) throws ServiceInexistantException {
+		Utilisateur user = serviceFacadeAdmin.getUserByEmail(email);
+		return user;
+	}
+
 }

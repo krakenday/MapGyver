@@ -48,6 +48,8 @@ public class ControleurAdministrer extends HttpServlet {
 		String path = request.getPathInfo();
 		System.out.println("*** ControleurAdministrer - doPost - path : " + path);
 		
+		request.setAttribute("msg", "");
+		
 		if (path == null || path.equals("/")) 	{
 			doAccueil(request, response);
 		}
@@ -70,7 +72,7 @@ public class ControleurAdministrer extends HttpServlet {
 		//TODO recup du user par email
 		RequestDispatcher 	disp = null;
 		try {
-			Utilisateur user = service.getUserById(4);
+			Utilisateur user = service.getUserByEmail(email);
 			System.out.println("*** ControleurAdministrer - doLogin - user : " + user);
 			
 			
@@ -94,12 +96,12 @@ public class ControleurAdministrer extends HttpServlet {
 
 	private void doLogout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logout(request, response);
-		RequestDispatcher 	disp = request.getRequestDispatcher("/vue/login.jsp"); 
-		disp.forward(request,response);
+		response.sendRedirect(request.getContextPath()); 
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("*** ControleurAdministrer - doGet");
+		request.setAttribute("msg", "");
 		doPost(request, response);
 	}
 
@@ -111,8 +113,10 @@ public class ControleurAdministrer extends HttpServlet {
 	}
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		HttpSession session = request.getSession();
-		session.setAttribute("inputEmail", null);
-		session.setAttribute("inputPassword", null);
+		session.removeAttribute("inputEmail");
+		session.removeAttribute("utilisateur");
+		request.removeAttribute("inputEmail");
+		request.removeAttribute("inputPassword");
 	}
 
 

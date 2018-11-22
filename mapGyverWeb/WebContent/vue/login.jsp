@@ -19,7 +19,8 @@
 
     <div class="container">
       <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Login</div>
+        <jsp:useBean id="msg" scope="request" class="java.lang.String" />
+        <div class="card-header">Login <%=msg%></div>
         <div class="card-body">
           <form action="<%=request.getContextPath() %>/admin/login" method="post">
             <div class="form-group">
