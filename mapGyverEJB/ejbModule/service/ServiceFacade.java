@@ -6,7 +6,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import business.uc8Utilisateur.Utilisateur;
-import clientServer.IServiceFacade;
+import clientServeur.IServiceFacade;
 import service.exception.uc1Administrer.ServiceInexistantException;
 import service.uc1Administrer.ServiceFacadeAdmin;
 

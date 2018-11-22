@@ -1,4 +1,4 @@
-package clientServer;
+package clientServeur;
 
 
 import business.uc8Utilisateur.Utilisateur;
