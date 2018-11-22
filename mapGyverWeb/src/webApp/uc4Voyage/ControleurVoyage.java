@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import business.uc4Voyage.Document;
-import clientServeur.IServiceBiblio;
+import clientServeur.IServiceFacade;
 
 
 
@@ -28,13 +28,13 @@ import clientServeur.IServiceBiblio;
 public class ControleurVoyage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private IServiceBiblio iServiceBiblio;
+	private IServiceFacade iServiceBiblio;
 	private static final String BIBLIO_SERVICE_LOOKUP = "ejb:/biblioEJB/ServiceBiblioBeanStateless!clientServeur.IServiceBiblio";
 	@Override
 	public void init() throws ServletException {
 		try {
 			Context context = new InitialContext();
-			iServiceBiblio = (IServiceBiblio) context.lookup(BIBLIO_SERVICE_LOOKUP);
+			iServiceBiblio = (IServiceFacade) context.lookup(BIBLIO_SERVICE_LOOKUP);
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
