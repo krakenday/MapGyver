@@ -19,18 +19,19 @@
 
     <div class="container">
       <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Login</div>
+        <jsp:useBean id="msg" scope="request" class="java.lang.String" />
+        <div class="card-header">Login <%=msg%></div>
         <div class="card-body">
-          <form>
+          <form action="<%=request.getContextPath() %>/admin/login" method="post">
             <div class="form-group">
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+                <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
                 <label for="inputEmail">Email address</label>
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required="required">
                 <label for="inputPassword">Password</label>
               </div>
             </div>
@@ -42,11 +43,11 @@
                 </label>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="index.jsp">Login</a>
+            <input type="submit" class="btn btn-primary btn-block" value="Login" />
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="register.jsp">Register an Account</a>
-            <a class="d-block small" href="forgot-password.jsp">Forgot Password?</a>
+            <a class="d-block small mt-3" 	href="<%=request.getContextPath() %>/vue/register.jsp">Register an Account</a>
+            <a class="d-block small" 		href="<%=request.getContextPath() %>/vue/forgot-password.jsp">Forgot Password?</a>
           </div>
         </div>
       </div>

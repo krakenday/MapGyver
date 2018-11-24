@@ -28,4 +28,16 @@ public class DaoFacade {
 		
 		return user;
 	}
+
+	public Utilisateur getUserByEmail(String email) throws ServiceInexistantException {
+		Utilisateur user = null;
+		try {
+			user = daoFacadeAdmin.getUserByEmail(email);
+		}
+		catch (DaoInexistantException e) {
+			throw new ServiceInexistantException();
+		}
+		
+		return user;
+	}
 }

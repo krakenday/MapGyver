@@ -20,4 +20,9 @@ public class ServiceFacadeAdmin {
 		return user;
 	}
 
+	public Utilisateur getUserByEmail(String email) throws ServiceInexistantException {
+		Utilisateur user = daoFacade.getUserByEmail(email);
+		return user;
+	}
+
 }

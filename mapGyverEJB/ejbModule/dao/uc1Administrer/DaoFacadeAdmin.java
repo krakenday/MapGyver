@@ -29,4 +29,18 @@ public class DaoFacadeAdmin {
 		return user;
 	}
 
+	public Utilisateur getUserByEmail(String email) throws DaoInexistantException {
+
+		Utilisateur user = null;
+
+		EntityUtilisateur entityUser = daoAdmin.getUserByEmail(email);
+		if (entityUser != null) {
+			user = new Utilisateur(	entityUser.getId(), 
+					entityUser.getNom(), 
+					entityUser.getPrenom(), 
+					entityUser.getEmail());
+		}
+		return user;
+	}
+
 }

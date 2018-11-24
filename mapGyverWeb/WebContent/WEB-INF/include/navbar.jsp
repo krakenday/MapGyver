@@ -30,7 +30,8 @@
             <i class="fas fa-user-circle fa-fw"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#">Settings</a>
+          	<jsp:useBean id="utilisateur" scope="session" class="business.uc8Utilisateur.Utilisateur" />
+            <a class="dropdown-item" href="#"><%=utilisateur.getPrenom() %>-<%=utilisateur.getNom() %> </a>
             <a class="dropdown-item" href="#">Activity Log</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
