@@ -24,7 +24,7 @@
         <div class="card-header">Cr&eacute;er un utilisateur</div>
         <div class="card-body">
         
-          <form name="inscription" method="post" id="inscription">
+          <form name="inscription" method="post" id="inscription" action="<%=request.getContextPath() %>/utilisateur/inscription">
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-6">
@@ -330,7 +330,7 @@
             <button type="reset" class="btn btn-danger btn-block" >Reset</button>
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="login.jsp">Page d'identification</a>
+            <a class="d-block small mt-3" href="<%=request.getContextPath() %>/vue/login.jsp">Page d'identification</a>
         <!--     <a class="d-block small" href="forgot-password.jsp">Forgot Password?</a> --> 
           </div>
         </div>

@@ -26,17 +26,13 @@
   <h4 class="display-3">Félicitations</h4>
             <p>Votre compte a été créé avec succes</p>
             <p>Pour profiter pleinement de notre application veuillez vous identifier</p>
-            <a class="btn-lg btn-primary" type="button" href="../login.jsp" >CONNEXION</a>
+            <a class="btn-lg btn-primary" type="button" href="<%=request.getContextPath() %>/vue/login.jsp" >CONNEXION</a>
         </div>
       </div>
     </div>
     
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="<%=request.getContextPath()%>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="<%=request.getContextPath()%>/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<jsp:include page="/WEB-INF/include/scripts.jsp" />
 
   </body>
 

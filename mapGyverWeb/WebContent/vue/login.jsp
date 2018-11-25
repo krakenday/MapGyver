@@ -18,6 +18,10 @@
   <body class="bg-dark">
 
     <div class="container">
+    <h1 class="display-3 text-center" style="color: white;">Welcome on the best travel webApp</h1>
+    <div class="text-center">
+    	<img src="../assets/img/mapgyver.png" width="50%" height="50%">
+    </div>
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Connexion</div>
         <div class="card-body">

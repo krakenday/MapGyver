@@ -22,8 +22,8 @@ public class DaoFacadeUtilisateur {
 	
 	//Gestion de l'utilisateur
 	public void addUtilisateur(Utilisateur utilisateur) {
-		EntityUtilisateur entityUtilisateur= fabriqueEntity.createEntityUser(utilisateur);
-		daoGestion.addUtilisateur(entityUtilisateur);
+			EntityUtilisateur entityUtilisateur= fabriqueEntity.createEntityUser(utilisateur);
+			daoGestion.addUtilisateur(entityUtilisateur);
 	}
 	
 	public Utilisateur readUtilisateur(int id) {

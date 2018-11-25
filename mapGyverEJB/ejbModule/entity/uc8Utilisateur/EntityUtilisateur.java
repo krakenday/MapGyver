@@ -17,11 +17,10 @@ import javax.persistence.*;
  */
 
 @Entity
+@Table(name="UTILISATEUR")
 public class EntityUtilisateur implements Serializable{
 	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -34,7 +33,7 @@ public class EntityUtilisateur implements Serializable{
 	private String prenom;
 	@Column(length=100, nullable= false)
 	private String adresse;
-	@Column(length=50, nullable= false)
+	@Column(length=50,  unique= true, nullable= false)
 	private String email;
 	@Column(length=20, nullable= false)
 	private String telephone;

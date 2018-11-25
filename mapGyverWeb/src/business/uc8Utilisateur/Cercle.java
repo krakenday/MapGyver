@@ -1,4 +1,4 @@
-package entity.uc8Utilisateur;
+package business.uc8Utilisateur;
 
 /**
  * @author Djallal
@@ -12,6 +12,11 @@ public abstract class Cercle {
 	
 	public Cercle() {
 		super();
+	}
+	
+	public Cercle( String nom) {
+		super();
+		this.nom = nom;
 	}
 	
 	public Cercle(int id, String nom) {

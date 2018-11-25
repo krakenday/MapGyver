@@ -17,7 +17,7 @@ public class DaoUtilisateurGestion {
 	EntityManager em; 
 	
 	public void addUtilisateur(EntityUtilisateur entityUtilisateur) {
-		em.persist(entityUtilisateur);
+			em.persist(entityUtilisateur);
 	}
 	
 	public EntityUtilisateur readUtilisateur(int id) {

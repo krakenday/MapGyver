@@ -1,2 +1,6 @@
 /entity/
 /business/
+/dao/
+/daoFacadeUtilisateur/
+/clientServeur/
+/service/

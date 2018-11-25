@@ -19,7 +19,9 @@ public class DaoFacade {
 	//Ici commence le territoire de Xander
 		// Gestion de l'utilisateur
 	public void addUtilisateur(Utilisateur utilisateur) {
-		daoFacadeUtilisateur.addUtilisateur(utilisateur);
+			daoFacadeUtilisateur.addUtilisateur(utilisateur);
+
+		
 	}
 	
 	public Utilisateur readUtilisateur(int id) {

@@ -32,7 +32,8 @@ $().ready(function() {
 			},
             inputDateNaiss: {
             	required: true,
-            	date: true
+            	date: true,
+            	dateFormat: true
             },
             inputTelephone: {
             	required: true,
