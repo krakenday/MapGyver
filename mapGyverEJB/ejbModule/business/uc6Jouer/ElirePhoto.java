@@ -3,6 +3,8 @@ package business.uc6Jouer;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import business.uc2Souvenir.Photo;
+import business.uc2Souvenir.Photos;
 import business.uc8Utilisateur.Utilisateur;
 
 public class ElirePhoto extends Jeu implements Serializable {
@@ -12,25 +14,28 @@ public class ElirePhoto extends Jeu implements Serializable {
 	private LocalDate dateFinInscription;
 	private LocalDate dateDebut;
 	private LocalDate dateFin;
+	private Photos photos;
 
 	public ElirePhoto() {
 
 	}
 
 	public ElirePhoto(int id, String nom, LocalDate dateCreation, Utilisateur utilisateur, LocalDate dateFinInscription,
-			LocalDate dateDebut, LocalDate dateFin) {
+			LocalDate dateDebut, LocalDate dateFin, Photos photos) {
 		super(id, nom, dateCreation, utilisateur);
 		this.dateFinInscription = dateFinInscription;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
+		this.photos = photos;
 	}
 
 	public ElirePhoto(String nom, LocalDate dateCreation, Utilisateur utilisateur, LocalDate dateFinInscription,
-			LocalDate dateDebut, LocalDate dateFin) {
+			LocalDate dateDebut, LocalDate dateFin, Photos photos) {
 		super(nom, dateCreation, utilisateur);
 		this.dateFinInscription = dateFinInscription;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
+		this.photos = photos;
 	}
 
 	public LocalDate getDateFinInscription() {
@@ -57,9 +62,17 @@ public class ElirePhoto extends Jeu implements Serializable {
 		this.dateFin = dateFin;
 	}
 
+	public Photos getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(Photos photos) {
+		this.photos = photos;
+	}
+
 	@Override
 	public String toString() {
 		return "ElirePhoto [dateFinInscription=" + dateFinInscription + ", dateDebut=" + dateDebut + ", dateFin="
-				+ dateFin + "]";
+				+ dateFin + ", photos=" + photos + "]";
 	}
 }
