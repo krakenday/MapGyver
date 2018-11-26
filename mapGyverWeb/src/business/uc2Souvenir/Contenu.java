@@ -1,5 +1,6 @@
 package business.uc2Souvenir;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  *
  */
 
-public class Contenu extends ArrayList<Souvenir> {
+public class Contenu extends ArrayList<Souvenir> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
