@@ -1,4 +1,6 @@
-package dao.exception;
+package dao.exception.uc6Jouer;
+
+import dao.exception.DaoException;
 
 /**
  * Une erreur est survenue lors de la convertion d'une Entity en Metier ou vise

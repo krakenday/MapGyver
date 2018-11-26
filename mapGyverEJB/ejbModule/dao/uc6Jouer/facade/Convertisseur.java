@@ -3,7 +3,7 @@ package dao.uc6Jouer.facade;
 import java.lang.reflect.InvocationTargetException;
 
 import business.uc6Jouer.Reponse;
-import dao.exception.ConvertionException;
+import dao.exception.uc6Jouer.ConvertionException;
 import entity.uc6Jouer.ReponseEntity;
 
 public final class Convertisseur {
@@ -40,7 +40,7 @@ public final class Convertisseur {
 
 	class ReponseEntityToMetier<T extends ReponseEntity> {
 
-		public Reponse reponseEntityToMetier(T reponseEntity) throws ConvertionException {
+		protected Reponse reponseEntityToMetier(T reponseEntity) throws ConvertionException {
 			Class<?> type = reponseEntity.getMappingMetier();
 			Object object = null;
 			try {
@@ -69,7 +69,7 @@ public final class Convertisseur {
 	 */
 	class ReponseMetierToEntity<T extends Reponse> {
 
-		public ReponseEntity reponseMetierToEntity(T reponse) throws ConvertionException {
+		protected ReponseEntity reponseMetierToEntity(T reponse) throws ConvertionException {
 			Class<?> type = reponse.getMappingEntity();
 			Object object = null;
 			try {
