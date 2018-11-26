@@ -7,7 +7,7 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 
 
 
-<persistence-unit name="biblioEjb">
+<persistence-unit name="MapGyver">
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 	<jta-data-source>java:jboss/datasources/OracleDS</jta-data-source>
 	<properties>

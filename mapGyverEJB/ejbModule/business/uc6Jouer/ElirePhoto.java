@@ -3,27 +3,31 @@ package business.uc6Jouer;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class ElirePhoto extends Jeu implements Serializable{
+import business.uc8Utilisateur.Utilisateur;
+
+public class ElirePhoto extends Jeu implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private LocalDate dateFinInscription;
 	private LocalDate dateDebut;
 	private LocalDate dateFin;
-	
-	public ElirePhoto(){
-		
+
+	public ElirePhoto() {
+
 	}
-	
-	public ElirePhoto(int id,String nom,LocalDate dateCreation, LocalDate dateFinInscription, LocalDate dateDebut, LocalDate dateFin) {
-		super(id,nom, dateCreation);
+
+	public ElirePhoto(int id, String nom, LocalDate dateCreation, Utilisateur utilisateur, LocalDate dateFinInscription,
+			LocalDate dateDebut, LocalDate dateFin) {
+		super(id, nom, dateCreation, utilisateur);
 		this.dateFinInscription = dateFinInscription;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 	}
-	
-	public ElirePhoto(String nom,LocalDate dateCreation, LocalDate dateFinInscription, LocalDate dateDebut, LocalDate dateFin) {
-		super(nom, dateCreation);
+
+	public ElirePhoto(String nom, LocalDate dateCreation, Utilisateur utilisateur, LocalDate dateFinInscription,
+			LocalDate dateDebut, LocalDate dateFin) {
+		super(nom, dateCreation, utilisateur);
 		this.dateFinInscription = dateFinInscription;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
