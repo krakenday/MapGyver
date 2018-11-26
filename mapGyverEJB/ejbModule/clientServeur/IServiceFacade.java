@@ -14,8 +14,8 @@ public interface IServiceFacade {
 	// Voyage, offre de service : CRUD
 	public void 				createVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage;
 	public List<Voyage> 		readVoyageOrderByID();
-	public void 				updateVoyage(Voyage voyage);
-	public void 				deleteVoyage(int id);
+	public void 				updateVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage;
+	public void 				deleteVoyage(int id) 		throws ServiceFacadeExceptionVoyage;
 	public Voyage 				findVoyagebyID(int id);
 	
 	// RoadBook, offre de service : CRUD

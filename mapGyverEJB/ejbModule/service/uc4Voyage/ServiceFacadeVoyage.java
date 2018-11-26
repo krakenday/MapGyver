@@ -27,11 +27,11 @@ public class ServiceFacadeVoyage {
 		return serviceVoyage.readVoyageOrderByID();
 	}
 
-	public void updateVoyage(Voyage voyage) {
+	public void updateVoyage(Voyage voyage) throws ServiceVoyageException {
 		serviceVoyage.updateVoyage(voyage);
 	}
 
-	public void deleteVoyage(int id) {
+	public void deleteVoyage(int id) throws ServiceVoyageException {
 		serviceVoyage.deleteVoyage(id);
 	}
 

@@ -35,8 +35,6 @@
 			<div class="mb-3 px-1 text-right">
 				<button type="submit" class="btn btn-success" id="create"
 					name="todo" value="create">Cr&eacute;er</button>
-				<button type="submit" class="btn btn-warning" id="update"
-					name="todo" value="update">Modifier</button>
 				<button type="reset" class="btn btn-secondary ml-3" id="redo"
 					name="redo">Reset</button>
 			</div>

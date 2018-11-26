@@ -15,19 +15,19 @@ import entity.uc4Voyage.EntityVoyage;
 
 @Singleton
 @LocalBean
-public class DaoFacadeVoyage {
+public class DaoOldFacadeVoyage {
 
 	private static final String ZONE_EXCEPTION_MSG = ".Bdd";
-	
+
 	@EJB
-	private DaoVoyage daoVoyage;
+	private DaoOldVoyage daoOldVoyage;
 
 	private FactoryEntity factoryEntity = new FactoryEntity();
-	
+
 	public void createVoyage(Voyage voyage) throws DaoVoyageException {
 		EntityVoyage entityVoyage = factoryEntity.createEntityFrom(voyage);
 			try {
-				daoVoyage.create(entityVoyage);
+				daoOldVoyage.create(entityVoyage);
 			} catch (DaoVoyageException e) {
 				throw new DaoVoyageException(e.getCode(),
 						ZONE_EXCEPTION_MSG+ e.getMessage());
@@ -39,24 +39,14 @@ public class DaoFacadeVoyage {
 		return null;
 	}
 
-	public void updateVoyage(Voyage voyage) throws DaoVoyageException {
-		EntityVoyage entityVoyage = factoryEntity.createEntityWithIDFrom(voyage);
-		try {
-			daoVoyage.update(entityVoyage);
-		} catch (DaoVoyageException e) {
-			throw new DaoVoyageException(e.getCode(),
-					ZONE_EXCEPTION_MSG+ e.getMessage());
-		}
+	public void updateVoyage(Voyage voyage) {
+		// TODO Auto-generated method stub
 
 	}
 
-	public void deleteVoyage(int id) throws DaoVoyageException {
-		try {
-			daoVoyage.delete(id, EntityVoyage.class);
-		} catch (DaoVoyageException e) {
-			throw new DaoVoyageException(e.getCode(),
-					ZONE_EXCEPTION_MSG+ e.getMessage());
-		}
+	public void deleteVoyage(int id) {
+		// TODO Auto-generated method stub
+
 	}
 
 	public Voyage findVoyagebyID(int id) {

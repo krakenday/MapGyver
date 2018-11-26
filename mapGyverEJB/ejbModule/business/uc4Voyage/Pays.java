@@ -3,15 +3,15 @@ package business.uc4Voyage;
 
 public class Pays extends PointInteret{
 
-	private int 	id;
-	private String 	nom;
-	private int 	nbTotal;
+	private int 		id;
+	private String 		nom;
+	private String		capitale;
+	public final int 	NB_TOTAL = 197;
 	
-	public Pays(int id, String nom, int nbTotal) {
+	public Pays(int id, String nom) {
 		super();
-		this.id = id;
-		this.nom = nom;
-		this.nbTotal = nbTotal;
+		this.id 	= id;
+		this.nom 	= nom;
 	}
 
 	public int getId() {
@@ -30,20 +30,18 @@ public class Pays extends PointInteret{
 		this.nom = nom;
 	}
 
-	public int getNbTotal() {
-		return nbTotal;
+	public String getCapitale() {
+		return capitale;
 	}
 
-	public void setNbTotal(int nbTotal) {
-		this.nbTotal = nbTotal;
+	public void setCapitale(String capitale) {
+		this.capitale = capitale;
 	}
-
+	
 	@Override
 	public String toString() {
-		return String.format("Pays [id= %s, nom= %s, nbTotal= %s]",
-				id, nom, nbTotal);
+		return String.format("Pays [id = %s, nom = %s, capitale = %s]",
+				id, nom, capitale);
 	}
-
-	
 	
 }

@@ -14,17 +14,18 @@ import entity.uc4Voyage.EntityVoyage;
 
 @Singleton
 @LocalBean
-public class DaoVoyage {
+public class DaoOldVoyage {
 
 	@PersistenceContext(unitName = "IDMhibernateXE")
 	private EntityManager em;
 	
 	private static final String ZONE_EXCEPTION_MSG = ".Voyage";
-
-	public <T> void create(T entity) throws DaoVoyageException {
+	
+	public void create(EntityVoyage entityVoyage) throws DaoVoyageException {
 		String doExceptionMsg = ZONE_EXCEPTION_MSG + ".Insert -> ";
 		try {
-			em.persist(entity);
+			System.out.println(entityVoyage);
+			em.persist(entityVoyage);
 			em.flush();
 		}
 		catch (PersistenceException e) {
@@ -45,28 +46,7 @@ public class DaoVoyage {
 		}
 	}
 
-	public <T> void delete(int id, Class<T> classe) throws DaoVoyageException {
-		String doExceptionMsg = ZONE_EXCEPTION_MSG + ".Delete -> ";
-		try {
-			em.remove(em.find(classe, id));
-		} catch (PersistenceException e) {
-			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_DELETE.getId(),
-					doExceptionMsg + DaoVoyageErrorMessage.ERR_DELETE.getMsg());
-		}
-		
-	}
-
-	public <T> void update(T entity) throws DaoVoyageException {
-		String doExceptionMsg = ZONE_EXCEPTION_MSG + ".Update -> ";
-		try {
-			em.merge(entity);
-		} catch (PersistenceException e) {
-			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_UPDATE.getId(),
-					doExceptionMsg + DaoVoyageErrorMessage.ERR_UPDATE.getMsg());
-		}
-		
-	}
-
+	
 	
 
 }

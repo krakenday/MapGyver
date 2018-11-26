@@ -9,4 +9,4 @@
    integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
    crossorigin=""></script>
   	<link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/voyages/voyages.css"> 
-  	<link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/voyages/carte.css"> 
+  	<link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/voyages/carte.css">

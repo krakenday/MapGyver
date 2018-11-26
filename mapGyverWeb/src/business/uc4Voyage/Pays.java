@@ -9,9 +9,9 @@ public class Pays extends PointInteret{
 	
 	public Pays(int id, String nom, int nbTotal) {
 		super();
-		this.id = id;
-		this.nom = nom;
-		this.nbTotal = nbTotal;
+		this.id 		= id;
+		this.nom 		= nom;
+		this.nbTotal 	= nbTotal;
 	}
 
 	public int getId() {

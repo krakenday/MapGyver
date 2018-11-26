@@ -11,7 +11,6 @@ import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
 import dao.DaoFacade;
 import dao.exception.uc4Voyage.DaoFacadeExceptionVoyage;
-import service.exception.uc4Voyage.ServiceVoyageErrorMessage;
 import service.exception.uc4Voyage.ServiceVoyageException;
 
 @Singleton
@@ -25,8 +24,7 @@ public class ServiceVoyage {
 		try {
 			daoFacade.createVoyage(voyage);
 		} catch (DaoFacadeExceptionVoyage e) {
-			throw new ServiceVoyageException(e.getCode(),
-					e.getMessage());
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
 		}
 	}
 
@@ -34,12 +32,20 @@ public class ServiceVoyage {
 		return daoFacade.readVoyageOrderByID();
 	}
 
-	public void updateVoyage(Voyage voyage) {
+	public void updateVoyage(Voyage voyage) throws ServiceVoyageException {
+		try {
 		daoFacade.updateVoyage(voyage);
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 	}
 
-	public void deleteVoyage(int id) {
-		daoFacade.deleteVoyage(id);
+	public void deleteVoyage(int id) throws ServiceVoyageException {
+		try {
+			daoFacade.deleteVoyage(id);
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 	}
 
 	public Voyage findVoyagebyID(int id) {

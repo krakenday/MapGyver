@@ -2,10 +2,13 @@ package webApp.uc4Voyage;
 
 public enum ControleurVoyageMsg {
 
-	ERROR_INSERT(300, "Erreur insert", "Verifier les données à inserer"), 
-	ERROR_DELETE(301, "Erreur delete", "Verifier les données à supprimer"), 
-	ERROR_SAISIES(302, "Erreur de saisies", "Verifier les données saisies"), 
+	ERROR_SAISIES(300, "Erreur de saisies", "Verifier les données saisies"), 
+	ERROR_INSERT(301, "Erreur insert", "Verifier les données à inserer"), 
+	ERROR_DELETE(302, "Erreur delete", "Verifier les données à supprimer"), 
+	ERROR_UPDATE(303, "Modification réussit", "Modification effectué"),
 	
+	SUCCESS_UPDATE(397, "Modification réussit", "Modification effectué"),
+	SUCCESS_DELETE(398, "Suppression réussit", "Suppression effectué"),
 	SUCCESS_INSERT(399, "Insertion réussit", "Enregistrement effectué"), 
 	;
 

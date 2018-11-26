@@ -14,10 +14,6 @@ public class ServiceFacadeExceptionVoyage extends Exception {
 		super(message); 
 		this.code= code;
 	}
-
-	public ServiceFacadeExceptionVoyage(ServiceFacadeErrorMessageVoyage error) {
-		error.getMsg();
-	}
 	
 	public int getCode() {
 		return code;

@@ -7,8 +7,8 @@ public class Ville extends PointInteret{
 	private String 	nom;
 	
 	public Ville(int id, String nom) {
-		this.id = id;
-		this.nom = nom;
+		this.id 	= id;
+		this.nom 	= nom;
 	}
 
 	public int getId() {

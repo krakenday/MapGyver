@@ -25,15 +25,14 @@ public class FormVoyage {
 	}
 	
 	private String controlTitre() throws ExceptionServiceVoyage {
-		String titre = request.getParameter("titre");
-		if ("".equals(titre.trim())) throw new ExceptionServiceVoyage(ExceptionServiceVoyage.ERROR_MSG.TITRE);
-		return titre;
+		if (request.getParameter("titre").isEmpty()) throw new ExceptionServiceVoyage(ExceptionServiceVoyage.ERROR_MSG.TITRE);
+		return request.getParameter("titre");
 	}
 	
 	private LocalDate controlDate() throws ExceptionServiceVoyage {
 		LocalDate date = null;
 		try {
-			if (!"".equals(request.getParameter("depart")))
+			if (!request.getParameter("depart").isEmpty())
 				date = LocalDate.parse(request.getParameter("depart"), DateTimeFormatter.ofPattern("uuuu-MM-dd"));
 		} catch (DateTimeParseException e) {
 			throw new ExceptionServiceVoyage(ExceptionServiceVoyage.ERROR_MSG.DATE);
@@ -44,7 +43,7 @@ public class FormVoyage {
 	private Integer controlParticipant() throws ExceptionServiceVoyage {
 		Integer nb = null;
 		try {
-			if (!"".equals(request.getParameter("quantite"))) {
+			if (!request.getParameter("quantite").isEmpty()) {
 				nb = Integer.parseInt(request.getParameter("quantite"));
 				if (nb<0) throw new ExceptionServiceVoyage(ExceptionServiceVoyage.ERROR_MSG.PARTICIPANTS);
 			}

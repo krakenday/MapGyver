@@ -1,6 +1,8 @@
 package webApp.uc4Voyage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -30,6 +32,8 @@ public class ControleurVoyage extends HttpServlet {
 	private static final String ZONE_EXCEPTION = "WebApp";
 
 	private static final long serialVersionUID = 1L;
+	private static final ArrayList<String> EXIST_URL = new ArrayList<String>(Arrays.asList(
+			new String[] { "/roadBook"}));
 
 	private IServiceFacade iServiceFacade;
 	private static final String VOYAGE_SERVICE_LOOKUP = "ejb:/mapGyverEJB/ServiceFacade!clientServeur.IServiceFacade";
@@ -56,6 +60,9 @@ public class ControleurVoyage extends HttpServlet {
 		if (path == null || path.equals("/")) 	{
 			doService(request);
 			doAccueil(request, response);
+		}
+		else if (EXIST_URL.contains(path)) {
+			doPage(request, response, "/vue/voyages"+path+".jsp");
 		}
 		else {
 			doErreur(request, response);
@@ -91,9 +98,10 @@ public class ControleurVoyage extends HttpServlet {
 	}
 
 	private void create(HttpServletRequest request) {
+		affciherTrace("create");
 		try {
-			FormVoyage formVoyage = new FormVoyage(request);
-			Voyage voyage = formVoyage.createVoyage();
+			Voyage voyage = new FormVoyage(request).createVoyage();
+			System.out.println(voyage);
 			iServiceFacade.createVoyage(voyage);
 			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_INSERT.getMsg() 
 					+" : "+ voyage.getNom());
@@ -113,12 +121,35 @@ public class ControleurVoyage extends HttpServlet {
 
 	private void update(HttpServletRequest request)  {
 		affciherTrace("update");
-
+		try {
+			Voyage voyage = new FormVoyage(request).createVoyage();
+			voyage.setId(voyage.getNbParticipant());
+			iServiceFacade.updateVoyage(voyage);
+			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_UPDATE.getMsg() 
+					+" : "+ voyage.getNom());
+		} catch (ExceptionServiceVoyage e) {
+			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
+					+" *Err. "+ e.getMessage());
+		} catch (ServiceFacadeExceptionVoyage e) {
+			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_UPDATE.getSolution() 
+					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
+		}
 	}
 
 	private void delete(HttpServletRequest request) {
 		affciherTrace("delete");
-
+		try {
+			//Voyage voyage = new FormVoyage(request).createVoyage();
+			iServiceFacade.deleteVoyage(Integer.parseInt(request.getParameter("id")));
+//			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_DELETE.getMsg() 
+//					+" : "+ voyage.getNom());
+//		} catch (ExceptionServiceVoyage e) {
+//			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
+//					+" *Err. "+ e.getMessage());
+		} catch (ServiceFacadeExceptionVoyage e) {
+			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_DELETE.getSolution() 
+					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
+		}
 	}
 
 	private void deleteAll() {

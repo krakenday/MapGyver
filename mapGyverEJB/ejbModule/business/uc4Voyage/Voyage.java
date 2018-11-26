@@ -28,7 +28,7 @@ public class Voyage implements Serializable {
 	private int 					id;
 	private String 					nom;
 	private LocalDate 				dateDebut;
-	private int 					nbParticipant;
+	private Integer					nbParticipant;
 	private ArrayList<PointInteret> pointInteret;
 	
 	/**
@@ -39,12 +39,12 @@ public class Voyage implements Serializable {
 	 * @param pointInteret 	: ensemble de lieux parcouru lors du voyage
 	 */
 	public Voyage(int id, String nom, LocalDate dateDebut, 
-			int nbParticipant, ArrayList<PointInteret> pointInteret) {
-		this.id = id;
-		this.nom = nom;
-		this.dateDebut = dateDebut;
-		this.nbParticipant = nbParticipant;
-		this.pointInteret = pointInteret;
+			Integer nbParticipant, ArrayList<PointInteret> pointInteret) {
+		this.id 			= id;
+		this.nom 			= nom;
+		this.dateDebut 		= dateDebut;
+		this.nbParticipant 	= nbParticipant;
+		this.pointInteret 	= pointInteret;
 	}
 
 	/**
@@ -54,11 +54,11 @@ public class Voyage implements Serializable {
 	 * @param pointInteret  : ensemble de lieux parcouru lors du voyage
 	 */
 	public Voyage(String nom, LocalDate dateDebut,
-			int nbParticipant, ArrayList<PointInteret> pointInteret) {
-		this.nom = nom;
-		this.dateDebut = dateDebut;
-		this.nbParticipant = nbParticipant;
-		this.pointInteret = pointInteret;
+			Integer nbParticipant, ArrayList<PointInteret> pointInteret) {
+		this.nom 			= nom;
+		this.dateDebut 		= dateDebut;
+		this.nbParticipant 	= nbParticipant;
+		this.pointInteret 	= pointInteret;
 	}
 
 	/**
@@ -113,14 +113,14 @@ public class Voyage implements Serializable {
 	/**
 	 * @return nb de personnes participant a ce voyage
 	 */
-	public int getNbParticipant() {
+	public Integer getNbParticipant() {
 		return nbParticipant;
 	}
 
 	/**
 	 * @param nbParticipant : nb de personnes participant a ce voyage
 	 */
-	public void setNbParticipant(int nbParticipant) {
+	public void setNbParticipant(Integer nbParticipant) {
 		this.nbParticipant = nbParticipant;
 	}
 

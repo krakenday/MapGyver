@@ -26,10 +26,10 @@ public class Lieu extends PointInteret{
 	 */
 	public Lieu(int id, String nom, float longitude, float lattitude) {
 		super();
-		this.id = id;
-		this.nom = nom;
-		this.longitude = longitude;
-		this.latitude = lattitude;
+		this.id 		= id;
+		this.nom 		= nom;
+		this.longitude 	= longitude;
+		this.latitude 	= lattitude;
 	}
 
 	public int getId() {

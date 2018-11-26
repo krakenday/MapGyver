@@ -9,7 +9,6 @@ import javax.ejb.Singleton;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
-import dao.exception.uc4Voyage.DaoFacadeErrorMessageVoyage;
 import dao.exception.uc4Voyage.DaoFacadeExceptionVoyage;
 import dao.exception.uc4Voyage.DaoVoyageException;
 import dao.uc4Voyage.DaoFacadeVoyage;
@@ -19,6 +18,7 @@ import dao.uc4Voyage.DaoFacadeVoyage;
 public class DaoFacade {
 
 	private static final String ZONE_EXCEPTION_MSG = ".Voyage";
+	
 	@EJB
 	private DaoFacadeVoyage daoFacadeVoyage;
 
@@ -35,12 +35,22 @@ public class DaoFacade {
 		return daoFacadeVoyage.readVoyageOrderByID();
 	}
 
-	public void updateVoyage(Voyage voyage) {
-		daoFacadeVoyage.updateVoyage(voyage);			
+	public void updateVoyage(Voyage voyage) throws DaoFacadeExceptionVoyage {
+		try {
+		daoFacadeVoyage.updateVoyage(voyage);	
+	} catch (DaoVoyageException e) {
+		throw new DaoFacadeExceptionVoyage(e.getCode(),
+				ZONE_EXCEPTION_MSG+ e.getMessage());
+	}
 	}
 	
-	public void deleteVoyage(int id) {
-		daoFacadeVoyage.deleteVoyage(id);
+	public void deleteVoyage(int id) throws DaoFacadeExceptionVoyage {
+		try {
+			daoFacadeVoyage.deleteVoyage(id);
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					ZONE_EXCEPTION_MSG+ e.getMessage());
+		}
 	}
 
 	public Voyage findVoyagebyID(int id) {

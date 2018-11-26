@@ -10,7 +10,6 @@ import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
 import clientServeur.IServiceFacade;
-import clientServeur.exception.ServiceFacadeErrorMessageVoyage;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
 import service.exception.uc4Voyage.ServiceVoyageException;
 import service.uc4Voyage.ServiceFacadeVoyage;
@@ -37,79 +36,89 @@ public class ServiceFacade implements IServiceFacade {
 
 	@Override
 	public List<Voyage> readVoyageOrderByID() {
-		//return serviceVoyage.readVoyageOrderByID();	
+		//return serviceFacadeVoyage.readVoyageOrderByID();	
 		return null;
 	}
 
 	@Override
-	public void updateVoyage(Voyage voyage) {
-//		serviceVoyage.updateVoyage(voyage);			
+	public void updateVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage {
+		try {
+			serviceFacadeVoyage.updateVoyage(voyage);
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(),
+					e.getMessage());
+		}	
 	}
 
 	@Override
-	public void deleteVoyage(int id) {
-//		serviceVoyage.deleteVoyage(id);			
+	public void deleteVoyage(int id) throws ServiceFacadeExceptionVoyage {
+		try {
+			serviceFacadeVoyage.deleteVoyage(id);
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(),
+					e.getMessage());
+		}		
 	}
 
 	@Override
 	public Voyage findVoyagebyID(int id) {
-//		return serviceVoyage.findVoyagebyID(id);
+		//		return serviceFacadeVoyage.findVoyagebyID(id);
 		return null;
 	}
 
 	@Override
 	public void createRoadBook(RoadBook roadBook) {
-//		serviceVoyage.createRoadBook(roadBook);	
+		//		serviceFacadeVoyage.createRoadBook(roadBook);	
 	}
 
 	@Override
 	public List<RoadBook> readRoadBookOrderByID() {
-//		return serviceVoyage.readRoadBookOrderByID();
+		//		return serviceFacadeVoyage.readRoadBookOrderByID();
 		return null;
 	}
 
 	@Override
 	public void updateRoadBook(RoadBook roadBook) {
-//		serviceVoyage.updateRoadBook(roadBook);	
+		//		serviceFacadeVoyage.updateRoadBook(roadBook);	
 	}
 
 	@Override
 	public void deleteRoadBook(int id) {
-//		serviceVoyage.deleteRoadBook(id);
-		
+		//		serviceFacadeVoyage.deleteRoadBook(id);
+
 	}
 
 	@Override
 	public RoadBook findRoadBookbyID(int id) {
-//		return serviceVoyage.findRoadBookbyID(id);
+		//		return serviceVoyage.findRoadBookbyID(id);
 		return null;
 	}
 
 	@Override
 	public void createPOInteret(PointInteret pointInteret) {
-//		serviceVoyage.createPOInteret(pointInteret);		
+		//		serviceVoyage.createPOInteret(pointInteret);		
 	}
 
 	@Override
 	public List<PointInteret> readPOInteretOrderByID() {
-//		return serviceVoyage.readPOInteretOrderByID();
+		//		return serviceVoyage.readPOInteretOrderByID();
 		return null;
 	}
 
 	@Override
 	public void updatePOInteret(PointInteret pointInteret) {
-//		serviceVoyage.updatePOInteret(pointInteret);	
-		
+		//		serviceVoyage.updatePOInteret(pointInteret);	
+
 	}
 
 	@Override
 	public void deletePOInteret(int id) {
-//		serviceVoyage.deletePOInteret(id);
+		//		serviceVoyage.deletePOInteret(id);
 	}
 
 	@Override
 	public PointInteret findPOInteretByID(int id) {
-//		return serviceVoyage.findPOInteretByID(id);
+		//		return serviceVoyage.findPOInteretByID(id);
 		return null;
 	}
 

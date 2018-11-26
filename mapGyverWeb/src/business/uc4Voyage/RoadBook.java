@@ -8,8 +8,8 @@ public class RoadBook {
 	private List<Voyage> voyage;
 	
 	public RoadBook(int id, List<Voyage> voyage) {
-		this.id = id;
-		this.voyage = voyage;
+		this.id 		= id;
+		this.voyage 	= voyage;
 	}
 
 	public int getId() {
