@@ -16,4 +16,9 @@ public class ReponseElire extends Reponse {
 		this.photo = photo;
 	}
 
+	@Override
+	public Class<?> getMappingEntity() {
+		return ReponseElire.class;
+	}
+
 }

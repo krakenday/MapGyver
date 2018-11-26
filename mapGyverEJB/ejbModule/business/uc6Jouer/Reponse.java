@@ -68,4 +68,11 @@ public abstract class Reponse implements Serializable {
 				+ ", jeu=" + jeu.getId() + "]";
 	}
 
+	/**
+	 * Va permettre de fournir l Entity lier au Metier
+	 * 
+	 * @return
+	 */
+	public abstract Class<?> getMappingEntity();
+
 }
