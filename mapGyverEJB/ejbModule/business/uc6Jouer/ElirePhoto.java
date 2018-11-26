@@ -3,11 +3,10 @@ package business.uc6Jouer;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import business.uc2Souvenir.Photo;
 import business.uc2Souvenir.Photos;
 import business.uc8Utilisateur.Utilisateur;
 
-public class ElirePhoto extends Jeu implements Serializable {
+public class ElirePhoto extends Jeu {
 
 	private static final long serialVersionUID = 1L;
 
