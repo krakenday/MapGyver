@@ -1,4 +1,4 @@
-package dao.uc6Jouer;
+package entity.uc6Jouer;
 
 import java.io.Serializable;
 import java.time.LocalDate;
