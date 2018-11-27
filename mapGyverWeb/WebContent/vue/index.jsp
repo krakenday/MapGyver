@@ -36,7 +36,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="#">Bibliotheque</a>
+              <a href="#">MapGyver</a>
             </li>
             <li class="breadcrumb-item active">Accueil</li>
           </ol>
