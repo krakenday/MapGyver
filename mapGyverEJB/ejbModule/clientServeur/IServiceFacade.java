@@ -1,5 +1,6 @@
 package clientServeur;
 
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -7,9 +8,30 @@ import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Password;
 import business.uc8Utilisateur.Utilisateur;
+import service.exception.uc1Administrer.ServiceInexistantException;
 
 public interface IServiceFacade {
+
+	// ********************************************
+	//  DM - UC1 Administrer
+	// ********************************************
+
+	/**
+	 * Retourne un Utilisateur a partir de son id
+	 * @throws ServiceInexistantException 
+	 */
+	public Utilisateur getUserById(int id) 			throws ServiceInexistantException;
+	/**
+	 * Retourne un Utilisateur a partir de son email
+	 * @throws ServiceInexistantException 
+	 */
+	public Utilisateur getUserByEmail(String email) throws ServiceInexistantException;
 	
+	// *****  Fin DM - UC1 Administrer
+	
+	// ********************************************
+	//  DB - UC8 Utilisateur
+	// ********************************************
 	//LA Fabrique d'utilisateur
 	public Utilisateur creerUtilisateur();
 	
@@ -52,4 +74,5 @@ public interface IServiceFacade {
 	
 	// Catalogue Liste diffusion
 	public List<ListeDiffusion> listerToutesLesListes();
+	// *****  Fin DB - UC8 Utilisateur
 }

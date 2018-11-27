@@ -1,24 +1,50 @@
 package dao;
 
-import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
-import business.uc8Utilisateur.Groupe;
-import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Utilisateur;
-import dao.uc8Utilisateur.DaoFacadeUtilisateur;
+import dao.exception.uc1Administrer.DaoInexistantException;
+import dao.uc1Administrer.DaoFacadeAdmin;
+import service.exception.uc1Administrer.ServiceInexistantException;
 
 @Singleton
 @LocalBean
 public class DaoFacade {
-
+	
+	@EJB
+	private DaoFacadeAdmin daoFacadeAdmin;
+	
 	@EJB
 	private DaoFacadeUtilisateur daoFacadeUtilisateur;
+
+	public Utilisateur getUserById(int id) throws ServiceInexistantException {
+		Utilisateur user = null;
+		try {
+			user = daoFacadeAdmin.getUserById(id);
+		}
+		catch (DaoInexistantException e) {
+			throw new ServiceInexistantException();
+		}
+		
+		return user;
+	}
+
+	public Utilisateur getUserByEmail(String email) throws ServiceInexistantException {
+		Utilisateur user = null;
+		try {
+			user = daoFacadeAdmin.getUserByEmail(email);
+		}
+		catch (DaoInexistantException e) {
+			throw new ServiceInexistantException();
+		}
+		
+		return user;
+	}
 	
-	//Ici commence le territoire de Xander
+	//Ici commence le territoire de Djallel
 		// Gestion de l'utilisateur
 	public void addUtilisateur(Utilisateur utilisateur) {
 			daoFacadeUtilisateur.addUtilisateur(utilisateur);		

@@ -1,7 +1,6 @@
 package service;
 
 import java.time.LocalDate;
-//import java.util.List;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -13,15 +12,33 @@ import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Password;
 import business.uc8Utilisateur.Utilisateur;
 import clientServeur.IServiceFacade;
+import service.exception.uc1Administrer.ServiceInexistantException;
+import service.uc1Administrer.ServiceFacadeAdmin;
 import service.uc8Utilisateur.ServiceFacadeUtilisateur;
 
 @Stateless
 @Remote(IServiceFacade.class)
-public class ServiceFacade implements IServiceFacade{
+public class ServiceFacade implements IServiceFacade {
+	
+	@EJB
+	private ServiceFacadeAdmin serviceFacadeAdmin;
+	
+	@EJB
+	private ServiceFacadeUtilisateur serviceFacadeUtilisateur;
+	
+	@Override
+	public Utilisateur getUserById(int id) throws ServiceInexistantException {
+		Utilisateur user = serviceFacadeAdmin.getUserById(id);
+		return user;
+	}
+
+	@Override
+	public Utilisateur getUserByEmail(String email) throws ServiceInexistantException {
+		Utilisateur user = serviceFacadeAdmin.getUserByEmail(email);
+		return user;
+	}
 	
 	// Bloc Service Utilisateur
-	@EJB
-	ServiceFacadeUtilisateur serviceFacadeUtilisateur;
 	
 	@Override
 	public void create(Utilisateur utilisateur) {

@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 		urlPatterns = {"/mapgyver/*"}
 		)
 public class Controleur extends HttpServlet {
-	
 	private static final long serialVersionUID = 1L;
 	private static final ArrayList<String> EXIST_URL = 
 			new ArrayList<String>(Arrays.asList(new String[]{"/404.jsp","/login.jsp","/register.jsp","/forgot-password.jsp"}));
@@ -31,7 +30,6 @@ public class Controleur extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		afficherTrace("Controleur Generale");
 		String path = request.getPathInfo();
 		afficherTrace(path);
@@ -42,6 +40,9 @@ public class Controleur extends HttpServlet {
 			doPage(request, response, "/vue"+path);
 		}
 		else if (path.matches("/voyages(.*)")) {
+			doPage(request, response, path);			
+		}
+		else if (path.matches("/admin(.*)")) {
 			doPage(request, response, path);			
 		}
 		else if (path.matches("/utilisateur(.*)")) {
