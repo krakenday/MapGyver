@@ -4,6 +4,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+
 import business.uc3Partager.Description;
 import client.serveur.partager.IGestion;
 import client.serveur.partager.exception.UserException;
@@ -52,28 +53,16 @@ public class ServiceFacade implements IGestion{
 	/*
 	 * Suppression par Id
 	 */
-	@Override
-	public void deleteDescription(int id) {
-		try {
-			serviceFacadePartager.deleteDescription(id);
-		} catch (Exception e) {
-			System.out.println("SERVICE_FACADE >>> deleteDescription(int id) - Erreur");
-		}
-	}
 
-	/*
-	 * Suppression description
-	 */
-	@Override
-	public void deleteDescription(Description description) {
-		try {
-			serviceFacadePartager.deleteDescription(description);
-		} catch (Exception e) {
-			System.out.println("SERVICE_FACADE >>> deleteDescription(Description description) - Erreur");
-		}
-	}
+import business.uc6Jouer.ReponseElire;
+import business.uc8Utilisateur.Utilisateur;
+import clientServeur.IServiceFacade;
+import service.exception.uc1Administrer.ServiceInexistantException;
+import service.exception.uc6Jouer.ExceptionSurDao;
+import service.uc1Administrer.ServiceFacadeAdmin;
+import service.uc6Jouer.facade.ServiceFacadeJouer;
 
-}
+
 package service;
 
 import java.util.List;
@@ -312,5 +301,25 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	// fin bloc service voyage
+	
+	// ********************************************
+		// AlexB - UC6 Jouer
+		// ********************************************
+		@EJB
+		private ServiceFacadeJouer serviceFacadeJouer;
+
+		/**
+		 * Permet de creer une reponseElire en Bdd
+		 * 
+		 * @param reponseElire {@link business.uc6Jouer.ReponseElire ReponseElire}
+		 * @throws ExceptionSurDao
+		 */
+		@Override
+		public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao {
+
+			serviceFacadeJouer.createReponseElire(reponseElire);
+			System.out.println("tout va bien");
+		}
+		// ***** Fin AlexB - UC6 Jouer
 
 }

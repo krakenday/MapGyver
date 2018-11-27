@@ -1,6 +1,9 @@
 package dao;
 
+
 import java.util.List;
+
+
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -18,10 +21,21 @@ import dao.exception.ViolationPersistenceException;
 import dao.uc3Partager.DaoFacadePartager;
 
 
+
+import business.uc6Jouer.ReponseElire;
+import business.uc8Utilisateur.Utilisateur;
+import dao.exception.uc1Administrer.DaoInexistantException;
+import dao.exception.uc6Jouer.ConvertionException;
+import dao.uc1Administrer.DaoFacadeAdmin;
+import dao.uc6Jouer.facade.DaoFacadeJouer;
+import service.exception.uc1Administrer.ServiceInexistantException;
+import service.exception.uc6Jouer.ExceptionSurDao;
+
+
 @Singleton
 @LocalBean
 public class DaoFacade {
-	
+
 	@EJB
 	private DaoFacadePartager daoFacadePartager;
 	
@@ -40,11 +54,10 @@ public class DaoFacade {
 		Utilisateur user = null;
 		try {
 			user = daoFacadeAdmin.getUserById(id);
-		}
-		catch (DaoInexistantException e) {
+		} catch (DaoInexistantException e) {
 			throw new ServiceInexistantException();
 		}
-		
+
 		return user;
 	}
 
@@ -52,13 +65,13 @@ public class DaoFacade {
 		Utilisateur user = null;
 		try {
 			user = daoFacadeAdmin.getUserByEmail(email);
-		}
-		catch (DaoInexistantException e) {
+		} catch (DaoInexistantException e) {
 			throw new ServiceInexistantException();
 		}
-		
+
 		return user;
 	}
+
 	
 	//Ici commence le territoire de Djallel
 		// Gestion de l'utilisateur
@@ -246,6 +259,28 @@ public class DaoFacade {
 			daoFacadePartager.deleteDescription(description);
 		} catch (Exception e) {
 			System.out.println("DAO_FACADE >>> deleteDescription(Description description) - Erreur");
+		}
+	}
+
+
+	/**
+	 * UC6 Jouer =>interface entre DaoFacade et DaoFaceJouer
+	 */
+
+	@EJB
+	private DaoFacadeJouer daoFacadeJouer;
+
+	/**
+	 * Permet de creer une reponseElire en Bdd
+	 * 
+	 * @param reponseElire {@link business.uc6Jouer.ReponseElire ReponseElire}
+	 * @throws ExceptionSurDao
+	 */
+	public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao {
+		try {
+			daoFacadeJouer.createReponseElire(reponseElire);
+		} catch (ConvertionException e) {
+			throw new ExceptionSurDao(e.getMessage(), e.getCause());
 		}
 	}
 
