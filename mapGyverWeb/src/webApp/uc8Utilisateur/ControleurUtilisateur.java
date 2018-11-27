@@ -47,6 +47,8 @@ public class ControleurUtilisateur extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String path= request.getPathInfo();
+		System.out.println("path :" + path);
+		
 		if (path == null || path.equals("/")) 	{
 			doAccueil(request, response);
 		}
@@ -57,7 +59,7 @@ public class ControleurUtilisateur extends HttpServlet {
 			doAccueil(request, response);
 		}
 		
-		doPost(request, response);
+		//doPost(request, response);
 	}
 
 //La methode POST
@@ -83,7 +85,7 @@ public class ControleurUtilisateur extends HttpServlet {
 	
 // Définir le chemin de la page d'accueil
 	private void doAccueil(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher disp = request.getRequestDispatcher("/vue/accueil.jsp");
+		RequestDispatcher disp = request.getRequestDispatcher("/vue/index.jsp");
 		disp.forward(request,response);	
 	}
 	
@@ -106,19 +108,21 @@ public class ControleurUtilisateur extends HttpServlet {
 // La methode de creation d'un utilisateur
 	private Utilisateur creerUtilisateur(HttpServletRequest request) {
 		
-		System.out.println("cree Utilisateur");
-		
-		String nom= request.getParameter("inputNom");
-		String prenom= request.getParameter("inputPrenom");
+		String inputNom= request.getParameter("inputNom");
+		String inputPrenom= request.getParameter("inputPrenom");
 		String email= request.getParameter("inputEmail");
 		String password= request.getParameter("inputPassword");
 		String tel= request.getParameter("inputTelephone");
 		String dateNaiss= request.getParameter("inputDateNaiss");
 		LocalDate dateInscrip= LocalDate.now();
 		String adresse= request.getParameter("inputAdresse");
-		String ville= request.getParameter("inputVille");
+		System.out.println(adresse.toLowerCase());
+		//String ville= request.getParameter("inputVille");
 		Password motDePasse= new Password(password);
-		String pays= request.getParameter("inputPays");
+		//String pays= request.getParameter("inputPays");
+		
+		String nom= inputNom.toLowerCase();
+		String prenom= inputPrenom.toLowerCase();
 		
 		LocalDate dateNaissance = null;
 		if (!dateNaiss.isEmpty())

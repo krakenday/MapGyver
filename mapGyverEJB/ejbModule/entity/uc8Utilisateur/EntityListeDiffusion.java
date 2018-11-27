@@ -1,20 +1,19 @@
 package entity.uc8Utilisateur;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.Column;
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-//import javax.persistence.Entity;
 
 @Entity
-@AttributeOverride(name="id", column=@Column(name="id_Liste"))
-@Table(name=("ListeDiff"))
-public class EntityListeDiffusion extends EntityCercle {
-	
+@Table(name=("LISTEDIFF"))
+public class EntityListeDiffusion extends EntityCercle implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 
 	public EntityListeDiffusion() {
-		
 	}
 	
 	

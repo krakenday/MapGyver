@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="djallel*" content="">
+    <meta name="djallel" content="">
 	
     <title>MapGyver - Inscription</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/uc8Utilisateur/inscription.css">

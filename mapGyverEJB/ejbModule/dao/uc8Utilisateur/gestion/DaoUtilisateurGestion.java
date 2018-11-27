@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import dao.uc8Utilisateur.DaoParamUtilisateur;
+import entity.uc8Utilisateur.EntityGroupe;
+import entity.uc8Utilisateur.EntityListeDiffusion;
 import entity.uc8Utilisateur.EntityUtilisateur;
 
 
@@ -33,4 +35,37 @@ public class DaoUtilisateurGestion {
 		em.remove(id);
 	}
 	
+	//Gestion du groupe
+	public void addGroupe(EntityGroupe entityGroupe) {
+		em.persist(entityGroupe);
+	}
+	public EntityGroupe readGroupe(int id) {
+		return em.find(EntityGroupe.class, id);
+	}
+	
+	public void updateGroupe(EntityGroupe entityGroupe) {
+		EntityGroupe groupe = em.find(EntityGroupe.class, entityGroupe.getId());
+		em.merge(groupe);
+	}
+	
+	public void deleteGroupe(int id) {
+		em.remove(id);
+	}
+	
+	//Gestion de liste de diffusion
+	public void addListeDiff(EntityListeDiffusion entityListeDiff) {
+		em.persist(entityListeDiff);
+	}
+	public EntityListeDiffusion readListeDiff(int id) {
+		return em.find(EntityListeDiffusion.class, id);
+	}
+	
+	public void updateListeDiff(EntityListeDiffusion entityListeDiff) {
+		EntityListeDiffusion listeDiff= em.find(EntityListeDiffusion.class, entityListeDiff.getId());
+		em.merge(listeDiff);
+	}
+	
+	public void deleteListeDiff(int id) {
+		em.remove(id);
+	}
 }

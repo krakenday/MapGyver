@@ -2,6 +2,7 @@ package service;
 
 import java.time.LocalDate;
 //import java.util.List;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
@@ -58,56 +59,59 @@ public class ServiceFacade implements IServiceFacade{
 	// Bloc service Groupe
 	@Override
 	public void createGroupe(Groupe groupe) {
-		// A completer
+		serviceFacadeUtilisateur.createGroupe(groupe);
 	}
 
 	@Override
 	public Groupe readGroupe(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return serviceFacadeUtilisateur.readGroupe(id);
 	}
 
 	@Override
 	public void updateGroupe(Groupe groupe) {
-		// TODO Auto-generated method stub
-		
+		serviceFacadeUtilisateur.updateGroupe(groupe);
 	}
 
 	@Override
 	public void deleteGroupe(int id) {
-		// TODO Auto-generated method stub
-		
+		serviceFacadeUtilisateur.deleteGroupe(id);
 	}
 	
 	// Bloc service Liste diffusion
 	@Override
 	public void createListeDiff(ListeDiffusion listeDiff) {
-		// TODO Auto-generated method stub
-		
+		serviceFacadeUtilisateur.createListeDiff(listeDiff);
 	}
 
 	@Override
 	public ListeDiffusion readListeDiff(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return serviceFacadeUtilisateur.readListeDiff(id);
 	}
 
 	@Override
 	public void updateListeDiff(ListeDiffusion listeDiff) {
-		// TODO Auto-generated method stub
-		
+		serviceFacadeUtilisateur.updateListeDiff(listeDiff);
 	}
 
 	@Override
 	public void deleteListeDiff(int id) {
-		// TODO Auto-generated method stub
-		
+		serviceFacadeUtilisateur.deleteListeDiff(id);
+	}
+	
+	// Catalogue 
+	@Override
+	public List<Utilisateur> listerTousLesUtilisateurs() {
+		return serviceFacadeUtilisateur.listerTousLesUtilisateurs();
 	}
 
-//	@Override
-//	public List<Utilisateur> listeTousLesUtilisateurs() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-	
+	@Override
+	public List<Groupe> listerTousLesGroupes() {
+		return serviceFacadeUtilisateur.listerTousLesGroupes();
+	}
+
+	@Override
+	public List<ListeDiffusion> listerToutesLesListes() {
+		return serviceFacadeUtilisateur.listerToutesLesListes();
+	}
+
 }

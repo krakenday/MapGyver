@@ -1,8 +1,10 @@
 package clientServeur;
 
 import java.time.LocalDate;
-//import java.util.List;
+import java.util.List;
 
+import business.uc8Utilisateur.Groupe;
+import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Password;
 import business.uc8Utilisateur.Utilisateur;
 
@@ -24,6 +26,30 @@ public interface IServiceFacade {
 	
 	public void delete(int id);
 	
-//	// Catalogue utilisateur
-//	public List<Utilisateur> listeTousLesUtilisateurs();
+	// Catalogue utilisateur
+	public List<Utilisateur> listerTousLesUtilisateurs();
+	
+	// Gerer un groupe
+	public void createGroupe(Groupe groupe);
+	
+	public Groupe readGroupe(int id);
+	
+	public void updateGroupe (Groupe groupe);
+	
+	public void deleteGroupe(int id);
+	
+	// Catalogue groupe
+	public List<Groupe> listerTousLesGroupes();
+	
+	// Gerer une Liste Diffusion
+	public void createListeDiff(ListeDiffusion listeDiff);
+	
+	public ListeDiffusion readListeDiff(int id);
+	
+	public void updateListeDiff (ListeDiffusion listeDiff);
+	
+	public void deleteListeDiff(int id);
+	
+	// Catalogue Liste diffusion
+	public List<ListeDiffusion> listerToutesLesListes();
 }
