@@ -86,32 +86,32 @@ public class ControleurVoyage extends HttpServlet {
 	}
 
 	private void create(HttpServletRequest request) {
-		affciherTrace("create");
-		Document document;
-		try {
-			document = createDocumentFactory(request);
-			iServiceBiblio.create(document);
-			affciherTrace(document.toString());
-		} catch (ExceptionServiceVoyage e) {
-			affciherTrace("Exception" + e.getMessage());
-			//request.setAttribute("Exception", e.getMessage());	
-		}
+//		affciherTrace("create");
+//		Document document;
+//		try {
+//			document = createDocumentFactory(request);
+//			iServiceBiblio.create(document);
+//			affciherTrace(document.toString());
+//		} catch (ExceptionServiceVoyage e) {
+//			affciherTrace("Exception" + e.getMessage());
+//			//request.setAttribute("Exception", e.getMessage());	
+//		}
 	}
 	
-	private Document createDocumentFactory(HttpServletRequest request) throws ExceptionServiceVoyage {
-			String titre = "inconnu";
-			String description = "inconnu";
-			int nbExemplaire = 0;
-			try {
-				nbExemplaire = Integer.parseInt(request.getParameter("quantite"));
-				titre = request.getParameter("titre");
-				description = request.getParameter("desc");
-				
-			} catch (Exception e) {
-				throw new ExceptionServiceVoyage();
-			}
-			return new Document(titre, description, nbExemplaire);
-	}
+//	private Document createDocumentFactory(HttpServletRequest request) throws ExceptionServiceVoyage {
+//			String titre = "inconnu";
+//			String description = "inconnu";
+//			int nbExemplaire = 0;
+//			try {
+//				nbExemplaire = Integer.parseInt(request.getParameter("quantite"));
+//				titre = request.getParameter("titre");
+//				description = request.getParameter("desc");
+//				
+//			} catch (Exception e) {
+//				throw new ExceptionServiceVoyage();
+//			}
+//			return new Document(titre, description, nbExemplaire);
+//	}
 
 	private void read (HttpServletRequest request) {
 		affciherTrace("read");

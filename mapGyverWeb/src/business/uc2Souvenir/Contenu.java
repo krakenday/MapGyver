@@ -16,8 +16,8 @@ public class Contenu extends ArrayList<Souvenir> implements Serializable {
 	
 	private int 			id;
 	private String 			nom;
-	private PointInteret 	pointInteret;
-	private Voyage 			voyage;
+//	private PointInteret 	pointInteret;
+//	private Voyage 			voyage;
 	
 	
 	/**
@@ -26,12 +26,12 @@ public class Contenu extends ArrayList<Souvenir> implements Serializable {
 	 * @param nom
 	 * @param pointInteret
 	 */
-	public Contenu(int id, String nom, PointInteret pointInteret) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.pointInteret = pointInteret;
-	}
+//	public Contenu(int id, String nom, PointInteret pointInteret) {
+//		super();
+//		this.id = id;
+//		this.nom = nom;
+//		this.pointInteret = pointInteret;
+//	}
 	
 	
 
@@ -41,12 +41,12 @@ public class Contenu extends ArrayList<Souvenir> implements Serializable {
 	 * @param nom
 	 * @param voyage
 	 */
-	public Contenu(int id, String nom, Voyage voyage) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.voyage = voyage;
-	}
+//	public Contenu(int id, String nom, Voyage voyage) {
+//		super();
+//		this.id = id;
+//		this.nom = nom;
+//		this.voyage = voyage;
+//	}
 
 
 
