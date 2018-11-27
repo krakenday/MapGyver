@@ -21,9 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 		)
 public class Controleur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final ArrayList<String> EXIST_URL = new ArrayList<String>(Arrays.asList(
-					new String[] { "/404.jsp", "/login.jsp", "/register.jsp", "/forgot-password.jsp", "/blank.jsp" }));
-
+	private static final ArrayList<String> EXIST_URL = 
+			new ArrayList<String>(Arrays.asList(new String[]{"/404.jsp","/login.jsp","/register.jsp","/forgot-password.jsp"}));
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		doErreur(request, response);
@@ -42,6 +42,12 @@ public class Controleur extends HttpServlet {
 		else if (path.matches("/voyages(.*)")) {
 			doPage(request, response, path);			
 		}
+		else if (path.matches("/admin(.*)")) {
+			doPage(request, response, path);			
+		}
+		else if (path.matches("/utilisateur(.*)")) {
+			doPage(request, response, path);			
+		}
 		else {
 			doErreur(request, response);
 		}
@@ -50,11 +56,11 @@ public class Controleur extends HttpServlet {
 	private void doAccueil(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		doPage(request, response, "/vue/index.jsp");
 	}
-
+	
 	private void doErreur(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPage(request, response, "/vue/404.jsp");
 	}
-
+	
 	private void doPage(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
 		RequestDispatcher 	disp = request.getRequestDispatcher(path); 
 		disp.forward(request,response);		

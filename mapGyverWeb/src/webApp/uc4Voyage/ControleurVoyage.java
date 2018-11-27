@@ -14,9 +14,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
 import business.uc4Voyage.Voyage;
 import clientServeur.IServiceFacade;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
+=======
+import business.uc4Voyage.Document;
+import clientServeur.IServiceFacade;
+>>>>>>> branch 'dev' of https://github.com/krakenday/MapGyver.git
 
 
 
@@ -32,17 +37,27 @@ public class ControleurVoyage extends HttpServlet {
 	private static final String ZONE_EXCEPTION = "WebApp";
 
 	private static final long serialVersionUID = 1L;
+<<<<<<< HEAD
 	private static final ArrayList<String> EXIST_URL = new ArrayList<String>(Arrays.asList(
 			new String[] { "/roadBook"}));
 
 	private IServiceFacade iServiceFacade;
 	private static final String VOYAGE_SERVICE_LOOKUP = "ejb:/mapGyverEJB/ServiceFacade!clientServeur.IServiceFacade";
 
+=======
+	
+	private IServiceFacade iServiceBiblio;
+	private static final String BIBLIO_SERVICE_LOOKUP = "ejb:/biblioEJB/ServiceBiblioBeanStateless!clientServeur.IServiceBiblio";
+>>>>>>> branch 'dev' of https://github.com/krakenday/MapGyver.git
 	@Override
 	public void init() throws ServletException {
 		try {
 			Context context = new InitialContext();
+<<<<<<< HEAD
 			iServiceFacade = (IServiceFacade) context.lookup(VOYAGE_SERVICE_LOOKUP);
+=======
+			iServiceBiblio = (IServiceFacade) context.lookup(BIBLIO_SERVICE_LOOKUP);
+>>>>>>> branch 'dev' of https://github.com/krakenday/MapGyver.git
 		} catch (NamingException e) {
 			e.printStackTrace();
 			// TODO gerer exception connexion service
