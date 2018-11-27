@@ -36,7 +36,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="#">MapGyver</a>
+              <a href="#">Bibliotheque</a>
             </li>
             <li class="breadcrumb-item active">Accueil</li>
           </ol>
@@ -133,8 +133,8 @@
 	<jsp:include page="/WEB-INF/include/scripts.jsp" />
 
     <!-- Demo scripts for this page-->
-    <script src="<%=request.getContextPath()%>/js/demo/datatables-demo.js"></script>
-    <script src="<%=request.getContextPath()%>/js/demo/chart-area-demo.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/demo/datatables-demo.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/demo/chart-area-demo.js"></script>
 
   </body>
 
