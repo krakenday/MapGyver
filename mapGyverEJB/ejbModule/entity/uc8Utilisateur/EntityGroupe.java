@@ -1,11 +1,23 @@
 package entity.uc8Utilisateur;
 
-//import javax.persistence.Entity;
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 
-public class EntityGroupe extends Cercle {
+@Entity
+@Table(name=("GROUPE"))
+public class EntityGroupe extends EntityCercle implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 
 	public EntityGroupe() {
+	}
+	
+	public EntityGroupe(String nom) {
+		super(nom);
 	}
 
 	public EntityGroupe(int id, String nom) {
@@ -13,3 +25,4 @@ public class EntityGroupe extends Cercle {
 	}
 
 }
+

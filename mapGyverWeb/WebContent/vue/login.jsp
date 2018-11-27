@@ -18,35 +18,40 @@
   <body class="bg-dark">
 
     <div class="container">
+    <h1 class="display-3 text-center" style="color: white;">Welcome on the best travel webApp</h1>
+    <div class="text-center">
+    	<img src="../assets/img/mapgyver.png" width="50%" height="50%">
+    </div>
       <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Login</div>
+        <jsp:useBean id="msg" scope="request" class="java.lang.String" />
+        <div class="card-header">Connexion <%=msg%></div>
         <div class="card-body">
-          <form>
+          <form action="<%=request.getContextPath() %>/admin/login" method="post">
             <div class="form-group">
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
-                <label for="inputEmail">Email address</label>
+                <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+                <label for="inputEmail">Adresse email</label>
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                <label for="inputPassword">Password</label>
+                <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required="required">
+                <label for="inputPassword">Mot de passe</label>
               </div>
             </div>
             <div class="form-group">
               <div class="checkbox">
                 <label>
                   <input type="checkbox" value="remember-me">
-                  Remember Password
+                  Mémoriser mon mot de passe
                 </label>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="index.jsp">Login</a>
+            <input type="submit" class="btn btn-primary btn-block" value="Login" />
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="register.jsp">Register an Account</a>
-            <a class="d-block small" href="forgot-password.jsp">Forgot Password?</a>
+            <a class="d-block small mt-3" 	href="<%=request.getContextPath() %>/vue/register.jsp">Créer un utilisateur</a>
+            <a class="d-block small" 		href="<%=request.getContextPath() %>/vue/forgot-password.jsp">Mot de passe oublié?</a>
           </div>
         </div>
       </div>

@@ -14,3 +14,5 @@
 
 <!-- Custom scripts for all pages-->
 <script src="<%=request.getContextPath()%>/assets/js/sb-admin.min.js"></script></html>
+<!--  JS pour gestion des dates -->
+<script src="<%= request.getContextPath() %>/assets/js/moment-with-locales.js"></script>
