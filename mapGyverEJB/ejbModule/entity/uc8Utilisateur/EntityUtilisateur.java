@@ -2,28 +2,35 @@ package entity.uc8Utilisateur;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+//import java.util.ArrayList;
+//import java.util.Collection;
 
-import javax.persistence.*;
+//import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+//import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 
 /**
+ * 
  * Projet - MapGyver
- * Cette classe premt d'instancier un objet de type utilisateur, cet utilisateur beneficiera d'un accès pour les fonctionnalités de l'application
  * <Br> 
  * @author Djallal
  * @version 1.0 AFPA ECF2 Projet MapGyver
  * 
- * TODO renseigner les régles de gestions possible
- * 
  */
 
 @Entity
+@Table(name="UTILISATEUR")
 public class EntityUtilisateur implements Serializable{
 	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
@@ -34,10 +41,10 @@ public class EntityUtilisateur implements Serializable{
 	private String prenom;
 	@Column(length=100, nullable= false)
 	private String adresse;
-	@Column(length=50, nullable= false)
+	@Column(length=50,  unique= true, nullable= false)
 	private String email;
 	@Column(length=20, nullable= false)
-	private String telephone;
+	private String telephone; 
 	@Column(nullable= false)
 	private LocalDate dateInscrip;
 	@Column(nullable= false)
@@ -45,6 +52,7 @@ public class EntityUtilisateur implements Serializable{
 	@Column(length=100, name="password", nullable= false)
 	@Embedded
 	private EntityPassword motDePasse;
+	
 //	private Ville ville;
 //	private Pays pays;
 	

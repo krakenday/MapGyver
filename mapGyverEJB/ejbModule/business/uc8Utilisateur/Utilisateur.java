@@ -3,8 +3,6 @@ package business.uc8Utilisateur;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.*;
-
 /**
  * Projet - MapGyver
  * Cette classe premt d'instancier un objet de type utilisateur, cet utilisateur beneficiera d'un accès pour les fonctionnalités de l'application
@@ -16,37 +14,23 @@ import javax.persistence.*;
  * 
  */
 
-@Entity
 public class Utilisateur implements Serializable{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	
-	
-	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+
 	private int id;
-	@Column(length=50, nullable= false)
 	private String nom;
-	@Column(length=50, nullable= false)
 	private String prenom;
-	@Column(length=100, nullable= false)
 	private String adresse;
-	@Column(length=50, nullable= false)
 	private String email;
-	@Column(length=20, nullable= false)
 	private String telephone;
-	@Column(nullable= false)
 	private LocalDate dateInscrip;
-	@Column(nullable= false)
 	private LocalDate dateNaiss;
-	@Column(length=100, name="password", nullable= false)
-	@Embedded
 	private Password motDePasse;
 //	private Ville ville;
 //	private Pays pays;
+	
 	
 	public Utilisateur() {
 		super();
@@ -68,9 +52,8 @@ public class Utilisateur implements Serializable{
 	 * @param prenom : prenom de l'utilisateur
 	 * @param email : email de l'utilisateur
 	 * */
-	public Utilisateur(int id, String nom, String prenom, String email) {
+	public Utilisateur(String nom, String prenom, String email) {
 		super();
-		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
