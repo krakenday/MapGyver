@@ -14,6 +14,7 @@
 <title>MapGyver - Organisation</title>
 
 <jsp:include page="/WEB-INF/include/template.jsp" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/voyages/voyages.css"> 
 <jsp:include page="/WEB-INF/include/voyages/styles.jsp" />
 
 </head>
@@ -42,7 +43,7 @@
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item">
 					<a href="<%=request.getContextPath()%>">MapGyver</a></li>
-					<li class="breadcrumb-item active">Voyages</li>
+					<li class="breadcrumb-item active">Voyage</li>
 				</ol>
 				<jsp:include page="/WEB-INF/include/voyages/main.jsp" />
 

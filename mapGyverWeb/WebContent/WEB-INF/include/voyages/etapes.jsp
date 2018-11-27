@@ -6,6 +6,9 @@
 <div class="row">
 	<div class="col-3">
 		<div class="list-group" id="list-tab" role="tablist">
+			<a class="list-group-item list-group-item-action"
+				id="list-messages-list" data-toggle="list" href="#etape3" role="tab"
+				aria-controls="etape3">Londres</a>
 			<a class="list-group-item list-group-item-action active"
 				id="list-home-list" data-toggle="list" href="#etape1" role="tab"
 				aria-controls="etape1">Marseille</a>
@@ -13,21 +16,21 @@
 				id="list-profile-list" data-toggle="list" href="#etape2" role="tab"
 				aria-controls="etape2">Paris</a>
 			<a class="list-group-item list-group-item-action"
-				id="list-messages-list" data-toggle="list" href="#etape3" role="tab"
-				aria-controls="etape3">Londres</a>
-			<a class="list-group-item list-group-item-action"
 				id="list-settings-list" data-toggle="list" href="#etape4" role="tab"
 				aria-controls="etape4">Genève</a>
-		</div>
-		<div class="btn-group mt-2 text-center" role="group"
-			aria-label="First group">
-			<button type="button" class="btn btn-primary">+</button>
-			<button type="button" class="btn btn-primary">^</button>
-			<button type="button" class="btn btn-primary">-</button>
 		</div>
 	</div>
 	<div class="col-9">
 		<div class="tab-content" id="nav-tabContent">
+
+			<div class="tab-pane fade" id="etape3" role="tabpanel"
+				aria-labelledby="list-messages-list">Londres, la capitale de
+				l'Angleterre et du Royaume-Uni, est une ville moderne dont
+				l'histoire remonte à l'époque romaine. En son centre se dressent
+				l'imposant Parlement, l'emblématique Big Ben et l'abbaye de
+				Westminster, lieu de couronnement des monarques britanniques. De
+				l'autre côté de la Tamise, le London Eye, la grande roue, offre une
+				vue panoramique sur le South Bank Center, et toute la ville.</div>
 			<div class="tab-pane fade show active" id="etape1" role="tabpanel"
 				aria-labelledby="list-home-list">Marseille, ville portuaire du
 				sud de la France, est un carrefour du commerce et de l'immigration
@@ -52,15 +55,6 @@
 				gothique Notre-Dame du XIIe siècle, la ville est réputée pour ses
 				cafés et ses boutiques de luxe bordant la rue du
 				Faubourg-Saint-Honoré.</div>
-
-			<div class="tab-pane fade" id="etape3" role="tabpanel"
-				aria-labelledby="list-messages-list">Londres, la capitale de
-				l'Angleterre et du Royaume-Uni, est une ville moderne dont
-				l'histoire remonte à l'époque romaine. En son centre se dressent
-				l'imposant Parlement, l'emblématique Big Ben et l'abbaye de
-				Westminster, lieu de couronnement des monarques britanniques. De
-				l'autre côté de la Tamise, le London Eye, la grande roue, offre une
-				vue panoramique sur le South Bank Center, et toute la ville.</div>
 				
 			<div class="tab-pane fade" id="etape4" role="tabpanel"
 				aria-labelledby="list-settings-list">Genève est une ville

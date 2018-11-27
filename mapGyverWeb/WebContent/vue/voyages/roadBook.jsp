@@ -14,8 +14,9 @@
 <title>MapGyver - Dashboard</title>
 
 <jsp:include page="/WEB-INF/include/template.jsp" />
-<link rel="stylesheet"	href="<%= request.getContextPath() %>/assets/css/voyages/dashboard.css">
-<link rel="stylesheet"	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/voyages/voyages.css"> 
+<link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/voyages/dashboard.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body id="page-top">

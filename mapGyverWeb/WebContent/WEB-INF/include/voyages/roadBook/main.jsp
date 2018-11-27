@@ -7,9 +7,9 @@
 	String probleme = (String) request.getAttribute("probleme");
 %>
 	<!-- Roadbook -->
-	<div class="row">
+	<div class="row ">
 		<div class="col-lg-12">
-			<div class="card mb-3">
+			<div class="card mb-3 shadow">
 				<div class="card-header">
 					<i class="fas fa-reorder"></i> Liste des voyages
 				</div>
@@ -27,7 +27,7 @@
 									<div class="col-sm-6">
 										<a href="<%=request.getContextPath()%>/mapgyver/voyages" class="btn btn-success"
 											><i class="material-icons">&#xE147;</i>
-											<span>Ajouter nouveau document</span></a> <a
+											<span>Ajouter nouveau voyage</span></a> <a
 											href="#supprimerDocumentModal" class="btn btn-danger"
 											data-toggle="modal"><i class="material-icons">&#xE15C;</i>
 											<span>Supprimer</span></a>

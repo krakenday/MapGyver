@@ -6,7 +6,7 @@
 		  <div class="form-group row">
 		    <label for="titre" class="col-sm-2 col-form-label">Titre</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="titre" name="titre" placeholder="titre">
+		      <input type="text" class="form-control" id="titre" name="titre" placeholder="titre" required>
 		    </div>
 		  </div>				
 		  <div class="form-group row">
@@ -16,7 +16,7 @@
 		    </div>
 		    <label for="quantite" class="col-sm-4 col-form-label">Nombre de voyageurs</label>
 		    <div class="col-sm-2">
-		      <input type="number" class="form-control" id="quantite" name="quantite">
+		      <input type="number" class="form-control" id="quantite" name="quantite" min="0">
 		    </div>
 		  </div>				
 	</div>
