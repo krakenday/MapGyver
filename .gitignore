@@ -4,6 +4,7 @@
 /mapGyverEJB/build
 /mapGyverEJB/ejbModule/META-INF
 /mapGyverTest/build
+/mapGyverTest/bin
 *.class
 .settings
 .classpath
