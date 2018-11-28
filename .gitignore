@@ -1,0 +1,8 @@
+/mapGyverWeb/build
+/mapGyverEJB/build
+/mapGyverEJB/ejbModule/META-INF
+/mapGyverTest/build
+*.class
+.settings
+.classpath
+.project
