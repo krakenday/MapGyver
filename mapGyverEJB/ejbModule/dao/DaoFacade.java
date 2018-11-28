@@ -3,31 +3,28 @@ package dao;
 
 import java.util.List;
 
-
-
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
-import javax.persistence.PersistenceException;
 
+import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
+import business.uc6Jouer.ReponseElire;
+import business.uc8Utilisateur.Groupe;
+import business.uc8Utilisateur.ListeDiffusion;
+import business.uc8Utilisateur.Utilisateur;
+import dao.exception.ViolationPersistenceException;
+import dao.exception.uc1Administrer.DaoInexistantException;
 import dao.exception.uc4Voyage.DaoFacadeExceptionVoyage;
 import dao.exception.uc4Voyage.DaoVoyageException;
-import dao.uc4Voyage.DaoFacadeVoyage;
-import business.uc3Partager.Description;
-import dao.exception.ViolationPersistenceException;
-import dao.uc3Partager.DaoFacadePartager;
-
-
-
-import business.uc6Jouer.ReponseElire;
-import business.uc8Utilisateur.Utilisateur;
-import dao.exception.uc1Administrer.DaoInexistantException;
 import dao.exception.uc6Jouer.ConvertionException;
 import dao.uc1Administrer.DaoFacadeAdmin;
+import dao.uc3Partager.DaoFacadePartager;
+import dao.uc4Voyage.DaoFacadeVoyage;
 import dao.uc6Jouer.facade.DaoFacadeJouer;
+import dao.uc8Utilisateur.DaoFacadeUtilisateur;
 import service.exception.uc1Administrer.ServiceInexistantException;
 import service.exception.uc6Jouer.ExceptionSurDao;
 

@@ -7,9 +7,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import business.uc3Partager.Description;
-import dao.exception.ViolationPersistenceException;
 import dao.util.partager.UtilBdD;
 import entity.partager.DescriptionEntity;
+import service.exception.ViolationPersistenceException;
 
 @Singleton
 @LocalBean
@@ -26,7 +26,8 @@ public class DaoPartagerGestion {
 			em.flush();															
 		} catch (PersistenceException e) {
 			System.out.println("DAO_PARTAGER_GESTION >>> addDescription(Description description) - Erreur Persist");//TODO:A supprimer
-			throw new ViolationPersistenceException();
+			//TODO Genere une erreur DM - 28-11-2018
+			throw new ViolationPersistenceException("msg DM", e);
 //			//La méthode getCause() permet de rechercher le causeBy
 //			Throwable cause = e.getCause();
 //			

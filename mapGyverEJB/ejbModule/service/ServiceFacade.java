@@ -1,83 +1,34 @@
 package service;
 
-import javax.ejb.EJB;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
-
-
-import business.uc3Partager.Description;
-import client.serveur.partager.IGestion;
-import client.serveur.partager.exception.UserException;
-import service.exception.ViolationPersistenceException;
-import service.uc3Partager.ServiceFacadePartager;
-import utilitaire.partager.Erreur;
-
-@Stateless
-@Remote(IGestion.class)
-public class ServiceFacade implements IGestion{
-	
-	
-	/*
-	 * UC3_Partager 
-	 */
-	@EJB
-	private ServiceFacadePartager serviceFacadePartager;
-	
-	
-	/*
-	 * Création
-	 */
-	@Override
-	public void addDescription(Description description) throws UserException {
-		if (description == null) throw new UserException(Erreur.DESC_NULL);
-		try {
-			serviceFacadePartager.addDescription(description);
-		} catch (ViolationPersistenceException e) {
-			System.out.println("SERVICE_FACADE >>> addDescription(Description description) - Erreur");
-			throw new UserException(Erreur.DESC_DOUBLON);
-		}
-	}
-
-	/*
-	 * Modification
-	 */
-	@Override
-	public void updateDescription(Description description) {
-		try {
-			serviceFacadePartager.updateDescription(description);
-		} catch (Exception e) {
-			System.out.println("SERVICE_FACADE >>> updateDescription(Description description) - Erreur");
-		}
-	}
-
-	/*
-	 * Suppression par Id
-	 */
-
-import business.uc6Jouer.ReponseElire;
-import business.uc8Utilisateur.Utilisateur;
-import clientServeur.IServiceFacade;
-import service.exception.uc1Administrer.ServiceInexistantException;
-import service.exception.uc6Jouer.ExceptionSurDao;
-import service.uc1Administrer.ServiceFacadeAdmin;
-import service.uc6Jouer.facade.ServiceFacadeJouer;
-
-
-package service;
-
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
+import business.uc6Jouer.ReponseElire;
+import business.uc8Utilisateur.Groupe;
+import business.uc8Utilisateur.ListeDiffusion;
+import business.uc8Utilisateur.Password;
+import business.uc8Utilisateur.Utilisateur;
+import client.serveur.partager.exception.UserException;
 import clientServeur.IServiceFacade;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
+import service.exception.ViolationPersistenceException;
+import service.exception.uc1Administrer.ServiceInexistantException;
 import service.exception.uc4Voyage.ServiceVoyageException;
+import service.exception.uc6Jouer.ExceptionSurDao;
+import service.uc1Administrer.ServiceFacadeAdmin;
+import service.uc3Partager.ServiceFacadePartager;
 import service.uc4Voyage.ServiceFacadeVoyage;
+import service.uc6Jouer.facade.ServiceFacadeJouer;
+import service.uc8Utilisateur.ServiceFacadeUtilisateur;
+import utilitaire.partager.Erreur;
 
 /**
  * Session Bean implementation class Facade
@@ -94,6 +45,12 @@ public class ServiceFacade implements IServiceFacade {
 	
 	@EJB
 	private ServiceFacadeUtilisateur serviceFacadeUtilisateur;
+	
+	/*
+	 * UC3_Partager 
+	 */
+	@EJB
+	private ServiceFacadePartager serviceFacadePartager;
 	
 	@Override
 	public Utilisateur getUserById(int id) throws ServiceInexistantException {
@@ -321,5 +278,31 @@ public class ServiceFacade implements IServiceFacade {
 			System.out.println("tout va bien");
 		}
 		// ***** Fin AlexB - UC6 Jouer
+		
+		/*
+		 * Création
+		 */
+		@Override
+		public void addDescription(Description description) throws UserException {
+			if (description == null) throw new UserException(Erreur.DESC_NULL);
+			try {
+				serviceFacadePartager.addDescription(description);
+			} catch (ViolationPersistenceException e) {
+				System.out.println("SERVICE_FACADE >>> addDescription(Description description) - Erreur");
+				throw new UserException(Erreur.DESC_DOUBLON);
+			}
+		}
+
+		/*
+		 * Modification
+		 */
+		@Override
+		public void updateDescription(Description description) {
+			try {
+				serviceFacadePartager.updateDescription(description);
+			} catch (Exception e) {
+				System.out.println("SERVICE_FACADE >>> updateDescription(Description description) - Erreur");
+			}
+		}
 
 }
