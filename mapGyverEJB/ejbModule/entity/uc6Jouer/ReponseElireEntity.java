@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import business.uc2Souvenir.Photo;
 import business.uc6Jouer.ReponseElire;
 
-@Entity
+// @Entity
 public class ReponseElireEntity extends ReponseEntity {
 
 	private static final long serialVersionUID = 1L;

@@ -9,10 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import business.uc8Utilisateur.Utilisateur;
+import entity.uc8Utilisateur.EntityUtilisateur;
 
 @Entity
 @Table(name = "jeu")
@@ -26,9 +28,11 @@ public abstract class JeuEntity implements Serializable {
 	private String nom;
 	@Column(name = "d_crea", nullable = false)
 	private LocalDate dateCreation;
+	
+	//DM il faut travailler avec les entity - Voir Idriss et Djallel
 	@ManyToOne(fetch = FetchType.EAGER)
-	@Column(nullable = false)
-	private Utilisateur utilisateur;
+	@JoinColumn(name="id_user",nullable = false)
+	private EntityUtilisateur utilisateur;
 
 	public JeuEntity() {
 
@@ -37,14 +41,14 @@ public abstract class JeuEntity implements Serializable {
 	public JeuEntity(String nom, LocalDate dateCreation, Utilisateur utilisateur) {
 		this.nom = nom;
 		this.dateCreation = dateCreation;
-		this.utilisateur = utilisateur;
+		this.utilisateur = BusinessToEntity(utilisateur);
 	}
 
 	public JeuEntity(int id, String nom, LocalDate dateCreation, Utilisateur utilisateur) {
 		this.id = id;
 		this.nom = nom;
 		this.dateCreation = dateCreation;
-		this.utilisateur = utilisateur;
+		this.utilisateur = BusinessToEntity(utilisateur);
 	}
 
 	public int getId() {
@@ -72,11 +76,11 @@ public abstract class JeuEntity implements Serializable {
 	}
 
 	public Utilisateur getUtilisateur() {
-		return utilisateur;
+		return EntityToBusiness(utilisateur);
 	}
 
 	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+		this.utilisateur = BusinessToEntity(utilisateur);
 	}
 
 	@Override
@@ -91,4 +95,17 @@ public abstract class JeuEntity implements Serializable {
 	 * @return
 	 */
 	public abstract Class<?> getMappingMetier();
+	
+	private EntityUtilisateur BusinessToEntity(Utilisateur user) {
+		EntityUtilisateur u = new EntityUtilisateur();
+		u.setId(user.getId());
+		return u;
+		
+	}
+	
+	private Utilisateur  EntityToBusiness(EntityUtilisateur user) {
+		Utilisateur u = new Utilisateur();
+		u.setId(user.getId());
+		return u;
+	}
 }

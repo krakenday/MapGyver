@@ -1,6 +1,9 @@
 package service.exception.uc6Jouer;
 
-import javax.xml.rpc.ServiceException;
+import service.exception.ServiceException;
+
+//DM l import n'est pas le bon !!
+// import javax.xml.rpc.ServiceException;
 
 public class ExceptionSurDao extends ServiceException {
 

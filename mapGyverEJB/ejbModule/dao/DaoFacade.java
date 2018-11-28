@@ -46,6 +46,9 @@ public class DaoFacade {
 		
 	@EJB
 	private DaoFacadeVoyage daoFacadeVoyage;
+	
+	@EJB
+	private DaoFacadeJouer daoFacadeJouer;
 
 	public Utilisateur getUserById(int id) throws ServiceInexistantException {
 		Utilisateur user = null;
@@ -263,9 +266,6 @@ public class DaoFacade {
 	/**
 	 * UC6 Jouer =>interface entre DaoFacade et DaoFaceJouer
 	 */
-
-	@EJB
-	private DaoFacadeJouer daoFacadeJouer;
 
 	/**
 	 * Permet de creer une reponseElire en Bdd
