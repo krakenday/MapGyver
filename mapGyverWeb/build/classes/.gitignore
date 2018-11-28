@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+/webApp/
+=======
+<<<<<<< HEAD
 /business/
 <<<<<<< HEAD
 /clientServeur/
@@ -7,8 +10,17 @@
 =======
 >>>>>>> featUC2
 =======
+>>>>>>> branch 'dev' of https://github.com/krakenday/MapGyver.git
 /business/
 /clientServeur/
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 /utilitaire/
 /webApp/
 >>>>>>> featuc8
+>>>>>>> branch 'dev' of https://github.com/krakenday/MapGyver.git
+=======
+/service/
+/webApp/
+>>>>>>> featUC6

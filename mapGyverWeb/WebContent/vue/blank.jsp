@@ -37,7 +37,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="<%=request.getContextPath()%>">Bibliotheque</a>
+              <a href="<%=request.getContextPath()%>">MapGyver</a>
             </li>
             <li class="breadcrumb-item active">Blank Page</li>
           </ol>

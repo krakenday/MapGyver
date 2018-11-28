@@ -3,6 +3,9 @@ package business.uc2Souvenir;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import business.uc4Voyage.PointInteret;
+import business.uc4Voyage.Voyage;
+
 /**
  * 
  * @author Alejandro
