@@ -3,6 +3,7 @@
 /mapGyverWeb/build
 /mapGyverWeb/bin
 /mapGyverEJB/build
+/mapGyverEJB/bin
 /mapGyverEJB/ejbModule/META-INF
 /mapGyverTest/build
 /mapGyverTest/bin
