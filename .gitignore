@@ -1,6 +1,8 @@
-/mapGyverWeb/
-build
-/mapGyverEJB/
-build
-/mapGyverTest/
-build
+/mapGyverWeb/build
+/mapGyverEJB/build
+/mapGyverTest/build
+*.class
+.gitignore
+.settings
+.classpath
+.project
