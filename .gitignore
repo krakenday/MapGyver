@@ -1,6 +1,7 @@
 /.metadata/
 /.recommenders/ 
 /mapGyverWeb/build
+/mapGyverWeb/bin
 /mapGyverEJB/build
 /mapGyverEJB/ejbModule/META-INF
 /mapGyverTest/build
