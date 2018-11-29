@@ -26,7 +26,9 @@ public class DaoGenericVoyage <T> {
 		this.classe = classe;
 	}
 
-	//DM que fait cette ligne ici!!
+	//DM que fait cette ligne ici!!  
+	//IM j'ai essayé de suivre http://qaru.site/questions/174660/hibernate-crud-generic-dao 
+	//IM sans succes, j'aurais du supprimer 
 //	@PersistenceContext
 	public void setEntityManager(EntityManager entityManager) {
 	    this.entityManager = entityManager;

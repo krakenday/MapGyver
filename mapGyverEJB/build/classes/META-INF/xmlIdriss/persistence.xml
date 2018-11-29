@@ -2,7 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
-	<persistence-unit name="IDMhibernateXE">
+	<persistence-unit name="mpgHibernate">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:jboss/datasources/OracleDSXE</jta-data-source>
 		<properties>
@@ -13,8 +13,6 @@
 			<property name="hibernate.format_sql" value="false" />
 			<property name="hibernate.use_sql_comments" value="true" />
 			<property name="hibernate.default_schema" value="idriss_admin" />
-			<property name="javax.persistence.jdbc.password" value="doudou22"/>
-			<property name="hibernate.max_fetch_depth" value="3"/>
 		</properties>
 	</persistence-unit>
 </persistence>
