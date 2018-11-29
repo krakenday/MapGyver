@@ -5,7 +5,7 @@ public class UtilBdD
 	/*
 	 * Nom affecté pour la persistance hibernate
 	 */
-//	public static final String PERSISTANCE_UNITNAME 	= "AlexMHibernate";
+	public static final String PERSISTANCE_UNITNAME 	= "AlexMHibernate";
 	
 	/*
 	 * Nom affecté pour les entity
@@ -19,5 +19,7 @@ public class UtilBdD
 	public static final String ENTITY_COMMENTAIRE 		= "Commentaire";
 	public static final String ENTITY_DATE_CREATION 	= "Date_Creation";
 	public static final String ENTITY_NOMBRE_LIKE 		= "Nombre_Like";
+	public static final String ENTITY_TYPE_PARTAGEABLE 	= "Type_Partageable";
+	public static final String ENTITY_TYPE_COMMENTAIRE 	= "Type_Commentaire";
 
 }

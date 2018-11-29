@@ -3,12 +3,12 @@ package dao.uc3Partager;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
-import javax.persistence.PersistenceException;
 
 import business.uc3Partager.Description;
 import dao.exception.ViolationPersistenceException;
 import dao.uc3Partager.gestion.DaoPartagerGestion;
-import entity.partager.DescriptionEntity;
+import entity.uc3Partager.DescriptionEntity;
+import entity.uc8Utilisateur.EntityUtilisateur;
 
 @Singleton
 @LocalBean
@@ -18,14 +18,18 @@ public class DaoFacadePartager {
 	
 	@EJB
 	private DaoPartagerGestion daoPartagerGestion;
-	private entity.partager.DescriptionEntity descriptionEntity;
+	private entity.uc3partager.DescriptionEntity descriptionEntity;
 	
 	/*
 	 * Création
 	 */
-	public void addDescription(Description description) throws ViolationPersistenceException, service.exception.ViolationPersistenceException {
+	public void addDescription(Description description) throws ViolationPersistenceException {
 		descriptionEntity = new DescriptionEntity(description.getLibelleCommentaire(),
 												  description.getDateEdition(),description.getNbLike());
+		//TODO transformer l'Utilisateur en entity utilisateur
+		EntityUtilisateur entityUtilisateur = new EntityUtilisateur();
+		entityUtilisateur.setId(description.getUtilisateur().getId());	
+		descriptionEntity.setUtilisateur(entityUtilisateur);
 		daoPartagerGestion.addDescription(descriptionEntity);
 	}
 	
@@ -33,7 +37,7 @@ public class DaoFacadePartager {
 	 * Modification
 	 */
 	public void updateDescription(Description description) {
-		System.out.println("***************************" + description);
+		System.out.println("***************************" + description); 			//TODO:A supprimer
 		descriptionEntity = new DescriptionEntity(description.getLibelleCommentaire(),
 				  								  description.getDateEdition(),description.getNbLike());
 		try {

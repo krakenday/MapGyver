@@ -19,7 +19,6 @@ import business.uc8Utilisateur.Utilisateur;
 import client.serveur.partager.exception.UserException;
 import clientServeur.IServiceFacade;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
-import service.exception.ViolationPersistenceException;
 import service.exception.uc1Administrer.ServiceInexistantException;
 import service.exception.uc4Voyage.ServiceVoyageException;
 import service.exception.uc6Jouer.ExceptionSurDao;
@@ -281,6 +280,11 @@ public class ServiceFacade implements IServiceFacade {
 	}
 	// ***** Fin AlexB - UC6 Jouer
 
+	
+	/*
+	 * UC3_Partager 
+	 */
+	
 	/*
 	 * Création
 	 */
@@ -289,7 +293,7 @@ public class ServiceFacade implements IServiceFacade {
 		if (description == null) throw new UserException(Erreur.DESC_NULL);
 		try {
 			serviceFacadePartager.addDescription(description);
-		} catch (ViolationPersistenceException e) {
+		} catch (service.exception.ViolationPersistenceException e) {
 			System.out.println("SERVICE_FACADE >>> addDescription(Description description) - Erreur");
 			throw new UserException(Erreur.DESC_DOUBLON);
 		}
@@ -304,6 +308,30 @@ public class ServiceFacade implements IServiceFacade {
 			serviceFacadePartager.updateDescription(description);
 		} catch (Exception e) {
 			System.out.println("SERVICE_FACADE >>> updateDescription(Description description) - Erreur");
+		}
+	}
+
+	/*
+	 * Suppression par Id
+	 */
+	@Override
+	public void deleteDescription(int id) {
+		try {
+			serviceFacadePartager.deleteDescription(id);
+		} catch (Exception e) {
+			System.out.println("SERVICE_FACADE >>> deleteDescription(int id) - Erreur");
+		}
+	}
+
+	/*
+	 * Suppression description
+	 */
+	@Override
+	public void deleteDescription(Description description) {
+		try {
+			serviceFacadePartager.deleteDescription(description);
+		} catch (Exception e) {
+			System.out.println("SERVICE_FACADE >>> deleteDescription(Description description) - Erreur");
 		}
 	}
 
