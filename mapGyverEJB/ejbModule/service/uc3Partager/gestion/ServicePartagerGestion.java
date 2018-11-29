@@ -3,7 +3,6 @@ package service.uc3Partager.gestion;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
-import javax.persistence.PersistenceException;
 
 import business.uc3Partager.Description;
 import dao.DaoFacade;
