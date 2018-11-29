@@ -52,6 +52,18 @@ public class Utilisateur implements Serializable{
 	 * @param prenom : prenom de l'utilisateur
 	 * @param email : email de l'utilisateur
 	 * */
+	public Utilisateur(int id, String nom, String prenom, String email) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+	}
+	
+	/**
+	 * @param nom : nom de l'utilisateur
+	 * @param prenom : prenom de l'utilisateur
+	 * @param email : email de l'utilisateur
+	 * */
 	public Utilisateur(String nom, String prenom, String email) {
 		super();
 		this.nom = nom;

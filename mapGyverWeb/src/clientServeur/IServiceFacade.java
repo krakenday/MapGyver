@@ -7,9 +7,37 @@ import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Password;
 import business.uc8Utilisateur.Utilisateur;
+import service.exception.uc1Administrer.ServiceInexistantException;
+
+import business.uc4Voyage.PointInteret;
+import business.uc4Voyage.RoadBook;
+import business.uc4Voyage.Voyage;
+import clientServeur.exception.ServiceFacadeExceptionVoyage;
+
+
 
 public interface IServiceFacade {
+
+	// ********************************************
+	//  DM - UC1 Administrer
+	// ********************************************
+
+	/**
+	 * Retourne un Utilisateur a partir de son id
+	 * @throws ServiceInexistantException 
+	 */
+	public Utilisateur getUserById(int id) 			throws ServiceInexistantException;
+	/**
+	 * Retourne un Utilisateur a partir de son email
+	 * @throws ServiceInexistantException 
+	 */
+	public Utilisateur getUserByEmail(String email) throws ServiceInexistantException;
 	
+	// *****  Fin DM - UC1 Administrer
+	
+	// ********************************************
+	//  DB - UC8 Utilisateur
+	// ********************************************
 	//LA Fabrique d'utilisateur
 	public Utilisateur creerUtilisateur();
 	
@@ -52,4 +80,28 @@ public interface IServiceFacade {
 	
 	// Catalogue Liste diffusion
 	public List<ListeDiffusion> listerToutesLesListes();
+	// *****  Fin DB - UC8 Utilisateur
+		
+	// Voyage, offre de service : CRUD
+	public void 				createVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage;
+	public List<Voyage> 		readVoyageOrderByID();
+	public void 				updateVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage;
+	public void 				deleteVoyage(int id) 		throws ServiceFacadeExceptionVoyage;
+	public Voyage 				findVoyagebyID(int id);
+	
+	// RoadBook, offre de service : CRUD
+	public void 				createRoadBook(RoadBook roadBook);
+	public List<RoadBook> 		readRoadBookOrderByID();
+	public void 				updateRoadBook(RoadBook roadBook);
+	public void 				deleteRoadBook(int id);
+	public RoadBook				findRoadBookbyID(int id);
+	
+	// PointInteret, offre de service : CRUD
+	public void 				createPOInteret(PointInteret pointInteret);
+	public List<PointInteret> 	readPOInteretOrderByID();
+	public void 				updatePOInteret(PointInteret pointInteret);
+	public void 				deletePOInteret(int id);
+	public PointInteret 		findPOInteretByID(int id);
+	
+	
 }

@@ -12,4 +12,9 @@
 *.class
 .settings
 .classpath
+<<<<<<< HEAD
 .project
+=======
+.project
+
+>>>>>>> dev

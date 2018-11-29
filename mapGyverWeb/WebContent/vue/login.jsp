@@ -23,19 +23,20 @@
     	<img src="../assets/img/mapgyver.png" width="50%" height="50%">
     </div>
       <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Connexion</div>
+        <jsp:useBean id="msg" scope="request" class="java.lang.String" />
+        <div class="card-header">Connexion <%=msg%></div>
         <div class="card-body">
-          <form>
+          <form action="<%=request.getContextPath() %>/admin/login" method="post">
             <div class="form-group">
               <div class="form-label-group">
-              <label for="inputEmail">Adresse email</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+                <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+                <label for="inputEmail">Adresse email</label>
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
-              	<label for="inputPassword">Mot de passe</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required="required">
+                <label for="inputPassword">Mot de passe</label>
               </div>
             </div>
             <div class="form-group">
@@ -46,11 +47,11 @@
                 </label>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="index.jsp">Connexion</a>
+            <input type="submit" class="btn btn-primary btn-block" value="Login" />
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="register.jsp">Créer un utilisateur</a>
-            <a class="d-block small" href="forgot-password.jsp">Mot de passe oublié?</a>
+            <a class="d-block small mt-3" 	href="<%=request.getContextPath() %>/vue/register.jsp">Créer un utilisateur</a>
+            <a class="d-block small" 		href="<%=request.getContextPath() %>/vue/forgot-password.jsp">Mot de passe oublié?</a>
           </div>
         </div>
       </div>

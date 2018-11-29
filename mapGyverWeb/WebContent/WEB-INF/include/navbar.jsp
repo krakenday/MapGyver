@@ -30,6 +30,8 @@
             <i class="fas fa-user-circle fa-fw"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+          	<jsp:useBean id="utilisateur" scope="session" class="business.uc8Utilisateur.Utilisateur" />
+            <a class="dropdown-item" href="#"><%=utilisateur.getPrenom() %>-<%=utilisateur.getNom() %> </a>
             <a class="dropdown-item" href="<%=request.getContextPath()%>/mapgyver/utilisateur/gererUtilisateur">Settings</a>
             <a class="dropdown-item" href="#">Activity Log</a>
             <div class="dropdown-divider"></div>
