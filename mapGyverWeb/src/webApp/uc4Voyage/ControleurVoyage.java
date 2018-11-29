@@ -1,6 +1,8 @@
 package webApp.uc4Voyage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -12,58 +14,68 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import business.uc4Voyage.Document;
+import business.uc4Voyage.Voyage;
 import clientServeur.IServiceFacade;
-
-
+import clientServeur.exception.ServiceFacadeExceptionVoyage;
 
 /**
  * Servlet implementation class Controleur
  */
 @WebServlet(
 		name = "ControleurBonbon", 
-		description = "Controleur document", 
+		description = "Controleur Voyage", 
 		urlPatterns = {"/voyages/*"}
 		)
 public class ControleurVoyage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private IServiceFacade iServiceBiblio;
-	private static final String BIBLIO_SERVICE_LOOKUP = "ejb:/biblioEJB/ServiceBiblioBeanStateless!clientServeur.IServiceBiblio";
+	private static final String ZONE_EXCEPTION = "WebApp";
+	private static final ArrayList<String> EXIST_URL = new ArrayList<String>(Arrays.asList(
+			new String[] { "/roadBook"}));
+
+	private IServiceFacade iServiceFacade;
+	private static final String VOYAGE_SERVICE_LOOKUP = "ejb:/mapGyverEJB/ServiceFacade!clientServeur.IServiceFacade";
+
 	@Override
 	public void init() throws ServletException {
 		try {
 			Context context = new InitialContext();
-			iServiceBiblio = (IServiceFacade) context.lookup(BIBLIO_SERVICE_LOOKUP);
+
+			iServiceFacade = (IServiceFacade) context.lookup(VOYAGE_SERVICE_LOOKUP);
+
 		} catch (NamingException e) {
 			e.printStackTrace();
+			// TODO gerer exception connexion service
 		}
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		doErreur(request, response);
 	}
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getPathInfo();
 		if (path == null || path.equals("/")) 	{
 			doService(request);
 			doAccueil(request, response);
 		}
+		else if (EXIST_URL.contains(path)) {
+			doPage(request, response, "/vue/voyages"+path+".jsp");
+		}
 		else {
 			doErreur(request, response);
 		}
 	}
-	
+
 	@Override
 	protected void finalize() throws Throwable {
 
 	}
-	
+
 	private void doService(HttpServletRequest request) throws ServletException, IOException {
-		affciherTrace("Controleur Document");
+		affciherTrace("Controleur Voyage");
 		if 		("create".equals(request.getParameter("todo"))) 	create(request);
 		else if ("update".equals(request.getParameter("todo"))) 	update(request);
 		else if ("delete".equals(request.getParameter("todo"))) 	delete(request);
@@ -87,54 +99,66 @@ public class ControleurVoyage extends HttpServlet {
 
 	private void create(HttpServletRequest request) {
 		affciherTrace("create");
-		Document document;
 		try {
-			document = createDocumentFactory(request);
-			iServiceBiblio.create(document);
-			affciherTrace(document.toString());
+			Voyage voyage = new FormVoyage(request).createVoyage();
+			System.out.println(voyage);
+			iServiceFacade.createVoyage(voyage);
+			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_INSERT.getMsg() 
+					+" : "+ voyage.getNom());
 		} catch (ExceptionServiceVoyage e) {
-			affciherTrace("Exception" + e.getMessage());
-			//request.setAttribute("Exception", e.getMessage());	
+			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
+					+" *Err. "+ e.getMessage());
+		} catch (ServiceFacadeExceptionVoyage e) {
+			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_INSERT.getSolution() 
+					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
 		}
-	}
-	
-	private Document createDocumentFactory(HttpServletRequest request) throws ExceptionServiceVoyage {
-			String titre = "inconnu";
-			String description = "inconnu";
-			int nbExemplaire = 0;
-			try {
-				nbExemplaire = Integer.parseInt(request.getParameter("quantite"));
-				titre = request.getParameter("titre");
-				description = request.getParameter("desc");
-				
-			} catch (Exception e) {
-				throw new ExceptionServiceVoyage();
-			}
-			return new Document(titre, description, nbExemplaire);
 	}
 
 	private void read (HttpServletRequest request) {
 		affciherTrace("read");
-		
+
 	}
 
 	private void update(HttpServletRequest request)  {
 		affciherTrace("update");
-		
+		try {
+			Voyage voyage = new FormVoyage(request).createVoyage();
+			voyage.setId(voyage.getNbParticipant());
+			iServiceFacade.updateVoyage(voyage);
+			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_UPDATE.getMsg() 
+					+" : "+ voyage.getNom());
+		} catch (ExceptionServiceVoyage e) {
+			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
+					+" *Err. "+ e.getMessage());
+		} catch (ServiceFacadeExceptionVoyage e) {
+			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_UPDATE.getSolution() 
+					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
+		}
 	}
 
 	private void delete(HttpServletRequest request) {
 		affciherTrace("delete");
-		
+		try {
+			//Voyage voyage = new FormVoyage(request).createVoyage();
+			iServiceFacade.deleteVoyage(Integer.parseInt(request.getParameter("id")));
+//			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_DELETE.getMsg() 
+//					+" : "+ voyage.getNom());
+//		} catch (ExceptionServiceVoyage e) {
+//			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
+//					+" *Err. "+ e.getMessage());
+		} catch (ServiceFacadeExceptionVoyage e) {
+			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_DELETE.getSolution() 
+					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
+		}
 	}
-	
+
 	private void deleteAll() {
 		affciherTrace("deleteAll");
-		
+
 	}
 
 	private void affciherTrace(String string) {
 		System.out.println("trace : " + string);
-		
+
 	}
 }

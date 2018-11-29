@@ -14,6 +14,11 @@ public abstract class Cercle {
 		super();
 	}
 	
+	public Cercle( String nom) {
+		super();
+		this.nom = nom;
+	}
+	
 	public Cercle(int id, String nom) {
 		super();
 		this.id = id;

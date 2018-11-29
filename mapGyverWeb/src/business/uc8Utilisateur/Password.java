@@ -1,14 +1,12 @@
 package business.uc8Utilisateur;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import java.io.Serializable;
 
-@Embeddable
-public class Password {
+public class Password implements Serializable {
 
-	@Column(length=20, nullable= false)
+	private static final long serialVersionUID = 1L;
+	
 	private String password;
-
 
 	public Password() {
 	}
@@ -25,7 +23,5 @@ public class Password {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
 
 }
