@@ -15,9 +15,8 @@ import entity.uc8Utilisateur.EntityUtilisateur;
 @LocalBean
 public class DaoUtilisateurGestion {
 	
-//DM	@PersistenceContext(unitName= DaoParamUtilisateur.CONTEXT_PERSISTANCE)
 	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
-	EntityManager em; 
+	private EntityManager em; 
 	
 	public void addUtilisateur(EntityUtilisateur entityUtilisateur) {
 			em.persist(entityUtilisateur);

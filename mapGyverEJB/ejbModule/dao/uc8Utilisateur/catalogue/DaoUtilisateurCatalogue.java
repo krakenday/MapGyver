@@ -17,9 +17,8 @@ import entity.uc8Utilisateur.EntityUtilisateur;
 @LocalBean
 public class DaoUtilisateurCatalogue {
 
-	// @PersistenceContext(unitName= DaoParamUtilisateur.CONTEXT_PERSISTANCE)
 	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
-	EntityManager em; 
+	private EntityManager em; 
 	
 	public List<EntityUtilisateur> listerTousLesUtilisateurs() {
 		ArrayList<EntityUtilisateur> liste = new ArrayList<EntityUtilisateur>();

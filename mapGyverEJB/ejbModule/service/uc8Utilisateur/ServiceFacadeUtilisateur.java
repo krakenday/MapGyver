@@ -20,13 +20,13 @@ import service.uc8Utilisateur.gestion.ServiceUtilisateurGestion;
 public class ServiceFacadeUtilisateur {
 	
 	@EJB
-	ServiceUtilisateurGestion serviceUtilisateurGestion;
+	private ServiceUtilisateurGestion serviceUtilisateurGestion;
 	
 	@EJB
-	ServiceUtilisateurFabrique serviceUtilisateurFabrique;
+	private ServiceUtilisateurFabrique serviceUtilisateurFabrique;
 	
 	@EJB
-	ServiceUtilisateurCatalogue serviceUtilisateurCatalogue;
+	private ServiceUtilisateurCatalogue serviceUtilisateurCatalogue;
 	
 	
 	public void create(Utilisateur utilisateur) {

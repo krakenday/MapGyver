@@ -23,10 +23,10 @@ import entity.uc8Utilisateur.EntityUtilisateur;
 public class DaoFacadeUtilisateur {
 
 	@EJB
-	DaoUtilisateurGestion daoGestion;
+	private DaoUtilisateurGestion daoGestion;
 	
 	@EJB
-	DaoUtilisateurCatalogue daoCatalogue;
+	private DaoUtilisateurCatalogue daoCatalogue;
 	
 	FabriqueEntity fabriqueEntity= new FabriqueEntity();
 	
