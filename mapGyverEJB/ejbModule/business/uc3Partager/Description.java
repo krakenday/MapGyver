@@ -2,6 +2,9 @@ package business.uc3Partager;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
+
+import business.uc8Utilisateur.Utilisateur;
 
 public class Description implements Serializable{
 
@@ -11,6 +14,10 @@ public class Description implements Serializable{
 	private String libelleCommentaire;
 	private LocalDate dateEdition;
 	private int nbLike;
+	private Utilisateur utilisateur;
+	private TypeCommentaire typeCommentaire;
+	private Partageable partageable;
+	private List<Avis> avis;
 	
 	public Description(int id, String libelleCommentaire, LocalDate dateEdition, int nbLike) {
 		super();
@@ -57,6 +64,39 @@ public class Description implements Serializable{
 
 	public void setNbLike(int nbLike) {
 		this.nbLike = nbLike;
+	}
+
+	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	public TypeCommentaire getTypeCommentaire() {
+		return typeCommentaire;
+	}
+
+	public void setTypeCommentaire(TypeCommentaire typeCommentaire) {
+		this.typeCommentaire = typeCommentaire;
+	}
+
+	public Partageable getPartageable() {
+		return partageable;
+	}
+
+	public void setPartageable(Partageable partageable) {
+		this.partageable = partageable;
+	}
+
+	public List<Avis> getAvis() {
+		return avis;
+	}
+
+	public void setAvis(List<Avis> avis) {
+		this.avis = avis;
 	}
 
 	@Override
