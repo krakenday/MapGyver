@@ -39,7 +39,7 @@
             <li class="breadcrumb-item">
               <a href="#">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Charts</li>
+            <li class="breadcrumb-item active">MapGyver</li>
           </ol>
 
           <!-- Area Chart Example-->
