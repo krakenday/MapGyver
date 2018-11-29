@@ -24,9 +24,14 @@ public class Controleur extends HttpServlet {
 	private static final ArrayList<String> EXIST_URL = 
 			new ArrayList<String>(Arrays.asList(new String[]{"/404.jsp","/login.jsp","/register.jsp","/forgot-password.jsp"}));
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		doErreur(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String methode = request.getMethod().toLowerCase();
+		String path = request.getPathInfo();
+		
+		if (path == null || path.equals("/")) 		doAccueilPartager(request, response);
+		else if (path.matches("/partager(.*)")) 	doPage(request, response, path);			
+		else 										doErreur(request, response);
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -68,5 +73,12 @@ public class Controleur extends HttpServlet {
 
 	private void afficherTrace(String string) {
 		System.out.println("trace : " + string);
+	}
+	/*
+	 * Partager
+	 */
+	private void doAccueilPartager(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/vue/vue.partager/dashboard.jsp").forward( request,response);	
+		
 	}
 }
