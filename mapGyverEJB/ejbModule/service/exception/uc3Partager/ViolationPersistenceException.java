@@ -1,4 +1,6 @@
-package service.exception;
+package service.exception.uc3Partager;
+
+import service.exception.ServiceException;
 
 public class ViolationPersistenceException extends ServiceException{
 

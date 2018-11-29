@@ -7,7 +7,7 @@ import javax.persistence.PersistenceException;
 
 import business.uc3Partager.Description;
 import dao.DaoFacade;
-import service.exception.ViolationPersistenceException;
+import service.exception.uc3Partager.ViolationPersistenceException;
 
 @Singleton
 @LocalBean

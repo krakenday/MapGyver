@@ -220,12 +220,12 @@ public class DaoFacade {
 	/*
 	 * Création
 	 */
-	public void addDescription(Description description) throws service.exception.ViolationPersistenceException {
+	public void addDescription(Description description) throws service.exception.uc3Partager.ViolationPersistenceException {
 		try {
 			daoFacadePartager.addDescription(description);
 		} catch (ViolationPersistenceException e) {
 			System.out.println("DAO_FACADE >>> addDescription(Description description) - Erreur");
-			throw new service.exception.ViolationPersistenceException();
+			throw new service.exception.uc3Partager.ViolationPersistenceException();
 		}
 	}
 

@@ -5,7 +5,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import business.uc3Partager.Description;
-import service.exception.ViolationPersistenceException;
+import service.exception.uc3Partager.ViolationPersistenceException;
 import service.uc3Partager.gestion.ServicePartagerGestion;
 
 @Singleton

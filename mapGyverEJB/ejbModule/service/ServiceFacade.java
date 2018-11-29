@@ -293,7 +293,7 @@ public class ServiceFacade implements IServiceFacade {
 		if (description == null) throw new UserException(Erreur.DESC_NULL);
 		try {
 			serviceFacadePartager.addDescription(description);
-		} catch (service.exception.ViolationPersistenceException e) {
+		} catch (service.exception.uc3Partager.ViolationPersistenceException e) {
 			System.out.println("SERVICE_FACADE >>> addDescription(Description description) - Erreur");
 			throw new UserException(Erreur.DESC_DOUBLON);
 		}

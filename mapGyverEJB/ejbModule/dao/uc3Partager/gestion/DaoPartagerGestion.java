@@ -27,7 +27,7 @@ public class DaoPartagerGestion {
 			em.flush();															
 		} catch (PersistenceException e) {
 			System.out.println("DAO_PARTAGER_GESTION >>> addDescription(Description description) - Erreur Persist");//TODO:A supprimer
-			throw new ViolationPersistenceException(null, e);
+			throw new ViolationPersistenceException(null, e);			//TODO: Supprimer arguement
 		}
 	}
 
