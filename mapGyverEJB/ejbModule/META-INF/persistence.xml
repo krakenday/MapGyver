@@ -17,6 +17,10 @@
 			<property name="hibernate.format_sql" value="false" />
 			<property name="hibernate.use_sql_comments" value="true" />
 			<property name="hibernate.default_schema" value="Malko_admin"/>
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/heads/dev
 		</properties>
 </persistence-unit>
 		
