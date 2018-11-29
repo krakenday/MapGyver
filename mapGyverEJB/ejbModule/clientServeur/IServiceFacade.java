@@ -122,6 +122,7 @@ public interface IServiceFacade {
 
 	// ***** Fin AlexB - UC6 Jouer
 	
+	
 	// ********************************************
 	// AlexM - Description
 	// ********************************************
