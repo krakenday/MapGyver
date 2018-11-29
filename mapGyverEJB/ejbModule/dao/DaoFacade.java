@@ -1,27 +1,41 @@
 package dao;
 
+
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
+import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
+import business.uc6Jouer.ReponseElire;
+import business.uc8Utilisateur.Groupe;
+import business.uc8Utilisateur.ListeDiffusion;
+import business.uc8Utilisateur.Utilisateur;
+import dao.exception.ViolationPersistenceException;
+import dao.exception.uc1Administrer.DaoInexistantException;
 import dao.exception.uc4Voyage.DaoFacadeExceptionVoyage;
 import dao.exception.uc4Voyage.DaoVoyageException;
-import dao.uc4Voyage.DaoFacadeVoyage;
-import business.uc8Utilisateur.Utilisateur;
-import dao.exception.uc1Administrer.DaoInexistantException;
+import dao.exception.uc6Jouer.ConvertionException;
 import dao.uc1Administrer.DaoFacadeAdmin;
+import dao.uc3Partager.DaoFacadePartager;
+import dao.uc4Voyage.DaoFacadeVoyage;
+import dao.uc6Jouer.facade.DaoFacadeJouer;
+import dao.uc8Utilisateur.DaoFacadeUtilisateur;
 import service.exception.uc1Administrer.ServiceInexistantException;
+import service.exception.uc6Jouer.ExceptionSurDao;
 
 
 @Singleton
 @LocalBean
 public class DaoFacade {
 
+	@EJB
+	private DaoFacadePartager daoFacadePartager;
+	
 	private static final String ZONE_EXCEPTION_MSG = ".Voyage";
 	
 	@EJB
@@ -32,16 +46,18 @@ public class DaoFacade {
 		
 	@EJB
 	private DaoFacadeVoyage daoFacadeVoyage;
+	
+	@EJB
+	private DaoFacadeJouer daoFacadeJouer;
 
 	public Utilisateur getUserById(int id) throws ServiceInexistantException {
 		Utilisateur user = null;
 		try {
 			user = daoFacadeAdmin.getUserById(id);
-		}
-		catch (DaoInexistantException e) {
+		} catch (DaoInexistantException e) {
 			throw new ServiceInexistantException();
 		}
-		
+
 		return user;
 	}
 
@@ -49,13 +65,13 @@ public class DaoFacade {
 		Utilisateur user = null;
 		try {
 			user = daoFacadeAdmin.getUserByEmail(email);
-		}
-		catch (DaoInexistantException e) {
+		} catch (DaoInexistantException e) {
 			throw new ServiceInexistantException();
 		}
-		
+
 		return user;
 	}
+
 	
 	//Ici commence le territoire de Djallel
 		// Gestion de l'utilisateur
@@ -198,6 +214,71 @@ public class DaoFacade {
 		return daoFacadeVoyage.findPOInteretByID(id);	
 	}
 	//fin ***************** Voyage
-	
-	
+
+
+	//Partager
+	/*
+	 * Création
+	 */
+	public void addDescription(Description description) throws service.exception.ViolationPersistenceException {
+		try {
+			daoFacadePartager.addDescription(description);
+		} catch (ViolationPersistenceException e) {
+			System.out.println("DAO_FACADE >>> addDescription(Description description) - Erreur");
+			throw new service.exception.ViolationPersistenceException();
+		}
+	}
+
+	/*
+	 * Modification
+	 */
+	public void updateDescription(Description description) {
+		try {
+			daoFacadePartager.updateDescription(description);
+		} catch (Exception e) {
+			System.out.println("DAO_FACADE >>> updateDescription(Description description) - Erreur");
+		}
+	}
+
+	/*
+	 * Suppression par Id
+	 */
+	public void deleteDescription(int id) {
+		try {
+			daoFacadePartager.deleteDescription(id);
+		} catch (Exception e) {
+			System.out.println("DAO_FACADE >>> deleteDescription(int id) - Erreur");
+		}
+	}
+
+	/*
+	 * Suppression description
+	 */
+	public void deleteDescription(Description description) {
+		try {
+			daoFacadePartager.deleteDescription(description);
+		} catch (Exception e) {
+			System.out.println("DAO_FACADE >>> deleteDescription(Description description) - Erreur");
+		}
+	}
+
+
+	/**
+	 * UC6 Jouer =>interface entre DaoFacade et DaoFaceJouer
+	 */
+
+	/**
+	 * Permet de creer une reponseElire en Bdd
+	 * 
+	 * @param reponseElire {@link business.uc6Jouer.ReponseElire ReponseElire}
+	 * @throws ExceptionSurDao
+	 */
+	public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao {
+		try {
+			daoFacadeJouer.createReponseElire(reponseElire);
+		} catch (ConvertionException e) {
+			throw new ExceptionSurDao(e.getMessage(), e.getCause());
+		}
+	}
+
 }

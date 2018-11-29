@@ -8,7 +8,7 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import dao.uc8Utilisateur.DaoParamUtilisateur;
+import dao.DaoParam;
 import entity.uc8Utilisateur.EntityGroupe;
 import entity.uc8Utilisateur.EntityListeDiffusion;
 import entity.uc8Utilisateur.EntityUtilisateur;
@@ -17,7 +17,8 @@ import entity.uc8Utilisateur.EntityUtilisateur;
 @LocalBean
 public class DaoUtilisateurCatalogue {
 
-	@PersistenceContext(unitName= DaoParamUtilisateur.CONTEXT_PERSISTANCE)
+	// @PersistenceContext(unitName= DaoParamUtilisateur.CONTEXT_PERSISTANCE)
+	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
 	EntityManager em; 
 	
 	public List<EntityUtilisateur> listerTousLesUtilisateurs() {
