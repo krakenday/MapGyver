@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
+import dao.DaoParam;
 import dao.exception.uc4Voyage.DaoVoyageErrorMessage;
 import dao.exception.uc4Voyage.DaoVoyageException;
 import entity.uc4Voyage.EntityVoyage;
@@ -16,7 +17,8 @@ import entity.uc4Voyage.EntityVoyage;
 @LocalBean
 public class DaoOldVoyage {
 
-	@PersistenceContext(unitName = "IDMhibernateXE")
+	//DM @PersistenceContext(unitName = "IDMhibernateXE")
+	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
 	private EntityManager em;
 	
 	private static final String ZONE_EXCEPTION_MSG = ".Voyage";

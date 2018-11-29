@@ -1,12 +1,14 @@
 package dao.uc4Voyage;
 
-import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import dao.DaoParam;
+
 public class DaoGenericVoyage <T> {
 
-	@PersistenceContext(unitName = "IDMhibernateXE")
+//DM	@PersistenceContext(unitName = "IDMhibernateXE")
+	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
 	private EntityManager entityManager;
 	
 	private Class< T > classe;
@@ -24,7 +26,8 @@ public class DaoGenericVoyage <T> {
 		this.classe = classe;
 	}
 
-	@PersistenceContext
+	//DM que fait cette ligne ici!!
+//	@PersistenceContext
 	public void setEntityManager(EntityManager entityManager) {
 	    this.entityManager = entityManager;
 	}

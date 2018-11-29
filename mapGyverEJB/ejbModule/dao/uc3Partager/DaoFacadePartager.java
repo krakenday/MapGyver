@@ -23,7 +23,7 @@ public class DaoFacadePartager {
 	/*
 	 * Création
 	 */
-	public void addDescription(Description description) throws ViolationPersistenceException {
+	public void addDescription(Description description) throws ViolationPersistenceException, service.exception.ViolationPersistenceException {
 		descriptionEntity = new DescriptionEntity(description.getLibelleCommentaire(),
 												  description.getDateEdition(),description.getNbLike());
 		daoPartagerGestion.addDescription(descriptionEntity);

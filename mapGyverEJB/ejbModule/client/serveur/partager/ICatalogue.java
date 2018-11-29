@@ -9,14 +9,14 @@ import business.uc3Partager.Description;
  */
 public interface ICatalogue {
 	
-	/*
-	 * Liste
-	 */
-	public List<Description> getDescriptionById();
-	public List<Description> getDescriptionByDate();
-	
-	/*
-	 * Recherche
-	 */
-	public List<Description> SearchDescriptionById();
+//	/*
+//	 * Liste
+//	 */
+//	public List<Description> getDescriptionById();
+//	public List<Description> getDescriptionByDate();
+//	
+//	/*
+//	 * Recherche
+//	 */
+//	public List<Description> SearchDescriptionById();
 }

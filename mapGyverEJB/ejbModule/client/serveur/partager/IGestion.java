@@ -8,23 +8,23 @@ import client.serveur.partager.exception.UserException;
  */
 public interface IGestion {
 	
-	/*
-	 * Création
-	 */
-	public void addDescription(Description description) throws UserException;
-	
-	/*
-	 * Modification
-	 */
-	public void updateDescription(Description description);
-	
-	/*
-	 * Suppression par Id
-	 */
-	public void deleteDescription(int id);
-	
-	/*
-	 * Suppression description
-	 */
-	public void deleteDescription(Description description);
+//	/*
+//	 * Création
+//	 */
+//	public void addDescription(Description description) throws UserException;
+//	
+//	/*
+//	 * Modification
+//	 */
+//	public void updateDescription(Description description);
+//	
+//	/*
+//	 * Suppression par Id
+//	 */
+//	public void deleteDescription(int id);
+//	
+//	/*
+//	 * Suppression description
+//	 */
+//	public void deleteDescription(Description description);
 }

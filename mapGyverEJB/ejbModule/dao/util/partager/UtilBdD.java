@@ -5,7 +5,7 @@ public class UtilBdD
 	/*
 	 * Nom affecté pour la persistance hibernate
 	 */
-	public static final String PERSISTANCE_UNITNAME 	= "AlexMHibernate";
+//	public static final String PERSISTANCE_UNITNAME 	= "AlexMHibernate";
 	
 	/*
 	 * Nom affecté pour les entity

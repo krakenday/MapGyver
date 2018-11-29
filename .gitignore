@@ -1,2 +1,17 @@
 /.metadata/
 /.recommenders/ 
+/mapGyverWeb/build
+/mapGyverWeb/bin
+/mapGyverEJB/build
+/mapGyverEJB/bin
+/mapGyverEJB/ejbModule/META-INF
+/mapGyverTest/build
+/mapGyverTest/bin
+/RemoteSystemsTempFiles
+/mapGyverMain
+*.class
+.settings
+.classpath
+.project
+persistence.xml
+

@@ -11,9 +11,10 @@ import business.uc8Utilisateur.Password;
 import business.uc6Jouer.ReponseElire;
 
 import business.uc8Utilisateur.Utilisateur;
+import client.serveur.partager.exception.UserException;
 import service.exception.uc1Administrer.ServiceInexistantException;
 import service.exception.uc6Jouer.ExceptionSurDao;
-
+import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
@@ -118,6 +119,15 @@ public interface IServiceFacade {
 
 	public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao;
 
+
 	// ***** Fin AlexB - UC6 Jouer
+	
+	// ********************************************
+	// AlexM - Description
+	// ********************************************
+	public void addDescription(Description description) throws UserException;
+
+	public void updateDescription(Description description);
+	
 
 }

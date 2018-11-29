@@ -1,6 +1,8 @@
 package service.uc6Jouer.facade;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Singleton;
 
 import business.uc6Jouer.ReponseElire;
 import dao.DaoFacade;
@@ -15,6 +17,9 @@ import service.exception.uc6Jouer.ExceptionSurDao;
  * @author lours
  */
 
+//DM il manque les annotations localbean ...
+@LocalBean
+@Singleton
 public class ServiceFacadeJouer {
 
 	@EJB
