@@ -18,25 +18,24 @@ import service.uc8Utilisateur.gestion.ServiceUtilisateurGestion;
 @Singleton
 @LocalBean
 public class ServiceFacadeUtilisateur {
-	
+
 	@EJB
 	ServiceUtilisateurGestion serviceUtilisateurGestion;
-	
+
 	@EJB
 	ServiceUtilisateurFabrique serviceUtilisateurFabrique;
-	
+
 	@EJB
 	ServiceUtilisateurCatalogue serviceUtilisateurCatalogue;
-	
-	
+
 	public void create(Utilisateur utilisateur) {
 		serviceUtilisateurGestion.create(utilisateur);
 	}
-	
+
 	public Utilisateur read(int id) {
 		return serviceUtilisateurGestion.read(id);
 	}
-	
+
 	public void update(Utilisateur utilisateur) {
 		serviceUtilisateurGestion.update(utilisateur);
 	}
@@ -44,6 +43,7 @@ public class ServiceFacadeUtilisateur {
 	public void delete(int id) {
 		serviceUtilisateurGestion.delete(id);
 	}
+
 	// Fabrique Utilisateur
 	public Utilisateur creerUtilisateur() {
 		return serviceUtilisateurFabrique.creerUtilisateur();
@@ -51,11 +51,12 @@ public class ServiceFacadeUtilisateur {
 
 	public Utilisateur creerUtilisateur(String nom, String prenom, String adresse, String email, String telephone,
 			LocalDate dateInscrip, LocalDate dateNaiss, Password motDePasse) {
-		return serviceUtilisateurFabrique.creerUtilisateur(nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss, motDePasse);
+		return serviceUtilisateurFabrique.creerUtilisateur(nom, prenom, adresse, email, telephone, dateInscrip,
+				dateNaiss, motDePasse);
 	}
-	
+
 // Bloc service Groupe
-	
+
 	public void createGroupe(Groupe groupe) {
 		serviceUtilisateurGestion.createGroupe(groupe);
 	}
@@ -71,7 +72,7 @@ public class ServiceFacadeUtilisateur {
 	public void deleteGroupe(int id) {
 		serviceUtilisateurGestion.deleteGroupe(id);
 	}
-	
+
 	// Bloc service Liste diffusion
 	public void createListeDiff(ListeDiffusion listeDiff) {
 		serviceUtilisateurGestion.createListeDiff(listeDiff);
@@ -88,7 +89,7 @@ public class ServiceFacadeUtilisateur {
 	public void deleteListeDiff(int id) {
 		serviceUtilisateurGestion.deleteListeDiff(id);
 	}
-	
+
 // Catalogue 
 	public List<Utilisateur> listerTousLesUtilisateurs() {
 		return serviceUtilisateurCatalogue.listerTousLesUtilisateurs();

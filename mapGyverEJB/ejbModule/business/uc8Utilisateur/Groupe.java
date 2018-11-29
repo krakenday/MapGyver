@@ -1,6 +1,5 @@
 package business.uc8Utilisateur;
 
-
 public class Groupe extends Cercle {
 
 	public Groupe() {

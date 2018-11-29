@@ -1,7 +1,6 @@
 package service.exception;
 
-
-public class ServiceException extends Exception{
+public class ServiceException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
@@ -9,5 +8,8 @@ public class ServiceException extends Exception{
 		super(message, cause);
 	}
 
+	public ServiceException() {
+		// TODO Auto-generated constructor stub
+	}
 
 }
