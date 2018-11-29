@@ -8,14 +8,13 @@ import javax.persistence.PersistenceException;
 
 import business.uc3Partager.Description;
 import dao.exception.uc3Partager.ViolationPersistenceException;
-import dao.util.partager.UtilBdD;
 import entity.uc3Partager.DescriptionEntity;
 
 @Singleton
 @LocalBean
 public class DaoPartagerGestion {
 	
-	@PersistenceContext(unitName = UtilBdD.PERSISTANCE_UNITNAME)
+	@PersistenceContext(unitName = dao.DaoParam.CONTEXT_PERSISTANCE)
 	private EntityManager em;
 
 	public void addDescription(DescriptionEntity descriptionEntity) throws ViolationPersistenceException {
