@@ -107,7 +107,7 @@ function onPopupOpen() {
 
 	// To remove marker on click of delete
 	$(".marker-delete-button:visible").click(function () {
-		map.removeLayer(tempMarker);
+		map.removeLayer(allMarkersGeoJsonArray);
 	});
 
 	$(".marker-add-button:visible").click(function (e) {

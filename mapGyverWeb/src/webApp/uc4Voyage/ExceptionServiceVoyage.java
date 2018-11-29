@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package webApp.uc4Voyage;
 
 public class ExceptionServiceVoyage  extends Exception {
@@ -21,12 +20,4 @@ public class ExceptionServiceVoyage  extends Exception {
 		return code;
 	}
 }
-=======
-package webApp.uc4Voyage;
 
-public class ExceptionServiceVoyage extends Exception {
-
-	private static final long serialVersionUID = 1L;
-
-}
->>>>>>> branch 'dev' of https://github.com/krakenday/MapGyver.git

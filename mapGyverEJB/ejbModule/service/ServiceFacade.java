@@ -1,5 +1,6 @@
 package service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -9,10 +10,17 @@ import javax.ejb.Stateless;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
+import business.uc8Utilisateur.Groupe;
+import business.uc8Utilisateur.ListeDiffusion;
+import business.uc8Utilisateur.Password;
+import business.uc8Utilisateur.Utilisateur;
 import clientServeur.IServiceFacade;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
+import service.exception.uc1Administrer.ServiceInexistantException;
 import service.exception.uc4Voyage.ServiceVoyageException;
+import service.uc1Administrer.ServiceFacadeAdmin;
 import service.uc4Voyage.ServiceFacadeVoyage;
+import service.uc8Utilisateur.ServiceFacadeUtilisateur;
 
 /**
  * Session Bean implementation class Facade

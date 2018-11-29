@@ -3,10 +3,13 @@ package business.uc2Souvenir;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import business.uc4Voyage.PointInteret;
+import business.uc4Voyage.Voyage;
+
 /**
  * 
  * @author Alejandro
- * Un contenu est lié a un point d'interet ou a un voyage
+ * Un contenu est liï¿½ a un point d'interet ou a un voyage
  *
  */
 
