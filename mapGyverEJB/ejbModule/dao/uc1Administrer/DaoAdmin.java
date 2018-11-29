@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
+import dao.DaoParam;
 import dao.exception.uc1Administrer.DaoInexistantException;
 import entity.uc8Utilisateur.EntityUtilisateur;
 
@@ -17,7 +18,7 @@ import entity.uc8Utilisateur.EntityUtilisateur;
 @LocalBean
 public class DaoAdmin {
 
-	@PersistenceContext(unitName=DaoParamAdmin.CONTEXT_PERSISTANCE)
+	@PersistenceContext(unitName=DaoParam.CONTEXT_PERSISTANCE)
 	private EntityManager 		em;
 
 	/**

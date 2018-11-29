@@ -14,27 +14,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import business.uc4Voyage.Voyage;
 import clientServeur.IServiceFacade;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
-
-
-
 
 /**
  * Servlet implementation class Controleur
  */
 @WebServlet(
-		name = "ControleurBonbon", 
+		name = "ControleurVoyage", 
 		description = "Controleur Voyage", 
 		urlPatterns = {"/voyages/*"}
 		)
 public class ControleurVoyage extends HttpServlet {
-	private static final String ZONE_EXCEPTION = "WebApp";
-
 	private static final long serialVersionUID = 1L;
-
+	
+	private static final String ZONE_EXCEPTION = "WebApp";
 	private static final ArrayList<String> EXIST_URL = new ArrayList<String>(Arrays.asList(
 			new String[] { "/roadBook"}));
 

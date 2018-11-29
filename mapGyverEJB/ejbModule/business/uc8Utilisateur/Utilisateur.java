@@ -5,12 +5,12 @@ import java.time.LocalDate;
 
 /**
  * Projet - MapGyver
- * Cette classe premt d'instancier un objet de type utilisateur, cet utilisateur beneficiera d'un accès pour les fonctionnalités de l'application
+ * Cette classe premt d'instancier un objet de type utilisateur, cet utilisateur beneficiera d'un acc�s pour les fonctionnalit�s de l'application
  * <Br> 
  * @author Djallal
  * @version 1.0 AFPA ECF2 Projet MapGyver
  * 
- * TODO renseigner les régles de gestions possible
+ * TODO renseigner les r�gles de gestions possible
  * 
  */
 
@@ -54,7 +54,18 @@ public class Utilisateur implements Serializable{
 	 * */
 	public Utilisateur(int id, String nom, String prenom, String email) {
 		super();
-		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+	}
+	
+	/**
+	 * @param nom : nom de l'utilisateur
+	 * @param prenom : prenom de l'utilisateur
+	 * @param email : email de l'utilisateur
+	 * */
+	public Utilisateur(String nom, String prenom, String email) {
+		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
@@ -225,9 +236,12 @@ public class Utilisateur implements Serializable{
 		this.motDePasse = motDePasse;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email="
+		return "EntityUtilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email="
 				+ email + ", telephone=" + telephone + ", dateInscrip=" + dateInscrip + ", dateNaiss=" + dateNaiss
 				+ "]";
 	}

@@ -7,20 +7,28 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
+import business.uc6Jouer.ReponseElire;
 import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Password;
 import business.uc8Utilisateur.Utilisateur;
+import client.serveur.partager.exception.UserException;
 import clientServeur.IServiceFacade;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
+import service.exception.ViolationPersistenceException;
 import service.exception.uc1Administrer.ServiceInexistantException;
 import service.exception.uc4Voyage.ServiceVoyageException;
+import service.exception.uc6Jouer.ExceptionSurDao;
 import service.uc1Administrer.ServiceFacadeAdmin;
+import service.uc3Partager.ServiceFacadePartager;
 import service.uc4Voyage.ServiceFacadeVoyage;
+import service.uc6Jouer.facade.ServiceFacadeJouer;
 import service.uc8Utilisateur.ServiceFacadeUtilisateur;
+import utilitaire.partager.Erreur;
 
 /**
  * Session Bean implementation class Facade
@@ -31,13 +39,22 @@ public class ServiceFacade implements IServiceFacade {
 
 	@EJB
 	private ServiceFacadeVoyage serviceFacadeVoyage;
-	
+
 	@EJB
 	private ServiceFacadeAdmin serviceFacadeAdmin;
-	
+
 	@EJB
 	private ServiceFacadeUtilisateur serviceFacadeUtilisateur;
-	
+
+	@EJB
+	private ServiceFacadeJouer serviceFacadeJouer;
+
+	/*
+	 * UC3_Partager 
+	 */
+	@EJB
+	private ServiceFacadePartager serviceFacadePartager;
+
 	@Override
 	public Utilisateur getUserById(int id) throws ServiceInexistantException {
 		Utilisateur user = serviceFacadeAdmin.getUserById(id);
@@ -49,13 +66,13 @@ public class ServiceFacade implements IServiceFacade {
 		Utilisateur user = serviceFacadeAdmin.getUserByEmail(email);
 		return user;
 	}
-	
+
 	// Bloc Service Utilisateur
-	
+
 	@Override
 	public void create(Utilisateur utilisateur) {
 		serviceFacadeUtilisateur.create(utilisateur);
-		
+
 	}
 
 	@Override
@@ -72,7 +89,7 @@ public class ServiceFacade implements IServiceFacade {
 	public void delete(int id) {
 		serviceFacadeUtilisateur.delete(id);
 	}
-	
+
 	// Fabrique Utilisateur
 	@Override
 	public Utilisateur creerUtilisateur() {
@@ -84,7 +101,7 @@ public class ServiceFacade implements IServiceFacade {
 			LocalDate dateInscrip, LocalDate dateNaiss, Password motDePasse) {
 		return serviceFacadeUtilisateur.creerUtilisateur(nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss, motDePasse);
 	}
-	
+
 	// Bloc service Groupe
 	@Override
 	public void createGroupe(Groupe groupe) {
@@ -105,7 +122,7 @@ public class ServiceFacade implements IServiceFacade {
 	public void deleteGroupe(int id) {
 		serviceFacadeUtilisateur.deleteGroupe(id);
 	}
-	
+
 	// Bloc service Liste diffusion
 	@Override
 	public void createListeDiff(ListeDiffusion listeDiff) {
@@ -126,7 +143,7 @@ public class ServiceFacade implements IServiceFacade {
 	public void deleteListeDiff(int id) {
 		serviceFacadeUtilisateur.deleteListeDiff(id);
 	}
-	
+
 	// Catalogue 
 	@Override
 	public List<Utilisateur> listerTousLesUtilisateurs() {
@@ -142,9 +159,9 @@ public class ServiceFacade implements IServiceFacade {
 	public List<ListeDiffusion> listerToutesLesListes() {
 		return serviceFacadeUtilisateur.listerToutesLesListes();
 	}
-	
+
 	// Bloc service voyage
-	
+
 	@Override
 	public void createVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage {
 		try {
@@ -244,5 +261,50 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	// fin bloc service voyage
+
+	// ********************************************
+	// AlexB - UC6 Jouer
+	// ********************************************
+
+
+	/**
+	 * Permet de creer une reponseElire en Bdd
+	 * 
+	 * @param reponseElire {@link business.uc6Jouer.ReponseElire ReponseElire}
+	 * @throws ExceptionSurDao
+	 */
+	@Override
+	public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao {
+
+		serviceFacadeJouer.createReponseElire(reponseElire);
+		System.out.println("tout va bien");
+	}
+	// ***** Fin AlexB - UC6 Jouer
+
+	/*
+	 * Cr�ation
+	 */
+	@Override
+	public void addDescription(Description description) throws UserException {
+		if (description == null) throw new UserException(Erreur.DESC_NULL);
+		try {
+			serviceFacadePartager.addDescription(description);
+		} catch (ViolationPersistenceException e) {
+			System.out.println("SERVICE_FACADE >>> addDescription(Description description) - Erreur");
+			throw new UserException(Erreur.DESC_DOUBLON);
+		}
+	}
+
+	/*
+	 * Modification
+	 */
+	@Override
+	public void updateDescription(Description description) {
+		try {
+			serviceFacadePartager.updateDescription(description);
+		} catch (Exception e) {
+			System.out.println("SERVICE_FACADE >>> updateDescription(Description description) - Erreur");
+		}
+	}
 
 }
