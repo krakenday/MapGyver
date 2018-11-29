@@ -5,7 +5,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import business.uc3Partager.Description;
-import dao.exception.ViolationPersistenceException;
+import dao.exception.uc3Partager.ViolationPersistenceException;
 import dao.uc3Partager.gestion.DaoPartagerGestion;
 import entity.uc3Partager.DescriptionEntity;
 import entity.uc8Utilisateur.EntityUtilisateur;
@@ -18,7 +18,7 @@ public class DaoFacadePartager {
 	
 	@EJB
 	private DaoPartagerGestion daoPartagerGestion;
-	private entity.uc3partager.DescriptionEntity descriptionEntity;
+	private entity.uc3Partager.DescriptionEntity descriptionEntity;
 	
 	/*
 	 * Création

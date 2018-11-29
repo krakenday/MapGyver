@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import business.uc3Partager.Description;
-import dao.exception.ViolationPersistenceException;
+import dao.exception.uc3Partager.ViolationPersistenceException;
 import dao.util.partager.UtilBdD;
 import entity.uc3Partager.DescriptionEntity;
 
@@ -27,14 +27,14 @@ public class DaoPartagerGestion {
 			em.flush();															
 		} catch (PersistenceException e) {
 			System.out.println("DAO_PARTAGER_GESTION >>> addDescription(Description description) - Erreur Persist");//TODO:A supprimer
-			throw new ViolationPersistenceException();
+			throw new ViolationPersistenceException(null, e);
 		}
 	}
 
 	public void updateDescription(DescriptionEntity descriptionEntity) { 		//TODO:NE fonctionne pas
 		try {
 			descriptionEntity.setLibelleCommentaire("MODIFICATION OK");
-			em.find(entity.uc3partager.DescriptionEntity.class, descriptionEntity.getId());
+			em.find(entity.uc3Partager.DescriptionEntity.class, descriptionEntity.getId());
 			em.merge(descriptionEntity);
 		} catch (Exception e) {
 			System.out.println("DAO_PARTAGER_GESTION >>> updateDescription(DescriptionEntity descriptionEntity) - Erreur Modification");
@@ -43,7 +43,7 @@ public class DaoPartagerGestion {
 
 	public void deleteDescription(int id) {
 		try {
-			em.remove(em.find(entity.uc3partager.DescriptionEntity.class, id)); //Mettre id dans main pour tester
+			em.remove(em.find(entity.uc3Partager.DescriptionEntity.class, id)); //Mettre id dans main pour tester
 		} catch (Exception e) {
 			System.out.println("DAO_PARTAGER_GESTION >>> deleteDescription(int id) - Erreur Suppression");	
 		}		
@@ -51,7 +51,7 @@ public class DaoPartagerGestion {
 
 	public void deleteDescription(Description description) {
 		try {
-			em.remove(em.find(entity.uc3partager.DescriptionEntity.class, description.getId()));
+			em.remove(em.find(entity.uc3Partager.DescriptionEntity.class, description.getId()));
 		} catch (Exception e) {
 			System.out.println("DAO_PARTAGER_GESTION >>> deleteDescription(Description description) - Erreur Suppression par un objet");
 		}
