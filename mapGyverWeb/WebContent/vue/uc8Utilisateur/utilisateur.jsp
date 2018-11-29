@@ -7,69 +7,70 @@
           <strong class="d-inline-block mb-0 text-primary">Mes infos</strong>
         </div>
         <div class="card-body">
+        <jsp:useBean id="utilisateur" scope="session" class="business.uc8Utilisateur.Utilisateur" />
           <div class="offset-1">
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <h5>Nom:</h5>
               </div>
-              <div class="col-md-3">
-                <p>Pierre Marc</p>
+              <div class="col-md-7">
+                <p><%=utilisateur.getPrenom() %> <%=utilisateur.getNom() %></p>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <h5>Age:</h5>
               </div>
-              <div class="col-md-3">
-                <p>33 ans</p>
+              <div class="col-md-7">
+                <p id="age"><%=utilisateur.getDateNaiss() %> </p>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <h5>Email:</h5>
               </div>
-              <div class="col-md-3">
-                <p>rex@gmail.com</p>
+              <div class="col-md-7">
+                <p><%=utilisateur.getEmail()%></p>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
-                <h5>Telephone:</h5>
+              <div class="col-md-4">
+                <h5>Téléphone:</h5>
               </div>
-              <div class="col-md-3">
-                <p>0651703755</p>
+              <div class="col-md-7">
+                <p><%=utilisateur.getTelephone() %></p>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <h5>Adresse:</h5>
               </div>
-              <div class="col-md-3">
-                <p>120, rue de la paix</p>
+              <div class="col-md-7">
+                <p><%=utilisateur.getAdresse() %></p>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <h5>Ville:</h5>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-7">
                 <p>Marseille</p>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <h5>Pays:</h5>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-7">
                 <p>France</p>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <h5>Date inscription:</h5>
               </div>
-              <div class="col-md-3">
-                <p>11/11/2018</p>
+              <div class="col-md-7">
+                <p><%=utilisateur.getDateInscrip() %></p>
               </div>
             </div>
           </div>
