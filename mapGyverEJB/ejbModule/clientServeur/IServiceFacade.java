@@ -125,9 +125,25 @@ public interface IServiceFacade {
 	// ********************************************
 	// AlexM - Description
 	// ********************************************
+	/*
+	 * Création
+	 */
 	public void addDescription(Description description) throws UserException;
-
+	
+	/*
+	 * Modification
+	 */
 	public void updateDescription(Description description);
+	
+	/*
+	 * Suppression par Id
+	 */
+	public void deleteDescription(int id);
+	
+	/*
+	 * Suppression description
+	 */
+	public void deleteDescription(Description description);
 	
 
 }
