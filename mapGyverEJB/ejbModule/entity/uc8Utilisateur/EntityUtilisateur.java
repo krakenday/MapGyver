@@ -54,7 +54,7 @@ public class EntityUtilisateur implements Serializable{
 	private EntityPassword motDePasse;
 	
 //	private Ville ville;
-//	private Pays pays;
+//	private Pays pays;;
 	
 	public EntityUtilisateur() {
 		super();
