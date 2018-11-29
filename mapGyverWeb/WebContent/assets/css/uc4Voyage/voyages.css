@@ -1,6 +1,0 @@
-@CHARSET "UTF-8";
-
-.sidebar {
-	background: linear-gradient(rgba(255, 69, 0, .5),rgba(255, 69, 0, .5)), url("../../img/sidebar-2.jpg");
-	background-size: cover;
-}

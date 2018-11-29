@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -7,11 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="djallel*" content="">
+    <meta name="djallel" content="">
 	
     <title>MapGyver - Inscription</title>
-
-<jsp:include page="/WEB-INF/include/template.jsp" />
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/uc8Utilisateur/inscription.css">
+	<script src="<%=request.getContextPath()%>/assets/jQuery/lib/jquery.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/jQuery/dist/jquery.validate.js"></script>
+	<jsp:include page="/WEB-INF/include/template.jsp" />
 
   </head>
 
@@ -21,41 +23,47 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Cr&eacute;er un utilisateur</div>
         <div class="card-body">
-          <form>
+        
+          <form name="inscription" method="post" id="inscription" action="<%=request.getContextPath() %>/utilisateur/inscription">
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
+                  	<label for="inputNom">Nom</label>
                     <input type="text" id="inputNom" name="inputNom" class="form-control" placeholder="Nom" required="required" autofocus="autofocus">
-                    <label for="inputNom">Nom</label>
+                    <!-- <label for="inputNom">Nom</label> -->                    
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
+                 	 <label for="inputPrenom">Pr&eacute;nom</label>
                     <input type="text" id="inputPrenom" name="inputPrenom" class="form-control" placeholder="Prenom" required="required">
-                    <label for="inputPrenom">Pr&eacute;nom</label>
+                     <!-- <label for="inputPrenom">Pr&eacute;nom</label> -->                    
                   </div>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
+              	<label for="inputEmail">Email</label>
                 <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email" required="required">
-                <label for="inputEmail">Email</label>
+                <!-- <label for="inputPassword">Mot de passe</label> -->                
               </div>
             </div>
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Mot de passe" required="required">
-                    <label for="inputPassword">Mot de passe</label>
+                  	<label for="inputPassword">Mot de passe</label>
+                    <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Mot de passe" required="required">                    
+                    <!-- <label for="inputPassword">Mot de passe</label> -->
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirmer Mot de passe" required="required">
-                    <label for="confirmPassword">Confirmer Mot de passe</label>
+                  	<label for="inputConfirmPassword">Confirmer Mot de passe</label>
+                    <input type="password" id="inputConfirmPassword" name="inputConfirmPassword" class="form-control" placeholder="Confirmer Mot de passe" required="required">                   
+                    <!-- <label for="inputConfirmPassword">Confirmer Mot de passe</label> -->
                   </div>
                 </div>
               </div>
@@ -64,34 +72,39 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
+                  	<label for="inputTelephone">T&eacute;l&eacute;phone</label>
                     <input type="text" id="inputTelephone" name="inputTelephone" class="form-control" placeholder="T&eacute;l&eacute;phone" required="required">
-                    <label for="inputTelephone">T&eacute;l&eacute;phone</label>
+                    <!-- <label for="inputTelephone">T&eacute;l&eacute;phone</label> -->
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
+                  <label for="inputDateNaiss">Date de Naissance</label>
           			<input type="date" class="form-control" id="inputDateNaiss" name="inputDateNaiss" placeholder="Date de Naissance" required="required">
-                    <label for="inputDateNaiss">Date de Naissance</label>
+                   <!-- <label for="inputDateNaiss">Date de Naissance</label> --> 
                   </div>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
+              	<label for="inputAdresse">Adresse</label>
                 <input type="text" id="inputAdresse" name="inputAdresse" class="form-control" placeholder="Adresse" required="required">
-                <label for="inputAdresse">Adresse</label>
+                <!-- <label for="inputAdresse">Adresse</label> -->
               </div>
             </div>
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" id="inputVille" name="inputVille" class="form-control" placeholder="Ville" required="required">
-                    <label for="inputVille">Ville</label>
+                  	<label for="inputVille">Ville</label>
+                    <input type="text" id="inputVille" name="inputVille" class="form-control" placeholder="Ville" required="required">                    
+                    <!-- <label for="inputVille">Ville</label> -->
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
+                  	<label for="inputPays">Pays</label>
           			<select id="inputPays" class="form-control" name="inputPays" data-placeholder="Choisir Pays" required="required">
           				<option value="">Choisir Pays</option>
 	                    <option value="Afghanistan">Afghanistan </option>
@@ -313,19 +326,24 @@
                 </div>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="login.jsp">Cr&eacute;er utilisateur</a>
+            <button type="submit" class="btn btn-primary btn-block">Cr&eacute;er utilisateur</button>
             <button type="reset" class="btn btn-danger btn-block" >Reset</button>
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="login.jsp">Page d'identification</a>
+            <a class="d-block small mt-3" href="<%=request.getContextPath() %>/vue/login.jsp">Page d'identification</a>
         <!--     <a class="d-block small" href="forgot-password.jsp">Forgot Password?</a> --> 
           </div>
         </div>
       </div>
     </div>
+    <script>
+    	
+    </script>
+    <!-- Validator JavaScript -->
+    <script src="<%=request.getContextPath()%>/assets/js/validator/inscription.js"></script>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="<%=request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+   <!-- <script src="<%=request.getContextPath()%>/vendor/jquery/jquery.min.js"></script> -->
     <script src="<%=request.getContextPath()%>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

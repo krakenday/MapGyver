@@ -1,7 +1,7 @@
 # MapGyver
 *is an amazing travel web application*
 
-### Installation
+### Installation test
 
 #### `Step 1` - clone the repo
 

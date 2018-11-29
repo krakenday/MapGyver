@@ -1,0 +1,48 @@
+/* 
+ Traitement des messages de vérifications & d'erreurs, TODO possibilité d'ameleorer le code 
+ 	Penser à porter si besoin les modifications sur sb-admin.css ou bien sb-admin.min.css et en fin sur _login.scss 
+*/
+#inputNom-error{
+  font-size: 12px;
+  color: #dc3545;
+}
+
+#inputPrenom-error{
+  font-size: 12px;
+  color: #dc3545;
+}
+#inputEmail-error{
+  font-size: 12px;
+  color: #dc3545;
+}
+
+#inputPassword-error{
+  font-size: 12px;
+  color: #dc3545;
+}
+#inputConfirmPassword-error{
+  font-size: 12px;
+  color: #dc3545;
+}
+
+#inputTelephone-error{
+  font-size: 12px;
+  color: #dc3545;
+}
+#inputDateNaiss-error{
+  font-size: 12px;
+  color: #dc3545;
+}
+
+#inputAdresse-error{
+  font-size: 12px;
+  color: #dc3545;
+}
+#inputVille-error{
+  font-size: 12px;
+  color: #dc3545;
+}
+#inputPays-error{
+  font-size: 12px;
+  color: #dc3545;
+}
