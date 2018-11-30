@@ -61,7 +61,7 @@ public class ControleurVoyage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getPathInfo();
 		if (path == null || path.equals("/")) 	{
-			doService(request);
+			doServiceOnVoyage(request);
 			doAccueil(request, response);
 		}
 		else if (path.equals("/roadBook")) 	{
@@ -72,18 +72,17 @@ public class ControleurVoyage extends HttpServlet {
 		}
 	}
 
-
 	@Override
 	protected void finalize() throws Throwable {
 
 	}
 
-	private void doService(HttpServletRequest request) throws ServletException, IOException {
+	private void doServiceOnVoyage(HttpServletRequest request) throws ServletException, IOException {
 		affciherTrace("Controleur Voyage");
-		if 		("create".equals(request.getParameter("todo"))) 	create(request);
-		else if ("update".equals(request.getParameter("todo"))) 	update(request);
-		else if ("delete".equals(request.getParameter("todo"))) 	delete(request);
-		else if ("deleteAll".equals(request.getParameter("todo"))) 	deleteAll();
+		if 		("create".equals(request.getParameter("todo"))) 	createVoyage(request);
+		else if ("update".equals(request.getParameter("todo"))) 	updateVoyage(request);
+		else if ("delete".equals(request.getParameter("todo"))) 	deleteVoyage(request);
+		else if ("deleteAll".equals(request.getParameter("todo"))) 	deleteAllVoyage();
 		read(request);
 	}
 
@@ -120,7 +119,7 @@ public class ControleurVoyage extends HttpServlet {
 		doPage(request, response, "/vue/voyages/roadBook.jsp");
 	}
 	
-	private void create(HttpServletRequest request) {
+	private void createVoyage(HttpServletRequest request) {
 		affciherTrace("create");
 		try {
 			Voyage voyage = new FormVoyage(request).createVoyage();
@@ -142,7 +141,7 @@ public class ControleurVoyage extends HttpServlet {
 
 	}
 
-	private void update(HttpServletRequest request)  {
+	private void updateVoyage(HttpServletRequest request)  {
 		affciherTrace("update");
 		try {
 			Voyage voyage = new FormVoyage(request).createVoyage();
@@ -159,7 +158,7 @@ public class ControleurVoyage extends HttpServlet {
 		}
 	}
 
-	private void delete(HttpServletRequest request) {
+	private void deleteVoyage(HttpServletRequest request) {
 		affciherTrace("delete");
 		try {
 			//Voyage voyage = new FormVoyage(request).createVoyage();
@@ -175,7 +174,7 @@ public class ControleurVoyage extends HttpServlet {
 		}
 	}
 
-	private void deleteAll() {
+	private void deleteAllVoyage() {
 		affciherTrace("deleteAll");
 
 	}

@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<jsp:useBean id="roadBook" scope="request" class="business.uc4Voyage.RoadBook" />
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page import="business.uc4Voyage.RoadBook"%>
+<%	RoadBook roadBook = (RoadBook) request.getAttribute("roadBook");%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,13 +10,10 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Organisation de voyages">
 <meta name="author" content="Idriss">
-
-
 <title>MapGyver - RoadBook</title>
-
 <jsp:include page="/WEB-INF/include/template.jsp" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/voyages/voyages.css"> 
-<link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/voyages/dashboard.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/voyages/roadBook.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
@@ -80,8 +77,7 @@
 	<jsp:include page="/WEB-INF/include/scripts.jsp" />
 
 	<!-- scripts for this page-->
-	<script
-		src="<%=request.getContextPath()%>/assets/js/voyages/dashboard.js"></script>
+	<script	src="<%=request.getContextPath()%>/assets/js/voyages/roadBook.js"></script>
 </body>
 
 </html>

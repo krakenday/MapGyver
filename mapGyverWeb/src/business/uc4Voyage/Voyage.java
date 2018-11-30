@@ -31,6 +31,10 @@ public class Voyage implements Serializable {
 	private Integer					nbParticipant;
 	private ArrayList<PointInteret> pointInteret;
 	
+	public Voyage() {
+		super();
+	}
+
 	/**
 	 * @param id 			: numero de reference du voyage
 	 * @param nom 			: nom du voyage

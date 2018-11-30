@@ -28,6 +28,10 @@ public class RoadBook implements Serializable{
 	 */
 	private List<Voyage> voyages = new ArrayList<Voyage>();
 	
+	public RoadBook() {
+		super();
+	}
+
 	/**
 	 * @param id Identifiant du RoadBook, permet de referencer l'instance
 	 * @param utilisateur Proprietaire du roadBook - {@link Utilisateur}
