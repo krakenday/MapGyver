@@ -36,6 +36,20 @@ public class Utilisateur implements Serializable{
 		super();
 	}
 	
+	
+	/**
+	 * @param id
+	 * @param nom
+	 * @param prenom
+	 */
+	public Utilisateur(int id, String nom, String prenom) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+	}
+
+
 	/**
 	 * @param nom : nom de l'utilisateur
 	 * @param prenom : prenom de l'utilisateur
@@ -52,12 +66,58 @@ public class Utilisateur implements Serializable{
 	 * @param prenom : prenom de l'utilisateur
 	 * @param email : email de l'utilisateur
 	 * */
+	public Utilisateur(int id, String nom, String prenom, String email) {
+		super();
+		this.id= id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+	}
+	
+	/**
+	 * @param nom : nom de l'utilisateur
+	 * @param prenom : prenom de l'utilisateur
+	 * @param email : email de l'utilisateur
+	 * */
 	public Utilisateur(String nom, String prenom, String email) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 	}
+	
+	
+	/**
+	 * @param id : id de l'utilisateur 
+	 * @param nom : nom de l'utilisateur
+	 * @param prenom : prenom de l'utilisateur
+	 * @param adresse : adresse de l'utilisateur
+	 * @param telephone : telephone de l'utilisateur
+	 */
+	public Utilisateur(int id, String nom, String prenom, String adresse, String telephone) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+	}
+	
+	/**
+	 * @param nom : nom de l'utilisateur
+	 * @param prenom : prenom de l'utilisateur
+	 * @param adresse : adresse de l'utilisateur
+	 * @param telephone : telephone de l'utilisateur
+	 */
+	public Utilisateur(String nom, String prenom, String adresse, String telephone) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+	}
+
+
 	/**
 	 * @param id : id de l'utilisateur
 	 * @param nom : nom de l'utilisateur
@@ -224,9 +284,12 @@ public class Utilisateur implements Serializable{
 		this.motDePasse = motDePasse;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email="
+		return "EntityUtilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email="
 				+ email + ", telephone=" + telephone + ", dateInscrip=" + dateInscrip + ", dateNaiss=" + dateNaiss
 				+ "]";
 	}

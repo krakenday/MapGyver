@@ -1,12 +1,16 @@
 package business.uc8Utilisateur;
 
+import java.io.Serializable;
+
 /**
  * @author Djallal
  * 
  * Classe metier Cercle
  */
-public abstract class Cercle {
+public abstract class Cercle implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private String nom;
 	
@@ -14,7 +18,7 @@ public abstract class Cercle {
 		super();
 	}
 	
-	public Cercle( String nom) {
+	public Cercle(String nom) {
 		super();
 		this.nom = nom;
 	}
@@ -45,6 +49,5 @@ public abstract class Cercle {
 	public String toString() {
 		return "Cercle [id=" + id + ", nom=" + nom + "]";
 	}
-	
-	
+		
 }
