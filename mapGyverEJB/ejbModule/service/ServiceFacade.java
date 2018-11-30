@@ -1,6 +1,7 @@
 package service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -173,8 +174,8 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public List<Voyage> readVoyageOrderByID() {
-		//return serviceFacadeVoyage.readVoyageOrderByID();	
+	public List<Voyage> readVoyageOrderById() {
+		//return serviceFacadeVoyage.readVoyageOrderById();	
 		return null;
 	}
 
@@ -199,8 +200,8 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public Voyage findVoyagebyID(int id) {
-		//		return serviceFacadeVoyage.findVoyagebyID(id);
+	public Voyage getVoyageById(int id) {
+		//		return serviceFacadeVoyage.getVoyageById(id);
 		return null;
 	}
 
@@ -210,8 +211,8 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public List<RoadBook> readRoadBookOrderByID() {
-		//		return serviceFacadeVoyage.readRoadBookOrderByID();
+	public List<RoadBook> readRoadBookOrderById() {
+		//		return serviceFacadeVoyage.readRoadBookOrderById();
 		return null;
 	}
 
@@ -227,36 +228,41 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public RoadBook findRoadBookbyID(int id) {
-		//		return serviceVoyage.findRoadBookbyID(id);
+	public RoadBook getRoadBookById(int id) {
+		//		return serviceFacadeVoyage.getRoadBookById(id);
 		return null;
 	}
 
 	@Override
+	public RoadBook getRoadBookByUserId(int id) {
+		return serviceFacadeVoyage.getRoadBookByUserId(id);
+	}
+	
+	@Override
 	public void createPOInteret(PointInteret pointInteret) {
-		//		serviceVoyage.createPOInteret(pointInteret);		
+		//		serviceFacadeVoyage.createPOInteret(pointInteret);		
 	}
 
 	@Override
-	public List<PointInteret> readPOInteretOrderByID() {
-		//		return serviceVoyage.readPOInteretOrderByID();
+	public List<PointInteret> readPOInteretOrderById() {
+		//		return serviceFacadeVoyage.readPOInteretOrderById();
 		return null;
 	}
 
 	@Override
 	public void updatePOInteret(PointInteret pointInteret) {
-		//		serviceVoyage.updatePOInteret(pointInteret);	
+		//		serviceFacadeVoyage.updatePOInteret(pointInteret);	
 
 	}
 
 	@Override
 	public void deletePOInteret(int id) {
-		//		serviceVoyage.deletePOInteret(id);
+		//		serviceFacadeVoyage.deletePOInteret(id);
 	}
 
 	@Override
-	public PointInteret findPOInteretByID(int id) {
-		//		return serviceVoyage.findPOInteretByID(id);
+	public PointInteret getPOInteretById(int id) {
+		//		return serviceFacadeVoyage.getPOInteretById(id);
 		return null;
 	}
 
@@ -306,5 +312,6 @@ public class ServiceFacade implements IServiceFacade {
 			System.out.println("SERVICE_FACADE >>> updateDescription(Description description) - Erreur");
 		}
 	}
+
 
 }

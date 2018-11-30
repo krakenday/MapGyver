@@ -23,8 +23,8 @@ public class ServiceFacadeVoyage {
 		serviceVoyage.createVoyage(voyage);
 	}
 
-	public List<Voyage> readVoyageOrderByID() {
-		return serviceVoyage.readVoyageOrderByID();
+	public List<Voyage> readVoyageOrderById() {
+		return serviceVoyage.readVoyageOrderById();
 	}
 
 	public void updateVoyage(Voyage voyage) throws ServiceVoyageException {
@@ -35,16 +35,16 @@ public class ServiceFacadeVoyage {
 		serviceVoyage.deleteVoyage(id);
 	}
 
-	public Voyage findVoyagebyID(int id) {
-		return serviceVoyage.findVoyagebyID(id);
+	public Voyage getVoyageById(int id) {
+		return serviceVoyage.getVoyageById(id);
 	}
 
 	public void createRoadBook(RoadBook roadBook) {
 		serviceVoyage.createRoadBook(roadBook);
 	}
 
-	public List<RoadBook> readRoadBookOrderByID() {
-		return serviceVoyage.readRoadBookOrderByID();
+	public List<RoadBook> readRoadBookOrderById() {
+		return serviceVoyage.readRoadBookOrderById();
 	}
 
 	public void updateRoadBook(RoadBook roadBook) {
@@ -56,16 +56,20 @@ public class ServiceFacadeVoyage {
 		serviceVoyage.deleteRoadBook(id);
 	}
 
-	public RoadBook findRoadBookbyID(int id) {
-		return serviceVoyage.findRoadBookbyID(id);
+	public RoadBook getRoadBookById(int id) {
+		return serviceVoyage.getRoadBookById(id);
 	}
 
+	public RoadBook getRoadBookByUserId(int id) {
+		return serviceVoyage.getRoadBookByUserId(id);
+	}
+	
 	public void createPOInteret(PointInteret pointInteret) {
 		serviceVoyage.createPOInteret(pointInteret);
 	}
 
-	public List<PointInteret> readPOInteretOrderByID() {
-		return serviceVoyage.readPOInteretOrderByID();
+	public List<PointInteret> readPOInteretOrderById() {
+		return serviceVoyage.readPOInteretOrderById();
 	}
 
 	public void updatePOInteret(PointInteret pointInteret) {
@@ -76,8 +80,8 @@ public class ServiceFacadeVoyage {
 		serviceVoyage.deletePOInteret(id);
 	}
 
-	public PointInteret findPOInteretByID(int id) {
-		return serviceVoyage.findPOInteretByID(id);
+	public PointInteret getPOInteretById(int id) {
+		return serviceVoyage.getPOInteretById(id);
 	}
 
 

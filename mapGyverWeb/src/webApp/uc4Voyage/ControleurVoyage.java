@@ -1,8 +1,10 @@
 package webApp.uc4Voyage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -13,8 +15,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
+import business.uc8Utilisateur.Utilisateur;
 import clientServeur.IServiceFacade;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
 
@@ -30,10 +35,8 @@ public class ControleurVoyage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static final String ZONE_EXCEPTION = "WebApp";
-	private static final ArrayList<String> EXIST_URL = new ArrayList<String>(Arrays.asList(
-			new String[] { "/roadBook"}));
 
-	private IServiceFacade iServiceFacade;
+	private IServiceFacade serviceMpg;
 	private static final String VOYAGE_SERVICE_LOOKUP = "ejb:/mapGyverEJB/ServiceFacade!clientServeur.IServiceFacade";
 
 	@Override
@@ -41,7 +44,7 @@ public class ControleurVoyage extends HttpServlet {
 		try {
 			Context context = new InitialContext();
 
-			iServiceFacade = (IServiceFacade) context.lookup(VOYAGE_SERVICE_LOOKUP);
+			serviceMpg = (IServiceFacade) context.lookup(VOYAGE_SERVICE_LOOKUP);
 
 		} catch (NamingException e) {
 			e.printStackTrace();
@@ -61,13 +64,14 @@ public class ControleurVoyage extends HttpServlet {
 			doService(request);
 			doAccueil(request, response);
 		}
-		else if (EXIST_URL.contains(path)) {
-			doPage(request, response, "/vue/voyages"+path+".jsp");
+		else if (path.equals("/roadBook")) 	{
+			doRoadBook(request, response);
 		}
 		else {
 			doErreur(request, response);
 		}
 	}
+
 
 	@Override
 	protected void finalize() throws Throwable {
@@ -97,12 +101,31 @@ public class ControleurVoyage extends HttpServlet {
 		disp.forward(request,response);	
 	}
 
+	private void doRoadBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(true);
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		
+//		 TODO a supprimer : creation roadBook en dur
+//		List<Voyage> voyages = new ArrayList<>();
+//		voyages.add(new Voyage(1, "Voyage1", null, 10, null));
+//		voyages.add(new Voyage(2, "Voyage2", LocalDate.now(), null, null));
+//		voyages.add(new Voyage(25, "Voyage25", LocalDate.now().plusDays(20), 5, null));
+//		 Fin creation roadBook
+		
+		//roadBook = new RoadBook(0, utilisateur, voyages);
+		RoadBook roadBook = serviceMpg.getRoadBookByUserId(utilisateur.getId());
+		System.out.println(roadBook);
+		
+		request.setAttribute("roadBook",roadBook);
+		doPage(request, response, "/vue/voyages/roadBook.jsp");
+	}
+	
 	private void create(HttpServletRequest request) {
 		affciherTrace("create");
 		try {
 			Voyage voyage = new FormVoyage(request).createVoyage();
 			System.out.println(voyage);
-			iServiceFacade.createVoyage(voyage);
+			serviceMpg.createVoyage(voyage);
 			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_INSERT.getMsg() 
 					+" : "+ voyage.getNom());
 		} catch (ExceptionServiceVoyage e) {
@@ -124,7 +147,7 @@ public class ControleurVoyage extends HttpServlet {
 		try {
 			Voyage voyage = new FormVoyage(request).createVoyage();
 			voyage.setId(voyage.getNbParticipant());
-			iServiceFacade.updateVoyage(voyage);
+			serviceMpg.updateVoyage(voyage);
 			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_UPDATE.getMsg() 
 					+" : "+ voyage.getNom());
 		} catch (ExceptionServiceVoyage e) {
@@ -140,7 +163,7 @@ public class ControleurVoyage extends HttpServlet {
 		affciherTrace("delete");
 		try {
 			//Voyage voyage = new FormVoyage(request).createVoyage();
-			iServiceFacade.deleteVoyage(Integer.parseInt(request.getParameter("id")));
+			serviceMpg.deleteVoyage(Integer.parseInt(request.getParameter("id")));
 //			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_DELETE.getMsg() 
 //					+" : "+ voyage.getNom());
 //		} catch (ExceptionServiceVoyage e) {

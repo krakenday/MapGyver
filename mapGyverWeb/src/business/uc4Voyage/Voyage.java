@@ -53,7 +53,7 @@ public class Voyage implements Serializable {
 	 * @param nbParticipant : nb de personnes participant a ce voyage
 	 * @param pointInteret  : ensemble de lieux parcouru lors du voyage
 	 */
-	public Voyage(String nom, LocalDate dateDebut, 
+	public Voyage(String nom, LocalDate dateDebut,
 			Integer nbParticipant, ArrayList<PointInteret> pointInteret) {
 		this.nom 			= nom;
 		this.dateDebut 		= dateDebut;
@@ -113,7 +113,7 @@ public class Voyage implements Serializable {
 	/**
 	 * @return nb de personnes participant a ce voyage
 	 */
-	public int getNbParticipant() {
+	public Integer getNbParticipant() {
 		return nbParticipant;
 	}
 

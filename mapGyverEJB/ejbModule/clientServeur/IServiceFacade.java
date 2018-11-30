@@ -94,24 +94,25 @@ public interface IServiceFacade {
 		
 	// Voyage, offre de service : CRUD
 	public void 				createVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage;
-	public List<Voyage> 		readVoyageOrderByID();
+	public List<Voyage> 		readVoyageOrderById();
 	public void 				updateVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage;
 	public void 				deleteVoyage(int id) 		throws ServiceFacadeExceptionVoyage;
-	public Voyage 				findVoyagebyID(int id);
+	public Voyage 				getVoyageById(int id);
 	
 	// RoadBook, offre de service : CRUD
 	public void 				createRoadBook(RoadBook roadBook);
-	public List<RoadBook> 		readRoadBookOrderByID();
+	public List<RoadBook> 		readRoadBookOrderById();
 	public void 				updateRoadBook(RoadBook roadBook);
 	public void 				deleteRoadBook(int id);
-	public RoadBook				findRoadBookbyID(int id);
+	public RoadBook				getRoadBookById(int id);
+	public RoadBook 			getRoadBookByUserId(int id);
 	
 	// PointInteret, offre de service : CRUD
 	public void 				createPOInteret(PointInteret pointInteret);
-	public List<PointInteret> 	readPOInteretOrderByID();
+	public List<PointInteret> 	readPOInteretOrderById();
 	public void 				updatePOInteret(PointInteret pointInteret);
 	public void 				deletePOInteret(int id);
-	public PointInteret 		findPOInteretByID(int id);
+	public PointInteret 		getPOInteretById(int id);
 	
 	// ********************************************
 	// AlexB - UC6 Jouer

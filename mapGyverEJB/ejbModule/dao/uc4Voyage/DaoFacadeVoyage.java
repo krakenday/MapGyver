@@ -34,7 +34,7 @@ public class DaoFacadeVoyage {
 			}
 	}
 
-	public List<Voyage> readVoyageOrderByID() {
+	public List<Voyage> readVoyageOrderById() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -59,7 +59,7 @@ public class DaoFacadeVoyage {
 		}
 	}
 
-	public Voyage findVoyagebyID(int id) {
+	public Voyage getVoyageById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -69,7 +69,7 @@ public class DaoFacadeVoyage {
 
 	}
 
-	public List<RoadBook> readRoadBookOrderByID() {
+	public List<RoadBook> readRoadBookOrderById() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -84,7 +84,12 @@ public class DaoFacadeVoyage {
 
 	}
 
-	public RoadBook findRoadBookbyID(int id) {
+	public RoadBook getRoadBookById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public RoadBook getRoadBookByUserId(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -94,7 +99,7 @@ public class DaoFacadeVoyage {
 
 	}
 
-	public List<PointInteret> readPOInteretOrderByID() {
+	public List<PointInteret> readPOInteretOrderById() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -109,7 +114,7 @@ public class DaoFacadeVoyage {
 
 	}
 
-	public PointInteret findPOInteretByID(int id) {
+	public PointInteret getPOInteretById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -28,8 +28,8 @@ public class ServiceVoyage {
 		}
 	}
 
-	public List<Voyage> readVoyageOrderByID() {
-		return daoFacade.readVoyageOrderByID();
+	public List<Voyage> readVoyageOrderById() {
+		return daoFacade.readVoyageOrderById();
 	}
 
 	public void updateVoyage(Voyage voyage) throws ServiceVoyageException {
@@ -48,16 +48,16 @@ public class ServiceVoyage {
 		}
 	}
 
-	public Voyage findVoyagebyID(int id) {
-		return daoFacade.findVoyagebyID(id);
+	public Voyage getVoyageById(int id) {
+		return daoFacade.getVoyageById(id);
 	}
 
 	public void createRoadBook(RoadBook roadBook) {
 		daoFacade.createRoadBook(roadBook);
 	}
 
-	public List<RoadBook> readRoadBookOrderByID() {
-		return daoFacade.readRoadBookOrderByID();
+	public List<RoadBook> readRoadBookOrderById() {
+		return daoFacade.readRoadBookOrderById();
 	}
 
 	public void updateRoadBook(RoadBook roadBook) {
@@ -69,16 +69,20 @@ public class ServiceVoyage {
 		daoFacade.deleteRoadBook(id);
 	}
 
-	public RoadBook findRoadBookbyID(int id) {
-		return daoFacade.findRoadBookbyID(id);
+	public RoadBook getRoadBookById(int id) {
+		return daoFacade.getRoadBookById(id);
+	}
+	
+	public RoadBook getRoadBookByUserId(int id) {
+		return daoFacade.getRoadBookByUserId(id);
 	}
 
 	public void createPOInteret(PointInteret pointInteret) {
 		daoFacade.createPOInteret(pointInteret);
 	}
 
-	public List<PointInteret> readPOInteretOrderByID() {
-		return daoFacade.readPOInteretOrderByID();
+	public List<PointInteret> readPOInteretOrderById() {
+		return daoFacade.readPOInteretOrderById();
 	}
 
 	public void updatePOInteret(PointInteret pointInteret) {
@@ -89,8 +93,8 @@ public class ServiceVoyage {
 		daoFacade.deletePOInteret(id);
 	}
 
-	public PointInteret findPOInteretByID(int id) {
-		return daoFacade.findPOInteretByID(id);
+	public PointInteret getPOInteretById(int id) {
+		return daoFacade.getPOInteretById(id);
 	}
 
 

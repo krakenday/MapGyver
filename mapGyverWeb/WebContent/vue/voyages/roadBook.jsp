@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<jsp:useBean id="roadBook" scope="request" class="business.uc4Voyage.RoadBook" />
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,7 +12,7 @@
 <meta name="author" content="Idriss">
 
 
-<title>MapGyver - Dashboard</title>
+<title>MapGyver - RoadBook</title>
 
 <jsp:include page="/WEB-INF/include/template.jsp" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/voyages/voyages.css"> 
@@ -45,8 +46,13 @@
 						href="<%=request.getContextPath()%>">MapGyver</a></li>
 					<li class="breadcrumb-item active">RoadBook</li>
 				</ol>
-				<jsp:include page="/WEB-INF/include/voyages/roadBook/main.jsp" />
-
+				<%if (roadBook != null) {%>
+						<jsp:include page="/WEB-INF/include/voyages/roadBook/main.jsp" />
+						<button type="button" class="btn btn-danger" data-toggle="modal"
+						data-target="#deleteModalRoadBook">Supprimer mon roadBook</button>
+				<%} else {%>
+						<a class="btn btn-success" href="./create" role="button">Cr&eacute;er mon roadBook</a>
+				<%}%>
 			</div>
 			<!-- /.container-fluid -->
 
@@ -57,9 +63,10 @@
 		<!-- /.content-wrapper -->
 
 	</div>
-	<!-- Delete Modal HTML -->
-	<jsp:include page="/WEB-INF/include/voyages/roadBook/deletemodal.jsp" />
-	
+	<!-- Delete Voyages Modal HTML -->
+	<jsp:include page="/WEB-INF/include/voyages/roadBook/deleteModalVoyages.jsp" />
+	<!-- Delete RoadBook Modal HTML -->
+	<jsp:include page="/WEB-INF/include/voyages/roadBook/deleteModalRoadBook.jsp" />	
 	<!-- /#wrapper -->
 
 	<!-- Scroll to Top Button-->
