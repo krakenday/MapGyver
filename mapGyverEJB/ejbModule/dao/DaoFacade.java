@@ -138,9 +138,9 @@ public class DaoFacade {
 	//Merci de votre visite
 	
 	//***************** Voyage
-	public void createVoyage(Voyage voyage) throws DaoFacadeExceptionVoyage {
+	public Voyage createVoyage(Voyage voyage) throws DaoFacadeExceptionVoyage {
 		try {
-			daoFacadeVoyage.createVoyage(voyage);
+			return daoFacadeVoyage.createVoyage(voyage);
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
 					ZONE_EXCEPTION_MSG+ e.getMessage());
@@ -151,9 +151,9 @@ public class DaoFacade {
 		return daoFacadeVoyage.readVoyageOrderById();
 	}
 
-	public void updateVoyage(Voyage voyage) throws DaoFacadeExceptionVoyage {
+	public Voyage updateVoyage(Voyage voyage) throws DaoFacadeExceptionVoyage {
 		try {
-		daoFacadeVoyage.updateVoyage(voyage);	
+			return daoFacadeVoyage.updateVoyage(voyage);	
 	} catch (DaoVoyageException e) {
 		throw new DaoFacadeExceptionVoyage(e.getCode(),
 				ZONE_EXCEPTION_MSG+ e.getMessage());
@@ -173,16 +173,16 @@ public class DaoFacade {
 		return daoFacadeVoyage.getVoyageById(id);
 	}
 
-	public void createRoadBook(RoadBook roadBook) {
-		daoFacadeVoyage.createRoadBook(roadBook);	
+	public RoadBook createRoadBook(RoadBook roadBook) {
+		return daoFacadeVoyage.createRoadBook(roadBook);	
 	}
 
 	public List<RoadBook> readRoadBookOrderById() {
 		return daoFacadeVoyage.readRoadBookOrderById();	
 	}
 
-	public void updateRoadBook(RoadBook roadBook) {
-		daoFacadeVoyage.updateRoadBook(roadBook);	
+	public RoadBook updateRoadBook(RoadBook roadBook) {
+		return daoFacadeVoyage.updateRoadBook(roadBook);	
 	}
 
 	public void deleteRoadBook(int id) {
@@ -197,8 +197,8 @@ public class DaoFacade {
 		return daoFacadeVoyage.getRoadBookByUserId(id);
 	}
 	
-	public void createPOInteret(PointInteret pointInteret) {
-		daoFacadeVoyage.createPOInteret(pointInteret);
+	public PointInteret createPOInteret(PointInteret pointInteret) {
+		return daoFacadeVoyage.createPOInteret(pointInteret);
 		
 	}
 
@@ -206,8 +206,8 @@ public class DaoFacade {
 		return daoFacadeVoyage.readPOInteretOrderById();
 	}
 
-	public void updatePOInteret(PointInteret pointInteret) {
-		daoFacadeVoyage.updatePOInteret(pointInteret);
+	public PointInteret updatePOInteret(PointInteret pointInteret) {
+		return daoFacadeVoyage.updatePOInteret(pointInteret);
 	}
 
 	public void deletePOInteret(int id) {

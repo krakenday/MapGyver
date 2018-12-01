@@ -164,9 +164,9 @@ public class ServiceFacade implements IServiceFacade {
 	// Bloc service voyage
 
 	@Override
-	public void createVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage {
+	public Voyage createVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage {
 		try {
-			serviceFacadeVoyage.createVoyage(voyage);
+			return serviceFacadeVoyage.createVoyage(voyage);
 		} catch (ServiceVoyageException e) {
 			throw new ServiceFacadeExceptionVoyage(e.getCode(),
 					e.getMessage());
@@ -180,9 +180,9 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public void updateVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage {
+	public Voyage updateVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage {
 		try {
-			serviceFacadeVoyage.updateVoyage(voyage);
+			return serviceFacadeVoyage.updateVoyage(voyage);
 		} catch (ServiceVoyageException e) {
 			throw new ServiceFacadeExceptionVoyage(e.getCode(),
 					e.getMessage());
@@ -206,8 +206,9 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public void createRoadBook(RoadBook roadBook) {
-		//		serviceFacadeVoyage.createRoadBook(roadBook);	
+	public RoadBook createRoadBook(RoadBook roadBook) {
+		//		serviceFacadeVoyage.createRoadBook(roadBook);
+		return null;
 	}
 
 	@Override
@@ -217,8 +218,9 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public void updateRoadBook(RoadBook roadBook) {
-		//		serviceFacadeVoyage.updateRoadBook(roadBook);	
+	public RoadBook updateRoadBook(RoadBook roadBook) {
+		//		serviceFacadeVoyage.updateRoadBook(roadBook);
+		return null;
 	}
 
 	@Override
@@ -239,8 +241,9 @@ public class ServiceFacade implements IServiceFacade {
 	}
 	
 	@Override
-	public void createPOInteret(PointInteret pointInteret) {
-		//		serviceFacadeVoyage.createPOInteret(pointInteret);		
+	public PointInteret createPOInteret(PointInteret pointInteret) {
+		//		serviceFacadeVoyage.createPOInteret(pointInteret);
+		return null;
 	}
 
 	@Override
@@ -250,9 +253,9 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public void updatePOInteret(PointInteret pointInteret) {
+	public PointInteret updatePOInteret(PointInteret pointInteret) {
 		//		serviceFacadeVoyage.updatePOInteret(pointInteret);	
-
+		return null;
 	}
 
 	@Override

@@ -20,7 +20,7 @@ public class DaoVoyage {
 	
 	private static final String ZONE_EXCEPTION_MSG = ".Voyage";
 
-	public <T> void create(T entity) throws DaoVoyageException {
+	public <T> T create(T entity) throws DaoVoyageException {
 		String doExceptionMsg = ZONE_EXCEPTION_MSG + ".Insert -> ";
 		try {
 			em.persist(entity);
@@ -42,6 +42,7 @@ public class DaoVoyage {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		return entity;
 	}
 
 	public <T> void delete(int id, Class<T> classe) throws DaoVoyageException {
@@ -55,7 +56,7 @@ public class DaoVoyage {
 		
 	}
 
-	public <T> void update(T entity) throws DaoVoyageException {
+	public <T> T update(T entity) throws DaoVoyageException {
 		String doExceptionMsg = ZONE_EXCEPTION_MSG + ".Update -> ";
 		try {
 			em.merge(entity);
@@ -63,7 +64,7 @@ public class DaoVoyage {
 			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_UPDATE.getId(),
 					doExceptionMsg + DaoVoyageErrorMessage.ERR_UPDATE.getMsg());
 		}
-		
+		return entity;
 	}
 
 	

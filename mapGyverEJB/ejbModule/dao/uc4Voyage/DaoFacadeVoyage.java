@@ -24,10 +24,10 @@ public class DaoFacadeVoyage {
 
 	private FactoryEntity factoryEntity = new FactoryEntity();
 	
-	public void createVoyage(Voyage voyage) throws DaoVoyageException {
+	public Voyage createVoyage(Voyage voyage) throws DaoVoyageException {
 		EntityVoyage entityVoyage = factoryEntity.createEntityFrom(voyage);
 			try {
-				daoVoyage.create(entityVoyage);
+				return factoryEntity.createFromEntity(daoVoyage.create(entityVoyage));
 			} catch (DaoVoyageException e) {
 				throw new DaoVoyageException(e.getCode(),
 						ZONE_EXCEPTION_MSG+ e.getMessage());
@@ -39,10 +39,10 @@ public class DaoFacadeVoyage {
 		return null;
 	}
 
-	public void updateVoyage(Voyage voyage) throws DaoVoyageException {
+	public Voyage updateVoyage(Voyage voyage) throws DaoVoyageException {
 		EntityVoyage entityVoyage = factoryEntity.createEntityWithIDFrom(voyage);
 		try {
-			daoVoyage.update(entityVoyage);
+			return factoryEntity.createFromEntity(daoVoyage.update(entityVoyage));
 		} catch (DaoVoyageException e) {
 			throw new DaoVoyageException(e.getCode(),
 					ZONE_EXCEPTION_MSG+ e.getMessage());
@@ -64,9 +64,9 @@ public class DaoFacadeVoyage {
 		return null;
 	}
 
-	public void createRoadBook(RoadBook roadBook) {
+	public RoadBook createRoadBook(RoadBook roadBook) {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
 
 	public List<RoadBook> readRoadBookOrderById() {
@@ -74,8 +74,9 @@ public class DaoFacadeVoyage {
 		return null;
 	}
 
-	public void updateRoadBook(RoadBook roadBook) {
+	public RoadBook updateRoadBook(RoadBook roadBook) {
 		// TODO Auto-generated method stub
+		return null;
 
 	}
 
@@ -94,8 +95,9 @@ public class DaoFacadeVoyage {
 		return null;
 	}
 
-	public void createPOInteret(PointInteret pointInteret) {
+	public PointInteret createPOInteret(PointInteret pointInteret) {
 		// TODO Auto-generated method stub
+		return null;
 
 	}
 
@@ -104,8 +106,9 @@ public class DaoFacadeVoyage {
 		return null;
 	}
 
-	public void updatePOInteret(PointInteret pointInteret) {
+	public PointInteret updatePOInteret(PointInteret pointInteret) {
 		// TODO Auto-generated method stub
+		return null;
 
 	}
 

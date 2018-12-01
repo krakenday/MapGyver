@@ -20,9 +20,9 @@ public class ServiceVoyage {
 	@EJB
 	private DaoFacade daoFacade;
 
-	public void createVoyage(Voyage voyage) throws ServiceVoyageException {
+	public Voyage createVoyage(Voyage voyage) throws ServiceVoyageException {
 		try {
-			daoFacade.createVoyage(voyage);
+			return daoFacade.createVoyage(voyage);
 		} catch (DaoFacadeExceptionVoyage e) {
 			throw new ServiceVoyageException(e.getCode(),e.getMessage());
 		}
@@ -32,9 +32,9 @@ public class ServiceVoyage {
 		return daoFacade.readVoyageOrderById();
 	}
 
-	public void updateVoyage(Voyage voyage) throws ServiceVoyageException {
+	public Voyage updateVoyage(Voyage voyage) throws ServiceVoyageException {
 		try {
-		daoFacade.updateVoyage(voyage);
+			return daoFacade.updateVoyage(voyage);
 		} catch (DaoFacadeExceptionVoyage e) {
 			throw new ServiceVoyageException(e.getCode(),e.getMessage());
 		}
@@ -52,16 +52,16 @@ public class ServiceVoyage {
 		return daoFacade.getVoyageById(id);
 	}
 
-	public void createRoadBook(RoadBook roadBook) {
-		daoFacade.createRoadBook(roadBook);
+	public RoadBook createRoadBook(RoadBook roadBook) {
+		return daoFacade.createRoadBook(roadBook);
 	}
 
 	public List<RoadBook> readRoadBookOrderById() {
 		return daoFacade.readRoadBookOrderById();
 	}
 
-	public void updateRoadBook(RoadBook roadBook) {
-		daoFacade.updateRoadBook(roadBook);
+	public RoadBook updateRoadBook(RoadBook roadBook) {
+		return daoFacade.updateRoadBook(roadBook);
 		
 	}
 
@@ -77,16 +77,16 @@ public class ServiceVoyage {
 		return daoFacade.getRoadBookByUserId(id);
 	}
 
-	public void createPOInteret(PointInteret pointInteret) {
-		daoFacade.createPOInteret(pointInteret);
+	public PointInteret createPOInteret(PointInteret pointInteret) {
+		return daoFacade.createPOInteret(pointInteret);
 	}
 
 	public List<PointInteret> readPOInteretOrderById() {
 		return daoFacade.readPOInteretOrderById();
 	}
 
-	public void updatePOInteret(PointInteret pointInteret) {
-		daoFacade.updatePOInteret(pointInteret);
+	public PointInteret updatePOInteret(PointInteret pointInteret) {
+		return daoFacade.updatePOInteret(pointInteret);
 	}
 
 	public void deletePOInteret(int id) {
@@ -96,7 +96,5 @@ public class ServiceVoyage {
 	public PointInteret getPOInteretById(int id) {
 		return daoFacade.getPOInteretById(id);
 	}
-
-
 
 }

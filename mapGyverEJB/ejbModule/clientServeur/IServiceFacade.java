@@ -93,24 +93,24 @@ public interface IServiceFacade {
 	// *****  Fin DB - UC8 Utilisateur
 		
 	// Voyage, offre de service : CRUD
-	public void 				createVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage;
+	public Voyage 				createVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage;
 	public List<Voyage> 		readVoyageOrderById();
-	public void 				updateVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage;
+	public Voyage 				updateVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage;
 	public void 				deleteVoyage(int id) 		throws ServiceFacadeExceptionVoyage;
 	public Voyage 				getVoyageById(int id);
 	
 	// RoadBook, offre de service : CRUD
-	public void 				createRoadBook(RoadBook roadBook);
+	public RoadBook				createRoadBook(RoadBook roadBook);
 	public List<RoadBook> 		readRoadBookOrderById();
-	public void 				updateRoadBook(RoadBook roadBook);
+	public RoadBook 			updateRoadBook(RoadBook roadBook);
 	public void 				deleteRoadBook(int id);
 	public RoadBook				getRoadBookById(int id);
 	public RoadBook 			getRoadBookByUserId(int id);
 	
 	// PointInteret, offre de service : CRUD
-	public void 				createPOInteret(PointInteret pointInteret);
+	public PointInteret 		createPOInteret(PointInteret pointInteret);
 	public List<PointInteret> 	readPOInteretOrderById();
-	public void 				updatePOInteret(PointInteret pointInteret);
+	public PointInteret			updatePOInteret(PointInteret pointInteret);
 	public void 				deletePOInteret(int id);
 	public PointInteret 		getPOInteretById(int id);
 	

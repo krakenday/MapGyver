@@ -19,16 +19,16 @@ public class ServiceFacadeVoyage {
 	@EJB
 	private ServiceVoyage serviceVoyage;
 
-	public void createVoyage(Voyage voyage) throws ServiceVoyageException {
-		serviceVoyage.createVoyage(voyage);
+	public Voyage createVoyage(Voyage voyage) throws ServiceVoyageException {
+		return serviceVoyage.createVoyage(voyage);
 	}
 
 	public List<Voyage> readVoyageOrderById() {
 		return serviceVoyage.readVoyageOrderById();
 	}
 
-	public void updateVoyage(Voyage voyage) throws ServiceVoyageException {
-		serviceVoyage.updateVoyage(voyage);
+	public Voyage updateVoyage(Voyage voyage) throws ServiceVoyageException {
+		return serviceVoyage.updateVoyage(voyage);
 	}
 
 	public void deleteVoyage(int id) throws ServiceVoyageException {
@@ -39,16 +39,16 @@ public class ServiceFacadeVoyage {
 		return serviceVoyage.getVoyageById(id);
 	}
 
-	public void createRoadBook(RoadBook roadBook) {
-		serviceVoyage.createRoadBook(roadBook);
+	public RoadBook createRoadBook(RoadBook roadBook) {
+		return serviceVoyage.createRoadBook(roadBook);
 	}
 
 	public List<RoadBook> readRoadBookOrderById() {
 		return serviceVoyage.readRoadBookOrderById();
 	}
 
-	public void updateRoadBook(RoadBook roadBook) {
-		serviceVoyage.updateRoadBook(roadBook);
+	public RoadBook updateRoadBook(RoadBook roadBook) {
+		return serviceVoyage.updateRoadBook(roadBook);
 		
 	}
 
@@ -64,16 +64,16 @@ public class ServiceFacadeVoyage {
 		return serviceVoyage.getRoadBookByUserId(id);
 	}
 	
-	public void createPOInteret(PointInteret pointInteret) {
-		serviceVoyage.createPOInteret(pointInteret);
+	public PointInteret createPOInteret(PointInteret pointInteret) {
+		return serviceVoyage.createPOInteret(pointInteret);
 	}
 
 	public List<PointInteret> readPOInteretOrderById() {
 		return serviceVoyage.readPOInteretOrderById();
 	}
 
-	public void updatePOInteret(PointInteret pointInteret) {
-		serviceVoyage.updatePOInteret(pointInteret);
+	public PointInteret updatePOInteret(PointInteret pointInteret) {
+		return serviceVoyage.updatePOInteret(pointInteret);
 	}
 
 	public void deletePOInteret(int id) {

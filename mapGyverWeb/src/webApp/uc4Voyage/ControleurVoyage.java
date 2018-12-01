@@ -123,9 +123,9 @@ public class ControleurVoyage extends HttpServlet {
 		try {
 			Voyage voyage = new FormVoyage(request).createVoyage();
 			System.out.println(voyage);
-			serviceMpg.createVoyage(voyage);
+			voyage = serviceMpg.createVoyage(voyage);
 			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_INSERT.getMsg() 
-					+" : "+ voyage.getNom());
+					+" : "+ voyage.getNom() +" "+ voyage.getId());
 		} catch (ExceptionServiceVoyage e) {
 			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
 					+" *Err. "+ e.getMessage());

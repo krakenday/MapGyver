@@ -78,7 +78,7 @@ public class EntityVoyage implements Serializable{
 		this.dateDebut = dateDebut;
 	}
 
-	public int getNbParticipant() {
+	public Integer getNbParticipant() {
 		return nbParticipant;
 	}
 
