@@ -26,7 +26,8 @@ public class Controleur extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		doErreur(request, response);
+		//doErreur(request, response);
+		doGet(request, response);
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

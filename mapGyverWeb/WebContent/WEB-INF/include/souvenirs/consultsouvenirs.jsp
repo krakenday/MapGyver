@@ -54,7 +54,7 @@
 	</div>
 	
 	<div class="col-4 form-group">
-		<form action="ajouter" method="get">
+		<form action="ajouter" method="POST">
 			 <p>
 			  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 			    Ajouter un souvenir

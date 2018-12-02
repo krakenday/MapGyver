@@ -23,7 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ControleurSouvenirsAjouter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
 		System.out.println("je suis dans ControleurSouvenirAjout-Dans mon POST !!");
@@ -32,6 +33,9 @@ public class ControleurSouvenirsAjouter extends HttpServlet {
 		System.out.println(request.getParameter("com"));
 		
 	}
-
 	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	};
 }
