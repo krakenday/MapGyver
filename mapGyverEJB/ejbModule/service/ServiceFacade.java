@@ -228,9 +228,13 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public void deleteRoadBook(int id) {
-		//		serviceFacadeVoyage.deleteRoadBook(id);
-
+	public void deleteRoadBook(int id) throws ServiceFacadeExceptionVoyage {
+		try {
+			serviceFacadeVoyage.deleteRoadBook(id);
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(),
+					e.getMessage());
+		}	
 	}
 
 	@Override

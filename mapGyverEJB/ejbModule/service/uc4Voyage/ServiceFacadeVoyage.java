@@ -54,7 +54,7 @@ public class ServiceFacadeVoyage {
 		
 	}
 
-	public void deleteRoadBook(int id) {
+	public void deleteRoadBook(int id) throws ServiceVoyageException {
 		serviceVoyage.deleteRoadBook(id);
 	}
 

@@ -191,8 +191,13 @@ public class DaoFacade {
 		return daoFacadeVoyage.updateRoadBook(roadBook);	
 	}
 
-	public void deleteRoadBook(int id) {
-		daoFacadeVoyage.deleteRoadBook(id);	
+	public void deleteRoadBook(int id) throws DaoFacadeExceptionVoyage {
+		try {
+			daoFacadeVoyage.deleteRoadBook(id);
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					ZONE_EXCEPTION_MSG+ e.getMessage());
+		}
 	}
 
 	public RoadBook getRoadBookById(int id) {

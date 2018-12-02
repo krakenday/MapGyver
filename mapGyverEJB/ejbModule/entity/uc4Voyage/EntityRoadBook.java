@@ -32,7 +32,7 @@ public class EntityRoadBook implements Serializable{
 	@SequenceGenerator(name="seqRoadBook", sequenceName="ROADBOOK_SEQ", initialValue=1, allocationSize=30)
 	private int id;
 
-	@OneToOne ( cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToOne (fetch=FetchType.LAZY)
 	@JoinColumn(name = "id", unique = true, nullable = false)
 	private EntityUtilisateur entityUtilisateur;
 

@@ -28,7 +28,7 @@ import clientServeur.exception.ServiceFacadeExceptionVoyage;
 		urlPatterns = {"/roadBook/*"}
 		)
 public class ControleurRoadBook extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
 	private static final String ZONE_EXCEPTION = "WebApp";
 	private static final String VOYAGE_SERVICE_LOOKUP = "ejb:/mapGyverEJB/ServiceFacade!clientServeur.IServiceFacade";
@@ -69,7 +69,7 @@ public class ControleurRoadBook extends HttpServlet {
 	protected void finalize() throws Throwable {
 
 	}
-	
+
 	private void doGetForSessionKO(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		//TODO faire page voyage "veuillez vous logger ou creer un compte"
@@ -79,26 +79,29 @@ public class ControleurRoadBook extends HttpServlet {
 	private void doGetForSessionOK(HttpServletRequest request, HttpServletResponse response, String path, Utilisateur utilisateur)
 			throws ServletException, IOException {
 		if (path == null || path.equals("/")) 	{	
-			getRoadBook(request, utilisateur);
+			setRoadBookFromRequest(request, utilisateur);
 			doAccueil(request, response);
 		}
 		else if (path.equals("/create")) 	{
 			createRoadBook(request, utilisateur);
 			doAccueil(request, response);
 		}
+		else if (path.matches("/delete(.*)")) {
+			deleteRoadBook(request, path);
+			doAccueil(request, response);			
+		}
 		else {
 			doErreur(request, response);
 		}
 	}
 
-	private void getRoadBook(HttpServletRequest request, Utilisateur utilisateur) 
+	private void setRoadBookFromRequest(HttpServletRequest request, Utilisateur utilisateur) 
 			throws ServletException, IOException {
 		RoadBook roadBook;
 		try {
-			//roadBook = serviceMpg.getRoadBookByUserId(utilisateur.getId());
 			roadBook = serviceMpg.getRoadBookByUser(utilisateur);
 			System.out.println("roadBook : " + roadBook);
-			request.setAttribute("roadBook",roadBook);
+			if (roadBook !=null) request.setAttribute("roadBook",roadBook);
 		} catch (ServiceFacadeExceptionVoyage e) {
 			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_GET.getSolution() 
 					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
@@ -117,7 +120,7 @@ public class ControleurRoadBook extends HttpServlet {
 		RequestDispatcher 	disp = request.getRequestDispatcher(path); 
 		disp.forward(request,response);	
 	}
-	
+
 	private void createRoadBook(HttpServletRequest request, Utilisateur utilisateur) {
 		System.out.println("create");
 		try {
@@ -133,21 +136,18 @@ public class ControleurRoadBook extends HttpServlet {
 		}
 	}
 
-	private void deleteRoadBook(HttpServletRequest request) {
+	private void deleteRoadBook(HttpServletRequest request, String path) {
 		System.out.println("delete");
 		try {
-			//Voyage voyage = new FormVoyage(request).createVoyage();
-			serviceMpg.deleteVoyage(Integer.parseInt(request.getParameter("id")));
-			//			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_DELETE.getMsg() 
-			//					+" : "+ voyage.getNom());
-			//		} catch (ExceptionServiceVoyage e) {
-			//			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
-			//					+" *Err. "+ e.getMessage());
+			int id = Integer.parseInt(path.replace("/delete/", ""));
+			serviceMpg.deleteRoadBook(id);
+			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_DELETE.getMsg() + " roadBook #"+id);
 		} catch (ServiceFacadeExceptionVoyage e) {
 			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_DELETE.getSolution() 
 					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
 		}
 	}
+
 
 	private void deleteAllVoyage() {
 		System.out.println("deleteAll");

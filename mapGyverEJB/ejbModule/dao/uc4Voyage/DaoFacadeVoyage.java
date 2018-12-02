@@ -100,8 +100,13 @@ public class DaoFacadeVoyage {
 
 	}
 
-	public void deleteRoadBook(int id) {
-		// TODO Auto-generated method stub
+	public void deleteRoadBook(int id) throws DaoVoyageException {
+		try {
+			daoGenericVoyage.delete(id, EntityRoadBook.class);
+		} catch (DaoVoyageException e) {
+			throw new DaoVoyageException(e.getCode(),
+					ZONE_EXCEPTION_MSG+ e.getMessage());
+		}
 
 	}
 

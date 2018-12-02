@@ -58,21 +58,21 @@ public class FactoryEntity {
 
 	public EntityRoadBook createEntityFrom(RoadBook roadBook) {
 		EntityRoadBook entityRoadBook = new EntityRoadBook();
+//		entityRoadBook.setVoyages(createEntityFrom(roadBook.getVoyages()));;
+		//TODO voir si besoin de recuperer methode pour transformer utilisateur en entityUtilisateur 
 //		Utilisateur utilisateur = roadBook.getUtilisateur();
 //		EntityUtilisateur entityUtilisateur = new EntityUtilisateur();
 //		entityUtilisateur.setId(utilisateur.getId());
 //		entityRoadBook.setEntityUtilisateur(entityUtilisateur);
-//		entityRoadBook.setVoyages(createEntityFrom(roadBook.getVoyages()));
 		return entityRoadBook;
 	}
 	
 	public RoadBook createFromEntity(EntityRoadBook entityRoadBook) {
-		RoadBook roadBook = new RoadBook();
-		roadBook.setId(roadBook.getId());
 		EntityUtilisateur entityUtilisateur = entityRoadBook.getEntityUtilisateur();
 		Utilisateur utilisateur = new Utilisateur();
 		utilisateur.setId(entityUtilisateur.getId());
-		roadBook.setUtilisateur(utilisateur);
+		RoadBook roadBook = new RoadBook(utilisateur);
+		roadBook.setId(entityRoadBook.getId());
 //		roadBook.setVoyages(createFromEntity(entityRoadBook.getVoyages()));
 		return roadBook;
 	}

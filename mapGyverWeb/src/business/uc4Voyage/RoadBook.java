@@ -31,7 +31,7 @@ public class RoadBook implements Serializable{
 	public RoadBook() {
 		super();
 	}
-
+	
 	/**
 	 * @param id Identifiant du RoadBook, permet de referencer l'instance
 	 * @param utilisateur Proprietaire du roadBook - {@link Utilisateur}
@@ -47,7 +47,7 @@ public class RoadBook implements Serializable{
 	public RoadBook(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
-
+	
 	public int getId() {
 		return id;
 	}

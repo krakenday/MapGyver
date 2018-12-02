@@ -51,7 +51,7 @@
 						<button type="button" class="btn btn-danger mb-3" data-toggle="modal"
 						data-target="#deleteModalRoadBook">Supprimer mon roadBook</button>
 				<%} else {%>
-						<a class="btn btn-success" href="<%=request.getContextPath()%>/mapgyver/voyages/roadBook/create" role="button">Cr&eacute;er mon roadBook</a>
+						<a class="btn btn-success mb-3" href="<%=request.getContextPath()%>/mapgyver/voyages/roadBook/create" role="button">Cr&eacute;er mon roadBook</a>
 				<%}%>
 				<%if (success!=null) {%>
 				<div class="alert alert-success shadow alert-dismissible fade show" role="alert" id="success"><%=success%>
@@ -77,10 +77,12 @@
 		<!-- /.content-wrapper -->
 
 	</div>
+	<%if (roadBook != null) {%>
 	<!-- Delete Voyages Modal HTML -->
 	<jsp:include page="/WEB-INF/include/voyages/roadBook/deleteModalVoyages.jsp" />
 	<!-- Delete RoadBook Modal HTML -->
-	<jsp:include page="/WEB-INF/include/voyages/roadBook/deleteModalRoadBook.jsp" />	
+	<jsp:include page="/WEB-INF/include/voyages/roadBook/deleteModalRoadBook.jsp" />
+	<%}%>
 	<!-- /#wrapper -->
 
 	<!-- Scroll to Top Button-->

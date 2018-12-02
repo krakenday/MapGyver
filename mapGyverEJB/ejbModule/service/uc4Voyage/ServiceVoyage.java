@@ -71,8 +71,12 @@ public class ServiceVoyage {
 
 	}
 
-	public void deleteRoadBook(int id) {
-		daoFacade.deleteRoadBook(id);
+	public void deleteRoadBook(int id) throws ServiceVoyageException {
+		try {
+			daoFacade.deleteRoadBook(id);
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 	}
 
 	public RoadBook getRoadBookById(int id) {
