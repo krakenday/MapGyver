@@ -206,9 +206,13 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public RoadBook createRoadBook(RoadBook roadBook) {
-		//		serviceFacadeVoyage.createRoadBook(roadBook);
-		return null;
+	public RoadBook createRoadBook(RoadBook roadBook) throws ServiceFacadeExceptionVoyage {
+		try {
+			System.out.println("ServiceFAcade createRoadBook");
+			return serviceFacadeVoyage.createRoadBook(roadBook);
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
+		}
 	}
 
 	@Override
@@ -238,6 +242,16 @@ public class ServiceFacade implements IServiceFacade {
 	@Override
 	public RoadBook getRoadBookByUserId(int id) {
 		return serviceFacadeVoyage.getRoadBookByUserId(id);
+	}
+
+	@Override
+	public RoadBook getRoadBookByUser(Utilisateur utilisateur)	throws ServiceFacadeExceptionVoyage {
+		try {
+			System.out.println("ServiceFAcade getRoadBookByUser");
+			return serviceFacadeVoyage.getRoadBookByUser(utilisateur);
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
+		}
 	}
 	
 	@Override
@@ -315,6 +329,7 @@ public class ServiceFacade implements IServiceFacade {
 			System.out.println("SERVICE_FACADE >>> updateDescription(Description description) - Erreur");
 		}
 	}
+
 
 
 }

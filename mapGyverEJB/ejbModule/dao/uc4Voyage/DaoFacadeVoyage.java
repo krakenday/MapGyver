@@ -9,8 +9,14 @@ import javax.ejb.Singleton;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
+import business.uc8Utilisateur.Utilisateur;
+import dao.exception.uc1Administrer.DaoInexistantException;
+import dao.exception.uc4Voyage.DaoVoyageErrorMessage;
 import dao.exception.uc4Voyage.DaoVoyageException;
+import dao.uc1Administrer.DaoAdmin;
+import entity.uc4Voyage.EntityRoadBook;
 import entity.uc4Voyage.EntityVoyage;
+import entity.uc8Utilisateur.EntityUtilisateur;
 
 
 @Singleton
@@ -20,14 +26,16 @@ public class DaoFacadeVoyage {
 	private static final String ZONE_EXCEPTION_MSG = ".Bdd";
 	
 	@EJB
-	private DaoVoyage daoVoyage;
-
+	private DaoGenericVoyage daoGenericVoyage;
+	@EJB
+	private DaoAdmin daoAdmin;
+	
 	private FactoryEntity factoryEntity = new FactoryEntity();
 	
 	public Voyage createVoyage(Voyage voyage) throws DaoVoyageException {
 		EntityVoyage entityVoyage = factoryEntity.createEntityFrom(voyage);
 			try {
-				return factoryEntity.createFromEntity(daoVoyage.create(entityVoyage));
+				return factoryEntity.createFromEntity(daoGenericVoyage.create(entityVoyage));
 			} catch (DaoVoyageException e) {
 				throw new DaoVoyageException(e.getCode(),
 						ZONE_EXCEPTION_MSG+ e.getMessage());
@@ -42,7 +50,7 @@ public class DaoFacadeVoyage {
 	public Voyage updateVoyage(Voyage voyage) throws DaoVoyageException {
 		EntityVoyage entityVoyage = factoryEntity.createEntityWithIDFrom(voyage);
 		try {
-			return factoryEntity.createFromEntity(daoVoyage.update(entityVoyage));
+			return factoryEntity.createFromEntity(daoGenericVoyage.update(entityVoyage));
 		} catch (DaoVoyageException e) {
 			throw new DaoVoyageException(e.getCode(),
 					ZONE_EXCEPTION_MSG+ e.getMessage());
@@ -52,7 +60,7 @@ public class DaoFacadeVoyage {
 
 	public void deleteVoyage(int id) throws DaoVoyageException {
 		try {
-			daoVoyage.delete(id, EntityVoyage.class);
+			daoGenericVoyage.delete(id, EntityVoyage.class);
 		} catch (DaoVoyageException e) {
 			throw new DaoVoyageException(e.getCode(),
 					ZONE_EXCEPTION_MSG+ e.getMessage());
@@ -64,9 +72,21 @@ public class DaoFacadeVoyage {
 		return null;
 	}
 
-	public RoadBook createRoadBook(RoadBook roadBook) {
-		// TODO Auto-generated method stub
-		return null;
+	public RoadBook createRoadBook(RoadBook roadBook) throws DaoVoyageException {
+		System.out.println("daoFacadeVoyage createRoadBook");
+		System.out.println(roadBook);
+		try {
+			EntityRoadBook entityRoadBook = factoryEntity.createEntityFrom(roadBook);
+			Utilisateur utilisateur = roadBook.getUtilisateur();
+			EntityUtilisateur entityUtilisateur = daoAdmin.getUserByEmail(utilisateur.getEmail());
+			entityRoadBook.setEntityUtilisateur(entityUtilisateur);
+			return factoryEntity.createFromEntity(daoGenericVoyage.create(entityRoadBook));
+		} catch (DaoVoyageException e) {
+			throw new DaoVoyageException(e.getCode(),
+					ZONE_EXCEPTION_MSG+ e.getMessage());
+		} catch (DaoInexistantException e) {
+			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_INSERT);
+		}
 	}
 
 	public List<RoadBook> readRoadBookOrderById() {
@@ -95,6 +115,20 @@ public class DaoFacadeVoyage {
 		return null;
 	}
 
+	public RoadBook getRoadBookByUser(Utilisateur utilisateur) throws DaoVoyageException {
+		RoadBook roadBook = null;
+		try {
+			EntityUtilisateur entityUtilisateur = daoAdmin.getUserByEmail(utilisateur.getEmail());
+			EntityRoadBook entityRoadBook = daoGenericVoyage.getOneToOneBySecondClassId(
+					"EntityRoadBook", "entityUtilisateur", entityUtilisateur.getId());
+			System.out.println(entityRoadBook);
+			if (entityRoadBook!=null) roadBook = factoryEntity.createFromEntity(entityRoadBook);
+		} catch (DaoInexistantException e) {
+			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_INEXISTANT);
+		}
+		return roadBook;
+	}
+	
 	public PointInteret createPOInteret(PointInteret pointInteret) {
 		// TODO Auto-generated method stub
 		return null;
@@ -121,6 +155,7 @@ public class DaoFacadeVoyage {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 }

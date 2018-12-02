@@ -16,7 +16,8 @@ public class DaoVoyageException extends Exception {
 	}
 
 	public DaoVoyageException(DaoVoyageErrorMessage error) {
-		error.getMsg();
+		super(error.getMsg());
+		this.code = error.getId();
 	}
 
 	/**

@@ -9,6 +9,7 @@ import javax.ejb.Singleton;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
+import business.uc8Utilisateur.Utilisateur;
 import service.exception.uc4Voyage.ServiceVoyageException;
 
 
@@ -39,7 +40,8 @@ public class ServiceFacadeVoyage {
 		return serviceVoyage.getVoyageById(id);
 	}
 
-	public RoadBook createRoadBook(RoadBook roadBook) {
+	public RoadBook createRoadBook(RoadBook roadBook) throws ServiceVoyageException {
+		System.out.println("ServiceFAcadeVoyage createRoadBook");
 		return serviceVoyage.createRoadBook(roadBook);
 	}
 
@@ -63,6 +65,10 @@ public class ServiceFacadeVoyage {
 	public RoadBook getRoadBookByUserId(int id) {
 		return serviceVoyage.getRoadBookByUserId(id);
 	}
+
+	public RoadBook getRoadBookByUser(Utilisateur utilisateur) throws ServiceVoyageException {
+		return serviceVoyage.getRoadBookByUser(utilisateur);
+	}
 	
 	public PointInteret createPOInteret(PointInteret pointInteret) {
 		return serviceVoyage.createPOInteret(pointInteret);
@@ -83,6 +89,8 @@ public class ServiceFacadeVoyage {
 	public PointInteret getPOInteretById(int id) {
 		return serviceVoyage.getPOInteretById(id);
 	}
+
+
 
 
 

@@ -44,6 +44,10 @@ public class RoadBook implements Serializable{
 		this.utilisateur = utilisateur;
 	}
 
+	public RoadBook(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -52,12 +56,12 @@ public class RoadBook implements Serializable{
 		this.id = id;
 	}
 
-	public List<Voyage> getVoyage() {
+	public List<Voyage> getVoyages() {
 		return voyages;
 	}
 
-	public void setVoyage(List<Voyage> voyage) {
-		this.voyages = voyage;
+	public void setVoyages(List<Voyage> voyages) {
+		this.voyages = voyages;
 	}
 
 	public Utilisateur getUtilisateur() {

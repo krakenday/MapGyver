@@ -33,7 +33,7 @@ public class EntityRoadBook implements Serializable{
 	private int id;
 
 	@OneToOne ( cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name = "id_User", unique = true, nullable = false)
+	@JoinColumn(name = "id", unique = true, nullable = false)
 	private EntityUtilisateur entityUtilisateur;
 
 	@OneToMany(fetch=FetchType.LAZY)
@@ -57,12 +57,12 @@ public class EntityRoadBook implements Serializable{
 		this.id = id;
 	}
 
-	public List<EntityVoyage> getVoyage() {
+	public List<EntityVoyage> getVoyages() {
 		return voyages;
 	}
 
-	public void setVoyage(List<EntityVoyage> voyage) {
-		this.voyages = voyage;
+	public void setVoyages(List<EntityVoyage> voyages) {
+		this.voyages = voyages;
 	}
 
 	public EntityUtilisateur getEntityUtilisateur() {
@@ -75,7 +75,7 @@ public class EntityRoadBook implements Serializable{
 
 	@Override
 	public String toString() {
-		return "EntityRoadBook [id=" + id + ", entityUtilisateur=" + entityUtilisateur + ", voyages=" + voyages + "]";
+		return "EntityRoadBook [id=" + id + ", entityUtilisateur=" + entityUtilisateur + ", voyages="/* + voyages */+ "]";
 	}
 
 }

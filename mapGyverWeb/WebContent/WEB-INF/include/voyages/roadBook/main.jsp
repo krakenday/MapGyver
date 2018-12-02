@@ -54,7 +54,7 @@
 							</thead>
 							<tbody>
 <%
-										Iterator<Voyage> iterVoyage = roadBook.getVoyage().iterator();
+										Iterator<Voyage> iterVoyage = roadBook.getVoyages().iterator();
 										while (iterVoyage.hasNext()) {
 											Voyage voyage = iterVoyage.next();
 											String id 		= Integer.toString(voyage.getId());

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="business.uc4Voyage.RoadBook"%>
-<%	RoadBook roadBook = (RoadBook) request.getAttribute("roadBook");%>
+<%	RoadBook roadBook = (RoadBook) request.getAttribute("roadBook");
+	String success = (String) request.getAttribute("success");
+	String probleme = (String) request.getAttribute("probleme");
+%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -45,11 +48,25 @@
 				</ol>
 				<%if (roadBook != null) {%>
 						<jsp:include page="/WEB-INF/include/voyages/roadBook/main.jsp" />
-						<button type="button" class="btn btn-danger" data-toggle="modal"
+						<button type="button" class="btn btn-danger mb-3" data-toggle="modal"
 						data-target="#deleteModalRoadBook">Supprimer mon roadBook</button>
 				<%} else {%>
-						<a class="btn btn-success" href="./create" role="button">Cr&eacute;er mon roadBook</a>
+						<a class="btn btn-success" href="<%=request.getContextPath()%>/mapgyver/voyages/roadBook/create" role="button">Cr&eacute;er mon roadBook</a>
 				<%}%>
+				<%if (success!=null) {%>
+				<div class="alert alert-success shadow alert-dismissible fade show" role="alert" id="success"><%=success%>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    <span aria-hidden="true">&times;</span>
+				  	</button>
+			  	</div>
+			<%}%> 
+			<%if (probleme!=null) {%>
+				<div class="alert alert-danger  shadow alert-dismissible fade show" role="alert" id="probleme"><%=probleme%>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    <span aria-hidden="true">&times;</span>
+			  		</button>
+			  	</div>
+			<%}%>
 			</div>
 			<!-- /.container-fluid -->
 

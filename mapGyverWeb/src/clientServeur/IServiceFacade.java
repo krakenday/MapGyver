@@ -84,25 +84,25 @@ public interface IServiceFacade {
 		
 	// Voyage, offre de service : CRUD
 	public Voyage 				createVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage;
-	public List<Voyage> 		readVoyageOrderById();
+	public List<Voyage> 		readVoyageOrderById() 		throws ServiceFacadeExceptionVoyage;
 	public Voyage 				updateVoyage(Voyage voyage) throws ServiceFacadeExceptionVoyage;
 	public void 				deleteVoyage(int id) 		throws ServiceFacadeExceptionVoyage;
-	public Voyage 				getVoyageById(int id);
+	public Voyage 				getVoyageById(int id) 		throws ServiceFacadeExceptionVoyage;
 	
 	// RoadBook, offre de service : CRUD
-	public RoadBook				createRoadBook(RoadBook roadBook);
-	public List<RoadBook> 		readRoadBookOrderById();
-	public RoadBook 			updateRoadBook(RoadBook roadBook);
-	public void 				deleteRoadBook(int id);
-	public RoadBook				getRoadBookById(int id);
-	public RoadBook 			getRoadBookByUserId(int id);
+	public RoadBook				createRoadBook(RoadBook roadBook) 			throws ServiceFacadeExceptionVoyage;
+	public List<RoadBook> 		readRoadBookOrderById() 					throws ServiceFacadeExceptionVoyage;
+	public RoadBook 			updateRoadBook(RoadBook roadBook) 			throws ServiceFacadeExceptionVoyage;
+	public void 				deleteRoadBook(int id) 						throws ServiceFacadeExceptionVoyage;
+	public RoadBook				getRoadBookById(int id) 					throws ServiceFacadeExceptionVoyage;
+	public RoadBook 			getRoadBookByUserId(int id) 				throws ServiceFacadeExceptionVoyage;
+	public RoadBook 			getRoadBookByUser(Utilisateur utilisateur)	throws ServiceFacadeExceptionVoyage;
 	
 	// PointInteret, offre de service : CRUD
-	public PointInteret 		createPOInteret(PointInteret pointInteret);
-	public List<PointInteret> 	readPOInteretOrderById();
-	public PointInteret			updatePOInteret(PointInteret pointInteret);
-	public void 				deletePOInteret(int id);
-	public PointInteret 		getPOInteretById(int id);
-	
+	public PointInteret 		createPOInteret(PointInteret pointInteret)	throws ServiceFacadeExceptionVoyage;
+	public List<PointInteret> 	readPOInteretOrderById()					throws ServiceFacadeExceptionVoyage;
+	public PointInteret			updatePOInteret(PointInteret pointInteret)	throws ServiceFacadeExceptionVoyage;
+	public void 				deletePOInteret(int id)						throws ServiceFacadeExceptionVoyage;
+	public PointInteret 		getPOInteretById(int id)					throws ServiceFacadeExceptionVoyage;
 	
 }

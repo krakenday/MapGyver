@@ -35,18 +35,18 @@ public class DaoFacade {
 
 	@EJB
 	private DaoFacadePartager daoFacadePartager;
-	
+
 	private static final String ZONE_EXCEPTION_MSG = ".Voyage";
-	
+
 	@EJB
 	private DaoFacadeAdmin daoFacadeAdmin;
-	
+
 	@EJB
 	private DaoFacadeUtilisateur daoFacadeUtilisateur;
-		
+
 	@EJB
 	private DaoFacadeVoyage daoFacadeVoyage;
-	
+
 	@EJB
 	private DaoFacadeJouer daoFacadeJouer;
 
@@ -72,25 +72,25 @@ public class DaoFacade {
 		return user;
 	}
 
-	
+
 	//Ici commence le territoire de Djallel
-		// Gestion de l'utilisateur
+	// Gestion de l'utilisateur
 	public void addUtilisateur(Utilisateur utilisateur) {
-			daoFacadeUtilisateur.addUtilisateur(utilisateur);		
+		daoFacadeUtilisateur.addUtilisateur(utilisateur);		
 	}
-	
+
 	public Utilisateur readUtilisateur(int id) {
 		return daoFacadeUtilisateur.readUtilisateur(id);
 	}
-	
+
 	public void updateUtilisateur(Utilisateur utilisateur) {
 		daoFacadeUtilisateur.updateUtilisateur(utilisateur);
 	}
-	
+
 	public void deleteUtilisateur(int id) {
 		daoFacadeUtilisateur.deleteUtilisateur(id);
 	}
-	
+
 	//Gestion du groupe
 	public void addGroupe(Groupe groupe) {
 		daoFacadeUtilisateur.addGroupe(groupe);
@@ -98,15 +98,15 @@ public class DaoFacade {
 	public Groupe readGroupe(int id) {
 		return daoFacadeUtilisateur.readGroupe(id);
 	}
-	
+
 	public void updateGroupe(Groupe groupe) {
 		daoFacadeUtilisateur.updateGroupe(groupe);
 	}
-	
+
 	public void deleteGroupe(int id) {
 		daoFacadeUtilisateur.deleteGroupe(id);
 	}
-	
+
 	//Gestion de liste de diffusion
 	public void addListeDiff(ListeDiffusion listeDiff) {
 		daoFacadeUtilisateur.addListeDiff(listeDiff);
@@ -114,15 +114,15 @@ public class DaoFacade {
 	public ListeDiffusion readListeDiff(int id) {
 		return daoFacadeUtilisateur.readListeDiff(id);
 	}
-	
+
 	public void updateListeDiff(ListeDiffusion listeDiff) {
 		daoFacadeUtilisateur.updateListeDiff(listeDiff);
 	}
-	
+
 	public void deleteListeDiff(int id) {
 		daoFacadeUtilisateur.deleteListeDiff(id);
 	}
-	
+
 	//Catalogue
 	public List<Utilisateur> listerTousLesUtilisateurs() {
 		return daoFacadeUtilisateur.listerTousLesUtilisateurs();
@@ -136,7 +136,7 @@ public class DaoFacade {
 		return daoFacadeUtilisateur.listerToutesLesListes();
 	}
 	//Merci de votre visite
-	
+
 	//***************** Voyage
 	public Voyage createVoyage(Voyage voyage) throws DaoFacadeExceptionVoyage {
 		try {
@@ -154,12 +154,12 @@ public class DaoFacade {
 	public Voyage updateVoyage(Voyage voyage) throws DaoFacadeExceptionVoyage {
 		try {
 			return daoFacadeVoyage.updateVoyage(voyage);	
-	} catch (DaoVoyageException e) {
-		throw new DaoFacadeExceptionVoyage(e.getCode(),
-				ZONE_EXCEPTION_MSG+ e.getMessage());
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					ZONE_EXCEPTION_MSG+ e.getMessage());
+		}
 	}
-	}
-	
+
 	public void deleteVoyage(int id) throws DaoFacadeExceptionVoyage {
 		try {
 			daoFacadeVoyage.deleteVoyage(id);
@@ -173,8 +173,14 @@ public class DaoFacade {
 		return daoFacadeVoyage.getVoyageById(id);
 	}
 
-	public RoadBook createRoadBook(RoadBook roadBook) {
-		return daoFacadeVoyage.createRoadBook(roadBook);	
+	public RoadBook createRoadBook(RoadBook roadBook) throws DaoFacadeExceptionVoyage {
+		try {
+			System.out.println("daoFacade createRoadBook");
+			return daoFacadeVoyage.createRoadBook(roadBook);
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					ZONE_EXCEPTION_MSG+ e.getMessage());
+		}
 	}
 
 	public List<RoadBook> readRoadBookOrderById() {
@@ -196,10 +202,20 @@ public class DaoFacade {
 	public RoadBook getRoadBookByUserId(int id) {
 		return daoFacadeVoyage.getRoadBookByUserId(id);
 	}
-	
+
+	public RoadBook getRoadBookByUser(Utilisateur utilisateur) throws DaoFacadeExceptionVoyage {
+		try {
+			System.out.println("daoFacade getRoadBookByUser");
+			return daoFacadeVoyage.getRoadBookByUser(utilisateur);
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					ZONE_EXCEPTION_MSG+ e.getMessage());
+		}
+	}
+
 	public PointInteret createPOInteret(PointInteret pointInteret) {
 		return daoFacadeVoyage.createPOInteret(pointInteret);
-		
+
 	}
 
 	public List<PointInteret> readPOInteretOrderById() {
@@ -284,5 +300,6 @@ public class DaoFacade {
 			throw new ExceptionSurDao(e.getMessage(), e.getCause());
 		}
 	}
+
 
 }
