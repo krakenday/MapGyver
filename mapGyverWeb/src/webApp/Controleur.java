@@ -48,6 +48,9 @@ public class Controleur extends HttpServlet {
 		else if (path.matches("/utilisateur(.*)")) {
 			doPage(request, response, path);			
 		}
+		else if (path.matches("/souvenirs(.*)")) {
+			doPage(request, response, path);			
+		}
 		else {
 			doErreur(request, response);
 		}
