@@ -54,7 +54,7 @@
 	</div>
 	
 	<div class="col-4 form-group">
-		<form action="ajouter" method="POST">
+		<form action="<%=request.getContextPath()%>/mapgyver/souvenirs/ajouter" method="POST" enctype="multipart/form-data">
 			 <p>
 			  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 			    Ajouter un souvenir
@@ -70,6 +70,14 @@
 				    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
 				    <label class="custom-file-label" for="inputGroupFile01">Choisir image a ajouter</label>
 				  </div>
+				</div>
+				<div>
+					<select class="custom-select" name="pi">
+					  <option selected>Choisissez un point d interet</option>
+					  <option value="un">One</option>
+					  <option value="deux">Two</option>
+					  <option value="trois">Three</option>
+					</select>
 				</div>
 				<div>
 				  <label for="comment">Commentaire:</label>
