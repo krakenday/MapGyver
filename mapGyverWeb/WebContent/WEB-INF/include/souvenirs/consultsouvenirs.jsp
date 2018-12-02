@@ -54,7 +54,7 @@
 	</div>
 	
 	<div class="col-4 form-group">
-		<form action="#" method="get">
+		<form action="ajouter" method="get">
 			 <p>
 			  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 			    Ajouter un souvenir
@@ -73,7 +73,7 @@
 				</div>
 				<div>
 				  <label for="comment">Commentaire:</label>
-				  <textarea class="form-control" rows="5" id="comment"></textarea>
+				  <textarea class="form-control" rows="5" id="com" name="com"></textarea>
 				  <button type="submit" class="btn btn-dark mt-2 ">Enregistrer</button>
 				</div>
 			  </div>
