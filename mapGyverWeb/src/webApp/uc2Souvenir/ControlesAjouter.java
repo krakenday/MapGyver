@@ -28,21 +28,21 @@ public class ControlesAjouter {
 	 */
 	public Souvenir controleDesParametres(	String nomPhoto, InputStream fileContent,
 											Long fileLength, String comm,
-											int idVoyage) {
+											String idVoyage) {
 		
 		Voyage voyage;
 		Commentaire commentaire;
 		Souvenir souvenir;
-		
+		int id;
 		
 		nomPhoto 	= controlNomPhoto	(nomPhoto);
 		fileContent = controlFileContent(fileContent);
 		fileLength 	= controlFileLength	(fileLength);
 		comm 		= controlCommentaire(comm);
-		idVoyage 	= controlIdVoyage	(idVoyage);
+		id			= controlIdVoyage	(idVoyage);
 		
 		//Idriss voulait pas me faire de Constructeur juste avec l'ID ( :D c'est une blague)
-		voyage = new Voyage(idVoyage, null, null, null, null);
+		voyage = new Voyage(id, null, null, null, null);
 		
 		commentaire = new Commentaire(comm);
 		
@@ -55,9 +55,9 @@ public class ControlesAjouter {
 	
 
 	//TODO Methodes de controles pour chaque parametre a completer
-	private int controlIdVoyage(int idVoyage) {
-		// TODO Auto-generated method stub
-		return idVoyage;
+	private int controlIdVoyage(String idVoyage) {
+		int id = Integer.parseInt(idVoyage);
+		return id;
 	}
 
 	private String controlCommentaire(String comm) {

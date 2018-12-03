@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import business.uc2Souvenir.Souvenir;
+
 //import org.apache.commons.fileupload.FileItem;
 //import org.apache.commons.fileupload.FileUploadException;
 //import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -45,31 +47,43 @@ public class ControleurSouvenirsAjouter extends HttpServlet {
 		System.out.println("je suis dans ControleurSouvenirAjout-Dans mon POST !!");
 		
 		 //recuperation contenu, titrePhoto, longueurFichier
-		Part 		filePart;
-		String 		fileName;
-		InputStream fileContent;
-		Long 		contentLenght;
+		ControlesAjouter 	controles;
+		Souvenir			souvenir;
+		Part 				filePart;
+		String 				nomPhoto;
+		InputStream 		fileContent;
+		Long 				contentLenght;
+		String				comm;
+		String					idVoyage;
 		
 		filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
-		fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+		nomPhoto = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 		fileContent = filePart.getInputStream();
 		contentLenght =(long) fileContent.available();
 		 
-		System.out.println("file Name =" + fileName);
-		System.out.println("le fileContent sa donne quoi?" + fileContent);
+		System.out.println("file Name =" + nomPhoto);
+		System.out.println("****************ControlSouvenirAjouter-le fileContent= " + fileContent);
 		
 		//recuperation commentaire
-		request.getParameter("com");
-		System.out.println(request.getParameter("com"));
+		comm =request.getParameter("com");
+		System.out.println("****************ControlSouvenirAjouter- Valeur de commentaire =" + comm);
 		
-		//recuperation point Interet
-		request.getParameter("pi");
-		System.out.println(request.getParameter("pi"));
+		//TODO valeur en dur pour l instant recuperation idVoyage
+		idVoyage = request.getParameter("idVoyage");
+		System.out.println("****************ControlSouvenirAjouter- Valeur de idVoyage =" + idVoyage);
+		
+		//TODO recuperation point Interet: pour V2
+		//request.getParameter("pi");
+		//System.out.println(request.getParameter("pi"));
 		
 		
 		//Vers méthodes de controle qui renvoient l'objet
 		
+		controles = new ControlesAjouter();
 		
+		souvenir = controles.controleDesParametres(nomPhoto, fileContent, contentLenght, comm, idVoyage);
+		
+		System.out.println("****************ControlSouvenirAjouter- Valeur SOUVENIR =" + souvenir);
 		
 	}
 	

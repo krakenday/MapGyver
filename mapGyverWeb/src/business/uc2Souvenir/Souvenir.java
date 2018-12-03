@@ -29,12 +29,13 @@ public abstract class Souvenir {
 	public Souvenir() {
 	}
 
+	
+	
 	@Override
 	public String toString() {
-		return "Souvenir [id=" + id + ", dateEnregistre=" + dateEnregistre + "]";
+		return "Souvenir [id=" + id + ", dateEnregistre=" + dateEnregistre + ", voyage=" + voyage + "]";
 	}
 
-	
 	public int getId() {
 		return id;
 	}

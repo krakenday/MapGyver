@@ -79,6 +79,9 @@
 					</select>
 				</div>
 				<div>
+					<input type="hidden" name="idVoyage" value="747">
+				</div>
+				<div>
 				  <label for="comment">Commentaire:</label>
 				  <textarea class="form-control" rows="5" id="com" name="com"></textarea>
 				  <button type="submit" class="btn btn-dark mt-2 ">Enregistrer</button>

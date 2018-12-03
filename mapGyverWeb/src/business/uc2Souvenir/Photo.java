@@ -34,7 +34,7 @@ public class Photo extends Souvenir {
 	 * @param length : longueur en bytes du fichier, necessaire pour utilisation de Amazon S3
 	 */
 	public Photo(	LocalDate 	dateEnregistre,
-					Voyage voyage,
+					Voyage 		voyage,
 					String 		nom,
 					InputStream fileContent,
 					Commentaire commentaire,
@@ -68,14 +68,19 @@ public class Photo extends Souvenir {
 //	}
 
 
-	@Override
-	public String toString() {
-		return "Photo [nom=" + nom + ", url=" + url + "]";
-	}
+	
 
 	public String getNom() {
 		return nom;
 	}
+
+	@Override
+	public String toString() {
+		return "Photo [nom=" + nom + ", url=" + url + ", fileContent=" + fileContent + ", commentaire=" + commentaire
+				+ ", length=" + length + "]";
+	}
+
+
 
 	public void setNom(String nom) {
 		this.nom = nom;
