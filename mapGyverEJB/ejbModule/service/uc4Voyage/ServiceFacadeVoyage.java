@@ -49,9 +49,8 @@ public class ServiceFacadeVoyage {
 		return serviceVoyage.readRoadBookOrderById();
 	}
 
-	public RoadBook updateRoadBook(RoadBook roadBook) {
+	public RoadBook updateRoadBook(RoadBook roadBook) throws ServiceVoyageException {
 		return serviceVoyage.updateRoadBook(roadBook);
-		
 	}
 
 	public void deleteRoadBook(int id) throws ServiceVoyageException {

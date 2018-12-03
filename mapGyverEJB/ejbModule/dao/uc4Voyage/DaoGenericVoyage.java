@@ -18,10 +18,10 @@ import entity.uc8Utilisateur.EntityUtilisateur;
 @LocalBean
 public class DaoGenericVoyage {
 
-//	@PersistenceContext(unitName = "IDMhibernateXE")
+	//	@PersistenceContext(unitName = "IDMhibernateXE")
 	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
 	private EntityManager em;
-	
+
 	private static final String ZONE_EXCEPTION_MSG = ".Voyage";
 
 	public <T> T create(T entity) throws DaoVoyageException {
@@ -61,7 +61,7 @@ public class DaoGenericVoyage {
 			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_DELETE.getId(),
 					daoExceptionMsg + DaoVoyageErrorMessage.ERR_DELETE.getMsg());
 		}
-		
+
 	}
 
 	public <T> T update(T entity) throws DaoVoyageException {

@@ -4,7 +4,7 @@
 	String success = (String) request.getAttribute("success");
 	String probleme = (String) request.getAttribute("probleme");
 %>
-<form method="get" name="formCRUD" id="formCRUD" class="needs-validation" novalidate>
+<form method="post" name="formCRUD" id="formCRUD" class="needs-validation" novalidate>
 	<!-- Voyages -->
 	<div class="row">
 		<div class="col-lg-6">

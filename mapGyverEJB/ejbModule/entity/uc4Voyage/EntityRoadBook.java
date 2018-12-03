@@ -27,7 +27,7 @@ public class EntityRoadBook implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_Roadbook")
+	@Column(name="id_Rbk")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="seqRoadBook")
 	@SequenceGenerator(name="seqRoadBook", sequenceName="ROADBOOK_SEQ", initialValue=1, allocationSize=30)
 	private int id;
@@ -36,7 +36,7 @@ public class EntityRoadBook implements Serializable{
 	@JoinColumn(name = "id", unique = true, nullable = false)
 	private EntityUtilisateur entityUtilisateur;
 
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<EntityVoyage> voyages = new ArrayList<EntityVoyage>();
 
 	public EntityRoadBook() {
@@ -75,7 +75,7 @@ public class EntityRoadBook implements Serializable{
 
 	@Override
 	public String toString() {
-		return "EntityRoadBook [id=" + id + ", entityUtilisateur=" + entityUtilisateur + ", voyages="/* + voyages */+ "]";
+		return "EntityRoadBook [id=" + id + ", voyages=" + voyages  + ", entityUtilisateur=" + entityUtilisateur + "]";
 	}
 
 }

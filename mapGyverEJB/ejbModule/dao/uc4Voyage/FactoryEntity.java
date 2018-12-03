@@ -1,6 +1,5 @@
 package dao.uc4Voyage;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class FactoryEntity {
 		entityVoyage.setId(voyage.getId());
 		return entityVoyage;
 	}
-	
+
 	public Voyage createFromEntity(EntityVoyage entityVoyage) {
 		Voyage voyage = new Voyage(entityVoyage.getNom());
 		voyage.setId(entityVoyage.getId());
@@ -37,7 +36,7 @@ public class FactoryEntity {
 		voyage.setNbParticipant(entityVoyage.getNbParticipant());
 		return voyage;
 	}
-	
+
 	private List<EntityVoyage> createEntityFrom(List<Voyage> voyages) {
 		List<EntityVoyage> entityVoyages = new ArrayList<>();
 		for (Voyage voyage : voyages) {
@@ -46,7 +45,16 @@ public class FactoryEntity {
 		}
 		return entityVoyages;
 	}
-	
+
+	private List<EntityVoyage> createEntityWithIDFrom(List<Voyage> voyages) {
+		List<EntityVoyage> entityVoyages = new ArrayList<>();
+		for (Voyage voyage : voyages) {
+			EntityVoyage entityVoyage = createEntityWithIDFrom(voyage);
+			entityVoyages.add(entityVoyage);
+		}
+		return entityVoyages;
+	}
+
 	private List<Voyage> createFromEntity(List<EntityVoyage> entityVoyages) {
 		List<Voyage> voyages = new ArrayList<>();
 		for (EntityVoyage entityVoyage : entityVoyages) {
@@ -58,22 +66,33 @@ public class FactoryEntity {
 
 	public EntityRoadBook createEntityFrom(RoadBook roadBook) {
 		EntityRoadBook entityRoadBook = new EntityRoadBook();
-//		entityRoadBook.setVoyages(createEntityFrom(roadBook.getVoyages()));;
-		//TODO voir si besoin de recuperer methode pour transformer utilisateur en entityUtilisateur 
-//		Utilisateur utilisateur = roadBook.getUtilisateur();
-//		EntityUtilisateur entityUtilisateur = new EntityUtilisateur();
-//		entityUtilisateur.setId(utilisateur.getId());
-//		entityRoadBook.setEntityUtilisateur(entityUtilisateur);
+		entityRoadBook.setVoyages(createEntityFrom(roadBook.getVoyages()));;
+		Utilisateur utilisateur = roadBook.getUtilisateur();
+		EntityUtilisateur entityUtilisateur = new EntityUtilisateur();
+		entityUtilisateur.setId(utilisateur.getId());
+		entityRoadBook.setEntityUtilisateur(entityUtilisateur);
 		return entityRoadBook;
 	}
-	
+
+	public EntityRoadBook createEntityWithIDFrom(RoadBook roadBook) {
+		EntityRoadBook entityRoadBook = new EntityRoadBook();
+		entityRoadBook.setVoyages(createEntityWithIDFrom(roadBook.getVoyages()));;
+		Utilisateur utilisateur = roadBook.getUtilisateur();
+		EntityUtilisateur entityUtilisateur = new EntityUtilisateur();
+		entityUtilisateur.setId(utilisateur.getId());
+		entityRoadBook.setEntityUtilisateur(entityUtilisateur);
+		entityRoadBook.setId(roadBook.getId());
+		return entityRoadBook;
+	}
+
+
 	public RoadBook createFromEntity(EntityRoadBook entityRoadBook) {
 		EntityUtilisateur entityUtilisateur = entityRoadBook.getEntityUtilisateur();
 		Utilisateur utilisateur = new Utilisateur();
 		utilisateur.setId(entityUtilisateur.getId());
 		RoadBook roadBook = new RoadBook(utilisateur);
 		roadBook.setId(entityRoadBook.getId());
-//		roadBook.setVoyages(createFromEntity(entityRoadBook.getVoyages()));
+		roadBook.setVoyages(createFromEntity(entityRoadBook.getVoyages()));
 		return roadBook;
 	}
 

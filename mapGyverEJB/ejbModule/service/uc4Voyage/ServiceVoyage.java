@@ -66,8 +66,12 @@ public class ServiceVoyage {
 		return daoFacade.readRoadBookOrderById();
 	}
 
-	public RoadBook updateRoadBook(RoadBook roadBook) {
-		return daoFacade.updateRoadBook(roadBook);
+	public RoadBook updateRoadBook(RoadBook roadBook) throws ServiceVoyageException {
+		try {
+			return daoFacade.updateRoadBook(roadBook);
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 
 	}
 

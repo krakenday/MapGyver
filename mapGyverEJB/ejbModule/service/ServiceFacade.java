@@ -222,9 +222,13 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public RoadBook updateRoadBook(RoadBook roadBook) {
-		//		serviceFacadeVoyage.updateRoadBook(roadBook);
-		return null;
+	public RoadBook updateRoadBook(RoadBook roadBook) throws ServiceFacadeExceptionVoyage {
+		try {
+			System.out.println("ServiceFAcade updateRoadBook");
+			return 		serviceFacadeVoyage.updateRoadBook(roadBook);
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
+		}
 	}
 
 	@Override
@@ -257,7 +261,7 @@ public class ServiceFacade implements IServiceFacade {
 			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
 		}
 	}
-	
+
 	@Override
 	public PointInteret createPOInteret(PointInteret pointInteret) {
 		//		serviceFacadeVoyage.createPOInteret(pointInteret);

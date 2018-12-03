@@ -24,22 +24,22 @@ import entity.uc8Utilisateur.EntityUtilisateur;
 public class DaoFacadeVoyage {
 
 	private static final String ZONE_EXCEPTION_MSG = ".Bdd";
-	
+
 	@EJB
 	private DaoGenericVoyage daoGenericVoyage;
 	@EJB
 	private DaoAdmin daoAdmin;
-	
+
 	private FactoryEntity factoryEntity = new FactoryEntity();
-	
+
 	public Voyage createVoyage(Voyage voyage) throws DaoVoyageException {
 		EntityVoyage entityVoyage = factoryEntity.createEntityFrom(voyage);
-			try {
-				return factoryEntity.createFromEntity(daoGenericVoyage.create(entityVoyage));
-			} catch (DaoVoyageException e) {
-				throw new DaoVoyageException(e.getCode(),
-						ZONE_EXCEPTION_MSG+ e.getMessage());
-			}
+		try {
+			return factoryEntity.createFromEntity(daoGenericVoyage.create(entityVoyage));
+		} catch (DaoVoyageException e) {
+			throw new DaoVoyageException(e.getCode(),
+					ZONE_EXCEPTION_MSG+ e.getMessage());
+		}
 	}
 
 	public List<Voyage> readVoyageOrderById() {
@@ -94,10 +94,18 @@ public class DaoFacadeVoyage {
 		return null;
 	}
 
-	public RoadBook updateRoadBook(RoadBook roadBook) {
-		// TODO Auto-generated method stub
-		return null;
-
+	public RoadBook updateRoadBook(RoadBook roadBook) throws DaoVoyageException {
+		EntityRoadBook entityRoadBook = factoryEntity.createEntityWithIDFrom(roadBook);
+		System.out.println("daoFacadeVoyage updateRoadBook");
+		System.out.println(roadBook);
+		System.out.println(entityRoadBook);
+		try {
+			entityRoadBook = daoGenericVoyage.update(entityRoadBook);
+			return factoryEntity.createFromEntity(entityRoadBook);
+		} catch (DaoVoyageException e) {
+			throw new DaoVoyageException(e.getCode(),
+					ZONE_EXCEPTION_MSG+ e.getMessage());
+		} 
 	}
 
 	public void deleteRoadBook(int id) throws DaoVoyageException {
@@ -114,7 +122,7 @@ public class DaoFacadeVoyage {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	public RoadBook getRoadBookByUserId(int id) {
 		// TODO Auto-generated method stub
 		return null;
@@ -133,7 +141,7 @@ public class DaoFacadeVoyage {
 		}
 		return roadBook;
 	}
-	
+
 	public PointInteret createPOInteret(PointInteret pointInteret) {
 		// TODO Auto-generated method stub
 		return null;
