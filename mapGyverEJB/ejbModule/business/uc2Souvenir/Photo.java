@@ -12,6 +12,8 @@ package business.uc2Souvenir;
 import java.io.InputStream;
 import java.time.LocalDate;
 
+import business.uc4Voyage.Voyage;
+
 //TODO must implements "Partageable"
 
 public class Photo extends Souvenir {
@@ -32,12 +34,13 @@ public class Photo extends Souvenir {
 	 * @param length : longueur en bytes du fichier, necessaire pour utilisation de Amazon S3
 	 */
 	public Photo(	LocalDate 	dateEnregistre,
+					Voyage voyage,
 					String 		nom,
 					InputStream fileContent,
 					Commentaire commentaire,
 					Long 		length) {
 		
-		super(dateEnregistre);
+		super(dateEnregistre, voyage);
 		this.nom = nom;
 		this.fileContent = fileContent;
 		this.commentaire = commentaire;

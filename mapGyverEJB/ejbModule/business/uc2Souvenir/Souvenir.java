@@ -17,11 +17,12 @@ public abstract class Souvenir {
 	public Souvenir(int id, LocalDate dateEnregistre, Voyage voyage) {
 		this.id = id;
 		this.dateEnregistre = dateEnregistre;
-		this.setVoyage(voyage);
+		this.voyage = voyage;
 	}
 
-	public Souvenir(LocalDate dateEnregistre) {
+	public Souvenir(LocalDate dateEnregistre, Voyage voyage) {
 		this.dateEnregistre = dateEnregistre;
+		this.voyage			= voyage;
 	}
 
 	//constructeur par defaut

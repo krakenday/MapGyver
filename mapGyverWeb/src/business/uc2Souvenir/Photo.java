@@ -9,8 +9,10 @@ package business.uc2Souvenir;
  * 
  */
 
-import java.io.File;
+import java.io.InputStream;
 import java.time.LocalDate;
+
+import business.uc4Voyage.Voyage;
 
 //TODO must implements "Partageable"
 
@@ -18,24 +20,36 @@ public class Photo extends Souvenir {
 	
 	private String nom;
 	private String url;
-	private File file;
+	private InputStream fileContent;
+	private Commentaire commentaire;
+	private Long length;
 	
-
+	
 	/**
-	 * Constructeur a utiliser par le clientWeb 
-	 * pour passer l'objet Photo au service(ejb)
 	 * 
-	 * @param dateEnregistre
-	 * @param nom
-	 * @param file (necessaire pour persister photo sur AWS S3)
+	 * @param dateEnregistre: generer avec LocalDate.now()
+	 * @param nom: nom sous lequel sera enregistre la photo
+	 * @param fileContent: de type InputStream
+	 * @param commentaire: optionnel, il existe un constructeur sans le commentaire
+	 * @param length : longueur en bytes du fichier, necessaire pour utilisation de Amazon S3
 	 */
-	public Photo(LocalDate dateEnregistre, String nom, File file) {
-		super(dateEnregistre);
+	public Photo(	LocalDate 	dateEnregistre,
+					Voyage voyage,
+					String 		nom,
+					InputStream fileContent,
+					Commentaire commentaire,
+					Long 		length) {
+		
+		super(dateEnregistre, voyage);
 		this.nom = nom;
-		this.file = file;
+		this.fileContent = fileContent;
+		this.commentaire = commentaire;
+		this.length = length;
 	}
 
 
+
+	//TODO metre a jour commentaire
 	/**
 	 * @author Alejandro
 	 * 
@@ -47,11 +61,11 @@ public class Photo extends Souvenir {
 	 * @param nom
 	 * @param url (permet l acces a la photo enregistre sur AWS S3)
 	 */
-	public Photo(int id, LocalDate dateEnregistre, String nom, String url) {
-		super(id, dateEnregistre);
-		this.nom = nom;
-		this.url = url;
-	}
+//	public Photo(int id, LocalDate dateEnregistre, String nom, String url) {
+//		super(id, dateEnregistre);
+//		this.nom = nom;
+//		this.url = url;
+//	}
 
 
 	@Override
@@ -74,14 +88,35 @@ public class Photo extends Souvenir {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
-	public File getFile() {
-		return file;
+
+
+	public InputStream getFileContent() {
+		return fileContent;
 	}
 
 
-	public void setFile(File file) {
-		this.file = file;
+	public void setFileContent(InputStream fileContent) {
+		this.fileContent = fileContent;
+	}
+
+
+	public Commentaire getCommentaire() {
+		return commentaire;
+	}
+
+
+	public void setCommentaire(Commentaire commentaire) {
+		this.commentaire = commentaire;
+	}
+
+
+	public Long getLength() {
+		return length;
+	}
+
+
+	public void setLength(Long length) {
+		this.length = length;
 	}
 
 	
