@@ -2,6 +2,9 @@ package webApp.uc2Souvenir;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -13,12 +16,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.FilenameUtils;
+//import org.apache.commons.fileupload.FileItem;
+//import org.apache.commons.fileupload.FileUploadException;
+//import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+//import org.apache.commons.fileupload.servlet.ServletFileUpload;
+//import org.apache.commons.io.FilenameUtils;
 
 /**
  * Servlet en charge du traitement des donnees recus depuis 
@@ -40,65 +44,30 @@ public class ControleurSouvenirsAjouter extends HttpServlet {
 		
 		System.out.println("je suis dans ControleurSouvenirAjout-Dans mon POST !!");
 		
-		//ok
-		//request.getParameter("com");
-		//System.out.println(request.getParameter("com"));
+		 //recuperation contenu, titrePhoto, longueurFichier
+		Part 		filePart;
+		String 		fileName;
+		InputStream fileContent;
+		Long 		contentLenght;
 		
-		//ok
-		//request.getParameter("pi");
-		//System.out.println(request.getParameter("pi"));
+		filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+		fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+		fileContent = filePart.getInputStream();
+		contentLenght =(long) fileContent.available();
+		 
+		System.out.println("file Name =" + fileName);
+		System.out.println("le fileContent sa donne quoi?" + fileContent);
 		
-		//RecupPhoto (FILE)***********************************************
-		//****************************************************************
+		//recuperation commentaire
+		request.getParameter("com");
+		System.out.println(request.getParameter("com"));
 		
-		// on prépare pour l'envoie par la mise en oeuvre en mémoire
-		DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
-		ServletFileUpload uploadHandler = new ServletFileUpload(fileItemFactory);
-		List<FileItem> items = null;
+		//recuperation point Interet
+		request.getParameter("pi");
+		System.out.println(request.getParameter("pi"));
 		
-			try {
-				items = (List<FileItem>) uploadHandler.parseRequest(request);
-			} catch (FileUploadException e) {
-				System.out.println("ControleurSouvenirAjout-Catch fileUpload Exception");
-				e.printStackTrace();
-			}
-			System.out.println("*** Controller - doRecupPhotoClient - items : " + items );
-			
-			String dossierUpload = "D:\\temp\\testUpload\\";
-			//String dossierUpload = "\\\\CDIdmNAS\\partage17288\\Travail\\dm\\fileUpload\\";
-			
-			// Creation du repertoire
-			new File(dossierUpload).mkdirs();
-			
-			// recup de l'image
-			FileItem item = items.get(0);
-			
-			// recuperation de l'extension du fichier : jpg png ...
-			// String fileName = item.getName();
-			String fileExtensionName = item.getName();
-			fileExtensionName = FilenameUtils.getExtension(fileExtensionName);
-			
-			// creation d'une date avec les nanosecondes pour creer le nom du fichier
-			LocalDateTime time = LocalDateTime.now();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuuMMdd_kkmmssnnnnnnnnn");
-			
-			// creation du nom du fichier avec la date et l'extension
-			String fileName = time.format(formatter) + "." + fileExtensionName;
-			System.out.println(fileName);
-			
-			
-			File file = new File(dossierUpload + fileName);
-			System.out.println("*** Controller - doRecupPhotoClient - file : " + file );
-			
-			try {
-				item.write(file);
-			} catch (Exception e) {
-				System.out.println("ControleurSouvenirAjout-Catch item.write()");
-				e.printStackTrace();
-			}
 		
-		//****************************************************************
-		//****************************************************************
+		//Vers méthodes de controle qui renvoient l'objet
 		
 		
 		
