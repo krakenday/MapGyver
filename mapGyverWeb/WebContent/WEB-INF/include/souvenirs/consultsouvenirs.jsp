@@ -10,7 +10,7 @@
 	              <div class="card mb-4 box-shadow">
 	                <img class="card-img-top" src="<%=request.getContextPath()%>/imagessouvenirs/perou.jpg" alt="Card image cap">
 	                <div class="card-body">										
-	                  <p class="card-text">This is a widerRRAAUUUUooooooooooo!!!!  .</p>
+	                  <p class="card-text">cas 1 = photo + commentaire = 1 souvenir (il s agit forcement du commentaire de la photo)  .</p>
 	                  <div class="d-flex justify-content-between align-items-center">
 	                    <div class="btn-group">
 	                      <button type="button" class="btn btn-sm btn-outline-secondary">Supr</button>
@@ -22,9 +22,8 @@
 	            </div>
 	            <div class="col-md-4">
 	              <div class="card mb-4 box-shadow">
-	                <img class="card-img-top" src="<%=request.getContextPath()%>/imagessouvenirs/bali.jpg" alt="Card image cap">
 	                <div class="card-body">										
-	                  <p class="card-text">This is a widerRRAAUUUUooooooooooo!!!!  .</p>
+	                  <p class="card-text">Cas2: uniquement 1 commentaire: 1 commentaire = 1Souvenir  .</p>
 	                  <div class="d-flex justify-content-between align-items-center">
 	                    <div class="btn-group">
 	                      <button type="button" class="btn btn-sm btn-outline-secondary">Supr</button>
@@ -38,7 +37,7 @@
 	              <div class="card mb-4 box-shadow">
 	                <img class="card-img-top" src="<%=request.getContextPath()%>/imagessouvenirs/manhatan.jpg" alt="Card image cap">
 	                <div class="card-body">										
-	                  <p class="card-text">This is a coucou idriss!!!!  .</p>
+	                  <p class="card-text">cas3= pas de com. UnPhoto = 1souvenir.</p>
 	                  <div class="d-flex justify-content-between align-items-center">
 	                    <div class="btn-group">
 	                      <button type="button" class="btn btn-sm btn-outline-secondary">Supr</button>
