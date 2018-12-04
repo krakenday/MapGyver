@@ -53,7 +53,7 @@ public class Utilisateur implements Serializable{
 	 * @param email : email de l'utilisateur
 	 * */
 	public Utilisateur(int id, String nom, String prenom, String email) {
-		super();
+		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;

@@ -41,7 +41,12 @@ public interface IServiceFacade {
 	 * @throws ServiceInexistantException
 	 */
 	public Utilisateur getUserByEmail(String email) throws ServiceInexistantException;
-
+	/**
+	 * Retourne un Utilisateur a partir de son email
+	 * 
+	 * @throws ServiceInexistantException
+	 */
+	public Utilisateur uc1CreerUserPourTest(Utilisateur user);
 	
 	// *****  Fin DM - UC1 Administrer
 	

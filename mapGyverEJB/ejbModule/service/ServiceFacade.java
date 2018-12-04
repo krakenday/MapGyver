@@ -66,6 +66,11 @@ public class ServiceFacade implements IServiceFacade {
 		Utilisateur user = serviceFacadeAdmin.getUserByEmail(email);
 		return user;
 	}
+	@Override
+	public Utilisateur uc1CreerUserPourTest(Utilisateur user) {
+		user = serviceFacadeAdmin.uc1CreerUserPourTest(user);
+		return user;
+	}
 
 	// Bloc Service Utilisateur
 
@@ -306,5 +311,7 @@ public class ServiceFacade implements IServiceFacade {
 			System.out.println("SERVICE_FACADE >>> updateDescription(Description description) - Erreur");
 		}
 	}
+
+
 
 }

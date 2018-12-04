@@ -20,6 +20,7 @@ public class DaoUtilisateurGestion {
 	EntityManager em; 
 	
 	public void addUtilisateur(EntityUtilisateur entityUtilisateur) {
+		System.out.println("***DM DaoUtilisateurGestion - addUtilisateur user : " + entityUtilisateur);
 			em.persist(entityUtilisateur);
 	}
 	

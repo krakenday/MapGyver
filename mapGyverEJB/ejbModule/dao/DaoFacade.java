@@ -71,6 +71,11 @@ public class DaoFacade {
 
 		return user;
 	}
+	
+	public Utilisateur uc1CreerUserPourTest(Utilisateur user) {
+		user = daoFacadeAdmin.uc1CreerUserPourTest(user);
+		return user;
+	}
 
 	
 	//Ici commence le territoire de Djallel

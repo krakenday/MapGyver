@@ -26,6 +26,7 @@ public class DaoFacadeAdmin {
 					entityUser.getPrenom(), 
 					entityUser.getEmail());
 		}
+		System.out.println("dao.uc1Administrer.DaoFacadeAdmin - getUserById(int id) user : " + user);
 		return user;
 	}
 
@@ -40,6 +41,11 @@ public class DaoFacadeAdmin {
 					entityUser.getPrenom(), 
 					entityUser.getEmail());
 		}
+		return user;
+	}
+	
+	public Utilisateur uc1CreerUserPourTest(Utilisateur user) {
+		user = daoAdmin.uc1CreerUserPourTest(user);
 		return user;
 	}
 

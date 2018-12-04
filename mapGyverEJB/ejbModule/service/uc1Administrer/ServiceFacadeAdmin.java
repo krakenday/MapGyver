@@ -24,5 +24,10 @@ public class ServiceFacadeAdmin {
 		Utilisateur user = daoFacade.getUserByEmail(email);
 		return user;
 	}
+	
+	public Utilisateur uc1CreerUserPourTest(Utilisateur user) {
+		user = daoFacade.uc1CreerUserPourTest(user);
+		return user;
+	}
 
 }
