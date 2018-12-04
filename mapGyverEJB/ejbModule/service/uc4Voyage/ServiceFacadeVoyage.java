@@ -36,7 +36,7 @@ public class ServiceFacadeVoyage {
 		serviceVoyage.deleteVoyage(id);
 	}
 
-	public Voyage getVoyageById(int id) {
+	public Voyage getVoyageById(int id) throws ServiceVoyageException {
 		return serviceVoyage.getVoyageById(id);
 	}
 

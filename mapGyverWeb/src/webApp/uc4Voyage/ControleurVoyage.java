@@ -58,49 +58,88 @@ public class ControleurVoyage extends HttpServlet {
 		if (email!=null) {
 			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 			String path = request.getPathInfo();
-			doGetForSessionOK(request, response, path, utilisateur);
+			doForSessionOK(request, response, path, utilisateur);
 		} else {
-			doGetForSessionKO(request, response);
+			doForSessionKO(request, response);
 		}
 	}
 
 
-	private void doGetForSessionKO(HttpServletRequest request, HttpServletResponse response) 
+	private void doForSessionKO(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		//TODO faire page voyage "veuillez vous logger ou creer un compte"
-		doPage(request, response, "/vue/register.jsp"); 
+		response.sendRedirect(request.getContextPath()+"/mapgyver/login.jsp");
 	}
 
-	private void doGetForSessionOK(HttpServletRequest request, HttpServletResponse response, String path, Utilisateur utilisateur)
+	private void doForSessionOK(HttpServletRequest request, HttpServletResponse response, String path, Utilisateur utilisateur)
 			throws ServletException, IOException {
 		if (path == null || path.equals("/")) 	{
-			doServiceOnVoyage(request, utilisateur);
-			doAccueil(request, response);
+			//doServiceOnVoyage(request, utilisateur);
+			showPageVoyage(request, response);
+		}
+		else if (path.matches("/delete(.*)")) {
+			deleteVoyage(request, utilisateur);
+			showPageRoadBook(request, response, utilisateur);
+		}
+		else if (path.matches("/update/(.*)"))  {
+			updateVoyage(request, path);
+			showPageRoadBook(request, response, utilisateur);
 		}
 		else if (path.matches("/roadBook(.*)")) {
-			doPage(request, response, path);
+			showPage(request, response, path);
 		}
 		else {
-			doErreur(request, response);
+			try {
+				Integer id = Integer.parseInt(path.replace("/", ""));
+				setVoyageFormIdOnRequest(request, id);
+				showPageVoyage(request, response);
+			} catch (NumberFormatException e){
+				showErreur(request, response);
+			}
 		}
 	}
 
 	private void doServiceOnVoyage(HttpServletRequest request, Utilisateur utilisateur) throws ServletException, IOException {
-		if 		("create".equals(request.getParameter("todo"))) 	createVoyage(request, utilisateur);
-		else if ("update".equals(request.getParameter("todo"))) 	updateVoyage(request);
-		else if ("delete".equals(request.getParameter("todo"))) 	deleteVoyage(request);
-		else if ("deleteAll".equals(request.getParameter("todo"))) 	deleteAllVoyage();
+//		if 		("create".equals(request.getParameter("todo"))) 	createVoyage(request, utilisateur);
+//		//else if ("update".equals(request.getParameter("todo"))) 	updateVoyage(request, path);
+//		else if ("delete".equals(request.getParameter("todo"))) 	deleteVoyage(request, utilisateur);
+//		else if ("deleteAll".equals(request.getParameter("todo"))) 	deleteAllVoyage();
 	}
 
-	private void doAccueil(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		doPage(request, response, "/vue/voyages.jsp"); 
+	private void showPageVoyage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		showPage(request, response, "/vue/voyages.jsp"); 
 	}
 
-	private void doErreur(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPage(request, response, "/vue/404.jsp");
+	private void setVoyageFormIdOnRequest(HttpServletRequest request, Integer id) {
+		System.out.println(id);
+		if (id!=null) {
+			try {
+				Voyage voyage = serviceMpg.getVoyageById(id);
+				request.setAttribute("voyage", voyage);
+				System.out.println(voyage);
+			} catch (ServiceFacadeExceptionVoyage e) {
+				request.setAttribute("probleme", ControleurVoyageMsg.ERROR_GET.getSolution() 
+						+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
+			}
+		}
 	}
 
-	private void doPage(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
+	private void showPageRoadBook(HttpServletRequest request, HttpServletResponse response, Utilisateur utilisateur) throws ServletException, IOException{
+		try {
+			RoadBook roadBook = getOrCreateUserRoadBook(utilisateur);
+			request.setAttribute("roadBook", roadBook);
+		} catch (ServiceFacadeExceptionVoyage e) {
+			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_GET.getSolution() 
+					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
+		}
+		showPage(request, response, "/vue/voyages/roadBook.jsp");
+	}
+
+	private void showErreur(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		showPage(request, response, "/vue/404.jsp");
+	}
+
+	private void showPage(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
 		RequestDispatcher 	disp = request.getRequestDispatcher(path); 
 		disp.forward(request,response);	
 	}
@@ -111,11 +150,8 @@ public class ControleurVoyage extends HttpServlet {
 			RoadBook roadBook= getOrCreateUserRoadBook(utilisateur);
 			Voyage voyage = new FormVoyage(request).createVoyage();
 			roadBook.getVoyages().add(voyage);
-			System.out.println("roadBook : " + roadBook);
 			roadBook = serviceMpg.updateRoadBook(roadBook);
-			//voyage = serviceMpg.createVoyage(voyage);
 			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_INSERT.getMsg());
-			//+" : #"+ voyage.getId() +" - "+ voyage.getNom());
 		} catch (ExceptionServiceVoyage e) {
 			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
 					+" *Err. "+ e.getMessage());
@@ -136,11 +172,12 @@ public class ControleurVoyage extends HttpServlet {
 		return roadBook;
 	}
 
-	private void updateVoyage(HttpServletRequest request)  {
+	private void updateVoyage(HttpServletRequest request, String path)  {
 		System.out.println("update");
 		try {
+			int id = Integer.parseInt(path.replace("/update/", "").replace("/", ""));
 			Voyage voyage = new FormVoyage(request).createVoyage();
-			voyage.setId(voyage.getNbParticipant());
+			voyage.setId(id);
 			serviceMpg.updateVoyage(voyage);
 			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_UPDATE.getMsg() 
 					+" : "+ voyage.getNom());
@@ -153,20 +190,19 @@ public class ControleurVoyage extends HttpServlet {
 		}
 	}
 
-	private void deleteVoyage(HttpServletRequest request) {
+	private void deleteVoyage(HttpServletRequest request, Utilisateur utilisateur) {
 		System.out.println("delete");
 		try {
-			//Voyage voyage = new FormVoyage(request).createVoyage();
-			serviceMpg.deleteVoyage(Integer.parseInt(request.getParameter("id")));
-			//			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_DELETE.getMsg() 
-			//					+" : "+ voyage.getNom());
-			//		} catch (ExceptionServiceVoyage e) {
-			//			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
-			//					+" *Err. "+ e.getMessage());
+			RoadBook roadBook= getOrCreateUserRoadBook(utilisateur);
+			roadBook.removeVoyageById(Integer.parseInt(request.getParameter("id")));
+			roadBook = serviceMpg.updateRoadBook(roadBook);
+			serviceMpg.deleteVoyage(Integer.parseInt(request.getParameter("id"))); 
+			request.setAttribute("roadBook",roadBook);
+			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_DELETE.getMsg());
 		} catch (ServiceFacadeExceptionVoyage e) {
 			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_DELETE.getSolution() 
 					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
-		}
+		} 
 	}
 
 	private void deleteAllVoyage() {

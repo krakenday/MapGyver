@@ -46,7 +46,6 @@
 					<li class="breadcrumb-item active">Voyage</li>
 				</ol>
 				<jsp:include page="/WEB-INF/include/voyages/main.jsp" />
-
 			</div>
 			<!-- /.container-fluid -->
 

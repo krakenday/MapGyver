@@ -1,4 +1,11 @@
+/**
+ * Script Javascript de voyages/roadBook.jsp
+ */
 
+/* 
+ * *****************************************************************************
+ * fonction de selection toutes les checkBox 
+ */
 $(document).ready(function(){
   // Activate tooltip
   $('[data-toggle="tooltip"]').tooltip();
@@ -20,5 +27,17 @@ $(document).ready(function(){
     if(!this.checked){
       $("#selectAll").prop("checked", false);
     }
+  });
+});
+
+/*
+ *******************************************************************************
+ * fonction des boutons supprimer 
+ * pour transferer l'id du voyage a la fenetre modal 
+ */
+$(function(){
+  $(".delete").click(function(){
+     $('#id').val($(this).data('id'));
+    $("#deleteModalVoyages").modal("show");
   });
 });

@@ -200,9 +200,13 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public Voyage getVoyageById(int id) {
-		//		return serviceFacadeVoyage.getVoyageById(id);
-		return null;
+	public Voyage getVoyageById(int id) throws ServiceFacadeExceptionVoyage {
+		try {
+			return serviceFacadeVoyage.getVoyageById(id);
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(),
+					e.getMessage());
+		}
 	}
 
 	@Override

@@ -169,8 +169,13 @@ public class DaoFacade {
 		}
 	}
 
-	public Voyage getVoyageById(int id) {
-		return daoFacadeVoyage.getVoyageById(id);
+	public Voyage getVoyageById(int id) throws DaoFacadeExceptionVoyage {
+		try {
+			return daoFacadeVoyage.getVoyageById(id);
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					ZONE_EXCEPTION_MSG+ e.getMessage());
+		}
 	}
 
 	public RoadBook createRoadBook(RoadBook roadBook) throws DaoFacadeExceptionVoyage {

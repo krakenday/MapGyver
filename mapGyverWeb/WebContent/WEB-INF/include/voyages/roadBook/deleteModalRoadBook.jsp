@@ -4,7 +4,7 @@
 <div id="deleteModalRoadBook" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form  method="get" action="<%=request.getContextPath()%>/mapgyver/voyages/roadBook/delete/<%=roadBook.getId()%>">
+			<form  method="post" action="<%=request.getContextPath()%>/mapgyver/voyages/roadBook/delete/<%=roadBook.getId()%>">
 				<div class="modal-header">
 					<h4 class="modal-title">Supprimer RoadBook</h4>
 					<button type="button" class="close" data-dismiss="modal"

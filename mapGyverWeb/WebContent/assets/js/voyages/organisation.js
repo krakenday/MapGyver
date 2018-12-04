@@ -57,11 +57,9 @@ function initAll() {
  * init message erreur
  */
 function initForm() {
-//	titre.style.backgroundColor 	= okColor; 
-//	depart.style.backgroundColor 	= okColor; 
-//	nbParts.style.backgroundColor 	= okColor;
-	$(".alert").alert('close');
 	formCRUD.reset();
+/*Fermer les fenetres alerte de success et probleme*/
+	$(".alert").alert('close');
 }
 //
 ///*

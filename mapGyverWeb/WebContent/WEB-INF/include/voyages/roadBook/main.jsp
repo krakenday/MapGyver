@@ -53,8 +53,7 @@
 								</tr>
 							</thead>
 							<tbody>
-<%
-										Iterator<Voyage> iterVoyage = roadBook.getVoyages().iterator();
+								<%	Iterator<Voyage> iterVoyage = roadBook.getVoyages().iterator();
 										while (iterVoyage.hasNext()) {
 											Voyage voyage = iterVoyage.next();
 											String id 		= Integer.toString(voyage.getId());
@@ -74,10 +73,10 @@
 									<td><%=date%></td>
 									<td><%=nbParts%></td>
 									<td><a
-										href="<%=request.getContextPath()%>/mapgyver/voyages?id=<%=id%>"
+										href="<%=request.getContextPath()%>/mapgyver/voyages/<%=id%>"
 										class="edit"><i class="material-icons"
 											data-toggle="tooltip" title="Modifier">&#xE254;</i></a> <a
-										href="#deleteModalVoyages" class="delete" data-toggle="modal"><i
+										href="" data-id="<%=id%>" class="delete" data-toggle="modal"><i
 											class="material-icons" data-toggle="tooltip"
 											title="Supprimer">&#xE872;</i></a></td>
 								</tr>

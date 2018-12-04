@@ -2,6 +2,7 @@ package business.uc4Voyage;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import business.uc8Utilisateur.Utilisateur;
 
@@ -70,6 +71,14 @@ public class RoadBook implements Serializable{
 
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
+	}
+	
+	public void removeVoyageById(int id) {
+		Iterator<Voyage> iterVoyage = voyages.iterator();
+		while (iterVoyage.hasNext()) {
+			Voyage voyage = iterVoyage.next();
+			if (voyage.getId()==id) iterVoyage.remove();
+		}
 	}
 	
 	@Override

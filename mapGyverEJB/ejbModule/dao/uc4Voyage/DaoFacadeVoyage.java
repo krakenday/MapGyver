@@ -67,9 +67,13 @@ public class DaoFacadeVoyage {
 		}
 	}
 
-	public Voyage getVoyageById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Voyage getVoyageById(int id) throws DaoVoyageException {
+		try {
+			return factoryEntity.createFromEntity(daoGenericVoyage.find(id, EntityVoyage.class));
+		} catch (DaoVoyageException e) {
+			throw new DaoVoyageException(e.getCode(),
+					ZONE_EXCEPTION_MSG+ e.getMessage());
+		}
 	}
 
 	public RoadBook createRoadBook(RoadBook roadBook) throws DaoVoyageException {

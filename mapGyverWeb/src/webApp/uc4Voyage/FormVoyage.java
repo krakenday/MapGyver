@@ -25,7 +25,7 @@ public class FormVoyage {
 	}
 	
 	private String controlTitre() throws ExceptionServiceVoyage {
-		if (request.getParameter("titre").trim().isEmpty()) 
+		if (request.getParameter("titre").isBlank()) 
 			throw new ExceptionServiceVoyage(ExceptionServiceVoyage.ERROR_MSG.TITRE);
 		return request.getParameter("titre");
 	}

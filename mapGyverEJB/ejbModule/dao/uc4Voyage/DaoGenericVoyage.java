@@ -75,8 +75,14 @@ public class DaoGenericVoyage {
 		return entity;
 	}
 
-	public <T> T find(Class<T> classe, int id) {
+	public <T> T find(int id, Class<T> classe) throws DaoVoyageException {
+		String daoExceptionMsg = ZONE_EXCEPTION_MSG + ".Find -> ";
+		try {
 		return em.find(classe,id);
+		} catch (PersistenceException e) {
+			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_INEXISTANT.getId(),
+					daoExceptionMsg + DaoVoyageErrorMessage.ERR_INEXISTANT.getMsg());
+		}
 	}
 
 	public <T> T getOneToOneBySecondClassId(String className, 

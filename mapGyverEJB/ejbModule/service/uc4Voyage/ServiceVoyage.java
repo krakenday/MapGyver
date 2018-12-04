@@ -49,8 +49,12 @@ public class ServiceVoyage {
 		}
 	}
 
-	public Voyage getVoyageById(int id) {
-		return daoFacade.getVoyageById(id);
+	public Voyage getVoyageById(int id) throws ServiceVoyageException {
+		try {
+			return daoFacade.getVoyageById(id);
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 	}
 
 	public RoadBook createRoadBook(RoadBook roadBook) throws ServiceVoyageException {
