@@ -28,6 +28,7 @@ public class DaoFacadeJouer {
 	 */
 
 	public void createReponseElire(ReponseElire reponseElire) throws ConvertionException {
+		System.out.println("je suis bien dans la face daoJouer");
 		Convertisseur convert = Convertisseur.getInstance();
 		Convertisseur.ReponseMetierToEntity<Reponse> conversion = convert.new ReponseMetierToEntity<>();
 		ReponseElireEntity reponseEntity = (ReponseElireEntity) conversion.reponseMetierToEntity(reponseElire);

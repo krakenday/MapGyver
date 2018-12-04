@@ -50,7 +50,7 @@ public class ServiceFacade implements IServiceFacade {
 	private ServiceFacadeJouer serviceFacadeJouer;
 
 	/*
-	 * UC3_Partager 
+	 * UC3_Partager
 	 */
 	@EJB
 	private ServiceFacadePartager serviceFacadePartager;
@@ -77,7 +77,7 @@ public class ServiceFacade implements IServiceFacade {
 
 	@Override
 	public Utilisateur read(int id) {
-		return serviceFacadeUtilisateur.read(id) ;
+		return serviceFacadeUtilisateur.read(id);
 	}
 
 	@Override
@@ -99,7 +99,8 @@ public class ServiceFacade implements IServiceFacade {
 	@Override
 	public Utilisateur creerUtilisateur(String nom, String prenom, String adresse, String email, String telephone,
 			LocalDate dateInscrip, LocalDate dateNaiss, Password motDePasse) {
-		return serviceFacadeUtilisateur.creerUtilisateur(nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss, motDePasse);
+		return serviceFacadeUtilisateur.creerUtilisateur(nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss,
+				motDePasse);
 	}
 
 	// Bloc service Groupe
@@ -144,7 +145,7 @@ public class ServiceFacade implements IServiceFacade {
 		serviceFacadeUtilisateur.deleteListeDiff(id);
 	}
 
-	// Catalogue 
+	// Catalogue
 	@Override
 	public List<Utilisateur> listerTousLesUtilisateurs() {
 		return serviceFacadeUtilisateur.listerTousLesUtilisateurs();
@@ -167,14 +168,13 @@ public class ServiceFacade implements IServiceFacade {
 		try {
 			serviceFacadeVoyage.createVoyage(voyage);
 		} catch (ServiceVoyageException e) {
-			throw new ServiceFacadeExceptionVoyage(e.getCode(),
-					e.getMessage());
+			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
 		}
 	}
 
 	@Override
 	public List<Voyage> readVoyageOrderByID() {
-		//return serviceFacadeVoyage.readVoyageOrderByID();	
+		// return serviceFacadeVoyage.readVoyageOrderByID();
 		return null;
 	}
 
@@ -183,9 +183,8 @@ public class ServiceFacade implements IServiceFacade {
 		try {
 			serviceFacadeVoyage.updateVoyage(voyage);
 		} catch (ServiceVoyageException e) {
-			throw new ServiceFacadeExceptionVoyage(e.getCode(),
-					e.getMessage());
-		}	
+			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
+		}
 	}
 
 	@Override
@@ -193,70 +192,69 @@ public class ServiceFacade implements IServiceFacade {
 		try {
 			serviceFacadeVoyage.deleteVoyage(id);
 		} catch (ServiceVoyageException e) {
-			throw new ServiceFacadeExceptionVoyage(e.getCode(),
-					e.getMessage());
-		}		
+			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
+		}
 	}
 
 	@Override
 	public Voyage findVoyagebyID(int id) {
-		//		return serviceFacadeVoyage.findVoyagebyID(id);
+		// return serviceFacadeVoyage.findVoyagebyID(id);
 		return null;
 	}
 
 	@Override
 	public void createRoadBook(RoadBook roadBook) {
-		//		serviceFacadeVoyage.createRoadBook(roadBook);	
+		// serviceFacadeVoyage.createRoadBook(roadBook);
 	}
 
 	@Override
 	public List<RoadBook> readRoadBookOrderByID() {
-		//		return serviceFacadeVoyage.readRoadBookOrderByID();
+		// return serviceFacadeVoyage.readRoadBookOrderByID();
 		return null;
 	}
 
 	@Override
 	public void updateRoadBook(RoadBook roadBook) {
-		//		serviceFacadeVoyage.updateRoadBook(roadBook);	
+		// serviceFacadeVoyage.updateRoadBook(roadBook);
 	}
 
 	@Override
 	public void deleteRoadBook(int id) {
-		//		serviceFacadeVoyage.deleteRoadBook(id);
+		// serviceFacadeVoyage.deleteRoadBook(id);
 
 	}
 
 	@Override
 	public RoadBook findRoadBookbyID(int id) {
-		//		return serviceVoyage.findRoadBookbyID(id);
+		// return serviceVoyage.findRoadBookbyID(id);
 		return null;
 	}
 
 	@Override
 	public void createPOInteret(PointInteret pointInteret) {
-		//		serviceVoyage.createPOInteret(pointInteret);		
+		// serviceVoyage.createPOInteret(pointInteret);
 	}
 
 	@Override
 	public List<PointInteret> readPOInteretOrderByID() {
-		//		return serviceVoyage.readPOInteretOrderByID();
+		// return serviceVoyage.readPOInteretOrderByID();
 		return null;
 	}
 
 	@Override
 	public void updatePOInteret(PointInteret pointInteret) {
-		//		serviceVoyage.updatePOInteret(pointInteret);	
+		// serviceVoyage.updatePOInteret(pointInteret);
 
 	}
 
 	@Override
 	public void deletePOInteret(int id) {
-		//		serviceVoyage.deletePOInteret(id);
+		// serviceVoyage.deletePOInteret(id);
 	}
 
 	@Override
 	public PointInteret findPOInteretByID(int id) {
-		//		return serviceVoyage.findPOInteretByID(id);
+		// return serviceVoyage.findPOInteretByID(id);
 		return null;
 	}
 
@@ -265,7 +263,6 @@ public class ServiceFacade implements IServiceFacade {
 	// ********************************************
 	// AlexB - UC6 Jouer
 	// ********************************************
-
 
 	/**
 	 * Permet de creer une reponseElire en Bdd
@@ -277,7 +274,7 @@ public class ServiceFacade implements IServiceFacade {
 	public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao {
 
 		serviceFacadeJouer.createReponseElire(reponseElire);
-		System.out.println("tout va bien");
+		System.out.println("tout va bien!!!!");
 	}
 	// ***** Fin AlexB - UC6 Jouer
 
@@ -286,7 +283,8 @@ public class ServiceFacade implements IServiceFacade {
 	 */
 	@Override
 	public void addDescription(Description description) throws UserException {
-		if (description == null) throw new UserException(Erreur.DESC_NULL);
+		if (description == null)
+			throw new UserException(Erreur.DESC_NULL);
 		try {
 			serviceFacadePartager.addDescription(description);
 		} catch (ViolationPersistenceException e) {

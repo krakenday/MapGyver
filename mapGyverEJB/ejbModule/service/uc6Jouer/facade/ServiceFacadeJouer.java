@@ -32,6 +32,7 @@ public class ServiceFacadeJouer {
 	 * @throws ExceptionSurDao
 	 */
 	public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao {
+		System.out.println("je suis dans la ServiceFacadeJouer");
 		daoFacade.createReponseElire(reponseElire);
 	}
 }
