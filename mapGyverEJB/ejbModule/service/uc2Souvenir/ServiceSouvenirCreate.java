@@ -60,7 +60,7 @@ public class ServiceSouvenirCreate {
 	    	 String clientRegion = "eu-west-3";
 	         String bucketName = "fr.mapgyver";
 	         
-	    	 BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAJN3HHPQOWMQIZ3BQ", "7+qOb+3i7YNNCRW04nL3g5mubF6vnWvueVasf5W6");
+	    	 BasicAWSCredentials awsCreds = new BasicAWSCredentials("", "");
 	    	 AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
 	    			 					.withRegion(clientRegion)
 	    			 					.withCredentials(new AWSStaticCredentialsProvider(awsCreds))
