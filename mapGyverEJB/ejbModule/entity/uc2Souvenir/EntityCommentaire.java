@@ -10,9 +10,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="comentaire")
 public class EntityCommentaire extends EntitySouvenir {
-	
-	
-
 
 	private static final long serialVersionUID = 1L;
 	

@@ -29,6 +29,7 @@ public abstract class EntitySouvenir implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@Column(name="IDD")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	@Column(name="ddate_enre", length=20, nullable=false)
