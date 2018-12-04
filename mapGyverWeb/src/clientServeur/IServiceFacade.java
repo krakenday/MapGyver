@@ -1,5 +1,6 @@
 package clientServeur;
 
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -7,8 +8,10 @@ import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Password;
 import business.uc8Utilisateur.Utilisateur;
+import client.serveur.partager.exception.UserException;
 import service.exception.uc1Administrer.ServiceInexistantException;
-
+import business.uc2Souvenir.Souvenir;
+import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
@@ -17,21 +20,37 @@ import clientServeur.exception.ServiceFacadeExceptionVoyage;
 
 
 public interface IServiceFacade {
+	
+	
+	// ********************************************
+	// Alejandro - UC2 Souvenir
+	// ********************************************
+	
+	public void createSouvenir(Souvenir souvenir);
+	
+	
+	
+	// *****  Fin Alejandro - UC2 Souvenir
+	
 
 	// ********************************************
-	//  DM - UC1 Administrer
+	// DM - UC1 Administrer
 	// ********************************************
 
 	/**
 	 * Retourne un Utilisateur a partir de son id
-	 * @throws ServiceInexistantException 
+	 * 
+	 * @throws ServiceInexistantException
 	 */
-	public Utilisateur getUserById(int id) 			throws ServiceInexistantException;
+	public Utilisateur getUserById(int id) throws ServiceInexistantException;
+
 	/**
 	 * Retourne un Utilisateur a partir de son email
-	 * @throws ServiceInexistantException 
+	 * 
+	 * @throws ServiceInexistantException
 	 */
 	public Utilisateur getUserByEmail(String email) throws ServiceInexistantException;
+
 	
 	// *****  Fin DM - UC1 Administrer
 	
@@ -103,5 +122,22 @@ public interface IServiceFacade {
 	public void 				deletePOInteret(int id);
 	public PointInteret 		findPOInteretByID(int id);
 	
+	// ********************************************
+	// AlexB - UC6 Jouer
+	// ********************************************
+
+	//TODO Decomenter
+	//public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao;
+
+
+	// ***** Fin AlexB - UC6 Jouer
 	
+	// ********************************************
+	// AlexM - Description
+	// ********************************************
+	public void addDescription(Description description) throws UserException;
+
+	public void updateDescription(Description description);
+	
+
 }

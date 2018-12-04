@@ -1,5 +1,6 @@
 package webApp.uc2Souvenir;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 
@@ -33,10 +34,11 @@ public class ControlesAjouter {
 		Voyage voyage;
 		Commentaire commentaire;
 		Souvenir souvenir;
+		byte[] content;
 		int id;
 		
 		nomPhoto 	= controlNomPhoto	(nomPhoto);
-		fileContent = controlFileContent(fileContent);
+		content 	= controlFileContent(fileContent);
 		fileLength 	= controlFileLength	(fileLength);
 		comm 		= controlCommentaire(comm);
 		id			= controlIdVoyage	(idVoyage);
@@ -46,7 +48,7 @@ public class ControlesAjouter {
 		
 		commentaire = new Commentaire(comm);
 		
-		souvenir = new Photo(LocalDate.now(), voyage, nomPhoto, fileContent, commentaire, fileLength);
+		souvenir = new Photo(LocalDate.now(), voyage, nomPhoto, content, commentaire, fileLength);
 		
 		return souvenir;
 	}
@@ -70,9 +72,17 @@ public class ControlesAjouter {
 		return fileLength;
 	}
 
-	private InputStream controlFileContent(InputStream fileContent) {
-		// TODO Auto-generated method stub
-		return fileContent;
+	//Transforme l'InputStream en array Byte
+	private byte[] controlFileContent(InputStream fileContent) {
+		byte[] content = null;
+		try {
+			content = fileContent.readAllBytes();
+		} catch (IOException e) {
+			System.out.println("*************ControlesAjouter-controlFileContent: dans le catch !");
+			e.printStackTrace();
+		}
+		
+		return content;
 	}
 
 	private String controlNomPhoto(String nomPhoto) {

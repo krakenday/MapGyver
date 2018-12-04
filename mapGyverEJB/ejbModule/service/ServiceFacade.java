@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import business.uc2Souvenir.Souvenir;
 import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
@@ -24,6 +25,7 @@ import service.exception.uc1Administrer.ServiceInexistantException;
 import service.exception.uc4Voyage.ServiceVoyageException;
 import service.exception.uc6Jouer.ExceptionSurDao;
 import service.uc1Administrer.ServiceFacadeAdmin;
+import service.uc2Souvenir.ServiceFacadeSouvenir;
 import service.uc3Partager.ServiceFacadePartager;
 import service.uc4Voyage.ServiceFacadeVoyage;
 import service.uc6Jouer.facade.ServiceFacadeJouer;
@@ -48,6 +50,9 @@ public class ServiceFacade implements IServiceFacade {
 
 	@EJB
 	private ServiceFacadeJouer serviceFacadeJouer;
+	
+	@EJB
+	private ServiceFacadeSouvenir serviceFacadeSouvenir;
 
 	/*
 	 * UC3_Partager 
@@ -306,5 +311,21 @@ public class ServiceFacade implements IServiceFacade {
 			System.out.println("SERVICE_FACADE >>> updateDescription(Description description) - Erreur");
 		}
 	}
+
+	
+	// ********************************************
+	// AlexB - UC2 Souvenir
+	// ********************************************
+	
+	@Override
+	public void createSouvenir(Souvenir souvenir) {
+		serviceFacadeSouvenir.createSouvenir(souvenir);
+		
+	}
+	
+	
+	
+	
+	// ***** Fin Alejandro - UC2 Souvenir
 
 }

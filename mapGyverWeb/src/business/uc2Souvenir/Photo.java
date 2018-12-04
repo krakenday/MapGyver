@@ -9,20 +9,21 @@ package business.uc2Souvenir;
  * 
  */
 
-import java.io.InputStream;
 import java.time.LocalDate;
-
 import business.uc4Voyage.Voyage;
+
 
 //TODO must implements "Partageable"
 
 public class Photo extends Souvenir {
 	
-	private String nom;
-	private String url;
-	private InputStream fileContent;
+	private static final long serialVersionUID = 1L;
+	
+	private String 		nom;
+	private String 		url;
+	private byte[] 		fileContent;
 	private Commentaire commentaire;
-	private Long length;
+	private Long 		length;
 	
 	
 	/**
@@ -36,7 +37,7 @@ public class Photo extends Souvenir {
 	public Photo(	LocalDate 	dateEnregistre,
 					Voyage 		voyage,
 					String 		nom,
-					InputStream fileContent,
+					byte[] 		fileContent,
 					Commentaire commentaire,
 					Long 		length) {
 		
@@ -68,19 +69,14 @@ public class Photo extends Souvenir {
 //	}
 
 
-	
+	@Override
+	public String toString() {
+		return "Photo [nom=" + nom + ", url=" + url + "]";
+	}
 
 	public String getNom() {
 		return nom;
 	}
-
-	@Override
-	public String toString() {
-		return "Photo [nom=" + nom + ", url=" + url + ", fileContent=" + fileContent + ", commentaire=" + commentaire
-				+ ", length=" + length + "]";
-	}
-
-
 
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -95,12 +91,12 @@ public class Photo extends Souvenir {
 	}
 
 
-	public InputStream getFileContent() {
+	public byte[] getFileContent() {
 		return fileContent;
 	}
 
 
-	public void setFileContent(InputStream fileContent) {
+	public void setFileContent(byte[] fileContent) {
 		this.fileContent = fileContent;
 	}
 

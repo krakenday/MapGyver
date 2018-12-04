@@ -9,20 +9,21 @@ package business.uc2Souvenir;
  * 
  */
 
-import java.io.InputStream;
 import java.time.LocalDate;
-
 import business.uc4Voyage.Voyage;
+
 
 //TODO must implements "Partageable"
 
 public class Photo extends Souvenir {
 	
-	private String nom;
-	private String url;
-	private InputStream fileContent;
+	private static final long serialVersionUID = 1L;
+	
+	private String 		nom;
+	private String 		url;
+	private byte[] 		fileContent;
 	private Commentaire commentaire;
-	private Long length;
+	private Long 		length;
 	
 	
 	/**
@@ -34,9 +35,9 @@ public class Photo extends Souvenir {
 	 * @param length : longueur en bytes du fichier, necessaire pour utilisation de Amazon S3
 	 */
 	public Photo(	LocalDate 	dateEnregistre,
-					Voyage voyage,
+					Voyage 		voyage,
 					String 		nom,
-					InputStream fileContent,
+					byte[] 		fileContent,
 					Commentaire commentaire,
 					Long 		length) {
 		
@@ -90,12 +91,12 @@ public class Photo extends Souvenir {
 	}
 
 
-	public InputStream getFileContent() {
+	public byte[] getFileContent() {
 		return fileContent;
 	}
 
 
-	public void setFileContent(InputStream fileContent) {
+	public void setFileContent(byte[] fileContent) {
 		this.fileContent = fileContent;
 	}
 

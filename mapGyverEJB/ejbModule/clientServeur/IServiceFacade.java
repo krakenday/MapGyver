@@ -14,6 +14,7 @@ import business.uc8Utilisateur.Utilisateur;
 import client.serveur.partager.exception.UserException;
 import service.exception.uc1Administrer.ServiceInexistantException;
 import service.exception.uc6Jouer.ExceptionSurDao;
+import business.uc2Souvenir.Souvenir;
 import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
@@ -23,6 +24,18 @@ import clientServeur.exception.ServiceFacadeExceptionVoyage;
 
 
 public interface IServiceFacade {
+	
+	
+	// ********************************************
+	// Alejandro - UC2 Souvenir
+	// ********************************************
+	
+	public void createSouvenir(Souvenir souvenir);
+	
+	
+	
+	// *****  Fin Alejandro - UC2 Souvenir
+	
 
 	// ********************************************
 	// DM - UC1 Administrer

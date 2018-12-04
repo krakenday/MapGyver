@@ -1,15 +1,12 @@
 package webApp.uc2Souvenir;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -19,12 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import business.uc2Souvenir.Souvenir;
+import clientServeur.IServiceFacade;
+import utilitaire.Constantes;
 
-//import org.apache.commons.fileupload.FileItem;
-//import org.apache.commons.fileupload.FileUploadException;
-//import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-//import org.apache.commons.fileupload.servlet.ServletFileUpload;
-//import org.apache.commons.io.FilenameUtils;
 
 /**
  * Servlet en charge du traitement des donnees recus depuis 
@@ -39,6 +33,23 @@ import business.uc2Souvenir.Souvenir;
 @MultipartConfig
 public class ControleurSouvenirsAjouter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private IServiceFacade iServiceFacade;
+	
+	
+	@Override
+	public void init() throws ServletException {
+		try {
+			Context context = new InitialContext();
+
+			iServiceFacade = (IServiceFacade) context.lookup(Constantes.LOOKUP_SOUVENIR_AJOUTER);
+
+		} catch (NamingException e) {
+			e.printStackTrace();
+			// TODO exception
+		}
+
+	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
@@ -84,6 +95,9 @@ public class ControleurSouvenirsAjouter extends HttpServlet {
 		souvenir = controles.controleDesParametres(nomPhoto, fileContent, contentLenght, comm, idVoyage);
 		
 		System.out.println("****************ControlSouvenirAjouter- Valeur SOUVENIR =" + souvenir);
+		
+		//appel de mon service
+		iServiceFacade.createSouvenir(souvenir);
 		
 	}
 	

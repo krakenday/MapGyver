@@ -1,5 +1,7 @@
 package business.uc2Souvenir;
 
+import java.io.Serializable;
+
 /**
  * Un Souvenir est soit un Commentaire, soit une Photo
  */
@@ -8,7 +10,9 @@ import java.time.LocalDate;
 
 import business.uc4Voyage.Voyage;
 
-public abstract class Souvenir {
+public abstract class Souvenir implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private int 		id;
 	private LocalDate 	dateEnregistre;
@@ -29,13 +33,12 @@ public abstract class Souvenir {
 	public Souvenir() {
 	}
 
-	
-	
 	@Override
 	public String toString() {
-		return "Souvenir [id=" + id + ", dateEnregistre=" + dateEnregistre + ", voyage=" + voyage + "]";
+		return "Souvenir [id=" + id + ", dateEnregistre=" + dateEnregistre + "]";
 	}
 
+	
 	public int getId() {
 		return id;
 	}
