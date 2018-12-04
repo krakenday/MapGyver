@@ -81,6 +81,10 @@ public class RoadBook implements Serializable{
 		}
 	}
 	
+	public void addVoyage(Voyage voyage) {
+		voyages.add(voyage);
+	}
+	
 	@Override
 	public String toString() {
 		return "RoadBook [id=" + id + ", voyages=" + voyages + ", utilisateur=" + utilisateur + "]";

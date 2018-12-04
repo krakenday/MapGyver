@@ -137,7 +137,7 @@ public class DaoFacadeVoyage {
 		try {
 			EntityUtilisateur entityUtilisateur = daoAdmin.getUserByEmail(utilisateur.getEmail());
 			EntityRoadBook entityRoadBook = daoGenericVoyage.getOneToOneBySecondClassId(
-					"EntityRoadBook", "entityUtilisateur", entityUtilisateur.getId());
+					"EntityRoadBook", "entityUtilisateur", "id", entityUtilisateur.getId());
 			System.out.println(entityRoadBook);
 			if (entityRoadBook!=null) roadBook = factoryEntity.createFromEntity(entityRoadBook);
 		} catch (DaoInexistantException e) {

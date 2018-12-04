@@ -11,14 +11,11 @@ import javax.persistence.PersistenceException;
 import dao.DaoParam;
 import dao.exception.uc4Voyage.DaoVoyageErrorMessage;
 import dao.exception.uc4Voyage.DaoVoyageException;
-import entity.uc4Voyage.EntityRoadBook;
-import entity.uc8Utilisateur.EntityUtilisateur;
 
 @Singleton
 @LocalBean
 public class DaoGenericVoyage {
 
-	//	@PersistenceContext(unitName = "IDMhibernateXE")
 	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
 	private EntityManager em;
 
@@ -27,11 +24,8 @@ public class DaoGenericVoyage {
 	public <T> T create(T entity) throws DaoVoyageException {
 		String daoExceptionMsg = ZONE_EXCEPTION_MSG + ".Insert -> ";
 		try {
-			System.out.println("daoVoyage create " + entity);
 			em.persist(entity);
-			System.out.println("em.persist(entity) ok");
 			em.flush();
-			System.out.println("em.flush() ok");
 		}
 		catch (PersistenceException e) {
 			Throwable t = e.getCause();
@@ -56,6 +50,7 @@ public class DaoGenericVoyage {
 	public <T> void delete(int id, Class<T> classe) throws DaoVoyageException {
 		String daoExceptionMsg = ZONE_EXCEPTION_MSG + ".Delete -> ";
 		try {
+			if (em.find(classe, id)==null) throw new PersistenceException();
 			em.remove(em.find(classe, id));
 		} catch (PersistenceException e) {
 			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_DELETE.getId(),
@@ -78,21 +73,23 @@ public class DaoGenericVoyage {
 	public <T> T find(int id, Class<T> classe) throws DaoVoyageException {
 		String daoExceptionMsg = ZONE_EXCEPTION_MSG + ".Find -> ";
 		try {
-		return em.find(classe,id);
+			if (em.find(classe,id)==null) throw new PersistenceException();
 		} catch (PersistenceException e) {
 			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_INEXISTANT.getId(),
 					daoExceptionMsg + DaoVoyageErrorMessage.ERR_INEXISTANT.getMsg());
 		}
+		return em.find(classe,id);
 	}
 
-	public <T> T getOneToOneBySecondClassId(String className, 
-			String joinAttributeName, int idSecondClasse) {
-		T t=null;
+	public <T> T getOneToOneBySecondClassId(String className, String joinAttributeName, 
+			String idSecondClasseName, int idSecondClasse) {
+		T entityT=null;
 		@SuppressWarnings("unchecked")
-		List<T> l = em.createQuery("select f from "+className+" f right join f."
-				+ joinAttributeName +" s where s.id=" + idSecondClasse).getResultList();
-		if (l !=null) t=l.get(0);
-		return t;
+		List<T> listeEntityT = em.createQuery("select o from "+className +" o right join o."
+				+ joinAttributeName +" s where s."+ idSecondClasseName +"=" + idSecondClasse)
+			.getResultList();
+		if (listeEntityT !=null) entityT=listeEntityT.get(0);
+		return entityT;
 	}
 
 }
