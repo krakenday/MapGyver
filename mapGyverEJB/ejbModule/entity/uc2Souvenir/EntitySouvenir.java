@@ -13,11 +13,11 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 /**
- * Un Souvenir est soit un Commentaire, soit une Photo
- *  choix de la strategie: Une table par classe concrete
- * + requetes possibles sur EntitySouvenir ce qui permettra
- * de pouvoir retrouver facilement des souvenirs ayant une meme
- * date par exemple.
+ * Un Souvenir est soit un Commentaire, soit une Photo, soit 
+ * une photo avec un commentaire choix de la strategie: Une 
+ * table par classe concrete + requetes possibles sur EntitySouvenir
+ * ce qui permettra de pouvoir retrouver facilement des souvenirs
+ * ayant une meme date par exemple.
  */
 
 

@@ -65,7 +65,7 @@ public class ControleurSouvenirsAjouter extends HttpServlet {
 		InputStream 		fileContent;
 		Long 				contentLenght;
 		String				comm;
-		String					idVoyage;
+		String				idVoyage;
 		
 		filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 		nomPhoto = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
