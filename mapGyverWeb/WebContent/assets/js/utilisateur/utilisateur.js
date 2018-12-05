@@ -1,10 +1,10 @@
 /**
- * Script Javascript de la page partageable
+ * Script utilisateur
  */
 window.onload = initAll();
 
 /*
- * Initialise les différentes function
+ * Initialise les différentes functions
  */
 function initAll() {
 	afficherAgeUtilisateur();
@@ -37,12 +37,10 @@ function afficherAgeUtilisateur() {
     	 htmlDateNaiss.innerHTML= age + " ans";
      else if(age <= 0)
     	 htmlDateNaiss.innerHTML= "Tiens pas encore 1 an!!"
-	
 }
 
-
 /**
-* Script d'affichage du bouton de suppression d'un utlisateur
+* Script d'affichage du bouton de suppression d'un utilisateur
 */
 function supCompte() {
       var confirmSupp = document.getElementById("confirmSupp");

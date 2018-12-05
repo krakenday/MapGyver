@@ -2,6 +2,7 @@
 jQuery.validator.addMethod(
   "regex",
    function(value, element, regexp) {
+	  console.log("je rentre dans le methode regex");
        if (regexp.constructor != RegExp)
           regexp = new RegExp(regexp);
        else if (regexp.global)
@@ -72,6 +73,35 @@ $().ready(function() {
 	});
 });
   	
+// Formulaire de modification d'utilisateur
+$().ready(function() {
+	// valider formulaire
+	console.log("formulaire modifier")
+	$("#modifierUtilisateur").validate({
+		rules: {
+			inputNom: "required",
+			inputPrenom: "required",
+            inputTelephone: {
+            	required: true,
+            	"regex": /^(\+33\.|0)[0-9]{9}$/
+            },
+            inputAdresse: "required",             
+            inputVille: "required",
+            inputPays: "required"
+		},
+		messages: {
+			inputNom: "Veuillez entrez votre nom",
+			inputPrenom: "Veuillez entrez votre pr&eacute;nom",
+	        inputTelephone: {
+	            required: "Veuillez entrez votre numéro de téléphone",
+	            number: "Le numéro de téléphone c'est seulement des chiffre, pas besoin du minitel"
+	        },
+	        inputAdresse: "Veuillez entrez votre adresse",
+	        inputVille: "Veuillez entrez votre ville",
+	        inputPays: "Veuillez entrez votre pays"
+		}
+	});
+});
 // Code JavaScript pour valider le formulaire
   	
 

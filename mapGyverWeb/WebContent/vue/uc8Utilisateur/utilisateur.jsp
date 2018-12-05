@@ -102,7 +102,7 @@
                       <input class="form-check-input" type="checkbox" value="" id="premierGroupe">
                     </div>
                   </td>
-                  <td>System Architect</td>
+                  <td>La famille</td>
                 </tr>
                 <tr>
                   <td>
@@ -110,7 +110,7 @@
                       <input class="form-check-input" type="checkbox" value="" id="premierGroupe">
                     </div>
                   </td>
-                  <td>Accountant</td>
+                  <td>La Team CDI</td>
                 </tr>
               </tbody>
             </table>
@@ -142,7 +142,7 @@
                       <input class="form-check-input" type="checkbox" value="" id="premierGroupe">
                     </div>
                   </td>
-                  <td>System Architect</td>
+                  <td>Les copains</td>
                 </tr>
                 <tr>
                   <td>
@@ -150,7 +150,7 @@
                       <input class="form-check-input" type="checkbox" value="" id="premierGroupe">
                     </div>
                   </td>
-                  <td>Accountant</td>
+                  <td>Les collegues</td>
                 </tr>
               </tbody>
             </table>
@@ -182,31 +182,39 @@
   <div id="modifierUtilisateurModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form>
+        <form name="modifierUtilisateur" method="post" id="modifierUtilisateur" action="<%=request.getContextPath() %>/utilisateur/modifierUtilisateur">
           <div class="modal-header">
             <h4 class="modal-title">Modifier mes informations</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
-            <div class="form-group">
+         <!--   <div class="form-group">
               <label>Email</label>
               <input type="email" id="inputEmail" name="inputEmail" class="form-control" required>
-            </div> 
+            </div>  --> 
+             <div class="form-group">
+              <label>Nom</label>
+              <input type="text" id="inputNom" name="inputNom" class="form-control" value="<%=utilisateur.getNom() %>" required autofocus="autofocus">
+            </div>
+            <div class="form-group">
+              <label>Prénom</label>
+              <input type="text" id="inputPrenom" name="inputPrenom" class="form-control" value="<%=utilisateur.getPrenom() %>" required>
+            </div>
             <div class="form-group">
               <label>Téléphone</label>
-              <input type="text" id="inputTelephone" name="nbrExemplaire" class="form-control" required>
+              <input type="text" id="inputTelephone" name="inputTelephone" class="form-control" value="<%=utilisateur.getTelephone() %>" required>
             </div>
             <div class="form-group">
               <label>Adresse</label>
-              <input type="text" id="inputAdresse" name="inputAdresse" class="form-control" required>
+              <input type="text" id="inputAdresse" name="inputAdresse" class="form-control" value="<%=utilisateur.getAdresse() %>" required>
             </div>
             <div class="form-group">
               <label>Ville</label>
-              <input type="text" id="inputVille" name="inputVille" class="form-control" required>
+              <input type="text" id="inputVille" name="inputVille" class="form-control" value="Marseille" required>
             </div>
             <div class="form-group">
               <label>Pays</label>
-              <input type="text" id="inputPays" name="inputPays" class="form-control" required>
+              <input type="text" id="inputPays" name="inputPays" class="form-control" value="Suisse" required>
             </div>
           </div>
           <div class="modal-footer">
@@ -221,9 +229,9 @@
   <div id="supprimerUtilisateurModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form>
+        <form method="post" action="<%=request.getContextPath() %>/utilisateur/delete">
           <div class="modal-header">
-            <h4 class="modal-title">Supprimer Document</h4>
+            <h4 class="modal-title">Supprimer mon compte</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
@@ -242,7 +250,7 @@
   <div id="modifierGroupeModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form>
+        <form name="addGroupe" method="post" id="addGroupe" action="<%=request.getContextPath() %>/utilisateur/addGroupe">
           <div class="modal-header">
             <h4 class="modal-title">Ajouter un groupe</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -265,7 +273,7 @@
   <div id="modifierListeModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form>
+        <form name="addListe" method="post" id="addListe" action="<%=request.getContextPath() %>/utilisateur/addListe">
           <div class="modal-header">
             <h4 class="modal-title">Ajouter une liste</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

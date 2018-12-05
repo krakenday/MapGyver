@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="djallel" content="">
+    <meta name="description" content="Page d'inscription">
+    <meta name="author" content="djallel">
 	
     <title>MapGyver - Inscription</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/uc8Utilisateur/inscription.css">
@@ -23,7 +23,7 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Cr&eacute;er un utilisateur</div>
         <div class="card-body">
-        
+ 
           <form name="inscription" method="post" id="inscription" action="<%=request.getContextPath() %>/utilisateur/inscription">
             <div class="form-group">
               <div class="form-row">
@@ -336,14 +336,10 @@
         </div>
       </div>
     </div>
-    <script>
-    	
-    </script>
     <!-- Validator JavaScript -->
     <script src="<%=request.getContextPath()%>/assets/js/validator/inscription.js"></script>
 
     <!-- Bootstrap core JavaScript-->
-   <!-- <script src="<%=request.getContextPath()%>/vendor/jquery/jquery.min.js"></script> -->
     <script src="<%=request.getContextPath()%>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
