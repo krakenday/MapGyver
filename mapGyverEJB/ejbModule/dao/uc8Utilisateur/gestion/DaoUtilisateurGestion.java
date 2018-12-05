@@ -1,11 +1,15 @@
 package dao.uc8Utilisateur.gestion;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 
 import dao.DaoParam;
+import dao.exception.uc8Utilisateur.DaoUtilisateurExistant;
 import entity.uc8Utilisateur.EntityGroupe;
 import entity.uc8Utilisateur.EntityListeDiffusion;
 import entity.uc8Utilisateur.EntityUtilisateur;
@@ -18,12 +22,28 @@ public class DaoUtilisateurGestion {
 	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
 	private EntityManager em; 
 	
-	public void addUtilisateur(EntityUtilisateur entityUtilisateur) {
+	public void addUtilisateur(EntityUtilisateur entityUtilisateur) throws DaoUtilisateurExistant {
+		
+		try {
 			em.persist(entityUtilisateur);
+			em.flush();
+		} catch (PersistenceException e) {
+			// Attraper l'exception ************
+			Throwable t = e.getCause();
+			while ((t != null) && !(t instanceof SQLIntegrityConstraintViolationException)) {
+				t = t.getCause();
+			}
+			if (t instanceof SQLIntegrityConstraintViolationException) {
+				System.out.println("Quelle vilaine faute");
+				throw new DaoUtilisateurExistant();
+			}
+		}
+			
 	}
 	
 	public EntityUtilisateur readUtilisateur(int id) {
-		return em.find(EntityUtilisateur.class, id);
+		EntityUtilisateur utilisateur= em.find(EntityUtilisateur.class, id);
+		return utilisateur;
 	}
 	
 	public void updateUtilisateur(EntityUtilisateur entityUtilisateur) {
@@ -32,15 +52,19 @@ public class DaoUtilisateurGestion {
 	}
 	
 	public void deleteUtilisateur(int id) {
-		em.remove(id);
+		EntityUtilisateur utilisateur= em.find(EntityUtilisateur.class, id);
+		System.out.println("Dans Dao utilisateur" + utilisateur.toString());
+		em.remove(utilisateur);
 	}
 	
 	//Gestion du groupe
 	public void addGroupe(EntityGroupe entityGroupe) {
 		em.persist(entityGroupe);
+		em.flush();
 	}
 	public EntityGroupe readGroupe(int id) {
-		return em.find(EntityGroupe.class, id);
+		EntityGroupe groupe= em.find(EntityGroupe.class, id);
+		return groupe;
 	}
 	
 	public void updateGroupe(EntityGroupe entityGroupe) {
@@ -49,15 +73,18 @@ public class DaoUtilisateurGestion {
 	}
 	
 	public void deleteGroupe(int id) {
-		em.remove(id);
+		EntityGroupe groupe= em.find(EntityGroupe.class, id);
+		em.remove(groupe);
 	}
 	
 	//Gestion de liste de diffusion
-	public void addListeDiff(EntityListeDiffusion entityListeDiff) {
-		em.persist(entityListeDiff);
+	public void addListeDiff(EntityListeDiffusion listeDiff) {
+		em.persist(listeDiff);
+		em.flush();
 	}
 	public EntityListeDiffusion readListeDiff(int id) {
-		return em.find(EntityListeDiffusion.class, id);
+		EntityListeDiffusion listeDiff= em.find(EntityListeDiffusion.class, id);
+		return listeDiff ;
 	}
 	
 	public void updateListeDiff(EntityListeDiffusion entityListeDiff) {
@@ -66,6 +93,7 @@ public class DaoUtilisateurGestion {
 	}
 	
 	public void deleteListeDiff(int id) {
-		em.remove(id);
+		EntityListeDiffusion listeDiff= em.find(EntityListeDiffusion.class, id);
+		em.remove(listeDiff);
 	}
 }
