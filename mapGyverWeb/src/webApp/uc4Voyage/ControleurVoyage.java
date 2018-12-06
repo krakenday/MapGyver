@@ -1,6 +1,7 @@
 package webApp.uc4Voyage;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
 import business.uc8Utilisateur.Utilisateur;
@@ -97,15 +99,20 @@ public class ControleurVoyage extends HttpServlet {
 			}
 		}
 	}
-	
+
 	private void showErreur(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		showPage(request, response, "/vue/404.jsp");
 	}
-	
+
 	private void showPageVoyage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+//		try {
+//			setPOIonRequest(request);
+//		} catch (ServiceFacadeExceptionVoyage e) {
+//			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_GET.getMsg());
+//		}
 		showPage(request, response, "/vue/voyages.jsp"); 
 	}
-	
+
 	private void showPage(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException {
 		RequestDispatcher 	disp = request.getRequestDispatcher(path); 
 		disp.forward(request,response);	
@@ -135,13 +142,19 @@ public class ControleurVoyage extends HttpServlet {
 		}
 		showPage(request, response, "/vue/voyages/roadBook.jsp");
 	}
-	
+
+	private void setPOIonRequest(HttpServletRequest request) throws ServiceFacadeExceptionVoyage {
+		List<PointInteret> listPOI;
+		listPOI = serviceMpg.readPOInteretOrderById();
+		request.setAttribute("listPOI", listPOI);
+	}
+
 	private RoadBook getOrCreateUserRoadBook(Utilisateur utilisateur) throws ServiceFacadeExceptionVoyage {
 		RoadBook roadBook = serviceMpg.getRoadBookByUser(utilisateur);
 		if (roadBook ==null) roadBook = serviceMpg.createRoadBook(new RoadBook(utilisateur));
 		return roadBook;
 	}
-	
+
 	private void updateVoyage(HttpServletRequest request, String path)  {
 		System.out.println("update");
 		try {

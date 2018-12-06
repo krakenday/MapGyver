@@ -53,5 +53,7 @@ public class EntityLieu extends EntityPointInteret{
 	public String toString() {
 		return "EntityLieu [ville=" + ville + "]";
 	}
+
+
 	
 }

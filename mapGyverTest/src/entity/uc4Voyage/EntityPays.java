@@ -12,7 +12,6 @@ import dao.util.UtilBdD;
 public class EntityPays extends EntityPointInteret{
 
 	private static final long serialVersionUID = 1L;
-	
 	public static final int NB_TOTAL = 197;
 	
 	public EntityPays() {

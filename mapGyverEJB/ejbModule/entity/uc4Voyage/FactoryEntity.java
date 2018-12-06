@@ -1,13 +1,13 @@
-package dao.uc4Voyage;
+package entity.uc4Voyage;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import business.uc4Voyage.Coordonnee;
+import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
 import business.uc8Utilisateur.Utilisateur;
-import entity.uc4Voyage.EntityRoadBook;
-import entity.uc4Voyage.EntityVoyage;
 import entity.uc8Utilisateur.EntityUtilisateur;
 
 public class FactoryEntity {
@@ -94,6 +94,36 @@ public class FactoryEntity {
 		roadBook.setId(entityRoadBook.getId());
 		roadBook.setVoyages(createFromEntity(entityRoadBook.getVoyages()));
 		return roadBook;
+	}
+	
+	//TODO a finaliser
+	public List<PointInteret> createFromEntityPOI(List<EntityPointInteret> listEntityPOI) {
+		List<PointInteret> listPOI = new ArrayList<>();
+		for (EntityPointInteret entityPOI : listEntityPOI) {
+			PointInteret pointInteret = createFromEntity(entityPOI);
+			listPOI.add(pointInteret);
+		}
+		return listPOI;
+	}
+	
+	//TODO a finaliser
+	private PointInteret createFromEntity(EntityPointInteret entityPOI) {
+		PointInteret pointInteret = null;
+		if (entityPOI instanceof EntityLieu) pointInteret = createFromEntity((EntityLieu)entityPOI);
+		else if (entityPOI instanceof EntityVille) pointInteret = createFromEntity((EntityVille)entityPOI);
+		else if (entityPOI instanceof EntityPays) pointInteret = createFromEntity((EntityPays)entityPOI);
+		
+		pointInteret.setNom(entityPOI.getNom());
+		pointInteret.setId(entityPOI.getId());
+		pointInteret.setCoordonnee(createFromEntity(entityPOI.getCoordonnee()));
+		return pointInteret;
+	}
+	
+	//TODO a finaliser
+	private Coordonnee createFromEntity(EntityCoordonnee entityCoordonnee) {
+		Coordonnee coordonnee = new Coordonnee(entityCoordonnee.getLatitude(), entityCoordonnee.getLongitude());
+		coordonnee.setId(entityCoordonnee.getId());
+		return null;
 	}
 
 }

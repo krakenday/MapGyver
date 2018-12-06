@@ -73,7 +73,7 @@ public class ServiceFacadeVoyage {
 		return serviceVoyage.createPOInteret(pointInteret);
 	}
 
-	public List<PointInteret> readPOInteretOrderById() {
+	public List<PointInteret> readPOInteretOrderById() throws ServiceVoyageException {
 		return serviceVoyage.readPOInteretOrderById();
 	}
 

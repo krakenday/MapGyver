@@ -7,5 +7,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JunitHamcrest"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hibernateMain"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jbossClient"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

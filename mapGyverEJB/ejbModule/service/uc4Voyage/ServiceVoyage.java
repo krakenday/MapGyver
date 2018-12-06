@@ -108,8 +108,13 @@ public class ServiceVoyage {
 		return daoFacade.createPOInteret(pointInteret);
 	}
 
-	public List<PointInteret> readPOInteretOrderById() {
-		return daoFacade.readPOInteretOrderById();
+	public List<PointInteret> readPOInteretOrderById() throws ServiceVoyageException {
+		try {
+			System.out.println("ServiceVoyage readPOInteretOrderById");
+			return daoFacade.readPOInteretOrderById();
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 	}
 
 	public PointInteret updatePOInteret(PointInteret pointInteret) {

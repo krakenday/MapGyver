@@ -78,4 +78,6 @@ public abstract class EntityPointInteret implements Serializable {
 		return "EntityPOI [id=" + id + ", nom=" + nom + ", coord. =" + entityCoordonnee + "]";
 	}
 
+
+
 }

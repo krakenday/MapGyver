@@ -36,8 +36,6 @@ public class DaoFacade {
 	@EJB
 	private DaoFacadePartager daoFacadePartager;
 
-	private static final String ZONE_EXCEPTION_MSG = ".Voyage";
-
 	@EJB
 	private DaoFacadeAdmin daoFacadeAdmin;
 
@@ -143,7 +141,7 @@ public class DaoFacade {
 			return daoFacadeVoyage.createVoyage(voyage);
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
-					ZONE_EXCEPTION_MSG+ e.getMessage());
+					".Voyage"+ e.getMessage());
 		}
 	}
 
@@ -156,7 +154,7 @@ public class DaoFacade {
 			return daoFacadeVoyage.updateVoyage(voyage);	
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
-					ZONE_EXCEPTION_MSG+ e.getMessage());
+					".Voyage"+ e.getMessage());
 		}
 	}
 
@@ -165,7 +163,7 @@ public class DaoFacade {
 			daoFacadeVoyage.deleteVoyage(id);
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
-					ZONE_EXCEPTION_MSG+ e.getMessage());
+					".Voyage"+ e.getMessage());
 		}
 	}
 
@@ -174,7 +172,7 @@ public class DaoFacade {
 			return daoFacadeVoyage.getVoyageById(id);
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
-					ZONE_EXCEPTION_MSG+ e.getMessage());
+					".Voyage"+ e.getMessage());
 		}
 	}
 
@@ -184,7 +182,7 @@ public class DaoFacade {
 			return daoFacadeVoyage.createRoadBook(roadBook);
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
-					ZONE_EXCEPTION_MSG+ e.getMessage());
+					".RoadBook"+ e.getMessage());
 		}
 	}
 
@@ -198,7 +196,7 @@ public class DaoFacade {
 			return daoFacadeVoyage.updateRoadBook(roadBook);
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
-					ZONE_EXCEPTION_MSG+ e.getMessage());
+					".RoadBook"+ e.getMessage());
 		}
 	}
 
@@ -207,7 +205,7 @@ public class DaoFacade {
 			daoFacadeVoyage.deleteRoadBook(id);
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
-					ZONE_EXCEPTION_MSG+ e.getMessage());
+					".RoadBook"+ e.getMessage());
 		}
 	}
 
@@ -225,7 +223,7 @@ public class DaoFacade {
 			return daoFacadeVoyage.getRoadBookByUser(utilisateur);
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
-					ZONE_EXCEPTION_MSG+ e.getMessage());
+					".RoadBook"+ e.getMessage());
 		}
 	}
 
@@ -234,8 +232,14 @@ public class DaoFacade {
 
 	}
 
-	public List<PointInteret> readPOInteretOrderById() {
-		return daoFacadeVoyage.readPOInteretOrderById();
+	public List<PointInteret> readPOInteretOrderById() throws DaoFacadeExceptionVoyage {
+		try {
+			System.out.println("daoFacade readPOInteretOrderById");
+			return daoFacadeVoyage.readPOInteretOrderById();
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					".POI"+ e.getMessage());
+		}
 	}
 
 	public PointInteret updatePOInteret(PointInteret pointInteret) {
@@ -298,7 +302,6 @@ public class DaoFacade {
 		}
 	}
 
-
 	/**
 	 * UC6 Jouer =>interface entre DaoFacade et DaoFaceJouer
 	 */
@@ -316,6 +319,4 @@ public class DaoFacade {
 			throw new ExceptionSurDao(e.getMessage(), e.getCause());
 		}
 	}
-
-
 }

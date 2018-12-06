@@ -273,9 +273,13 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public List<PointInteret> readPOInteretOrderById() {
-		//		return serviceFacadeVoyage.readPOInteretOrderById();
-		return null;
+	public List<PointInteret> readPOInteretOrderById() throws ServiceFacadeExceptionVoyage {
+		try {
+			System.out.println("ServiceFAcade readPOInteretOrderById");
+			return serviceFacadeVoyage.readPOInteretOrderById();
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
+		}
 	}
 
 	@Override

@@ -6,7 +6,8 @@ public enum ControleurVoyageMsg {
 	ERROR_INSERT(301, "Erreur insert", "Verifier les données à inserer"), 
 	ERROR_DELETE(302, "Erreur delete", "Verifier les données à supprimer"), 
 	ERROR_UPDATE(303, "Erreur modification", "Verifier les données à modifier"),
-	ERROR_GET(304, "Erreur récupération", "Verifier demande"),
+	ERROR_GET(304, "Erreur récupération", "Creer un roadBook"),
+	ERROR_POI(305, "Erreur récupération POI", "Verifier demande"),
 	
 	SUCCESS_CREATE(396, "Création réussie", "Création effectuée"), 
 	SUCCESS_UPDATE(397, "Modification réussie", "Modification effectuée"),

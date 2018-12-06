@@ -118,8 +118,7 @@ public class ControleurRoadBook extends HttpServlet {
 			System.out.println("roadBook : " + roadBook);
 			if (roadBook !=null) request.setAttribute("roadBook",roadBook);
 		} catch (ServiceFacadeExceptionVoyage e) {
-			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_GET.getSolution() 
-					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
+			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_GET.getSolution());
 		}
 	}
 	
