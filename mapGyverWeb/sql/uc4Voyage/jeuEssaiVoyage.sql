@@ -31,8 +31,8 @@ Insert into UTILISATEUR (ID,ADRESSE,DATEINSCRIP,DATENAISS,EMAIL,PASSWORD,NOM,PRE
   RESTRICTIONS : ID entre 400 et 499                            
 ==============================================================*/
 
-Insert into MPG_ROADBOOK (ID_RBK,ID) values ('401','401');
-Insert into MPG_ROADBOOK (ID_RBK,ID) values ('402','403');
+Insert into MPG_ROADBOOK (ID_RBK,ID) values ('411','401');
+Insert into MPG_ROADBOOK (ID_RBK,ID) values ('413','403');
 
 /*==============================================================
   AJOUT DONNEES DANS TABLE                                     
@@ -40,9 +40,9 @@ Insert into MPG_ROADBOOK (ID_RBK,ID) values ('402','403');
   RESTRICTIONS : ID entre 400 et 499                            
 ==============================================================*/
 
-Insert into MPG_VOYAGE (ID_VOY,DEB_VOY,PART_VOY,NOM_VOY) values ('401',to_date('01/12/18','DD/MM/RR'),'1','Voyage au centre de la terre');
-Insert into MPG_VOYAGE (ID_VOY,DEB_VOY,PART_VOY,NOM_VOY) values ('402',null,null,'Afpa 2018');
-Insert into MPG_VOYAGE (ID_VOY,DEB_VOY,PART_VOY,NOM_VOY) values ('403',to_date('07/12/18','DD/MM/RR'),null,'Voyage 403');
+Insert into MPG_VOYAGE (ID_VOY,DEB_VOY,PART_VOY,NOM_VOY) values ('421',to_date('01/12/18','DD/MM/RR'),'1','Voyage au centre de la terre');
+Insert into MPG_VOYAGE (ID_VOY,DEB_VOY,PART_VOY,NOM_VOY) values ('422',null,null,'Afpa 2018');
+Insert into MPG_VOYAGE (ID_VOY,DEB_VOY,PART_VOY,NOM_VOY) values ('423',to_date('07/12/18','DD/MM/RR'),null,'Voyage 403');
 
 /*==============================================================
   AJOUT DONNEES DANS TABLE                                     
@@ -50,8 +50,8 @@ Insert into MPG_VOYAGE (ID_VOY,DEB_VOY,PART_VOY,NOM_VOY) values ('403',to_date('
   RESTRICTIONS :                           
 ==============================================================*/
 
-Insert into IDRISS_ADMIN.MPG_ROADBOOK_MPG_VOYAGE (ENTITYROADBOOK_ID_RBK,VOYAGES_ID_VOY) values ('401','401');
-Insert into IDRISS_ADMIN.MPG_ROADBOOK_MPG_VOYAGE (ENTITYROADBOOK_ID_RBK,VOYAGES_ID_VOY) values ('401','403');
+Insert into IDRISS_ADMIN.MPG_ROADBOOK_MPG_VOYAGE (ENTITYROADBOOK_ID_RBK,VOYAGES_ID_VOY) values ('411','421');
+Insert into IDRISS_ADMIN.MPG_ROADBOOK_MPG_VOYAGE (ENTITYROADBOOK_ID_RBK,VOYAGES_ID_VOY) values ('411','423');
 
 
 /*==============================================================*/
