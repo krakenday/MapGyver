@@ -20,6 +20,8 @@ import dao.exception.uc1Administrer.DaoInexistantException;
 import dao.exception.uc4Voyage.DaoFacadeExceptionVoyage;
 import dao.exception.uc4Voyage.DaoVoyageException;
 import dao.exception.uc6Jouer.ConvertionException;
+import dao.exception.uc8Utilisateur.DaoFacadeExceptionUtilisateur;
+import dao.exception.uc8Utilisateur.DaoUtilisateurExistantException;
 import dao.uc1Administrer.DaoFacadeAdmin;
 import dao.uc3Partager.DaoFacadePartager;
 import dao.uc4Voyage.DaoFacadeVoyage;
@@ -75,8 +77,12 @@ public class DaoFacade {
 	
 	//Ici commence le territoire de Djallel
 		// Gestion de l'utilisateur
-	public void addUtilisateur(Utilisateur utilisateur) {
-			daoFacadeUtilisateur.addUtilisateur(utilisateur);		
+	public void addUtilisateur(Utilisateur utilisateur) throws DaoFacadeExceptionUtilisateur {
+		try {
+			daoFacadeUtilisateur.addUtilisateur(utilisateur);				
+		}catch (DaoUtilisateurExistantException e ){
+			throw new DaoFacadeExceptionUtilisateur(e.getMessage());
+		}
 	}
 	
 	public Utilisateur readUtilisateur(int id) {
@@ -93,6 +99,9 @@ public class DaoFacade {
 	
 	//Gestion du groupe
 	public void addGroupe(Groupe groupe) {
+
+		System.out.println("********* addGroupe ===> DaoFacade");
+		System.out.println("********* addGroupe ===> DaoFacade " + groupe.toString());
 		daoFacadeUtilisateur.addGroupe(groupe);
 	}
 	public Groupe readGroupe(int id) {

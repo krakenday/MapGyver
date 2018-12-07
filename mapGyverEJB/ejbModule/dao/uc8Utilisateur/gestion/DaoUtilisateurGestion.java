@@ -1,6 +1,7 @@
 package dao.uc8Utilisateur.gestion;
 
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
@@ -9,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 import dao.DaoParam;
-import dao.exception.uc8Utilisateur.DaoUtilisateurExistant;
+import dao.exception.uc8Utilisateur.DaoUtilisateurExistantException;
 import entity.uc8Utilisateur.EntityGroupe;
 import entity.uc8Utilisateur.EntityListeDiffusion;
 import entity.uc8Utilisateur.EntityUtilisateur;
@@ -22,7 +23,7 @@ public class DaoUtilisateurGestion {
 	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
 	private EntityManager em; 
 	
-	public void addUtilisateur(EntityUtilisateur entityUtilisateur) throws DaoUtilisateurExistant {
+	public void addUtilisateur(EntityUtilisateur entityUtilisateur) throws DaoUtilisateurExistantException {
 		
 		try {
 			em.persist(entityUtilisateur);
@@ -35,7 +36,7 @@ public class DaoUtilisateurGestion {
 			}
 			if (t instanceof SQLIntegrityConstraintViolationException) {
 				System.out.println("Quelle vilaine faute");
-				throw new DaoUtilisateurExistant();
+				throw new DaoUtilisateurExistantException();
 			}
 		}
 			
@@ -52,6 +53,12 @@ public class DaoUtilisateurGestion {
 	}
 	
 	public void deleteUtilisateur(int id) {
+		// A revoir pour faire le delete cascade
+//		ArrayList<EntityGroupe> listeG= (ArrayList<EntityGroupe>) em.createQuery("select g from EntityGroupe g").getResultList();
+//		ArrayList<EntityListeDiffusion> listeL= (ArrayList<EntityListeDiffusion>) em.createQuery("select l from EntityListeDiffusion l").getResultList();
+//		if(!listeG.isEmpty() || !listeL.isEmpty()) {
+//			em.createQuery("delete from EntityCercle");
+//		}
 		EntityUtilisateur utilisateur= em.find(EntityUtilisateur.class, id);
 		System.out.println("Dans Dao utilisateur" + utilisateur.toString());
 		em.remove(utilisateur);

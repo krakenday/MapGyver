@@ -61,15 +61,17 @@ public class FabriqueEntity {
 	}
 	
 	// Fabriquer un groupe
-	public Groupe creeGroupe(EntityGroupe groupe) {
+	public Groupe createGroupe(EntityGroupe groupe, EntityUtilisateur entityUntilisateur) {
+		Utilisateur utilisateur= createUser(entityUntilisateur);
 		String nom= groupe.getNom();
-		return new Groupe(nom);
+		return new Groupe(nom, utilisateur);
 	}
 	
 	// Fabriquer une entity groupe
-	public EntityGroupe creeEntityGroupe(Groupe groupe) {
+	public EntityGroupe createEntityGroupe(Groupe groupe) {
+		EntityUtilisateur entityUtilisateur= createEntityUser(groupe.getUtilisateur());
 		String nom= groupe.getNom();
-		return new EntityGroupe(nom);
+		return new EntityGroupe(nom, entityUtilisateur);
 	}
 	
 	// Fabriquer une liste

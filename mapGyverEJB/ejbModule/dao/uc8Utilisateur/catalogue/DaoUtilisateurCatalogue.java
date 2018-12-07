@@ -47,7 +47,7 @@ public class DaoUtilisateurCatalogue {
 	public List<EntityListeDiffusion> listerToutesLesListes() {
 		ArrayList<EntityListeDiffusion> liste = new ArrayList<EntityListeDiffusion>();
 
-		for (Object l : em.createQuery("select l from EntityListeDiffusion l order by u.nom asc").getResultList())
+		for (Object l : em.createQuery("select l from EntityListeDiffusion l order by l.nom asc").getResultList())
 		{   
 			if (l instanceof EntityListeDiffusion) {
 				liste.add((EntityListeDiffusion)l);
