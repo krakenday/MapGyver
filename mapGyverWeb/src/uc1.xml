@@ -4,16 +4,10 @@
 "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-	<include file="uc1.xml"/>
-	<include file="uc2.xml"/>
-	<include file="uc3.xml"/>
-	<include file="uc4.xml"/>
-	<include file="uc6.xml"/>
-	<include file="uc8.xml"/>
-	<package name="uc0" namespace="/mapgyver" extends="struts-default">
+	<package name="uc1" namespace="/mapgyver/admin" extends="struts-default">
 		<default-action-ref name="index"/>
 		<action name="index">
-			<result>/vue/index.jsp</result>
+			<result>/vue/login.jsp</result>
 		</action>
 	</package>
 </struts>

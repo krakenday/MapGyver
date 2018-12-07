@@ -10,10 +10,7 @@
 	<package name="application" extends="struts-default">
 	<default-action-ref name="index"/>
 		<action name="index">
-			<result type="redirectAction">
-				<param name="actionName">accueil</param>
-				<param name="namespace">/mapgyver</param>
-			</result>
+			<result>vue/index.jsp</result>
 		</action>
 	</package>
 </struts>
