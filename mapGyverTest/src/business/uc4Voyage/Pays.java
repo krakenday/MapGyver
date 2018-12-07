@@ -16,6 +16,12 @@ public class Pays extends PointInteret{
 	
 	public Pays(String nom, Coordonnee coordonnee) {
 		super(nom, coordonnee);
-	}	
+	}
+
+
+	@Override
+	public String toString() {
+		return "Pays " + super.toString();
+	}
 	
 }

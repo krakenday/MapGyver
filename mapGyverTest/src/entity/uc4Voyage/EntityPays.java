@@ -24,5 +24,9 @@ public class EntityPays extends EntityPointInteret{
 	public EntityPays(String nom, EntityCoordonnee entityCoordonnee) {
 		super(nom, entityCoordonnee);
 	}
-	
+
+	@Override
+	public String toString() {
+		return "EntityPays " + super.toString();
+	}
 }

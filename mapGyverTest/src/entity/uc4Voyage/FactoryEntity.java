@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import business.uc4Voyage.Coordonnee;
+import business.uc4Voyage.Lieu;
+import business.uc4Voyage.Pays;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
+import business.uc4Voyage.Ville;
 import business.uc4Voyage.Voyage;
 import business.uc8Utilisateur.Utilisateur;
 import entity.uc8Utilisateur.EntityUtilisateur;
@@ -23,7 +26,7 @@ public class FactoryEntity {
 		return entityVoyage;
 	}
 
-	public EntityVoyage createEntityWithIDFrom(Voyage voyage) {
+	public EntityVoyage createEntityWithIdFrom(Voyage voyage) {
 		EntityVoyage entityVoyage = createEntityFrom(voyage);
 		entityVoyage.setId(voyage.getId());
 		return entityVoyage;
@@ -34,6 +37,7 @@ public class FactoryEntity {
 		voyage.setId(entityVoyage.getId());
 		voyage.setDateDebut(entityVoyage.getDateDebut());
 		voyage.setNbParticipant(entityVoyage.getNbParticipant());
+		voyage.setPointInteret(createFromEntityPOI(entityVoyage.getEntityPointInteret()));
 		return voyage;
 	}
 
@@ -46,10 +50,10 @@ public class FactoryEntity {
 		return entityVoyages;
 	}
 
-	private List<EntityVoyage> createEntityWithIDFrom(List<Voyage> voyages) {
+	private List<EntityVoyage> createEntityWithIdFrom(List<Voyage> voyages) {
 		List<EntityVoyage> entityVoyages = new ArrayList<>();
 		for (Voyage voyage : voyages) {
-			EntityVoyage entityVoyage = createEntityWithIDFrom(voyage);
+			EntityVoyage entityVoyage = createEntityWithIdFrom(voyage);
 			entityVoyages.add(entityVoyage);
 		}
 		return entityVoyages;
@@ -74,9 +78,9 @@ public class FactoryEntity {
 		return entityRoadBook;
 	}
 
-	public EntityRoadBook createEntityWithIDFrom(RoadBook roadBook) {
+	public EntityRoadBook createEntityWithIdFrom(RoadBook roadBook) {
 		EntityRoadBook entityRoadBook = new EntityRoadBook();
-		entityRoadBook.setVoyages(createEntityWithIDFrom(roadBook.getVoyages()));;
+		entityRoadBook.setVoyages(createEntityWithIdFrom(roadBook.getVoyages()));;
 		Utilisateur utilisateur = roadBook.getUtilisateur();
 		EntityUtilisateur entityUtilisateur = new EntityUtilisateur();
 		entityUtilisateur.setId(utilisateur.getId());
@@ -95,35 +99,84 @@ public class FactoryEntity {
 		roadBook.setVoyages(createFromEntity(entityRoadBook.getVoyages()));
 		return roadBook;
 	}
-	
-	//TODO a finaliser
+
 	public List<PointInteret> createFromEntityPOI(List<EntityPointInteret> listEntityPOI) {
 		List<PointInteret> listPOI = new ArrayList<>();
 		for (EntityPointInteret entityPOI : listEntityPOI) {
-			PointInteret pointInteret = createFromEntity(entityPOI);
+			PointInteret pointInteret = PointInteretCreateFromEntity(entityPOI);
 			listPOI.add(pointInteret);
 		}
 		return listPOI;
 	}
 	
-	//TODO a finaliser
-	private PointInteret createFromEntity(EntityPointInteret entityPOI) {
-		PointInteret pointInteret = null;
-		if (entityPOI instanceof EntityLieu) pointInteret = createFromEntity((EntityLieu)entityPOI);
-		else if (entityPOI instanceof EntityVille) pointInteret = createFromEntity((EntityVille)entityPOI);
-		else if (entityPOI instanceof EntityPays) pointInteret = createFromEntity((EntityPays)entityPOI);
-		
-		pointInteret.setNom(entityPOI.getNom());
-		pointInteret.setId(entityPOI.getId());
-		pointInteret.setCoordonnee(createFromEntity(entityPOI.getCoordonnee()));
-		return pointInteret;
-	}
-	
-	//TODO a finaliser
-	private Coordonnee createFromEntity(EntityCoordonnee entityCoordonnee) {
-		Coordonnee coordonnee = new Coordonnee(entityCoordonnee.getLatitude(), entityCoordonnee.getLongitude());
-		coordonnee.setId(entityCoordonnee.getId());
-		return null;
+	@SuppressWarnings("unchecked")
+	private <T extends PointInteret> T PointInteretCreateFromEntity(EntityPointInteret entityPOI) {
+		if (entityPOI instanceof EntityLieu) return (T) createFromEntity((EntityLieu)entityPOI);
+		else if (entityPOI instanceof EntityVille) return (T) createFromEntity((EntityVille)entityPOI);
+		else if (entityPOI instanceof EntityPays) return (T) createFromEntity((EntityPays)entityPOI);
+		else return null;
 	}
 
+	public Coordonnee createFromEntity(EntityCoordonnee entityCoordonnee) {
+		Coordonnee coordonnee = null;
+		if (entityCoordonnee !=null) {
+			coordonnee = new Coordonnee(entityCoordonnee.getLatitude(), entityCoordonnee.getLongitude());
+		}
+		return coordonnee;
+	}
+
+	public Coordonnee createFromEntityWithId(EntityCoordonnee entityCoordonnee) {
+		Coordonnee coordonnee = null;
+		if (entityCoordonnee !=null) {
+			coordonnee = createFromEntity(entityCoordonnee);
+			coordonnee.setId(entityCoordonnee.getId());
+		}
+		return coordonnee;
+	}
+
+	public EntityCoordonnee createEntityFrom(Coordonnee coordonnee) {
+		EntityCoordonnee entityCoord = null;
+		if (coordonnee !=null) {
+			entityCoord = new EntityCoordonnee(coordonnee.getLatitude(), coordonnee.getLongitude());
+		}
+		return entityCoord ;
+	}
+
+	public EntityCoordonnee createEntityWithIdFrom(Coordonnee coordonnee) {
+		EntityCoordonnee entityCoord = null;
+		if (coordonnee !=null) {
+			entityCoord = createEntityFrom(coordonnee);
+			entityCoord.setId(coordonnee.getId());
+		}
+		return entityCoord ;
+	}
+	
+	public Pays createFromEntity(EntityPays entityPays) {
+		Pays pays = null;
+		if (entityPays!=null) {
+			pays = new Pays(entityPays.getNom());
+			pays.setCoordonnee(createFromEntity(entityPays.getCoordonnee()));
+		}
+		return pays;
+	}
+
+	public Lieu createFromEntity(EntityLieu entityLieu) {
+		Lieu lieu = null;
+		if (entityLieu!=null) {
+			lieu = new Lieu(entityLieu.getNom());
+			lieu.setCoordonnee(createFromEntity(entityLieu.getCoordonnee()));
+			lieu.setVille(createFromEntity(entityLieu.getVille()));
+		}
+		return lieu;
+	}
+
+	public Ville createFromEntity(EntityVille entityVille) {
+		Ville ville = null;
+		if (entityVille!=null) {
+			ville = new Ville(entityVille.getNom());
+			ville.setCoordonnee(createFromEntity(entityVille.getCoordonnee()));
+			ville.setPays(createFromEntity(entityVille.getPays()));
+		}
+		return ville;
+	}
 }

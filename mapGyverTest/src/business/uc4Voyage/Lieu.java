@@ -33,7 +33,11 @@ public class Lieu extends PointInteret{
 
 	@Override
 	public String toString() {
-		return "Lieu [ville=" + ville + "]";
+		return "Lieu " + super.toString() + String.format("[ville=%s]", ville);
 	}
+
+
+
+
 
 }

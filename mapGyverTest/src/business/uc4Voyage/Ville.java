@@ -5,33 +5,32 @@ public class Ville extends PointInteret{
 
 	private static final long serialVersionUID = 1L;
 	
-	private int 	id;
-	private String 	nom;
+	private Pays pays;
 	
-	public Ville(int id, String nom) {
-		this.id 	= id;
-		this.nom 	= nom;
+	public Ville(String nom) {
+		super(nom);
 	}
 
-	public int getId() {
-		return id;
+	public Ville(String nom, Coordonnee coordonnee) {
+		super(nom, coordonnee);
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public Ville(String nom, Coordonnee coordonnee, Pays pays) {
+		super(nom, coordonnee);
+		this.pays = pays;
 	}
 
-	public String getNom() {
-		return nom;
+	public Pays getPays() {
+		return pays;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setPays(Pays pays) {
+		this.pays = pays;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Ville [id=%s, nom=%s]", id, nom);
+		return "Ville " + super.toString() + String.format("[Pays=%s]", pays);
 	}
 
 }

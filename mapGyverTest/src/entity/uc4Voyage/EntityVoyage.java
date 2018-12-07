@@ -2,6 +2,8 @@ package entity.uc4Voyage;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +34,9 @@ public class EntityVoyage implements Serializable{
 	private LocalDate 				dateDebut;
 	
 	@Column(name="part_voy")
-	private Integer 				nbParticipant;	
+	private Integer 				nbParticipant;
+	
+	private List<EntityPointInteret> entityPointInteret;
 	
 	public EntityVoyage() {
 		super();
@@ -50,10 +54,32 @@ public class EntityVoyage implements Serializable{
 		this.dateDebut = dateDebut;
 		this.nbParticipant = nbParticipant;
 	}
+	
+	
+	public EntityVoyage(int id, String nom, LocalDate dateDebut, Integer nbParticipant,
+			List<EntityPointInteret> entityPointInteret) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.dateDebut = dateDebut;
+		this.nbParticipant = nbParticipant;
+		this.entityPointInteret = entityPointInteret;
+	}
+	
+	public EntityVoyage(String nom, LocalDate dateDebut, Integer nbParticipant,
+			List<EntityPointInteret> entityPointInteret) {
+		super();
+		this.nom = nom;
+		this.dateDebut = dateDebut;
+		this.nbParticipant = nbParticipant;
+		this.entityPointInteret = entityPointInteret;
+	}
+	
 	public EntityVoyage(String nom) {
 		this.nom = nom;
 	}	
-	
+
+
 	public int getId() {
 		return id;
 	}
@@ -86,11 +112,18 @@ public class EntityVoyage implements Serializable{
 		this.nbParticipant = nbParticipant;
 	}
 
-	@Override
-	public String toString() {
-		return String.format("EntityVoyage [id= %s, nom= %s, dateDebut= %s, nbParticipant= %s]", id, nom, dateDebut,
-				nbParticipant);
+	public List<EntityPointInteret> getEntityPointInteret() {
+		return entityPointInteret;
 	}
 
-	
+	public void setEntityPointInteret(List<EntityPointInteret> entityPointInteret) {
+		this.entityPointInteret = entityPointInteret;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("EntityVoyage [id=%s, nom=%s, dateDebut=%s, nbParticipant=%s, entityPointInteret=%s]", id,
+				nom, dateDebut, nbParticipant, entityPointInteret);
+	}
+
 }

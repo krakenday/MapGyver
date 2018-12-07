@@ -25,7 +25,7 @@ import clientServeur.exception.ServiceFacadeExceptionVoyage;
 @WebServlet(
 		name = "ControleurRoadBook", 
 		description = "Controleur RoadBook", 
-		urlPatterns = {"/roadBook/*"}
+		urlPatterns = {"/XXXXXroadBook/*"}
 		)
 public class ControleurRoadBook extends HttpServlet {
 

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(
 		name = "Controleur", 
 		description = "Controleur General", 
-		urlPatterns = {"/mapgyver/*"}
+		urlPatterns = {"/XXXXXXXXXXXXXXmapgyver/*"} /////   Enlever les X pour reutiliser le controleur
 		)
 public class Controleur extends HttpServlet {
 	private static final long serialVersionUID = 1L;

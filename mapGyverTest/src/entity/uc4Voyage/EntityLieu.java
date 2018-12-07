@@ -49,11 +49,11 @@ public class EntityLieu extends EntityPointInteret{
 		this.ville = ville;
 	}
 
+
 	@Override
 	public String toString() {
-		return "EntityLieu [ville=" + ville + "]";
+		return "EntityLieu " + super.toString() + String.format("[ville=%s]", ville);
 	}
-
 
 	
 }

@@ -19,7 +19,7 @@ public class EntityVille extends EntityPointInteret {
 
 	@OneToOne (fetch=FetchType.LAZY)
 	@JoinColumn(name = "id_pays", unique = true, nullable = false)
-	private EntityPays Pays;
+	private EntityPays pays;
 
 	public EntityVille() {
 	}
@@ -34,20 +34,19 @@ public class EntityVille extends EntityPointInteret {
 	
 	public EntityVille(String nom, EntityCoordonnee entityCoordonnee, EntityPays pays) {
 		super(nom, entityCoordonnee);
-		Pays = pays;
+		this.pays = pays;
 	}
 
 	public EntityPays getPays() {
-		return Pays;
+		return pays;
 	}
 
 	public void setPays(EntityPays pays) {
-		Pays = pays;
+		this.pays = pays;
 	}
 
 	@Override
 	public String toString() {
-		return "EntityVille [Pays=" + Pays + "]";
+		return "EntityVille " + super.toString() + String.format("[Pays=%s]", pays);
 	}
-
 }
