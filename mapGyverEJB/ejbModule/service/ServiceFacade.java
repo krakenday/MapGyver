@@ -18,11 +18,13 @@ import business.uc8Utilisateur.Password;
 import business.uc8Utilisateur.Utilisateur;
 import client.serveur.partager.exception.UserException;
 import clientServeur.IServiceFacade;
+import clientServeur.exception.ServiceFacadeExceptionUtilisateur;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
 import service.exception.ViolationPersistenceException;
 import service.exception.uc1Administrer.ServiceInexistantException;
 import service.exception.uc4Voyage.ServiceVoyageException;
 import service.exception.uc6Jouer.ExceptionSurDao;
+import service.exception.uc8Utilisateur.ServiceUtilisateurExistantException;
 import service.uc1Administrer.ServiceFacadeAdmin;
 import service.uc3Partager.ServiceFacadePartager;
 import service.uc4Voyage.ServiceFacadeVoyage;
@@ -70,8 +72,12 @@ public class ServiceFacade implements IServiceFacade {
 	// Bloc Service Utilisateur
 
 	@Override
-	public void create(Utilisateur utilisateur) {
-		serviceFacadeUtilisateur.create(utilisateur);
+	public void create(Utilisateur utilisateur) throws ServiceFacadeExceptionUtilisateur {
+		try {
+			serviceFacadeUtilisateur.create(utilisateur);			
+		}catch(ServiceUtilisateurExistantException e) {
+			throw new ServiceFacadeExceptionUtilisateur(e.getCode(), e.getMessage());
+		}
 
 	}
 
@@ -101,10 +107,17 @@ public class ServiceFacade implements IServiceFacade {
 			LocalDate dateInscrip, LocalDate dateNaiss, Password motDePasse) {
 		return serviceFacadeUtilisateur.creerUtilisateur(nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss, motDePasse);
 	}
+	
+	@Override
+	public Groupe creerGroupe(String nom, Utilisateur utilisateur) {
+		return serviceFacadeUtilisateur.creerGroupe(nom, utilisateur);
+	};
 
 	// Bloc service Groupe
 	@Override
 	public void createGroupe(Groupe groupe) {
+		System.out.println("********* createGroupe ===> ServiceFacade");
+		System.out.println("********* createGroupe ===> ServiceFacade " + groupe.toString());
 		serviceFacadeUtilisateur.createGroupe(groupe);
 	}
 

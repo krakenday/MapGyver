@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
+import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.Password;
 import business.uc8Utilisateur.Utilisateur;
 
@@ -23,4 +24,7 @@ public class ServiceUtilisateurFabrique   {
 		return new Utilisateur (nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss, motDePasse);
 	}
 	
+	public Groupe creerGroupe(String nom, Utilisateur utilisateur) {
+		return new Groupe(nom, utilisateur);
+	}
 }

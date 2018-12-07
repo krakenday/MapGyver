@@ -2,10 +2,10 @@ package dao.exception.uc4Voyage;
 
 public enum DaoVoyageErrorMessage {
 
-	ERR_VIOLATION_CONTRAINT	(300, "Pb de contrainte", "verifiÃ© les donnÃ©es"),
-	ERR_INSERT				(301, "insert", "verifiÃ© les donnÃ©es"), 
-	ERR_DELETE				(302, "delete", "verifiÃ© les donnÃ©es"), 
-	ERR_UPDATE				(303, "update", "verifiÃ© les donnÃ©es"), 
+	ERR_VIOLATION_CONTRAINT	(300, "Pb de contrainte", "verifié les données"),
+	ERR_INSERT				(301, "insert", "verifié les données"), 
+	ERR_DELETE				(302, "delete", "verifié les données"), 
+	ERR_UPDATE				(303, "update", "verifié les données"), 
 	;
 
 	private final int id;

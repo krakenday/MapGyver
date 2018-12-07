@@ -23,7 +23,7 @@ public class EntityRoadBook implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="id_roadbook")
+	@Column(name="id_rbk")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="seqRoadBook")
 	@SequenceGenerator(name="seqRoadBook", sequenceName="ROADBOOK_SEQ", initialValue=1, allocationSize=30)
 	private int id;

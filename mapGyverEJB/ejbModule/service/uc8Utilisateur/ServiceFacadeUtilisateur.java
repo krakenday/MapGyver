@@ -11,6 +11,7 @@ import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Password;
 import business.uc8Utilisateur.Utilisateur;
+import service.exception.uc8Utilisateur.ServiceUtilisateurExistantException;
 import service.uc8Utilisateur.catalogue.ServiceUtilisateurCatalogue;
 import service.uc8Utilisateur.fabrique.ServiceUtilisateurFabrique;
 import service.uc8Utilisateur.gestion.ServiceUtilisateurGestion;
@@ -29,7 +30,7 @@ public class ServiceFacadeUtilisateur {
 	private ServiceUtilisateurCatalogue serviceUtilisateurCatalogue;
 	
 	
-	public void create(Utilisateur utilisateur) {
+	public void create(Utilisateur utilisateur) throws ServiceUtilisateurExistantException {
 		serviceUtilisateurGestion.create(utilisateur);
 	}
 	
@@ -54,9 +55,15 @@ public class ServiceFacadeUtilisateur {
 		return serviceUtilisateurFabrique.creerUtilisateur(nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss, motDePasse);
 	}
 	
+	public Groupe creerGroupe(String nom, Utilisateur utilisateur) {
+		return serviceUtilisateurFabrique.creerGroupe(nom, utilisateur);
+	}
+	
 // Bloc service Groupe
 	
 	public void createGroupe(Groupe groupe) {
+		System.out.println("********* createGroupe ===> ServiceFacadeUtilisateur");
+		System.out.println("********* createGroupe ===> ServiceFacadeUtilisateur " + groupe.toString());
 		serviceUtilisateurGestion.createGroupe(groupe);
 	}
 

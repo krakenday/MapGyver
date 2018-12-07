@@ -8,6 +8,8 @@ import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Utilisateur;
 import dao.DaoFacade;
+import dao.exception.uc8Utilisateur.DaoFacadeExceptionUtilisateur;
+import service.exception.uc8Utilisateur.ServiceUtilisateurExistantException;
 
 @Singleton
 @LocalBean
@@ -17,8 +19,13 @@ public class ServiceUtilisateurGestion  {
 	private DaoFacade daoFacade;
 
 	// Bloc utilisateur
-	public void create(Utilisateur utilisateur) {
-		daoFacade.addUtilisateur(utilisateur);
+	public void create(Utilisateur utilisateur) throws ServiceUtilisateurExistantException {
+		try {
+			daoFacade.addUtilisateur(utilisateur);
+		} catch (DaoFacadeExceptionUtilisateur e) {
+			System.out.println("Quelle vilaine faute service");
+			throw new ServiceUtilisateurExistantException(e.getCode(),e.getMessage());
+		}
 	}
 
 	public Utilisateur read(int id) {
@@ -36,6 +43,9 @@ public class ServiceUtilisateurGestion  {
 	
 	//Bloc groupe
 	public void createGroupe(Groupe groupe) {
+
+		System.out.println("********* createGroupe ===> ServiceUtilisateur");
+		System.out.println("********* createGroupe ===> ServiceUtilisateur " + groupe.toString());
 		daoFacade.addGroupe(groupe);
 	}
 

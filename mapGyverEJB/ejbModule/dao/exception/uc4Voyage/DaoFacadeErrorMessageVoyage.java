@@ -2,8 +2,8 @@ package dao.exception.uc4Voyage;
 
 public enum DaoFacadeErrorMessageVoyage {
 
-	ERR_INSERT(300, "DaoFacade Erreur insert", "verifiÃ© les donnÃ©es"), 
-	ERR_DELETE(301, "DaoFacade Erreur delete", "verifiÃ© les donnÃ©es"),
+	ERR_INSERT(300, "DaoFacade Erreur insert", "verifié les données"), 
+	ERR_DELETE(301, "DaoFacade Erreur delete", "verifié les données"),
 
 	;
 
@@ -14,7 +14,7 @@ public enum DaoFacadeErrorMessageVoyage {
 	/**
 	 * @param id code de l'erreur
 	 * @param msg message explicatif de l'erreur
-	 * @param solution proposition de solution pour rï¿½soudre le problï¿½me
+	 * @param solution proposition de solution pour résoudre le problï¿½me
 	 */
 	DaoFacadeErrorMessageVoyage(int id, String msg, String solution) {
 		this.id = id;
