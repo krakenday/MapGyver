@@ -7,9 +7,9 @@ public enum ControleurVoyageMsg {
 	ERROR_DELETE(302, "Erreur delete", "Verifier les donn√©es √† supprimer"), 
 	ERROR_UPDATE(303, "Modification r√©ussit", "Modification effectu√©"),
 	
-	SUCCESS_UPDATE(397, "Modification r√©ussit", "Modification effectu√©"),
-	SUCCESS_DELETE(398, "Suppression r√©ussit", "Suppression effectu√©"),
-	SUCCESS_INSERT(399, "Insertion r√©ussit", "Enregistrement effectu√©"), 
+	SUCCESS_UPDATE(397, "Modification rÈussit", "Modification effectuÈ"),
+	SUCCESS_DELETE(398, "Suppression rÈussit", "Suppression effectuÈ"),
+	SUCCESS_INSERT(399, "Insertion rÈussit", "Enregistrement effectuÈ"), 
 	;
 
 	private final int id;

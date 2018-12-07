@@ -19,13 +19,23 @@ public class Groupe extends Cercle implements Serializable {
 
 	public Groupe() {
 	}
-
+	
+	public Groupe(int id, String nom) {
+		super(id, nom);
+	}
+	
 	public Groupe(String nom) {
 		super(nom);
 	}
 
-	public Groupe(int id, String nom) {
-		super(id, nom);
+	public Groupe(int id, String nom, Utilisateur utilisateur) {
+		super(id, nom, utilisateur);
 	}
+	
+	public Groupe(String nom, Utilisateur utilisateur) {
+		super(nom, utilisateur);
+	}
+	
+	
 
 }

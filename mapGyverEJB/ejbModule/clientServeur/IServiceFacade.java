@@ -18,6 +18,7 @@ import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
+import clientServeur.exception.ServiceFacadeExceptionUtilisateur;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
 
 
@@ -55,8 +56,10 @@ public interface IServiceFacade {
 	public Utilisateur creerUtilisateur(String nom, String prenom, String adresse, String email, String telephone,
 			LocalDate dateInscrip, LocalDate dateNaiss, Password motDePasse);
 	
+	public Groupe creerGroupe(String nom, Utilisateur utilisateur);
+	
 	// Gerer l'utilisateur
-	public void create(Utilisateur utilisateur);
+	public void create(Utilisateur utilisateur) throws ServiceFacadeExceptionUtilisateur;
 	
 	public Utilisateur read(int id);
 	

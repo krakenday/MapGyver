@@ -23,7 +23,15 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Cr&eacute;er un utilisateur</div>
         <div class="card-body">
- 
+          <%  String messageErreur = (String) request.getAttribute("messageErreur");
+          if(messageErreur != null){ %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  			 <%=messageErreur%>
+  			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    		  <span aria-hidden="true">&times;</span>
+  			</button>
+		  </div>
+		   <%}%>
           <form name="inscription" method="post" id="inscription" action="<%=request.getContextPath() %>/utilisateur/inscription">
             <div class="form-group">
               <div class="form-row">

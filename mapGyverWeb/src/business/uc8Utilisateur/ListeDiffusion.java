@@ -22,12 +22,22 @@ public class ListeDiffusion extends Cercle implements Serializable {
 	public ListeDiffusion() {
 	}
 	
+	public ListeDiffusion(int id, String nom) {
+		super(id, nom);
+	}
+	
 	public ListeDiffusion(String nom) {
 		super(nom);
 	}
 
-	public ListeDiffusion(int id, String nom) {
-		super(id, nom);
+	public ListeDiffusion(int id, String nom, Utilisateur utilisateur) {
+		super(id, nom, utilisateur);
 	}
+	
+	public ListeDiffusion(String nom, Utilisateur utilisateur) {
+		super(nom, utilisateur);
+	}
+	
+	
 
 }

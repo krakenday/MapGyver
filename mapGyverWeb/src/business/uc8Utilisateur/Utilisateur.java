@@ -31,16 +31,14 @@ public class Utilisateur implements Serializable{
 //	private Ville ville;
 //	private Pays pays;
 	
-	
 	public Utilisateur() {
 		super();
 	}
 	
-	
 	/**
-	 * @param id
-	 * @param nom
-	 * @param prenom
+	 * @param id : id de l'utilisateur
+	 * @param nom : nom de l'utilisateur
+	 * @param prenom : prenom de l'utilisateur
 	 */
 	public Utilisateur(int id, String nom, String prenom) {
 		super();
@@ -48,7 +46,6 @@ public class Utilisateur implements Serializable{
 		this.nom = nom;
 		this.prenom = prenom;
 	}
-
 
 	/**
 	 * @param nom : nom de l'utilisateur
@@ -289,7 +286,7 @@ public class Utilisateur implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return "EntityUtilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email="
+		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email="
 				+ email + ", telephone=" + telephone + ", dateInscrip=" + dateInscrip + ", dateNaiss=" + dateNaiss
 				+ "]";
 	}

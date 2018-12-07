@@ -13,14 +13,12 @@ public abstract class Cercle implements Serializable {
 	
 	private int id;
 	private String nom;
+	private Utilisateur utilisateur;
 	
+
+
 	public Cercle() {
 		super();
-	}
-	
-	public Cercle(String nom) {
-		super();
-		this.nom = nom;
 	}
 	
 	public Cercle(int id, String nom) {
@@ -28,7 +26,25 @@ public abstract class Cercle implements Serializable {
 		this.id = id;
 		this.nom = nom;
 	}
+	
+	public Cercle(String nom) {
+		super();
+		this.nom = nom;
+	}	
+	
+	public Cercle(int id, String nom, Utilisateur utilisateur) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.utilisateur = utilisateur;
+	}
 
+	public Cercle(String nom, Utilisateur utilisateur) {
+		super();
+		this.nom = nom;
+		this.utilisateur = utilisateur;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -44,10 +60,20 @@ public abstract class Cercle implements Serializable {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 
 	@Override
 	public String toString() {
-		return "Cercle [id=" + id + ", nom=" + nom + "]";
+		return "Cercle [id=" + id + ", nom=" + nom + ", utilisateur=" + utilisateur + "]";
 	}
+
+
 		
 }

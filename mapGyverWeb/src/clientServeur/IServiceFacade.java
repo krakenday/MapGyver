@@ -3,16 +3,16 @@ package clientServeur;
 import java.time.LocalDate;
 import java.util.List;
 
+import business.uc4Voyage.PointInteret;
+import business.uc4Voyage.RoadBook;
+import business.uc4Voyage.Voyage;
 import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Password;
 import business.uc8Utilisateur.Utilisateur;
-import service.exception.uc1Administrer.ServiceInexistantException;
-
-import business.uc4Voyage.PointInteret;
-import business.uc4Voyage.RoadBook;
-import business.uc4Voyage.Voyage;
+import clientServeur.exception.ServiceFacadeExceptionUtilisateur;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
+import service.exception.uc1Administrer.ServiceInexistantException;
 
 
 
@@ -45,14 +45,16 @@ public interface IServiceFacade {
 	public Utilisateur creerUtilisateur(String nom, String prenom, String adresse, String email, String telephone,
 			LocalDate dateInscrip, LocalDate dateNaiss, Password motDePasse);
 	
+//	public Groupe creerGroupe(String nom, Utilisateur utilisateur);
+	
 	// Gerer l'utilisateur
-	public void create(Utilisateur utilisateur);
+	public void create(Utilisateur utilisateur) throws ServiceFacadeExceptionUtilisateur;
 	
-	public Utilisateur read(int id);
+	public Utilisateur read(int id) throws ServiceFacadeExceptionUtilisateur;
 	
-	public void update(Utilisateur utilisateur);
+	public void update(Utilisateur utilisateur) throws ServiceFacadeExceptionUtilisateur;
 	
-	public void delete(int id);
+	public void delete(int id) throws ServiceFacadeExceptionUtilisateur;
 	
 	// Catalogue utilisateur
 	public List<Utilisateur> listerTousLesUtilisateurs();
