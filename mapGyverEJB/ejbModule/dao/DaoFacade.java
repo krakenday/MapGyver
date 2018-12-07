@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
+import business.uc2Souvenir.Souvenir;
 import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
@@ -21,6 +22,7 @@ import dao.exception.uc4Voyage.DaoFacadeExceptionVoyage;
 import dao.exception.uc4Voyage.DaoVoyageException;
 import dao.exception.uc6Jouer.ConvertionException;
 import dao.uc1Administrer.DaoFacadeAdmin;
+import dao.uc2Souvenir.DaoFacadeSouvenir;
 import dao.uc3Partager.DaoFacadePartager;
 import dao.uc4Voyage.DaoFacadeVoyage;
 import dao.uc6Jouer.facade.DaoFacadeJouer;
@@ -49,6 +51,9 @@ public class DaoFacade {
 	
 	@EJB
 	private DaoFacadeJouer daoFacadeJouer;
+	
+	@EJB
+	private DaoFacadeSouvenir daoFacadeSouvenir;
 
 	public Utilisateur getUserById(int id) throws ServiceInexistantException {
 		Utilisateur user = null;
@@ -280,5 +285,17 @@ public class DaoFacade {
 			throw new ExceptionSurDao(e.getMessage(), e.getCause());
 		}
 	}
+
+	
+	/*
+	 * UC2 Souvenir
+	 * Alejandro
+	 */
+	public void createSouvenir(Souvenir souvenir) {
+		daoFacadeSouvenir.createSouvenir(souvenir);
+		
+	}
+	
+	//FIN UC2 Alejandro
 
 }
