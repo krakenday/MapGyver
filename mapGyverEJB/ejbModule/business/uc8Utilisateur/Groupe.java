@@ -16,16 +16,26 @@ import java.io.Serializable;
 public class Groupe extends Cercle implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 
 	public Groupe() {
+		super();
 	}
-
+	
+	public Groupe(int id, String nom) {
+		super(id, nom);
+	}
+	
 	public Groupe(String nom) {
 		super(nom);
 	}
 
-	public Groupe(int id, String nom) {
-		super(id, nom);
+	public Groupe(int id, String nom, Utilisateur utilisateur) {
+		super(id, nom, utilisateur);
 	}
-
+	
+	public Groupe(String nom, Utilisateur utilisateur) {
+		super(nom, utilisateur);
+	}
+	
 }

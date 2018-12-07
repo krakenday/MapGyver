@@ -16,13 +16,21 @@ public class EntityGroupe extends EntityCercle implements Serializable {
 	public EntityGroupe() {
 	}
 	
+	public EntityGroupe(int id, String nom) {
+		super(id, nom);
+	}
+	
 	public EntityGroupe(String nom) {
 		super(nom);
 	}
 
-	public EntityGroupe(int id, String nom) {
-		super(id, nom);
+	public EntityGroupe(int id, String nom, EntityUtilisateur utilisateur) {
+		super(id, nom, utilisateur);
 	}
 
+	public EntityGroupe(String nom, EntityUtilisateur utilisateur) {
+		super(nom, utilisateur);
+	}
+	
 }
 

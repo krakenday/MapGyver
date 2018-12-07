@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+//import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,17 +50,31 @@ public class EntityUtilisateur implements Serializable{
 	private LocalDate dateInscrip;
 	@Column(nullable= false)
 	private LocalDate dateNaiss;
-	@Column(length=100, name="password", nullable= false)
+	@Column(length=100, name="pw", nullable= false)
 	@Embedded
 	private EntityPassword motDePasse;
 	
 //	private Ville ville;
 //	private Pays pays;;
 	
+	//A voir plus tard
+//	@OneToMany(mappedBy="utilisateur", cascade= {CascadeType.REMOVE}, fetch=FetchType.EAGER)
+//	private Collection<EntityUtilisateurCercle> cercles= new ArrayList<EntityUtilisateurCercle>();
+	
 	public EntityUtilisateur() {
-		super();
 	}
 	
+	/**
+	 * @param id : id de l'utilisateur
+	 * @param nom : nom de l'utilisateur
+	 * @param prenom : prenom de l'utilisateur
+	 * */
+	public EntityUtilisateur(int id, String nom, String prenom) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+	}
 	/**
 	 * @param nom : nom de l'utilisateur
 	 * @param prenom : prenom de l'utilisateur
@@ -83,6 +98,49 @@ public class EntityUtilisateur implements Serializable{
 		this.prenom = prenom;
 		this.email = email;
 	}
+	
+	/**
+	 * @param nom : nom de l'utilisateur
+	 * @param prenom : prenom de l'utilisateur
+	 * @param email : email de l'utilisateur
+	 * */
+	public EntityUtilisateur(String nom, String prenom, String email) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+	}
+	
+	/**
+	 * @param id : id de l'utilisateur 
+	 * @param nom : nom de l'utilisateur
+	 * @param prenom : prenom de l'utilisateur
+	 * @param adresse : adresse de l'utilisateur
+	 * @param telephone : telephone de l'utilisateur
+	 */
+	public EntityUtilisateur(int id, String nom, String prenom, String adresse, String telephone) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+	}
+	
+	/**
+	 * @param nom : nom de l'utilisateur
+	 * @param prenom : prenom de l'utilisateur
+	 * @param adresse : adresse de l'utilisateur
+	 * @param telephone : telephone de l'utilisateur
+	 */
+	public EntityUtilisateur(String nom, String prenom, String adresse, String telephone) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+	}
+	
 	/**
 	 * @param id : id de l'utilisateur
 	 * @param nom : nom de l'utilisateur
@@ -249,9 +307,7 @@ public class EntityUtilisateur implements Serializable{
 		this.motDePasse = motDePasse;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+
 	@Override
 	public String toString() {
 		return "EntityUtilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email="

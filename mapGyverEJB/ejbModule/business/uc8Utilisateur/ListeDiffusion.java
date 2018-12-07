@@ -20,14 +20,25 @@ public class ListeDiffusion extends Cercle implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public ListeDiffusion() {
+		super();
+	}
+	
+	public ListeDiffusion(int id, String nom) {
+		super(id, nom);
 	}
 	
 	public ListeDiffusion(String nom) {
 		super(nom);
 	}
 
-	public ListeDiffusion(int id, String nom) {
-		super(id, nom);
+	public ListeDiffusion(int id, String nom, Utilisateur utilisateur) {
+		super(id, nom, utilisateur);
 	}
+	
+	public ListeDiffusion(String nom, Utilisateur utilisateur) {
+		super(nom, utilisateur);
+	}
+	
+	
 
 }

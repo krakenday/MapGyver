@@ -1,6 +1,8 @@
 package entity.uc8Utilisateur;
 
 import java.io.Serializable;
+//import java.util.ArrayList;
+//import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +14,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+//import javax.persistence.OneToMany;
 
 
 /**
@@ -27,30 +30,47 @@ public abstract class EntityCercle implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name= "idCercle")
+	@Column(name= "id")
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int id;
 	
-	@Column(name="nom",  length=70, nullable=false)
+	@Column(name="nom", length=70, nullable=false)
 	private String nom;
 	
 	@ManyToOne(fetch= FetchType.LAZY)
-	@JoinColumn(name="id", nullable= true)
+	@JoinColumn(name="id_utilisateur", nullable= false)
 	private EntityUtilisateur utilisateur;
+	
+	// A voir après
+//	@OneToMany(mappedBy="cercle", cascade= {CascadeType.REMOVE}, fetch=FetchType.EAGER)
+//	private Collection<EntityUtilisateurCercle> utilisateurs= new ArrayList<EntityUtilisateurCercle>();
 	
 	public EntityCercle() {
 		super();
-	}
-
-	public EntityCercle(String nom) {
-		super();
-		this.nom = nom;
 	}
 	
 	public EntityCercle(int id, String nom) {
 		super();
 		this.id = id;
 		this.nom = nom;
+	}
+
+	public EntityCercle(String nom) {
+		super();
+		this.nom = nom;
+	}
+
+	public EntityCercle(int id, String nom, EntityUtilisateur utilisateur) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.utilisateur = utilisateur;
+	}
+	
+	public EntityCercle(String nom, EntityUtilisateur utilisateur) {
+		super();
+		this.nom = nom;
+		this.utilisateur = utilisateur;
 	}
 
 	public int getId() {
@@ -68,11 +88,23 @@ public abstract class EntityCercle implements Serializable{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	public EntityUtilisateur getUtilisateur() {
+		return utilisateur;
+	}
 
+	public void setUtilisateur(EntityUtilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "Cercle [id=" + id + ", nom=" + nom + "]";
+		return "EntityCercle [id=" + id + ", nom=" + nom + ", utilisateur=" + utilisateur + "]";
 	}
+
 	
 	
 }
