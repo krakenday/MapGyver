@@ -23,7 +23,7 @@ import javax.persistence.Table;
 //TODO must implements "Partageable" A voir!!!
 
 @Entity
-@Table(name="photo")
+@Table(name="MPG_photo")
 public class EntityPhoto extends EntitySouvenir {
 	
 	private static final long serialVersionUID = 1L;

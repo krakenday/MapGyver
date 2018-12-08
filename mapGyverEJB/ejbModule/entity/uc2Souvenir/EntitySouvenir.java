@@ -4,13 +4,20 @@ package entity.uc2Souvenir;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import entity.uc4Voyage.EntityVoyage;
 
 /**
  * Un Souvenir est soit un Commentaire, soit une Photo, soit 
@@ -32,6 +39,12 @@ public abstract class EntitySouvenir implements Serializable {
 	@Column(name="IDD")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
+	//Lazy, pas besoin de charger le voyage
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_voyage", nullable=false)
+	private EntityVoyage entityVoyage;
+	
 	@Column(name="ddate_enre", length=20, nullable=false)
 	private LocalDate dateEnregistre;
 	
