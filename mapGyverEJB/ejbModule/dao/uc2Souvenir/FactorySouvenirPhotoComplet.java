@@ -1,22 +1,19 @@
 package dao.uc2Souvenir;
 
-import business.uc2Souvenir.Souvenir;
-import entity.uc2Souvenir.EntityCommentaire;
+import business.uc2Souvenir.Photo;
 import entity.uc2Souvenir.EntityPhoto;
 
-public class FactorySouvenirPhotoComplet implements ICreateEntitySouvenir {
+public class FactorySouvenirPhotoComplet extends FactorySouvenirPhoto implements ICreateEntitySouvenirPhoto {
 
 	@Override
-	public EntityPhoto createEntityPhoto(Souvenir souvenir) {
+	public EntityPhoto createEntityPhoto(Photo photo) {
 		System.out.println("*****dao.FactorySouvenirPhotoComplet-createEntity");
+		
+		//permet de stocker l'image au format jpeg su aws S3
+		sauvegardeImageCloud(photo);
+		
 		return null;
 	}
 
-	//ne dois pas etre utilise
-	@Override
-	public EntityCommentaire createEntityCommentaire(Souvenir souvenir) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
