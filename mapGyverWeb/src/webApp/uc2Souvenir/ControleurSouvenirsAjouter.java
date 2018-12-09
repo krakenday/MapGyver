@@ -91,7 +91,7 @@ public class ControleurSouvenirsAjouter extends HttpServlet {
 		//Vers méthodes de controle qui renvoient l'objet
 		
 		controles = new ControlesAjouter();
-		
+		//TODO je force valeur nulle de com, a MODIGIER
 		souvenir = controles.controleDesParametres(nomPhoto, fileContent, contentLenght, comm, idVoyage);
 		
 		System.out.println("****************ControlSouvenirAjouter- Valeur SOUVENIR =" + souvenir);

@@ -45,14 +45,25 @@ public abstract class EntitySouvenir implements Serializable {
 	@JoinColumn(name="id_voyage", nullable=false)
 	private EntityVoyage entityVoyage;
 	
-	@Column(name="ddate_enre", length=20, nullable=false)
+	@Column(name="ddate_enre", length=20, nullable=true)
 	private LocalDate dateEnregistre;
 	
 
-	//constructeur necessaire a la classe fille "photo"
-	//car id genere automatiquement
-	public EntitySouvenir(LocalDate dateEnregistre) {
+	
+	
+	/**
+	 * Constructeur necessaire pour enregistrer Souvenirs (Photo et Commentaire)
+	 * @param id
+	 * @param entityVoyage
+	 * @param dateEnregistre
+	 */
+	public EntitySouvenir(EntityVoyage entityVoyage, LocalDate dateEnregistre) {
+		this.entityVoyage = entityVoyage;
 		this.dateEnregistre = dateEnregistre;
+	}
+	
+	public EntitySouvenir(EntityVoyage entityVoyage) {
+		this.entityVoyage = entityVoyage;
 	}
 
 	//cc par defaut

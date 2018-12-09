@@ -41,8 +41,8 @@ public class DaoSouvenirCreatePhoto {
 
 		System.out.println("*****dao.DaoSouvenirCreate-createSouvenir : debut methode");
 
-
-		if(((Photo) souvenir).getCommentaire() == null) {
+		//TODO attention je redirige sur le meme pour test
+		if(((Photo) souvenir).getCommentaire().getDescription().equals("")) {
 			System.out.println("*****dao.DaoSouvenirCreate-createSouvenir: je suis une photo sans commentaire");
 			iCreateEntitySouvenir = new FactorySouvenirPhotoSansCom();
 		}
@@ -54,11 +54,13 @@ public class DaoSouvenirCreatePhoto {
 		entityPhoto =iCreateEntitySouvenir.createEntityPhoto((Photo)souvenir);
 
 		try {
-			//em.persist(entityPhoto);
-			//em.flush();
+			System.out.println("*****entityPhoto:" + entityPhoto);
+			em.persist(entityPhoto);
+			em.flush();
 			
 		} catch (Exception e) {
-			System.out.println("*****dao.DaoSouvenirCreate-createSouvenir: dans le catch EXCEPTION de Persistence");
+			System.out.println("*****dao.DaoSouvenirCreatePhoto-createSouvenir: dans le catch EXCEPTION de Persistence");
+			e.printStackTrace();
 		}
 		
 
