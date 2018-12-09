@@ -2,18 +2,18 @@ package entity.uc8Utilisateur;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-//import java.util.ArrayList;
-//import java.util.Collection;
+import java.util.ArrayList;
+import java.util.Collection;
 
-//import javax.persistence.CascadeType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-//import javax.persistence.FetchType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -55,11 +55,14 @@ public class EntityUtilisateur implements Serializable{
 	private EntityPassword motDePasse;
 	
 //	private Ville ville;
-//	private Pays pays;;
+//	private Pays pays
+	
+	@OneToMany(mappedBy="utilisateur", cascade= {CascadeType.ALL}, fetch=FetchType.LAZY)
+	private Collection<EntityCercle> lesCercles= new ArrayList<EntityCercle>();
 	
 	//A voir plus tard
-//	@OneToMany(mappedBy="utilisateur", cascade= {CascadeType.REMOVE}, fetch=FetchType.EAGER)
-//	private Collection<EntityUtilisateurCercle> cercles= new ArrayList<EntityUtilisateurCercle>();
+	@OneToMany(mappedBy="utilisateur", cascade= {CascadeType.ALL}, fetch=FetchType.LAZY)
+	private Collection<EntityUtilisateurCercle> cercles= new ArrayList<EntityUtilisateurCercle>();
 	
 	public EntityUtilisateur() {
 	}

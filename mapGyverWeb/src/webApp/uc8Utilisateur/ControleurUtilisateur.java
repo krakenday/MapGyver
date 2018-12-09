@@ -96,10 +96,11 @@ public class ControleurUtilisateur extends HttpServlet {
 		}
 		else if (path.equals("/inscription")) 	{  
 			try {
-				System.out.println("initialisation");
+				System.out.println("Je rentre dans mon controleur");
 				Utilisateur user= creerUtilisateur(request);
-				iServiceFacade.create(user);	
-				request.setAttribute("success", "Utilisateur enregistré");
+				iServiceFacade.create(user);
+				System.out.println("Utilisateur enregistré");
+//				request.setAttribute("success", "Utilisateur enregistré");
 				doFeliciter(request, response);
 			} catch (ServiceFacadeExceptionUtilisateur e) {
 				request.setAttribute("messageErreur", "<strong>ATTENTION!</strong> email existant!!");
@@ -112,7 +113,6 @@ public class ControleurUtilisateur extends HttpServlet {
 		else if (path.equals("/delete")) 	{ 
 			System.out.println("controleur utilisateur delete user");
 			try {
-
 				System.out.println(utilisateur.getId());
 				iServiceFacade.delete(utilisateur.getId());
 				logout(request, response);

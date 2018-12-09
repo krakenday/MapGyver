@@ -30,6 +30,4 @@ public class EntityPassword implements Serializable{
 		this.password = password;
 	}
 
-
-
 }

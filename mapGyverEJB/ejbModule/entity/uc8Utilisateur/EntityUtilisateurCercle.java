@@ -11,8 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name="UTILISATEUR_CERCLE")
+@Entity
+@Table(name="UTILISATEUR_CERCLE")
 public class EntityUtilisateurCercle implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -85,12 +85,16 @@ public class EntityUtilisateurCercle implements Serializable{
 	public void setId(Id id) {
 		this.id = id;
 	}
-
+	
 	// TODO modifier l'affichage
 	@Override
 	public String toString() {
 		return "EntityUtilisateurCercle [utilisateur=" + utilisateur + ", cercle=" + cercle + ", id=" + id + "]";
 	}
+	
+	
+	
+	// La classe Id
 	@Embeddable
 	public static class Id implements Serializable {
 
@@ -145,7 +149,7 @@ public class EntityUtilisateurCercle implements Serializable{
 		public void setId_cercle(int id_cercle) {
 			this.id_cercle = id_cercle;
 		}
-
+		
 		@Override
 		public String toString() {
 			return "Id [id_utilisateur=" + id_utilisateur + ", id_cercle=" + id_cercle + "]";
