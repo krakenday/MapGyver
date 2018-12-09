@@ -4,17 +4,20 @@
 		"http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-	<package name="uc1" namespace="/uc1" extends="struts-default">
-		<action name="accueil">
-			<result>/vue/accueil.jsp</result>
+	<package name="uc1" namespace="/mapgyver/uc1" extends="struts-default">
+		<action name="afficheLogin">
+			<result>/vue/login.jsp</result>
 		</action>
-		
+		<action name="do*" class="webApp.uc1Administrer.AdministrerAction" method="{1}">
+			<result name="error">/vue/login.jsp</result>
+			<result name="success">/vue/index.jsp</result>
+			<allowed-methods>login,logout,forgot</allowed-methods>			
+		</action>
+
+
 		<!-- ================================== 
-		     gestion des css 
+		     gestion xxx
 		================================== 	-->
 
-		<action name="css">
-			<result>/css/general.css</result>
-		</action>
 	</package>
 </struts>

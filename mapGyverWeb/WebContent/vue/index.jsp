@@ -128,8 +128,7 @@
     </a>
 
     <!-- Logout Modal-->
-    	<jsp:include page="/WEB-INF/include/logout.jsp" />
-        
+    <jsp:include page="/WEB-INF/include/logout.jsp" />       
 	<jsp:include page="/WEB-INF/include/scripts.jsp" />
 
     <!-- Demo scripts for this page-->
