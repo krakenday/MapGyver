@@ -319,6 +319,7 @@ public class ServiceFacade implements IServiceFacade {
 	
 	@Override
 	public void createSouvenir(Souvenir souvenir) {
+		System.out.println("*****je rentre dans ma facade SERVICE*****");
 		serviceFacadeSouvenir.createSouvenir(souvenir);
 		
 	}

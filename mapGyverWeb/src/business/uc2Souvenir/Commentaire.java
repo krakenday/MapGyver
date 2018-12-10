@@ -2,7 +2,11 @@ package business.uc2Souvenir;
 
 import java.time.LocalDate;
 
+import business.uc4Voyage.Voyage;
+
 public class Commentaire extends Souvenir {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private String description;
 
@@ -18,6 +22,14 @@ public class Commentaire extends Souvenir {
 	}
 	
 	
+	public Commentaire(LocalDate dateEnregistre, Voyage voyage, String description) {
+		super(dateEnregistre, voyage);
+		this.description = description;
+	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "Commentaire [description=" + description + "]";

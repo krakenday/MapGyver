@@ -10,17 +10,18 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import business.uc2Souvenir.Souvenir;
-import dao.uc2Souvenir.DaoSouvenirCreatePhoto;
+import dao.DaoFacade;
 
 @Singleton
 @LocalBean
 public class ServiceFacadeSouvenir {
 
 	@EJB
-	private DaoSouvenirCreatePhoto daoSouvenirCreate;
+	private DaoFacade daoFacade;
 	
 	public void createSouvenir(Souvenir souvenir) {
-		daoSouvenirCreate.createSouvenir(souvenir);
+		System.out.println("*****Dans Service Facade Souvenir*****");
+		daoFacade.createSouvenir(souvenir);
 		
 	}
 

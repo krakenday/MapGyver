@@ -40,7 +40,7 @@ public class DaoSouvenirCreatePhoto {
 	//TODO cette classe se prete bien aux controles + JUnit
 	public void createSouvenir(Souvenir souvenir) {
 
-		System.out.println("*****dao.DaoSouvenirCreate-createSouvenir : debut methode");
+		System.out.println("*****dao.DaoSouvenirCreatePhoto-createSouvenir : debut methode");
 
 		//TODO attention je redirige sur le meme pour test
 		if(((Photo) souvenir).getCommentaire().getDescription().equals("")) {

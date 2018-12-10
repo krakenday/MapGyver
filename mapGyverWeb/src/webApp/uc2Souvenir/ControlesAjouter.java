@@ -15,9 +15,11 @@ import business.uc4Voyage.Voyage;
  * @author Alejandro
  *
  */
+//TODO classe pas tres bien structure a REFACTOR (utiliser variables d'instance)
 public class ControlesAjouter {
 	
-	
+	private Commentaire commentaire;
+	private	Voyage voyage;
 	/**
 	 * 
 	 * @param nomPhoto
@@ -31,8 +33,7 @@ public class ControlesAjouter {
 											Long fileLength, String comm,
 											String idVoyage) {
 		
-		Voyage voyage;
-		Commentaire commentaire;
+		
 		Souvenir souvenir;
 		byte[] content;
 		int id;
@@ -46,15 +47,29 @@ public class ControlesAjouter {
 		//Idriss voulait pas me faire de Constructeur juste avec l'ID ( :D c'est une blague)
 		voyage = new Voyage(id, null, null, null, null);
 		
-		commentaire = new Commentaire(comm);
+		if(nomPhoto.equals("")) {
+			souvenir = createCommentaire(voyage, comm);
+		}
+		else {
+			commentaire = new Commentaire(comm);
+			
+			souvenir = new Photo(LocalDate.now(), voyage, nomPhoto, content, commentaire, fileLength);	
+		}
 		
-		souvenir = new Photo(LocalDate.now(), voyage, nomPhoto, content, commentaire, fileLength);
 		
 		return souvenir;
 	}
 	
 	
 	
+	private Souvenir createCommentaire(Voyage voyage, String comm) {
+		commentaire = new Commentaire(LocalDate.now(), voyage, comm);
+		
+		return commentaire;
+	}
+
+
+
 
 	//TODO Methodes de controles pour chaque parametre a completer
 	private int controlIdVoyage(String idVoyage) {
