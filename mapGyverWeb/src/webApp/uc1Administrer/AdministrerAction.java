@@ -17,8 +17,10 @@ public class AdministrerAction extends ApplicationSupport implements SessionAwar
 	
 	private static final long serialVersionUID = 1L;
 	private IServiceFacade service;
+	
 	private String inputEmail;
 	private String inputPassword;
+	
 	private String msg;
 	
 	// variables pour injecter l'instance de la session          
