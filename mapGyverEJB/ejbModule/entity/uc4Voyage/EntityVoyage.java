@@ -20,18 +20,18 @@ public class EntityVoyage implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_voyage")
+	@Column(name="id_voy")
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="seqVoyage")
 	@SequenceGenerator(name="seqVoyage", sequenceName="VOYAGE_SEQ", initialValue=1, allocationSize=30)
 	private int 					id;
 	
-	@Column(name="nom_voyage", length=60, nullable=false)
+	@Column(name="nom_voy", length=60, nullable=false)
 	private String 					nom;
 	
-	@Column(name="deb_voyage")
+	@Column(name="deb_voy")
 	private LocalDate 				dateDebut;
 	
-	@Column(name="part_voyage")
+	@Column(name="part_voy")
 	private Integer 				nbParticipant;	
 	
 	public EntityVoyage() {
@@ -78,7 +78,7 @@ public class EntityVoyage implements Serializable{
 		this.dateDebut = dateDebut;
 	}
 
-	public int getNbParticipant() {
+	public Integer getNbParticipant() {
 		return nbParticipant;
 	}
 

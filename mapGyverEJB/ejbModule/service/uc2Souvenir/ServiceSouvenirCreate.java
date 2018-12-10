@@ -1,11 +1,9 @@
 package service.uc2Souvenir;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
+<<<<<<< HEAD
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;
@@ -17,42 +15,24 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 import business.uc2Souvenir.Photo;
+=======
+>>>>>>> 75c257e573cf185e59efcb305d16fa682b7b1437
 import business.uc2Souvenir.Souvenir;
+import dao.DaoFacade;
 
 @Singleton
 @LocalBean
 public class ServiceSouvenirCreate {
+	
+	@EJB
+	private DaoFacade daoFacade;
 
 	public void create(Souvenir souvenir) {
-		
-		//TODO controles instance of ...
-		Photo photo;
-		byte[] byteContent;
-		InputStream fileContent;
-		Long contentLenght = null;
-		
-		
-		
-		photo = (Photo) souvenir;
-		
-		byteContent = photo.getFileContent();
-		
-		fileContent = new ByteArrayInputStream(byteContent);
-		
-		try {
-			contentLenght =(long) fileContent.available();
-		} catch (IOException e) {
-			System.out.println("ServiceSouvenirCreate-create : dans le catch");
-			e.printStackTrace();
-		}
-		
-		uploadPhotoToS3(photo.getNom(), contentLenght, fileContent);
-		
+		System.out.println("*****service.ServiceSouvenirCreate-create");
+		daoFacade.createSouvenir(souvenir);
 	}
-	
-	
-	
 
+<<<<<<< HEAD
 	//TODO verif Keyname est unique Ou ajouter date avec nanosec
 	private void uploadPhotoToS3(String fileObjKeyName, Long contentLength, InputStream fileContent) {
 		
@@ -95,5 +75,7 @@ public class ServiceSouvenirCreate {
 	     }
 
 	}
+=======
+>>>>>>> 75c257e573cf185e59efcb305d16fa682b7b1437
 
 }
