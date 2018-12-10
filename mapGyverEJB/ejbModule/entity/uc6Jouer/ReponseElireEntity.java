@@ -4,25 +4,27 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import business.uc2Souvenir.Photo;
 import business.uc6Jouer.ReponseElire;
+import entity.uc2Souvenir.EntityPhoto;
 
-// @Entity
+@Entity
+@Table(name = "rep_elir_pho")
 public class ReponseElireEntity extends ReponseEntity {
 
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "r_pho", nullable = false)
-	private Photo photo;
+	private EntityPhoto photoEntity;
 
-	public Photo getPhoto() {
-		return photo;
+	public EntityPhoto getPhoto() {
+		return photoEntity;
 	}
 
-	public void setPhoto(Photo photo) {
-		this.photo = photo;
+	public void setPhoto(EntityPhoto photoEntity) {
+		this.photoEntity = photoEntity;
 	}
 
 	@Override

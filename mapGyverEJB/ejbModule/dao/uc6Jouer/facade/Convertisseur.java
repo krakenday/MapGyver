@@ -53,8 +53,8 @@ public final class Convertisseur {
 			if (object instanceof Reponse) {
 				reponse = (Reponse) object;
 				reponse.setDateEmission(reponseEntity.getDateEmission());
-				reponse.setUtilisateur(reponseEntity.getUtilisateur());
-				reponse.setJeu(reponseEntity.getJeu());
+				reponse.setUtilisateurEntity(reponseEntity.getUtilisateurEntity());
+				reponse.setJeuEntity(reponseEntity.getJeuEntity());
 			}
 			return reponse;
 		}

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,16 +52,9 @@ public class ControleurJouer extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ReponseElire reponseElire = new ReponseElire();
-		reponseElire.setId(10);
-		try {
-			iServiceFacade.createReponseElire(reponseElire);
-		} catch (ExceptionSurDao e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		RequestDispatcher disp = request.getRequestDispatcher("/vue/jouer.jsp");
+		disp.forward(request, response);
 	}
 
 	/**
@@ -71,15 +65,17 @@ public class ControleurJouer extends HttpServlet {
 			throws ServletException, IOException {
 
 		ReponseElire reponseElire = new ReponseElire();
-		reponseElire.setId(10);
+		reponseElire.setId(Integer.parseInt(request.getParameter("radioId")));
+		System.out.println(reponseElire.getId());
 		try {
 			iServiceFacade.createReponseElire(reponseElire);
 		} catch (ExceptionSurDao e) {
 			// TODO Auto-generated catch block
-			e.getMessage();
-			System.out.println("erreur ExceptionDao");
+			e.printStackTrace();
 		}
-		doGet(request, response);
+		RequestDispatcher disp = request.getRequestDispatcher("/vue/jouer.jsp");
+		disp.forward(request, response);
+
 	}
 
 }

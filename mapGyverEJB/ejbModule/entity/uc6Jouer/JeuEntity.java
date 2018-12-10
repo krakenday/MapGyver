@@ -28,10 +28,9 @@ public abstract class JeuEntity implements Serializable {
 	private String nom;
 	@Column(name = "d_crea", nullable = false)
 	private LocalDate dateCreation;
-	
-	//DM il faut travailler avec les entity - Voir Idriss et Djallel
+
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_user",nullable = false)
+	@JoinColumn(name = "id_user", nullable = false)
 	private EntityUtilisateur utilisateur;
 
 	public JeuEntity() {
@@ -95,15 +94,15 @@ public abstract class JeuEntity implements Serializable {
 	 * @return
 	 */
 	public abstract Class<?> getMappingMetier();
-	
+
 	private EntityUtilisateur BusinessToEntity(Utilisateur user) {
 		EntityUtilisateur u = new EntityUtilisateur();
 		u.setId(user.getId());
 		return u;
-		
+
 	}
-	
-	private Utilisateur  EntityToBusiness(EntityUtilisateur user) {
+
+	private Utilisateur EntityToBusiness(EntityUtilisateur user) {
 		Utilisateur u = new Utilisateur();
 		u.setId(user.getId());
 		return u;

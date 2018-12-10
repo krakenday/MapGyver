@@ -22,7 +22,14 @@ public class Controleur extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doErreur(request, response);
+		String path = request.getPathInfo();
+		afficherTrace(path);
+
+		if (path.matches("/jouer(.*)")) {
+			doPage(request, response, path);
+		} else {
+			doErreur(request, response);
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
