@@ -18,6 +18,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transaction;
 
 import business.uc2Souvenir.Commentaire;
 import business.uc2Souvenir.Photo;
@@ -54,9 +55,16 @@ public class DaoSouvenirCreatePhoto {
 		entityPhoto =iCreateEntitySouvenir.createEntityPhoto((Photo)souvenir);
 
 		try {
+			if(entityPhoto.getCommentaire() != null) {
+				em.persist(entityPhoto.getCommentaire());
+				System.out.println("*****Commentaire photo persisté");
+			}
 			System.out.println("*****entityPhoto:" + entityPhoto);
 			em.persist(entityPhoto);
+			System.out.println("*****APRES PERSIST");
 			em.flush();
+			System.out.println("*****APRES FLUSH");
+			
 			
 		} catch (Exception e) {
 			System.out.println("*****dao.DaoSouvenirCreatePhoto-createSouvenir: dans le catch EXCEPTION de Persistence");

@@ -33,7 +33,7 @@ public class EntityPhoto extends EntitySouvenir {
 	//Pas de CascadeType Delete, car le commentaire peut exister sans photo associe
 	//fetch de type EAGER pour l'instant. Lazy plus approprie car pas besoin de 
 	//remonter systemetiquement un commentaire.
-	@OneToOne(cascade= CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_com",nullable=true)
 	private EntityCommentaire commentaire;
 	
@@ -61,6 +61,9 @@ public class EntityPhoto extends EntitySouvenir {
 		this.nom = nom;
 	}
 	
+
+
+
 	/**
 	 * Constructeur pour persister Photo sans commentaire
 	 * @param id
