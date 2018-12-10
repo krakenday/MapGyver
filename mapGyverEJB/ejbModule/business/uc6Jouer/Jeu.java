@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 import business.uc8Utilisateur.Utilisateur;
 
-public class Jeu implements Serializable {
+public abstract class Jeu implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private int id;
@@ -67,4 +67,11 @@ public class Jeu implements Serializable {
 		return "Jeu [id=" + id + ", nom=" + nom + ", dateCreation=" + dateCreation + "Utilisateur Id"
 				+ utilisateur.getId() + "]";
 	}
+
+	/**
+	 * Va permettre de fournir l Entity lier au Metier
+	 * 
+	 * @return
+	 */
+	public abstract Class<?> getMappingEntity();
 }

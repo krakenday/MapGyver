@@ -1,6 +1,5 @@
 package business.uc6Jouer;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 import business.uc2Souvenir.Photos;
@@ -73,5 +72,10 @@ public class ElirePhoto extends Jeu {
 	public String toString() {
 		return "ElirePhoto [dateFinInscription=" + dateFinInscription + ", dateDebut=" + dateDebut + ", dateFin="
 				+ dateFin + ", photos=" + photos + "]";
+	}
+
+	@Override
+	public Class<?> getMappingEntity() {
+		return ReponseElire.class;
 	}
 }
