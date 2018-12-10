@@ -46,11 +46,11 @@ public abstract class ReponseEntity implements Serializable {
 
 	}
 
-	public ReponseEntity(LocalDate dateEmission, EntityUtilisateur utilisateurEntity, JeuEntity jeuEntity) {
-		this.dateEmission = dateEmission;
-		this.utilisateurEntity = utilisateurEntity;
-		this.jeuEntity = jeuEntity;
-	}
+//	public ReponseEntity(LocalDate dateEmission, EntityUtilisateur utilisateurEntity, JeuEntity jeuEntity) {
+//		this.dateEmission = dateEmission;
+//		this.utilisateurEntity = utilisateurEntity;
+//		this.jeuEntity = jeuEntity;
+//	}
 
 	public ReponseEntity(JeuEntity jeuEntity, EntityUtilisateur utilisateurEntity, LocalDate dateEmission) {
 		getId().setIdJeu(jeuEntity.getId());

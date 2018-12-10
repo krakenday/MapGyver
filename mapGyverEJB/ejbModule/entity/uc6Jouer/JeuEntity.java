@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -17,7 +20,7 @@ import business.uc8Utilisateur.Utilisateur;
 import entity.uc8Utilisateur.EntityUtilisateur;
 
 @Entity
-@Table(name = "jeu")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class JeuEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,7 +32,7 @@ public abstract class JeuEntity implements Serializable {
 	@Column(name = "d_crea", nullable = false)
 	private LocalDate dateCreation;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_user", nullable = false)
 	private EntityUtilisateur utilisateur;
 
@@ -99,7 +102,6 @@ public abstract class JeuEntity implements Serializable {
 		EntityUtilisateur u = new EntityUtilisateur();
 		u.setId(user.getId());
 		return u;
-
 	}
 
 	private Utilisateur EntityToBusiness(EntityUtilisateur user) {

@@ -9,13 +9,26 @@ import business.uc6Jouer.Jeu;
 import dao.DaoParam;
 import entity.uc6Jouer.JeuEntity;
 
+/**
+ * Permet la creation,la suppression d'une entity
+ * 
+ * create {@link #createCrud(T aPersister) }
+ * 
+ * @author lours
+ *
+ */
 @Singleton
 @LocalBean
 public class CrudDao {
-//	@PersistenceContext(unitName = "MapGyver")
+
 	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
 	EntityManager em;
 
+	/**
+	 * Permet la creation d'une Entity de façon generique
+	 * 
+	 * @param aPersister
+	 */
 	public <T> void createCrud(T aPersister) {
 
 		em.persist(aPersister);
