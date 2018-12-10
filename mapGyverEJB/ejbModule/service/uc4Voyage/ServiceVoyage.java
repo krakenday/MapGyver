@@ -104,8 +104,13 @@ public class ServiceVoyage {
 		}
 	}
 
-	public PointInteret createPOInteret(PointInteret pointInteret) {
-		return daoFacade.createPOInteret(pointInteret);
+	public PointInteret createPOInteret(PointInteret pointInteret) throws ServiceVoyageException {
+		try {
+			System.out.println("ServiceVoyage createPOInteret");
+			return daoFacade.createPOInteret(pointInteret);
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 	}
 
 	public List<PointInteret> readPOInteretOrderById() throws ServiceVoyageException {
@@ -121,12 +126,20 @@ public class ServiceVoyage {
 		return daoFacade.updatePOInteret(pointInteret);
 	}
 
-	public void deletePOInteret(int id) {
-		daoFacade.deletePOInteret(id);
+	public void deletePOInteret(int id) throws ServiceVoyageException {
+		try {
+			daoFacade.deletePOInteret(id);
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 	}
 
-	public PointInteret getPOInteretById(int id) {
-		return daoFacade.getPOInteretById(id);
+	public PointInteret getPOInteretById(int id) throws ServiceVoyageException {
+		try {
+			return daoFacade.getPOInteretById(id);
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 	}
 
 

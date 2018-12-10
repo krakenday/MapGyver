@@ -267,9 +267,13 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public PointInteret createPOInteret(PointInteret pointInteret) {
-		//		serviceFacadeVoyage.createPOInteret(pointInteret);
-		return null;
+	public PointInteret createPOInteret(PointInteret pointInteret) throws ServiceFacadeExceptionVoyage {
+		try {
+			System.out.println("ServiceFAcade createPOInteret");
+			return serviceFacadeVoyage.createPOInteret(pointInteret);
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
+		}
 	}
 
 	@Override
@@ -289,14 +293,23 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public void deletePOInteret(int id) {
-		//		serviceFacadeVoyage.deletePOInteret(id);
+	public void deletePOInteret(int id) throws ServiceFacadeExceptionVoyage {
+		try {
+			serviceFacadeVoyage.deletePOInteret(id);
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(),
+					e.getMessage());
+		}	
 	}
 
 	@Override
-	public PointInteret getPOInteretById(int id) {
-		//		return serviceFacadeVoyage.getPOInteretById(id);
-		return null;
+	public PointInteret getPOInteretById(int id) throws ServiceFacadeExceptionVoyage {
+		try {
+			return serviceFacadeVoyage.getPOInteretById(id);
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(),
+					e.getMessage());
+		}	
 	}
 
 	// fin bloc service voyage

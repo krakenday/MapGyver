@@ -2,13 +2,7 @@ package test.uc4Voyage.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -17,18 +11,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
-import business.uc4Voyage.Voyage;
 import business.uc8Utilisateur.Utilisateur;
 import clientServeur.IServiceFacade;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
-import dao.exception.uc4Voyage.DaoVoyageException;
-import dao.uc4Voyage.DaoGenericVoyage;
-import entity.uc4Voyage.EntityCoordonnee;
-import entity.uc4Voyage.EntityLieu;
-import entity.uc4Voyage.EntityPays;
-import entity.uc4Voyage.EntityVille;
 import service.exception.uc1Administrer.ServiceInexistantException;
 
 public class TestServiceCrudRoadBook {

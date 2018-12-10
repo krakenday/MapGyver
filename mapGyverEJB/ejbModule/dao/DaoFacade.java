@@ -227,8 +227,14 @@ public class DaoFacade {
 		}
 	}
 
-	public PointInteret createPOInteret(PointInteret pointInteret) {
-		return daoFacadeVoyage.createPOInteret(pointInteret);
+	public PointInteret createPOInteret(PointInteret pointInteret) throws DaoFacadeExceptionVoyage  {
+		try {
+			System.out.println("daoFacade createPOInteret");
+			return daoFacadeVoyage.createPOInteret(pointInteret);
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					".POI"+ e.getMessage());
+		}
 
 	}
 
@@ -246,12 +252,22 @@ public class DaoFacade {
 		return daoFacadeVoyage.updatePOInteret(pointInteret);
 	}
 
-	public void deletePOInteret(int id) {
-		daoFacadeVoyage.deletePOInteret(id);		
+	public void deletePOInteret(int id) throws DaoFacadeExceptionVoyage {
+		try {
+			daoFacadeVoyage.deletePOInteret(id);
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					".POI"+ e.getMessage());
+		}
 	}
 
-	public PointInteret getPOInteretById(int id) {
-		return daoFacadeVoyage.getPOInteretById(id);	
+	public PointInteret getPOInteretById(int id) throws DaoFacadeExceptionVoyage {
+		try {
+			return daoFacadeVoyage.getPOInteretById(id);	
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					".POI"+ e.getMessage());
+		}
 	}
 	//fin ***************** Voyage
 

@@ -20,7 +20,7 @@ public class EntityCoordonnee implements Serializable {
 	
 	@Id
 	@Column(name="id_Crd")
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="seqPOI")
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="seqCoord")
 	private int 	id;
 	
 	/**

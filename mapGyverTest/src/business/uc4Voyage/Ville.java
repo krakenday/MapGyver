@@ -7,6 +7,9 @@ public class Ville extends PointInteret{
 	
 	private Pays pays;
 	
+	public Ville() {
+	}
+	
 	public Ville(String nom) {
 		super(nom);
 	}
@@ -19,7 +22,7 @@ public class Ville extends PointInteret{
 		super(nom, coordonnee);
 		this.pays = pays;
 	}
-
+	
 	public Pays getPays() {
 		return pays;
 	}

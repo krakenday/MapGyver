@@ -46,7 +46,7 @@ public class DaoFacadeVoyage {
 	}
 
 	public Voyage updateVoyage(Voyage voyage) throws DaoVoyageException {
-		EntityVoyage entityVoyage = factoryEntity.createEntityWithIDFrom(voyage);
+		EntityVoyage entityVoyage = factoryEntity.createEntityWithIdFrom(voyage);
 			return factoryEntity.createFromEntity(daoGenericVoyage.update(entityVoyage));
 
 	}
@@ -79,7 +79,7 @@ public class DaoFacadeVoyage {
 	}
 
 	public RoadBook updateRoadBook(RoadBook roadBook) throws DaoVoyageException {
-		EntityRoadBook entityRoadBook = factoryEntity.createEntityWithIDFrom(roadBook);
+		EntityRoadBook entityRoadBook = factoryEntity.createEntityWithIdFrom(roadBook);
 		System.out.println("daoFacadeVoyage updateRoadBook");
 		System.out.println(roadBook);
 		System.out.println(entityRoadBook);
@@ -114,9 +114,10 @@ public class DaoFacadeVoyage {
 		return roadBook;
 	}
 
-	public PointInteret createPOInteret(PointInteret pointInteret) {
-		// TODO Auto-generated method stub
-		return null;
+	public PointInteret createPOInteret(PointInteret pointInteret) throws DaoVoyageException {
+		EntityPointInteret entityPointInteret= factoryEntity.createEntityFrom(pointInteret);
+		EntityPointInteret entityPoi= daoGenericVoyage.create(entityPointInteret);
+		return factoryEntity.createFromEntity(entityPoi);
 	}
 
 	public List<PointInteret> readPOInteretOrderById() throws DaoVoyageException {
@@ -131,14 +132,12 @@ public class DaoFacadeVoyage {
 
 	}
 
-	public void deletePOInteret(int id) {
-		// TODO Auto-generated method stub
-
+	public void deletePOInteret(int id) throws DaoVoyageException {
+		daoGenericVoyage.delete(id, EntityPointInteret.class);
 	}
 
-	public PointInteret getPOInteretById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public PointInteret getPOInteretById(int id) throws DaoVoyageException {
+		return factoryEntity.createFromEntity(daoGenericVoyage.find(id, EntityPointInteret.class));
 	}
 
 

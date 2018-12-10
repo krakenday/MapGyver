@@ -2,14 +2,10 @@ package entity.uc4Voyage;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import dao.util.UtilBdD;
 
@@ -32,7 +28,13 @@ public class EntityVoyage implements Serializable{
 	private LocalDate 				dateDebut;
 	
 	@Column(name="part_voy")
-	private Integer 				nbParticipant;	
+	private Integer 				nbParticipant;
+	
+	//TODO mettre en place le manytomany avec POI
+	@Column(name="poi_voy")
+	@ManyToMany(cascade= { CascadeType.PERSIST})
+	@JoinTable(name=UtilBdD.ENTITY_VOYPOI, joinColumns = {@JoinColumn(name="id_Voyage")}, inverseJoinColumns = {@JoinColumn(name="id_POI")})
+	private List<EntityPointInteret> entityPointInterets = new ArrayList<EntityPointInteret>();
 	
 	public EntityVoyage() {
 		super();
@@ -50,10 +52,32 @@ public class EntityVoyage implements Serializable{
 		this.dateDebut = dateDebut;
 		this.nbParticipant = nbParticipant;
 	}
+	
+	
+	public EntityVoyage(int id, String nom, LocalDate dateDebut, Integer nbParticipant,
+			List<EntityPointInteret> entityPointInteret) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.dateDebut = dateDebut;
+		this.nbParticipant = nbParticipant;
+		this.entityPointInterets = entityPointInteret;
+	}
+	
+	public EntityVoyage(String nom, LocalDate dateDebut, Integer nbParticipant,
+			List<EntityPointInteret> entityPointInteret) {
+		super();
+		this.nom = nom;
+		this.dateDebut = dateDebut;
+		this.nbParticipant = nbParticipant;
+		this.entityPointInterets = entityPointInteret;
+	}
+	
 	public EntityVoyage(String nom) {
 		this.nom = nom;
 	}	
-	
+
+
 	public int getId() {
 		return id;
 	}
@@ -86,11 +110,29 @@ public class EntityVoyage implements Serializable{
 		this.nbParticipant = nbParticipant;
 	}
 
-	@Override
-	public String toString() {
-		return String.format("EntityVoyage [id= %s, nom= %s, dateDebut= %s, nbParticipant= %s]", id, nom, dateDebut,
-				nbParticipant);
+	public List<EntityPointInteret> getEntityPointInterets() {
+		return entityPointInterets;
 	}
 
-	
+	public void setEntityPointInterets(List<EntityPointInteret> entityPointInteret) {
+		this.entityPointInterets = entityPointInteret;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("EntityVoyage [id=%s, nom=%s, dateDebut=%s, nbParticipant=%s, entityPointInteret=%s]", id,
+				nom, dateDebut, nbParticipant, entityPointInterets);
+	}
+
+	public void addPoi(EntityPointInteret entityPointInteret) {
+		if (entityPointInteret != null) {
+			if (entityPointInterets == null) entityPointInterets = new ArrayList<EntityPointInteret>();
+			if (!entityPointInterets.contains(entityPointInteret)) {
+				entityPointInterets.add(entityPointInteret);
+				entityPointInteret.add(this);
+			} 
+		}
+		
+	}
+
 }

@@ -54,7 +54,7 @@ public class Coordonnee implements Serializable  {
 
 	@Override
 	public String toString() {
-		return "Coordonnee [id=" + id + ", latitude=" + latitude + ", longitude=" + longitude + "]";
+		return "Coordonnee [id=" + id + ", lat.=" + latitude + ", long.=" + longitude + "]";
 	}
 	
 }

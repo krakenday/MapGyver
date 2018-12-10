@@ -1,16 +1,11 @@
 
 package entity.uc4Voyage;
 
-import java.util.Objects;
-
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import dao.util.UtilBdD;
@@ -21,9 +16,9 @@ public class EntityLieu extends EntityPointInteret{
 
 	private static final long serialVersionUID = 1L;
 	
-	@OneToOne (fetch=FetchType.LAZY)
-	@JoinColumn(name = "id_ville", unique = true, nullable = false)
-	private EntityVille ville;
+	@ManyToOne(fetch=FetchType.LAZY)  
+	@JoinColumn(name = "id_vil", unique = false, nullable = true) 
+	private EntityVille entityVille;
 
 	public EntityLieu() {
 	}
@@ -38,20 +33,22 @@ public class EntityLieu extends EntityPointInteret{
 	
 	public EntityLieu(String nom, EntityCoordonnee entityCoordonne, EntityVille ville) {
 		super(nom, entityCoordonne); 
-		this.ville = ville;
+		this.entityVille = ville;
 	}
 
-	public EntityVille getVille() {
-		return ville;
+	public EntityVille getEntityVille() {
+		return entityVille;
 	}
 
-	public void setVille(EntityVille ville) {
-		this.ville = ville;
+	public void setEntityVille(EntityVille ville) {
+		this.entityVille = ville;
 	}
+
 
 	@Override
 	public String toString() {
-		return "EntityLieu [ville=" + ville + "]";
+		return "EntityLieu " + super.toString() + String.format("[ville=%s]", entityVille);
 	}
+
 	
 }

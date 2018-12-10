@@ -37,7 +37,7 @@ public class EntityRoadBook implements Serializable{
 	private EntityUtilisateur entityUtilisateur;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<EntityVoyage> voyages = new ArrayList<EntityVoyage>();
+	private List<EntityVoyage> entityVoyages = new ArrayList<EntityVoyage>();
 
 	public EntityRoadBook() {
 
@@ -46,7 +46,7 @@ public class EntityRoadBook implements Serializable{
 	public EntityRoadBook(EntityUtilisateur entityUtilisateur, List<EntityVoyage> voyages) {
 		super();
 		this.entityUtilisateur = entityUtilisateur;
-		this.voyages = voyages;
+		this.entityVoyages = voyages;
 	}
 
 	public int getId() {
@@ -57,12 +57,12 @@ public class EntityRoadBook implements Serializable{
 		this.id = id;
 	}
 
-	public List<EntityVoyage> getVoyages() {
-		return voyages;
+	public List<EntityVoyage> getEntityVoyages() {
+		return entityVoyages;
 	}
 
-	public void setVoyages(List<EntityVoyage> voyages) {
-		this.voyages = voyages;
+	public void setEntityVoyages(List<EntityVoyage> voyages) {
+		this.entityVoyages = voyages;
 	}
 
 	public EntityUtilisateur getEntityUtilisateur() {
@@ -75,7 +75,7 @@ public class EntityRoadBook implements Serializable{
 
 	@Override
 	public String toString() {
-		return "EntityRoadBook [id=" + id + ", voyages=" + voyages  + ", entityUtilisateur=" + entityUtilisateur + "]";
+		return "EntityRoadBook [id=" + id + ", voyages=" + entityVoyages  + ", entityUtilisateur=" + entityUtilisateur + "]";
 	}
 
 }

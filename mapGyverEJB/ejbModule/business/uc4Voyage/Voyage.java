@@ -3,6 +3,7 @@ package business.uc4Voyage;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Projet MapGyver
@@ -29,7 +30,7 @@ public class Voyage implements Serializable {
 	private String 					nom;
 	private LocalDate 				dateDebut;
 	private Integer					nbParticipant;
-	private ArrayList<PointInteret> pointInteret;
+	private List<PointInteret> pointInteret;
 	
 	public Voyage() {
 		super();
@@ -131,14 +132,14 @@ public class Voyage implements Serializable {
 	/**
 	 * @return ensemble de lieux parcouru lors du voyage
 	 */
-	public ArrayList<PointInteret> getPointInteret() {
+	public List<PointInteret> getPointInteret() {
 		return pointInteret;
 	}
 
 	/**
 	 * @param pointInteret : ensemble de lieux parcouru lors du voyage
 	 */
-	public void setPointInteret(ArrayList<PointInteret> pointInteret) {
+	public void setPointInteret(List<PointInteret> pointInteret) {
 		this.pointInteret = pointInteret;
 	}
 

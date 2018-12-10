@@ -10,9 +10,15 @@
   TABLES : UTILISATEUR, MPG_ROADBOOK, MPG_ROADBOOK_MPG_VOYAGE  
   RESTRICTIONS : ID entre 400 et 499                            
 ==============================================================*/
+delete from MPG_VOY_POI                 where Id_VOYAGE >=0     and Id_VOYAGE <=499;
+delete from MPG_LIEU                 where Id_POI >=0     and Id_POI <=499;
+delete from MPG_VILLE                   where Id_POI >=0     and Id_POI <=499;
+delete from MPG_PAYS                    where Id_POI >=0     and Id_POI <=499;
+delete from MPG_COORD                   where Id_CRD >=0     and Id_CRD <=499;
 delete from MPG_ROADBOOK_MPG_VOYAGE 	  where ENTITYROADBOOK_ID_RBK >=0     and ENTITYROADBOOK_ID_RBK <=499;
 delete from MPG_VOYAGE 	                where ID_VOY >=0     and ID_VOY <=499;
 delete from MPG_ROADBOOK                where Id_RBK >=0     and Id_RBK <=499;
+
 delete from UTILISATEUR                 where ID     >=0     and ID     <=499;
 
 /*==============================================================
@@ -50,8 +56,8 @@ Insert into MPG_VOYAGE (ID_VOY,DEB_VOY,PART_VOY,NOM_VOY) values ('423',to_date('
   RESTRICTIONS :                           
 ==============================================================*/
 
-Insert into IDRISS_ADMIN.MPG_ROADBOOK_MPG_VOYAGE (ENTITYROADBOOK_ID_RBK,VOYAGES_ID_VOY) values ('411','421');
-Insert into IDRISS_ADMIN.MPG_ROADBOOK_MPG_VOYAGE (ENTITYROADBOOK_ID_RBK,VOYAGES_ID_VOY) values ('411','423');
+Insert into IDRISS_ADMIN.MPG_ROADBOOK_MPG_VOYAGE (ENTITYROADBOOK_ID_RBK,ENTITYVOYAGES_ID_VOY) values ('411','421');
+Insert into IDRISS_ADMIN.MPG_ROADBOOK_MPG_VOYAGE (ENTITYROADBOOK_ID_RBK,ENTITYVOYAGES_ID_VOY) values ('411','423');
 
 
 /*==============================================================*/

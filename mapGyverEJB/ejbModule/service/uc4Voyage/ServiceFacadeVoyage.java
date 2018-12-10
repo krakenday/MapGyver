@@ -69,7 +69,7 @@ public class ServiceFacadeVoyage {
 		return serviceVoyage.getRoadBookByUser(utilisateur);
 	}
 	
-	public PointInteret createPOInteret(PointInteret pointInteret) {
+	public PointInteret createPOInteret(PointInteret pointInteret) throws ServiceVoyageException {
 		return serviceVoyage.createPOInteret(pointInteret);
 	}
 
@@ -81,11 +81,11 @@ public class ServiceFacadeVoyage {
 		return serviceVoyage.updatePOInteret(pointInteret);
 	}
 
-	public void deletePOInteret(int id) {
+	public void deletePOInteret(int id) throws ServiceVoyageException {
 		serviceVoyage.deletePOInteret(id);
 	}
 
-	public PointInteret getPOInteretById(int id) {
+	public PointInteret getPOInteretById(int id) throws ServiceVoyageException {
 		return serviceVoyage.getPOInteretById(id);
 	}
 

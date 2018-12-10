@@ -1,12 +1,11 @@
 
 package entity.uc4Voyage;
 
-import java.util.Objects;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import dao.util.UtilBdD;
@@ -16,10 +15,10 @@ import dao.util.UtilBdD;
 public class EntityVille extends EntityPointInteret {
 
 	private static final long serialVersionUID = 1L;
-
-	@OneToOne (fetch=FetchType.LAZY)
-	@JoinColumn(name = "id_pays", unique = true, nullable = false)
-	private EntityPays pays;
+	
+	@ManyToOne(fetch=FetchType.LAZY)  
+	@JoinColumn(name = "id_pay", unique = false, nullable = true) 
+	private EntityPays entityPays;
 
 	public EntityVille() {
 	}
@@ -34,19 +33,19 @@ public class EntityVille extends EntityPointInteret {
 	
 	public EntityVille(String nom, EntityCoordonnee entityCoordonnee, EntityPays pays) {
 		super(nom, entityCoordonnee);
-		this.pays = pays;
+		this.entityPays = pays;
 	}
 
-	public EntityPays getPays() {
-		return pays;
+	public EntityPays getEntityPays() {
+		return entityPays;
 	}
 
-	public void setPays(EntityPays pays) {
-		this.pays = pays;
+	public void setEntityPays(EntityPays pays) {
+		this.entityPays = pays;
 	}
 
 	@Override
 	public String toString() {
-		return "EntityVille " + super.toString() + String.format("[Pays=%s]", pays);
+		return "EntityVille " + super.toString() + String.format("[Pays=%s]", entityPays);
 	}
 }

@@ -36,8 +36,4 @@ public class Lieu extends PointInteret{
 		return "Lieu " + super.toString() + String.format("[ville=%s]", ville);
 	}
 
-
-
-
-
 }

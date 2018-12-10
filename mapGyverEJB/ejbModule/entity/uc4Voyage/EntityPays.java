@@ -12,7 +12,6 @@ import dao.util.UtilBdD;
 public class EntityPays extends EntityPointInteret{
 
 	private static final long serialVersionUID = 1L;
-	
 	public static final int NB_TOTAL = 197;
 	
 	public EntityPays() {
@@ -25,5 +24,9 @@ public class EntityPays extends EntityPointInteret{
 	public EntityPays(String nom, EntityCoordonnee entityCoordonnee) {
 		super(nom, entityCoordonnee);
 	}
-	
+
+	@Override
+	public String toString() {
+		return "EntityPays " + super.toString();
+	}
 }
