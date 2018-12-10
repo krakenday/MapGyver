@@ -30,8 +30,9 @@ public class DaoFacadeSouvenir {
 		
 		
 		if(souvenir instanceof Photo) {
-			daoSouvenirCreatePhoto.createSouvenir(souvenir);
 			System.out.println("*****DaoFacadeSouvenir-createSouvenir: je suis une instance de Photo");
+			daoSouvenirCreatePhoto.createSouvenir(souvenir);
+			
 		}
 		else if (souvenir instanceof Commentaire) {
 			System.out.println("*****DaoFacadeSouvenir-createSouvenir: je suis une instance de Commentaire");
