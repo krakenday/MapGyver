@@ -10,7 +10,7 @@ import dao.DaoParam;
 import entity.uc6Jouer.JeuEntity;
 
 /**
- * Permet la creation,la suppression d'une entity
+ * Permet la creation,la suppression d'une entity,les recherches
  * 
  * create {@link #createCrud(T aPersister) }
  * 
@@ -30,7 +30,6 @@ public class CrudDao {
 	 * @param aPersister
 	 */
 	public <T> void createCrud(T aPersister) {
-
 		em.persist(aPersister);
 	}
 }

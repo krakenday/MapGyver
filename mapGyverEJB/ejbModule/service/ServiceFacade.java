@@ -274,7 +274,6 @@ public class ServiceFacade implements IServiceFacade {
 	public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao {
 
 		serviceFacadeJouer.createReponseElire(reponseElire);
-		System.out.println("tout va bien!!!!");
 	}
 	// ***** Fin AlexB - UC6 Jouer
 
