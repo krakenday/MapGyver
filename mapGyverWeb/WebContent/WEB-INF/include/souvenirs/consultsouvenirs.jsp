@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
     
 <div class="row">	 
 	 <div class="col-8">
@@ -53,7 +54,7 @@
 	</div>
 	
 	<div class="col-4 form-group">
-		<form action="<%=request.getContextPath()%>/mapgyver/souvenirs/ajouter" method="POST" enctype="multipart/form-data">
+		<s:form namespace="" action="" method="POST" enctype="multipart/form-data">
 			 <p>
 			  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 			    Ajouter un souvenir
@@ -79,15 +80,15 @@
 					</select>
 				</div>
 				<div>
-					<input type="hidden" name="idVoyage" value="747">
+					<s:input type="hidden" name="idVoyage" value="747"><!-- me suis arrete la -->
 				</div>
 				<div>
-				  <label for="comment">Commentaire:</label>
-				  <textarea class="form-control" rows="5" id="com" name="com"></textarea>
+				  <s:label for="comment">Commentaire:</s:label>
+				  <s:textarea class="form-control" rows="5" id="com" name="com"></s:textarea>
 				  <button type="submit" class="btn btn-dark mt-2 ">Enregistrer</button>
 				</div>
 			  </div>
 			</div>
-		</form>
+		</s:form>
 	</div>
 </div>

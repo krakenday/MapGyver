@@ -28,7 +28,7 @@ import utilitaire.Constantes;
 @WebServlet(
 		name = "ControleurSouvenirsAjouter", 
 		description = "Controleur d ajout pour UC2", 
-		urlPatterns = {"/ajouter"}
+		urlPatterns = {"/XXajouter"}
 		)
 @MultipartConfig
 public class ControleurSouvenirsAjouter extends HttpServlet {

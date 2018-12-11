@@ -8,5 +8,10 @@
 		<action name="afficheSouvenir">
 			<result>/vue/souvenirs.jsp</result>
 		</action>
+		<action name="do*" class="webApp.uc2Souvenir.AdministrerSouvenir" method="{1}">
+			<result name="error">/vue/login.jsp</result><!-- A modif -->
+			<result name="success">/vue/index.jsp</result>
+			<allowed-methods>login,logout,forgot</allowed-methods>			
+		</action>
 	</package>
 </struts>

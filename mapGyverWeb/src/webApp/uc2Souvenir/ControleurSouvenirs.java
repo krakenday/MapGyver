@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(
 		name = "ControleurSouvenirs", 
 		description = "Controleur Souvenir", 
-		urlPatterns = {"/souvenirs/*"}
+		urlPatterns = {"/XXsouvenirs/*"}
 		)
 public class ControleurSouvenirs extends HttpServlet {
 	private static final long serialVersionUID = 1L;
