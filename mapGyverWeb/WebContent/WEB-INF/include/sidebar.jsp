@@ -25,9 +25,9 @@
         <!-- end link UC3 Partager -->
         
         <li class="nav-item">
-          <a class="nav-link" href="<%=request.getContextPath()%>/mapgyver/souvenirs/"><!-- envoyer vers mon controleur souvenir -->
+          <s:a class="nav-link" namespace="/mapgyver/uc2" action="afficheSouvenir">
             <i class="fas fa-fw fa-table"></i>
-            <span>souvenirs</span></a>
+            <span>souvenirs</span></s:a>
         </li>
         
         <li class="nav-item dropdown">

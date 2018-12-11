@@ -5,8 +5,8 @@
 
 <struts>
 	<package name="uc2" namespace="/mapgyver/uc2" extends="struts-default">
-		<action name="accueil">
-			<result>/vue/index.jsp</result>
+		<action name="afficheSouvenir">
+			<result>/vue/souvenirs.jsp</result>
 		</action>
 	</package>
 </struts>
