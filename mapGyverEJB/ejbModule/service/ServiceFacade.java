@@ -1,16 +1,20 @@
 package service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import business.uc2Souvenir.Photo;
 import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
+import business.uc6Jouer.ElirePhoto;
+import business.uc6Jouer.Jeu;
 import business.uc6Jouer.ReponseElire;
 import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
@@ -275,6 +279,19 @@ public class ServiceFacade implements IServiceFacade {
 
 		serviceFacadeJouer.createReponseElire(reponseElire);
 	}
+
+	public Jeu getJeuById(int idJeu) throws ExceptionSurDao {
+		System.out.println("je suis dans getJeuByID" + idJeu);
+		return new ElirePhoto();
+	}
+
+	@Override
+	public ArrayList<Photo> uc1GetAllPhoto() {
+		ArrayList<Photo> photos = serviceFacadeAdmin.uc1GetAllPhoto();
+		// System.out.println("*** ServiceFacade : uc1GetAllPhoto : " + photos);
+		return photos;
+	}
+
 	// ***** Fin AlexB - UC6 Jouer
 
 	/*

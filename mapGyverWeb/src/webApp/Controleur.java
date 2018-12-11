@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Controleur
  */
-@WebServlet(name = "Controleur", description = "Controleur General", urlPatterns = { "/mapgyver/*" })
+@WebServlet(name = "Controleur", description = "Controleur General", urlPatterns = { "/xx/mapgyver/*" })
 public class Controleur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final ArrayList<String> EXIST_URL = new ArrayList<String>(

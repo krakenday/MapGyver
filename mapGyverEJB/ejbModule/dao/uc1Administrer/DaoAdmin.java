@@ -1,5 +1,6 @@
 package dao.uc1Administrer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -10,28 +11,30 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
+import business.uc2Souvenir.Photo;
 import dao.DaoParam;
 import dao.exception.uc1Administrer.DaoInexistantException;
+import entity.uc2Souvenir.EntityPhoto;
 import entity.uc8Utilisateur.EntityUtilisateur;
 
 @Singleton
 @LocalBean
 public class DaoAdmin {
 
-	@PersistenceContext(unitName=DaoParam.CONTEXT_PERSISTANCE)
-	private EntityManager 		em;
+	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
+	private EntityManager em;
 
 	/**
-	 * Retourne EntityUtilisateur par id
-	 * si pas trouve : new InexistantException()
-	 * @throws DaoInexistantException 
+	 * Retourne EntityUtilisateur par id si pas trouve : new InexistantException()
+	 * 
+	 * @throws DaoInexistantException
 	 */
 	public EntityUtilisateur getUserById(int id) throws DaoInexistantException {
 
 		EntityUtilisateur user = null;
-		try { 
+		try {
 			user = em.find(EntityUtilisateur.class, id);
-		} catch (PersistenceException e) {				
+		} catch (PersistenceException e) {
 			// recherche de la cause
 			Throwable t = e.getCause();
 			while ((t != null) && !(t instanceof NoResultException)) {
@@ -39,34 +42,71 @@ public class DaoAdmin {
 			}
 			if (t instanceof NoResultException) {
 				throw new DaoInexistantException();
-			}			
+			}
 		}
-		if (user == null) throw new DaoInexistantException();
+		if (user == null)
+			throw new DaoInexistantException();
 		return user;
 	}
 
 	public EntityUtilisateur getUserByEmail(String email) throws DaoInexistantException {
 		EntityUtilisateur user = null;
-		try { 
+		try {
 			Query query = em.createQuery(
 					"select p from EntityUtilisateur p left outer join fetch p.motDePasse where p.email = :email order by p.id asc");
 			query.setParameter("email", email);
-			
+
 			@SuppressWarnings("unchecked")
 			List<EntityUtilisateur> liste = query.getResultList();
-			if (liste.size()==0) throw new DaoInexistantException();
-			
-			user = (EntityUtilisateur) query.getResultList().get(0);			
-		} catch (PersistenceException e) {				
+			if (liste.size() == 0)
+				throw new DaoInexistantException();
+
+			user = (EntityUtilisateur) query.getResultList().get(0);
+		} catch (PersistenceException e) {
 			Throwable t = e.getCause();
 			while ((t != null) && !(t instanceof NoResultException)) {
 				t = t.getCause();
 			}
 			if (t instanceof NoResultException) {
 				throw new DaoInexistantException();
-			}			
+			}
 		}
-		if (user == null) throw new DaoInexistantException();
+		if (user == null)
+			throw new DaoInexistantException();
 		return user;
+	}
+
+	public ArrayList<Photo> uc1GetAllPhoto() {
+
+		Query query = em.createQuery("select photo from EntityPhoto photo order by photo.id");
+		ArrayList<EntityPhoto> entityPhotos = (ArrayList<EntityPhoto>) recupObjet(query, EntityPhoto.class);
+		ArrayList<Photo> photos = new ArrayList<>();
+		for (EntityPhoto entityPhoto : entityPhotos) {
+			Photo photo = new Photo(entityPhoto.getId(), entityPhoto.getDateEnregistre(), entityPhoto.getNom(),
+					entityPhoto.getUrl());
+			photo.setFile(null);
+			photos.add(photo);
+		}
+		return photos;
+	}
+
+	/**
+	 * Methode generic pour recuperer le resultat d'un query et retourner une liste
+	 * du type demande
+	 * 
+	 * @param query
+	 * @param classe
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> List<T> recupObjet(Query query, Class<T> classe) {
+		List<T> liste = new ArrayList<T>();
+		for (Object o : query.getResultList()) {
+			try {
+				liste.add((T) o);
+			} catch (ClassCastException e) {
+			}
+		}
+		return liste;
 	}
 }

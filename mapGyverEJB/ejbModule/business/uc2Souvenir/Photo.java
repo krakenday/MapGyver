@@ -15,19 +15,19 @@ import java.time.LocalDate;
 //TODO must implements "Partageable"
 
 public class Photo extends Souvenir {
-	
+
+	private static final long serialVersionUID = 1L;
 	private String nom;
 	private String url;
 	private File file;
-	
 
 	/**
-	 * Constructeur a utiliser par le clientWeb 
-	 * pour passer l'objet Photo au service(ejb)
+	 * Constructeur a utiliser par le clientWeb pour passer l'objet Photo au
+	 * service(ejb)
 	 * 
 	 * @param dateEnregistre
 	 * @param nom
-	 * @param file (necessaire pour persister photo sur AWS S3)
+	 * @param file           (necessaire pour persister photo sur AWS S3)
 	 */
 	public Photo(LocalDate dateEnregistre, String nom, File file) {
 		super(dateEnregistre);
@@ -35,24 +35,22 @@ public class Photo extends Souvenir {
 		this.file = file;
 	}
 
-
 	/**
 	 * @author Alejandro
 	 * 
-	 * Constructeur a utiliser dans la couche DAO
-	 * (proprietes necessaires au client)
+	 *         Constructeur a utiliser dans la couche DAO (proprietes necessaires au
+	 *         client)
 	 * 
-	 * @param id (genere par la bdd par autoincrementation)
+	 * @param id             (genere par la bdd par autoincrementation)
 	 * @param dateEnregistre
 	 * @param nom
-	 * @param url (permet l acces a la photo enregistre sur AWS S3)
+	 * @param url            (permet l acces a la photo enregistre sur AWS S3)
 	 */
 	public Photo(int id, LocalDate dateEnregistre, String nom, String url) {
 		super(id, dateEnregistre);
 		this.nom = nom;
 		this.url = url;
 	}
-
 
 	@Override
 	public String toString() {
@@ -74,16 +72,13 @@ public class Photo extends Souvenir {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
+
 	public File getFile() {
 		return file;
 	}
 
-
 	public void setFile(File file) {
 		this.file = file;
 	}
-
-	
 
 }

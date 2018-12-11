@@ -18,7 +18,7 @@ import service.exception.uc6Jouer.ExceptionSurDao;
 /**
  * Servlet implementation class ControleurJouer
  */
-@WebServlet(name = "/ControleurJouer", description = "Controleur utilisateur", urlPatterns = { "/jouer/*" })
+@WebServlet(name = "/ControleurJouer", description = "Controleur utilisateur", urlPatterns = { "/xx/jouer/*" })
 public class ControleurJouer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

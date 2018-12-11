@@ -1,9 +1,12 @@
 package dao.uc1Administrer;
 
+import java.util.ArrayList;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
+import business.uc2Souvenir.Photo;
 import business.uc8Utilisateur.Utilisateur;
 import dao.exception.uc1Administrer.DaoInexistantException;
 import entity.uc8Utilisateur.EntityUtilisateur;
@@ -21,9 +24,7 @@ public class DaoFacadeAdmin {
 
 		EntityUtilisateur entityUser = daoAdmin.getUserById(id);
 		if (entityUser != null) {
-			user = new Utilisateur(	entityUser.getId(), 
-					entityUser.getNom(), 
-					entityUser.getPrenom(), 
+			user = new Utilisateur(entityUser.getId(), entityUser.getNom(), entityUser.getPrenom(),
 					entityUser.getEmail());
 		}
 		return user;
@@ -35,12 +36,14 @@ public class DaoFacadeAdmin {
 
 		EntityUtilisateur entityUser = daoAdmin.getUserByEmail(email);
 		if (entityUser != null) {
-			user = new Utilisateur(	entityUser.getId(), 
-					entityUser.getNom(), 
-					entityUser.getPrenom(), 
+			user = new Utilisateur(entityUser.getId(), entityUser.getNom(), entityUser.getPrenom(),
 					entityUser.getEmail());
 		}
 		return user;
+	}
+
+	public ArrayList<Photo> uc1GetAllPhoto() {
+		return daoAdmin.uc1GetAllPhoto();
 	}
 
 }

@@ -8,33 +8,34 @@ import business.uc8Utilisateur.Utilisateur;
 public abstract class Reponse implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int id;
+	private GestId id = new GestId();
 	private LocalDate dateEmission;
-	private Utilisateur utilisateur;
 	private Jeu jeu;
+	private Utilisateur utilisateur;
 
 	public Reponse() {
 
 	}
 
-	public Reponse(LocalDate dateEmission, Utilisateur utilisateur, Jeu jeu) {
+//	public ReponseEntity(LocalDate dateEmission, EntityUtilisateur utilisateurEntity, JeuEntity jeuEntity) {
+//		this.dateEmission = dateEmission;
+//		this.utilisateurEntity = utilisateurEntity;
+//		this.jeuEntity = jeuEntity;
+//	}
+
+	public Reponse(Jeu jeu, Utilisateur utilisateur, LocalDate dateEmission) {
+		getId().setIdJeu(jeu.getId());
+		getId().setIdJoueur(utilisateur.getId());
 		this.dateEmission = dateEmission;
 		this.utilisateur = utilisateur;
 		this.jeu = jeu;
 	}
 
-	public Reponse(int id, LocalDate dateEmission, Utilisateur utilisateur, Jeu jeu) {
-		this.id = id;
-		this.dateEmission = dateEmission;
-		this.utilisateur = utilisateur;
-		this.jeu = jeu;
-	}
-
-	public int getId() {
+	public GestId getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(GestId id) {
 		this.id = id;
 	}
 
@@ -46,19 +47,19 @@ public abstract class Reponse implements Serializable {
 		this.dateEmission = dateEmission;
 	}
 
-	public Utilisateur getUtilisateur() {
+	public Utilisateur getUtilisateurEntity() {
 		return utilisateur;
 	}
 
-	public void setUtilisateur(Utilisateur utilisateur) {
+	public void setUtilisateurEntity(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
 
-	public Jeu getJeu() {
+	public Jeu getJeuEntity() {
 		return jeu;
 	}
 
-	public void setJeu(Jeu jeu) {
+	public void setJeuEntity(Jeu jeu) {
 		this.jeu = jeu;
 	}
 
@@ -69,10 +70,51 @@ public abstract class Reponse implements Serializable {
 	}
 
 	/**
-	 * Va permettre de fournir l Entity lier au Metier
+	 * Va permettre de fournir l'Entity lié au Metier
 	 * 
 	 * @return
 	 */
 	public abstract Class<?> getMappingEntity();
 
+	/**
+	 * Permet la creation de l'identifiant de Reponse compose de l id d un jeu et l
+	 * id d un utilisateur
+	 * 
+	 * @author lours
+	 *
+	 */
+
+	public static class GestId implements Serializable {
+
+		private static final long serialVersionUID = 1L;
+
+		private int idJeu;
+		private int idJoueur;
+
+		public GestId() {
+			super();
+		}
+
+		public GestId(int idJeu, int idJoueur) {
+			super();
+			this.idJeu = idJeu;
+			this.idJoueur = idJoueur;
+		}
+
+		public int getIdJeu() {
+			return idJeu;
+		}
+
+		public void setIdJeu(int idJeu) {
+			this.idJeu = idJeu;
+		}
+
+		public int getIdJoueur() {
+			return idJoueur;
+		}
+
+		public void setIdJoueur(int idJoueur) {
+			this.idJoueur = idJoueur;
+		}
+	}
 }

@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 
 <div class="container">
-	<form method="post" action="<%= request.getContextPath() %>/mapgyver/jouer"> 
+	<s:form namespace="/mapgyver/uc6" action="jouerrepondreElire" method="post" theme="simple"> 
 		<%= request.getContextPath() %>/mapgyver/jouer
 		<div class="row">
       
@@ -24,6 +25,6 @@
 	            	<input type="radio" name="radioId" value=11>
 	    	</div>
 		</div>
-		<div><button type="submit" class="btn btn-secondary btn-lg float-right">Voter</button></div>
-	</form>  
+		<div><div><s:submit cssClass="btn btn-secondary btn-lg float-right" value="voter"></s:submit></div></div>
+	</s:form>  
 </div>
