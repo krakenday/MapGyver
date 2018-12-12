@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import business.uc6Jouer.Jeu;
 import dao.DaoParam;
+import dao.exception.uc6Jouer.ConvertionException;
 import entity.uc6Jouer.JeuEntity;
 
 /**
@@ -31,5 +32,9 @@ public class CrudDao {
 	 */
 	public <T> void createCrud(T aPersister) {
 		em.persist(aPersister);
+	}
+
+	public JeuEntity getJeuById(int idJeu) {
+		return em.find(JeuEntity.class, idJeu);
 	}
 }

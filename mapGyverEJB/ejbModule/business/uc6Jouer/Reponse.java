@@ -8,7 +8,8 @@ import business.uc8Utilisateur.Utilisateur;
 public abstract class Reponse implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private GestId id = new GestId();
+	// private GestId id = new GestId(); pas besoin de l'identifiant dans la classe
+	// metier vision objet
 	private LocalDate dateEmission;
 	private Jeu jeu;
 	private Utilisateur utilisateur;
@@ -24,20 +25,20 @@ public abstract class Reponse implements Serializable {
 //	}
 
 	public Reponse(Jeu jeu, Utilisateur utilisateur, LocalDate dateEmission) {
-		getId().setIdJeu(jeu.getId());
-		getId().setIdJoueur(utilisateur.getId());
+//		getId().setIdJeu(jeu.getId());
+//		getId().setIdJoueur(utilisateur.getId());
 		this.dateEmission = dateEmission;
 		this.utilisateur = utilisateur;
 		this.jeu = jeu;
 	}
 
-	public GestId getId() {
-		return id;
-	}
-
-	public void setId(GestId id) {
-		this.id = id;
-	}
+//	public GestId getId() {
+//		return id;
+//	}
+//
+//	public void setId(entity.uc6Jouer.ReponseEntity.GestId gestId) {
+//		this.id = gestId;
+//	}
 
 	public LocalDate getDateEmission() {
 		return dateEmission;
@@ -47,26 +48,26 @@ public abstract class Reponse implements Serializable {
 		this.dateEmission = dateEmission;
 	}
 
-	public Utilisateur getUtilisateurEntity() {
+	public Utilisateur getUtilisateur() {
 		return utilisateur;
 	}
 
-	public void setUtilisateurEntity(Utilisateur utilisateur) {
+	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
 
-	public Jeu getJeuEntity() {
+	public Jeu getJeu() {
 		return jeu;
 	}
 
-	public void setJeuEntity(Jeu jeu) {
+	public void setJeu(Jeu jeu) {
 		this.jeu = jeu;
 	}
 
 	@Override
 	public String toString() {
-		return "Reponse [id=" + id + ", dateEmission=" + dateEmission + ", utilisateur=" + utilisateur.getId()
-				+ ", jeu=" + jeu.getId() + "]";
+		return "Reponse [ dateEmission=" + dateEmission + ", utilisateur=" + utilisateur.getId() + ", jeu="
+				+ jeu.getId() + "]";
 	}
 
 	/**
@@ -76,45 +77,45 @@ public abstract class Reponse implements Serializable {
 	 */
 	public abstract Class<?> getMappingEntity();
 
-	/**
-	 * Permet la creation de l'identifiant de Reponse compose de l id d un jeu et l
-	 * id d un utilisateur
-	 * 
-	 * @author lours
-	 *
-	 */
-
-	public static class GestId implements Serializable {
-
-		private static final long serialVersionUID = 1L;
-
-		private int idJeu;
-		private int idJoueur;
-
-		public GestId() {
-			super();
-		}
-
-		public GestId(int idJeu, int idJoueur) {
-			super();
-			this.idJeu = idJeu;
-			this.idJoueur = idJoueur;
-		}
-
-		public int getIdJeu() {
-			return idJeu;
-		}
-
-		public void setIdJeu(int idJeu) {
-			this.idJeu = idJeu;
-		}
-
-		public int getIdJoueur() {
-			return idJoueur;
-		}
-
-		public void setIdJoueur(int idJoueur) {
-			this.idJoueur = idJoueur;
-		}
-	}
+//	/**
+//	 * Permet la creation de l'identifiant de Reponse compose de l id d un jeu et l
+//	 * id d un utilisateur
+//	 * 
+//	 * @author lours
+//	 *
+//	 */
+//
+//	public static class GestId implements Serializable {
+//
+//		private static final long serialVersionUID = 1L;
+//
+//		private int idJeu;
+//		private int idJoueur;
+//
+//		public GestId() {
+//			super();
+//		}
+//
+//		public GestId(int idJeu, int idJoueur) {
+//			super();
+//			this.idJeu = idJeu;
+//			this.idJoueur = idJoueur;
+//		}
+//
+//		public int getIdJeu() {
+//			return idJeu;
+//		}
+//
+//		public void setIdJeu(int idJeu) {
+//			this.idJeu = idJeu;
+//		}
+//
+//		public int getIdJoueur() {
+//			return idJoueur;
+//		}
+//
+//		public void setIdJoueur(int idJoueur) {
+//			this.idJoueur = idJoueur;
+//		}
+//	}
 }

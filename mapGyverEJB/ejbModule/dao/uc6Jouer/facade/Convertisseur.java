@@ -2,8 +2,13 @@ package dao.uc6Jouer.facade;
 
 import java.lang.reflect.InvocationTargetException;
 
+import business.uc6Jouer.ElirePhoto;
+import business.uc6Jouer.Jeu;
 import business.uc6Jouer.Reponse;
 import dao.exception.uc6Jouer.ConvertionException;
+import dao.uc8Utilisateur.FabriqueEntity;
+import entity.uc6Jouer.ElirePhotoEntity;
+import entity.uc6Jouer.JeuEntity;
 import entity.uc6Jouer.ReponseEntity;
 
 public final class Convertisseur {
@@ -30,62 +35,120 @@ public final class Convertisseur {
 		return Convertisseur.instance;
 	}
 
-	/**
-	 * Permet de convertir une ReponseEntity en Reponse
-	 * 
-	 * @author lours
-	 *
-	 * @param <T>
-	 */
+	protected Jeu transformJeu(ElirePhotoEntity jeuElireEntity) throws ConvertionException {
 
-	class ReponseEntityToMetier<T extends ReponseEntity> {
-
-		protected Reponse reponseEntityToMetier(T reponseEntity) throws ConvertionException {
-			Class<?> type = reponseEntity.getMappingMetier();
-			Object object = null;
-			try {
-				object = type.getConstructor().newInstance();
-			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-				throw new ConvertionException(e.getMessage(), e.getCause());
-			}
-			Reponse reponse = null;
-			if (object instanceof Reponse) {
-				reponse = (Reponse) object;
-				reponse.setDateEmission(reponseEntity.getDateEmission());
-				reponse.setUtilisateurEntity(reponseEntity.getUtilisateurEntity());
-				reponse.setJeuEntity(reponseEntity.getJeuEntity());
-			}
-			return reponse;
-		}
+		ElirePhoto jeu = (ElirePhoto) new JeuEntityToMetier<>().jeuEntityToMetier(jeuElireEntity);
+		jeu.setDateFinInscription(jeuElireEntity.getDateFinInscription());
+		jeu.setDateDebut(jeuElireEntity.getDateDebut());
+		jeu.setDateFinInscription(jeuElireEntity.getDateFin());
+		// Collection<EntityPhoto> photos = jeuElireEntity.getPhotosEntity();
+		return jeu;
 	}
+}
+
+/**
+ * Permet de convertir une ReponseEntity en Reponse
+ * 
+ * @author lours
+ *
+ * @param <T>
+ */
+
+class ReponseEntityToMetier<T extends ReponseEntity> {
 
 	/**
-	 * Permet de convertir une Reponse en ReponseEntity
+	 * Permet de convertir une ReponseEntity en Reponse Metier
 	 * 
 	 * @author lours
 	 *
 	 * @param <T>
 	 */
-	class ReponseMetierToEntity<T extends Reponse> {
-
-		protected ReponseEntity reponseMetierToEntity(T reponse) throws ConvertionException {
-			Class<?> type = reponse.getMappingEntity();
-			Object object = null;
-			try {
-				object = type.getConstructor().newInstance();
-			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-				throw new ConvertionException(e.getMessage(), e.getCause());
-			}
-			ReponseEntity reponseEntity = null;
-			if (object instanceof ReponseEntity) {
-				reponseEntity = (ReponseEntity) object;
-				reponseEntity.setDateEmission(reponseEntity.getDateEmission());
-				reponseEntity.setUtilisateur(reponseEntity.getUtilisateur());
-				reponseEntity.setJeu(reponseEntity.getJeu());
-			}
-			return reponseEntity;
+	protected Reponse reponseEntityToMetier(T reponseEntity) throws ConvertionException {
+		FabriqueEntity fabriqueEntity = new FabriqueEntity();
+		Class<?> type = reponseEntity.getMappingMetier();
+		Object object = null;
+		try {
+			object = type.getConstructor().newInstance();
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			throw new ConvertionException(e.getMessage(), e.getCause());
 		}
+		Reponse reponse = null;
+		if (object instanceof Reponse) {
+			reponse = (Reponse) object;
+
+			reponse.setDateEmission(reponseEntity.getDateEmission());
+			reponse.setUtilisateur(fabriqueEntity.createUser(reponseEntity.getUtilisateurEntity()));
+		}
+
+		return reponse;
+	}
+}
+
+/**
+ * Permet de convertir une Reponse Metier en ReponseEntity
+ * 
+ * @author lours
+ *
+ * @param <T>
+ */
+class ReponseMetierToEntity<T extends Reponse> {
+
+	protected ReponseEntity reponseMetierToEntity(T reponse) throws ConvertionException {
+
+		FabriqueEntity fabriqueEntity = new FabriqueEntity();
+		Class<?> type = reponse.getMappingEntity();
+		Object object = null;
+		try {
+			object = type.getConstructor().newInstance();
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			throw new ConvertionException(e.getMessage(), e.getCause());
+		}
+		ReponseEntity reponseEntity = null;
+		if (object instanceof ReponseEntity) {
+			reponseEntity = (ReponseEntity) object;
+			reponseEntity.setDateEmission(reponseEntity.getDateEmission());
+			reponseEntity.setUtilisateurEntity(fabriqueEntity.createEntityUser(reponse.getUtilisateur()));
+		}
+		return reponseEntity;
+	}
+}
+
+/**
+ * Permet de convertir un JeuEntity en Jeu Metier
+ * 
+ * @author lours
+ *
+ * @param <T>
+ */
+class JeuEntityToMetier<T extends JeuEntity> {
+
+	/**
+	 * Permet de convertir un JeuEntity en Jeu Metier
+	 * 
+	 * @author lours
+	 *
+	 * @param <T>
+	 */
+	protected Jeu jeuEntityToMetier(T jeuEntity) throws ConvertionException {
+
+		Class<?> type = jeuEntity.getMappingMetier();
+		Object object = null;
+		try {
+			object = type.getConstructor().newInstance();
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			throw new ConvertionException(e.getMessage(), e.getCause());
+		}
+		Jeu jeu = null;
+		if (object instanceof Jeu) {
+			jeu = (Jeu) object;
+			jeu.setId(jeuEntity.getId());
+			jeu.setNom(jeuEntity.getNom());
+			jeu.setDateCreation(jeuEntity.getDateCreation());
+			jeu.setUtilisateur(jeuEntity.getUtilisateur());
+		}
+		return jeu;
 	}
 }

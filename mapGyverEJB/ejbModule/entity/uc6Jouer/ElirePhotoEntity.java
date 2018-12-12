@@ -77,6 +77,14 @@ public class ElirePhotoEntity extends JeuEntity {
 		this.dateFin = dateFin;
 	}
 
+	public Collection<EntityPhoto> getPhotosEntity() {
+		return photosEntity;
+	}
+
+	public void setPhotosEntity(Collection<EntityPhoto> photosEntity) {
+		this.photosEntity = photosEntity;
+	}
+
 	@Override
 	public String toString() {
 		return "ElirePhoto=>" + super.toString() + "[dateFinInscription=" + dateFinInscription + ", dateDebut="

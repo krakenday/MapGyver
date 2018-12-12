@@ -6,6 +6,7 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import business.uc6Jouer.Jeu;
 import business.uc6Jouer.ReponseElire;
 import dao.DaoFacade;
 import dao.DaoParam;
@@ -39,9 +40,11 @@ public class ServiceFacadeJouer {
 	 */
 	public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao {
 
-//		ElirePhotoEntity jeu = em.find(ElirePhotoEntity.class, 610);
-//		EntityPhoto photo = em.find(EntityPhoto.class, 612);
-//		EntityUtilisateur utilisateur = em.find(EntityUtilisateur.class, 601);
 		daoFacade.createReponseElire(reponseElire);
+	}
+
+	public Jeu getJeuById(int idJeu) throws ExceptionSurDao {
+
+		return daoFacade.getJeuById(idJeu);
 	}
 }

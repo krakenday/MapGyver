@@ -1,9 +1,10 @@
 package business.uc6Jouer;
 
 import java.time.LocalDate;
+import java.util.Collection;
 
-import business.uc2Souvenir.Photos;
 import business.uc8Utilisateur.Utilisateur;
+import entity.uc2Souvenir.EntityPhoto;
 
 public class ElirePhoto extends Jeu {
 
@@ -12,14 +13,14 @@ public class ElirePhoto extends Jeu {
 	private LocalDate dateFinInscription;
 	private LocalDate dateDebut;
 	private LocalDate dateFin;
-	private Photos photos;
+	private Collection<EntityPhoto> photos;
 
 	public ElirePhoto() {
 
 	}
 
 	public ElirePhoto(int id, String nom, LocalDate dateCreation, Utilisateur utilisateur, LocalDate dateFinInscription,
-			LocalDate dateDebut, LocalDate dateFin, Photos photos) {
+			LocalDate dateDebut, LocalDate dateFin, Collection<EntityPhoto> photos) {
 		super(id, nom, dateCreation, utilisateur);
 		this.dateFinInscription = dateFinInscription;
 		this.dateDebut = dateDebut;
@@ -28,7 +29,7 @@ public class ElirePhoto extends Jeu {
 	}
 
 	public ElirePhoto(String nom, LocalDate dateCreation, Utilisateur utilisateur, LocalDate dateFinInscription,
-			LocalDate dateDebut, LocalDate dateFin, Photos photos) {
+			LocalDate dateDebut, LocalDate dateFin, Collection<EntityPhoto> photos) {
 		super(nom, dateCreation, utilisateur);
 		this.dateFinInscription = dateFinInscription;
 		this.dateDebut = dateDebut;
@@ -60,18 +61,18 @@ public class ElirePhoto extends Jeu {
 		this.dateFin = dateFin;
 	}
 
-	public Photos getPhotos() {
+	public Collection<EntityPhoto> getPhotos() {
 		return photos;
 	}
 
-	public void setPhotos(Photos photos) {
+	public void setPhotos(Collection<EntityPhoto> photos) {
 		this.photos = photos;
 	}
 
 	@Override
 	public String toString() {
-		return "ElirePhoto [dateFinInscription=" + dateFinInscription + ", dateDebut=" + dateDebut + ", dateFin="
-				+ dateFin + ", photos=" + photos + "]";
+		return "ElirePhoto=>" + super.toString() + "[dateFinInscription=" + dateFinInscription + ", dateDebut="
+				+ dateDebut + ", dateFin=" + dateFin + "]";
 	}
 
 	@Override

@@ -3,10 +3,16 @@ package dao.uc6Jouer.facade;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
+import business.uc6Jouer.Jeu;
 import business.uc6Jouer.ReponseElire;
+import dao.DaoParam;
 import dao.exception.uc6Jouer.ConvertionException;
 import dao.uc6Jouer.CrudDao;
+import entity.uc6Jouer.ElirePhotoEntity;
+import entity.uc6Jouer.JeuEntity;
 
 /**
  * Facade de Uc6 jouer pour la couche de Dao
@@ -22,6 +28,8 @@ public class DaoFacadeJouer {
 
 	@EJB
 	CrudDao crudao;
+	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
+	EntityManager em;
 
 	/**
 	 * Permet de creer une reponseElire en Bdd
@@ -32,13 +40,26 @@ public class DaoFacadeJouer {
 
 	public void createReponseElire(ReponseElire reponseElire) throws ConvertionException {
 
-		crudao.createCrud(reponseElire);
-
 		// Convertisseur convert = Convertisseur.getInstance();
+		// ReponseMetierToEntity<Reponse> conversionMetier = convert.new
+		// ReponseMetierToEntity<>();
+		// ReponseElireEntity aPersister = (ReponseElireEntity)
+		// conversionMetier.reponseMetierToEntity(reponseElire);
+		// crudao.createCrud(aPersister);
+
+		// ReponseEntityToMetier<ReponseEntity> conversionEntity = convert.new
+		// ReponseEntityToMetier<>();
 		// Convertisseur.ReponseMetierToEntity<Reponse> conversion = convert.new
 		// ReponseMetierToEntity<>();
 		// ReponseElireEntity reponseEntity = (ReponseElireEntity)
 		// conversion.reponseMetierToEntity(reponseElire);
+	}
 
+	public Jeu getJeuById(int idJeu) throws ConvertionException {
+
+		JeuEntity jeuEntity = crudao.getJeuById(610);
+		Convertisseur convert = Convertisseur.getInstance();
+		Jeu jeu = convert.transformJeu((ElirePhotoEntity) jeuEntity);
+		return jeu;
 	}
 }
