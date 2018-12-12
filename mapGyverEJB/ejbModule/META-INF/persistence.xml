@@ -19,5 +19,4 @@
 			<property name="hibernate.default_schema" value="sonia"/>
 		</properties>
 </persistence-unit>
-		
 </persistence>

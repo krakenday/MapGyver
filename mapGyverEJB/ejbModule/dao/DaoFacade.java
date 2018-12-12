@@ -138,6 +138,7 @@ public class DaoFacade {
 	}
 
 	public List<Groupe> listerTousLesGroupes() {
+		System.out.println("************ DaoFacade liste groupe ***********");
 		return daoFacadeUtilisateur.listerTousLesGroupes();
 	}
 

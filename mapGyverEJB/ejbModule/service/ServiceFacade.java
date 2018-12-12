@@ -78,7 +78,6 @@ public class ServiceFacade implements IServiceFacade {
 		}catch(ServiceUtilisateurExistantException e) {
 			throw new ServiceFacadeExceptionUtilisateur(e.getCode(), e.getMessage());
 		}
-
 	}
 
 	@Override
@@ -165,6 +164,7 @@ public class ServiceFacade implements IServiceFacade {
 
 	@Override
 	public List<Groupe> listerTousLesGroupes() {
+		System.out.println("************ ServiceFacade listeGroupe ***********");
 		return serviceFacadeUtilisateur.listerTousLesGroupes();
 	}
 

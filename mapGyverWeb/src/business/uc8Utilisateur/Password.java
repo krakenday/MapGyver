@@ -35,4 +35,10 @@ public class Password implements Serializable {
 		this.password = password;
 	}
 
+	// A utiliser seulement pour un test bien sur
+	@Override
+	public String toString() {
+		return "Password [password=" + password + "]";
+	}
+	
 }

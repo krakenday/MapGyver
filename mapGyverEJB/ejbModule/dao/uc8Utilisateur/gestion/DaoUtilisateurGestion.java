@@ -38,8 +38,7 @@ public class DaoUtilisateurGestion {
 				System.out.println("Quelle vilaine faute");
 				throw new DaoUtilisateurExistantException();
 			}
-		}
-			
+		}	
 	}
 	
 	public EntityUtilisateur readUtilisateur(int id) {
@@ -53,12 +52,7 @@ public class DaoUtilisateurGestion {
 	}
 	
 	public void deleteUtilisateur(int id) {
-		// A revoir pour faire le delete cascade
-//		ArrayList<EntityGroupe> listeG= (ArrayList<EntityGroupe>) em.createQuery("select g from EntityGroupe g").getResultList();
-//		ArrayList<EntityListeDiffusion> listeL= (ArrayList<EntityListeDiffusion>) em.createQuery("select l from EntityListeDiffusion l").getResultList();
-//		if(!listeG.isEmpty() || !listeL.isEmpty()) {
-//			em.createQuery("delete from EntityCercle");
-//		}
+
 		EntityUtilisateur utilisateur= em.find(EntityUtilisateur.class, id);
 		System.out.println("Dans Dao utilisateur" + utilisateur.toString());
 		em.remove(utilisateur);

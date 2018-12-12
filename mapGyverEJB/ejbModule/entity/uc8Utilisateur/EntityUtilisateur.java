@@ -13,6 +13,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -61,8 +64,14 @@ public class EntityUtilisateur implements Serializable{
 	private Collection<EntityCercle> lesCercles= new ArrayList<EntityCercle>();
 	
 	//A voir plus tard
-	@OneToMany(mappedBy="utilisateur", cascade= {CascadeType.ALL}, fetch=FetchType.LAZY)
-	private Collection<EntityUtilisateurCercle> cercles= new ArrayList<EntityUtilisateurCercle>();
+//	@OneToMany(mappedBy="utilisateur", cascade= {CascadeType.ALL}, fetch=FetchType.LAZY)
+//	private Collection<EntityUtilisateurCercle> cercles= new ArrayList<EntityUtilisateurCercle>();
+	
+	@ManyToMany
+	@JoinTable(name="UTILISATEUR_CERCLE",
+	joinColumns = @JoinColumn(name="id_utilisateur") ,
+	inverseJoinColumns = @JoinColumn(name="id_cercle") )
+	private Collection<EntityCercle> cercles = new ArrayList<EntityCercle>();
 	
 	public EntityUtilisateur() {
 	}

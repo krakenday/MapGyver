@@ -11,8 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="UTILISATEUR_CERCLE")
+//@Entity
+//@Table(name="UTILISATEUR_CERCLE")
 public class EntityUtilisateurCercle implements Serializable{
 
 	private static final long serialVersionUID = 1L;

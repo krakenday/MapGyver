@@ -33,8 +33,9 @@ public class DaoUtilisateurCatalogue {
 	}
 
 	public List<EntityGroupe> listerTousLesGroupes() {
+		System.out.println("************ DaoUtilisateur - listerLesGroupes ***********");
+		
 		ArrayList<EntityGroupe> liste = new ArrayList<EntityGroupe>();
-
 		for (Object g : em.createQuery("select g from EntityGroupe g order by g.nom asc").getResultList())
 		{   
 			if (g instanceof EntityGroupe) {

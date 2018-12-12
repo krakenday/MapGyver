@@ -1,5 +1,7 @@
 package dao.uc8Utilisateur;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -104,21 +106,45 @@ public class DaoFacadeUtilisateur {
 	
 	//Catalogue
 	public List<Utilisateur> listerTousLesUtilisateurs() {
-		
-//		return daoCatalogue.listerTousLesUtilisateurs();
-		return null;
+		ArrayList<Utilisateur> liste = new ArrayList<Utilisateur>();
+		for (EntityUtilisateur u : daoCatalogue.listerTousLesUtilisateurs()) {   
+			if (u instanceof EntityUtilisateur) {
+				Utilisateur utilisateur= fabriqueEntity.createUser(u);
+				utilisateur.setId(u.getId());
+				liste.add(utilisateur);
+			}
+		}
+		return liste;
 	}
 
 	public List<Groupe> listerTousLesGroupes() {
-		
-//		return daoCatalogue.listerTousLesGroupes();
-		return null;
+		System.out.println("************ DaoFacadeUtilisateur listeGroupe ***********");
+		ArrayList<Groupe> liste = new ArrayList<Groupe>();
+		for (EntityGroupe g : daoCatalogue.listerTousLesGroupes()) {   
+			if (g instanceof EntityGroupe) {
+				Utilisateur utilisateur= fabriqueEntity.createUser(((EntityGroupe) g).getUtilisateur());
+				utilisateur.setId(((EntityGroupe) g).getUtilisateur().getId());
+				Groupe groupe= new Groupe(((EntityGroupe) g).getNom(), utilisateur);
+				groupe.setId(((EntityGroupe) g).getId());
+				liste.add(groupe);
+			}
+		}
+		return liste;
 	}
 
 	public List<ListeDiffusion> listerToutesLesListes() {
-		
-//		return daoCatalogue.listerToutesLesListes();
-		return null;
+		System.out.println("************ DaoFacadeUtilisateur listeDiffusion ***********");
+		ArrayList<ListeDiffusion> liste = new ArrayList<ListeDiffusion>();
+		for (EntityListeDiffusion f : daoCatalogue.listerToutesLesListes()) {   
+			if (f instanceof EntityListeDiffusion) {
+				Utilisateur utilisateur= fabriqueEntity.createUser(((EntityListeDiffusion) f).getUtilisateur());
+				utilisateur.setId(((EntityListeDiffusion) f).getUtilisateur().getId());
+				ListeDiffusion listeDiff= new ListeDiffusion(((EntityListeDiffusion) f).getNom(), utilisateur);
+				listeDiff.setId(((EntityListeDiffusion) f).getId());
+				liste.add(listeDiff);
+			}
+		}
+		return liste;
 	}
 
 }

@@ -25,7 +25,7 @@ import service.exception.uc1Administrer.ServiceInexistantException;
 @WebServlet(
 		name = "ControleurAdministrer", 
 		description = "Controleur administrer", 
-		urlPatterns = {"/admin/*"}
+		urlPatterns = {"/XXXadmin/*"}
 		)
 public class ControleurAdministrer extends HttpServlet {
 	

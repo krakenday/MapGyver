@@ -23,6 +23,7 @@ public class ServiceUtilisateurCatalogue {
 	}
 
 	public List<Groupe> listerTousLesGroupes() {
+		System.out.println("************ ServiceCatalogue listeGroupe ***********");
 		return daoFacade.listerTousLesGroupes();
 	}
 

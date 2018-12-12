@@ -102,6 +102,7 @@ public class ServiceFacadeUtilisateur {
 	}
 
 	public List<Groupe> listerTousLesGroupes() {
+		System.out.println("************ ServiceFacadeUtilisateur listeGroupe ***********");
 		return serviceUtilisateurCatalogue.listerTousLesGroupes();
 	}
 
