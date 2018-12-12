@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -26,7 +27,7 @@
   <h4 class="display-3">Félicitations</h4>
             <p>Votre compte a été créé avec succes</p>
             <p>Pour profiter pleinement de notre application veuillez vous identifier</p>
-            <a class="btn-lg btn-primary" type="button" href="<%=request.getContextPath() %>/vue/login.jsp" >CONNEXION</a>
+            <s:a cssClass="btn-lg btn-primary" type="button" namespace="/mapgyver/uc1" action="afficheLogin" >CONNEXION</s:a>
         </div>
       </div>
     </div>

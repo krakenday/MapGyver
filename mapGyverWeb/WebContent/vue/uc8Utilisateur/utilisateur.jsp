@@ -1,3 +1,4 @@
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="modal-body">
   <h1 class="display-4">G&eacute;rer mon compte</h1>
   <div class="row">
@@ -7,7 +8,7 @@
           <strong class="d-inline-block mb-0 text-primary">Mes infos</strong>
         </div>
         <div class="card-body">
-        <jsp:useBean id="utilisateur" scope="session" class="business.uc8Utilisateur.Utilisateur" />
+          <jsp:useBean id="utilisateur" scope="session" class="business.uc8Utilisateur.Utilisateur" />
           <div class="offset-1">
             <div class="row">
               <div class="col-md-4">
@@ -82,86 +83,8 @@
       </div>
     </div>
     <div class="col-md-4">
-      <div class="card mb-4">
-        <div class="card-header">
-          <strong class="d-inline-block mb-0 text-primary">Mes Groupes</strong>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table" id="dataTable" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Nom</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="premierGroupe">
-                    </div>
-                  </td>
-                  <td>La famille</td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="premierGroupe">
-                    </div>
-                  </td>
-                  <td>La Team CDI</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="card-footer text-right">
-          <button href="#modifierGroupeModal" class="btn btn-light border" data-toggle="modal"><span class="glyphicon glyphicon-add"></span> Ajouter</button>
-          <button type="submit" class="btn btn-primary"> <span class="glyphicon glyphicon-ok"></span> Modifier</button>
-          <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <strong class="d-inline-block mb-0 text-primary">Mes Liste de diffusions</strong>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table" id="dataTable" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Nom</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="premierGroupe">
-                    </div>
-                  </td>
-                  <td>Les copains</td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="premierGroupe">
-                    </div>
-                  </td>
-                  <td>Les collegues</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="card-footer text-right">
-          <button href="#modifierListeModal" class="btn btn-light border" data-toggle="modal"><span class="glyphicon glyphicon-add"></span> Ajouter</button>
-          <button type="submit" class="btn btn-primary"> <span class="glyphicon glyphicon-ok"></span> Modifier</button>
-          <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
-        </div>
-      </div>
+      <jsp:include page= "/vue/uc8Utilisateur/groupe.jsp" />
+      <jsp:include page= "/vue/uc8Utilisateur/listeDiff.jsp" />
     </div>
   </div>
   <div id="confirmSupp" class="col-md-10 mt-4 offset-1" style="display: none">
@@ -188,11 +111,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
-         <!--   <div class="form-group">
-              <label>Email</label>
-              <input type="email" id="inputEmail" name="inputEmail" class="form-control" required>
-            </div>  --> 
-             <div class="form-group">
+            <div class="form-group">
               <label>Nom</label>
               <input type="text" id="inputNom" name="inputNom" class="form-control" value="<%=utilisateur.getNom() %>" required autofocus="autofocus">
             </div>
@@ -229,67 +148,67 @@
   <div id="supprimerUtilisateurModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form method="post" action="<%=request.getContextPath() %>/utilisateur/delete">
-          <div class="modal-header">
-            <h4 class="modal-title">Supprimer mon compte</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body">
-            <p>Etes vous sûre de vouloir effacer définitivement votre compte?</p>
-            <p class="text-warning"><small>Cette action est irréversible </small></p>
-          </div>
-          <div class="modal-footer">
-            <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
-            <input type="submit" class="btn btn-danger" value="Supprimer">
-          </div>
-        </form>
-      </div>
+        <s:form namespace="/mapgyver/utilisateur" method="post" action="ifdelete" theme="simple">
+        <div class="modal-header">
+          <h4 class="modal-title">Supprimer mon compte</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Etes vous sûre de vouloir effacer définitivement votre compte?</p>
+          <p class="text-warning"><small>Cette action est irréversible </small></p>
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+          <s:submit cssClass="btn btn-danger" value="Supprimer"/>
+        </div>
+      </s:form>
     </div>
   </div>
-    <!-- Fenetre de formulaire de l'ajout d'un groupe -->
-  <div id="modifierGroupeModal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form name="addGroupe" method="post" id="addGroupe" action="<%=request.getContextPath() %>/utilisateur/addGroupe">
-          <div class="modal-header">
-            <h4 class="modal-title">Ajouter un groupe</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <label>Nom</label>
-              <input type="text" id="inputNomGroupe" name="inputNomGroupe" class="form-control" required>
-            </div>            
-          </div>
-          <div class="modal-footer">
-            <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
-            <input type="submit" class="btn btn-success" value="Enregistrer">
-          </div>
-        </form>
-      </div>
+</div>
+<!-- Fenetre de formulaire de l'ajout d'un groupe -->
+<div id="ajouterGroupeModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <s:form namespace="/mapgyver/utilisateur" method="post" id="addGroupe" action="doaddGroupe" theme="simple">
+        <div class="modal-header">
+          <h4 class="modal-title">Ajouter un groupe</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <s:label>Nom</s:label>
+            <s:textfield type="text" id="inputNomGroupe" name="inputNomGroupe" cssClass="form-control" required="required"/>
+          </div>            
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+          <s:submit cssClass="btn btn-success" value="Enregistrer"/>
+        </div>
+      </s:form>
     </div>
   </div>
-   <!-- Fenetre de formulaire de l'ajout d'une liste -->
-  <div id="modifierListeModal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form name="addListe" method="post" id="addListe" action="<%=request.getContextPath() %>/utilisateur/addListe">
-          <div class="modal-header">
-            <h4 class="modal-title">Ajouter une liste</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <label>Nom</label>
-              <input type="text" id="inputNomListe" name="inputNomListe" class="form-control" required>
-            </div>            
-          </div>
-          <div class="modal-footer">
-            <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
-            <input type="submit" class="btn btn-success" value="Enregistrer">
-          </div>
-        </form>
-      </div>
+</div>
+<!-- Fenetre de formulaire de l'ajout d'une liste -->
+<div id="ajouterListeModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <s:form namespace="/mapgyver/utilisateur" method="post" id="addListe" action="doaddListe" theme="simple">
+        <div class="modal-header">
+          <h4 class="modal-title">Ajouter une liste</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <s:label>Nom</s:label>
+            <s:textfield type="text" id="inputNomListe" name="inputNomListe" cssClass="form-control" required="required"/>
+          </div>            
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+          <s:submit cssClass="btn btn-success" value="Enregistrer"/>
+        </div>
+      </s:form>
     </div>
   </div>
+</div>
 </div>

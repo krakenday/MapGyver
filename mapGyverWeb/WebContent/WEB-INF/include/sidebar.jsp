@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <ul class="sidebar navbar-nav">
         <li class="nav-item active">
           <a class="nav-link" href="<%=request.getContextPath()%>">
@@ -24,17 +25,17 @@
         </li>
   -->
   		<li class="nav-item">
-          <a class="nav-link" href="<%=request.getContextPath()%>/mapgyver/utilisateur/gererUtilisateur">
+          <s:a class="nav-link" namespace="/mapgyver/utilisateur" action="gererUtilisateur">
             <i class="fas fa-user-circle fa-fw"></i>
             <span>Mes infos</span>
-          </a>
+          </s:a>
         </li>
         
         <!-- link UC3 Partager -->
         <li class="nav-item">
-          <a class="nav-link" href="<%=request.getContextPath()%>/vue/vue.partager/dashboard.jsp">
+          <s:a class="nav-link" namespace="/mapgyver/uc3" action="afficheDashboard">
             <i class="fas fa-fw fa-table"></i>
-            <span>Partager</span></a>
+            <span>Partager</span></s:a>
         </li>
         <!-- end link UC3 Partager -->
         
@@ -49,15 +50,15 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Autres pages</span>
           </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+		  <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="<%=request.getContextPath()%>/mapgyver/login.jsp">Login</a>
-            <a class="dropdown-item" href="<%=request.getContextPath()%>/mapgyver/register.jsp">Register</a>
-            <a class="dropdown-item" href="<%=request.getContextPath()%>/mapgyver/forgot-password.jsp">Forgot Password</a>
+            <s:a class="dropdown-item" namespace="/mapgyver/uc1" action="afficheLogin">Login</s:a>
+            <s:a class="dropdown-item" namespace="/mapgyver/utilisateur" action="register">Register</s:a>
+            <s:a class="dropdown-item" namespace="/mapgyver/uc1" action="doforgot">Forgot Password</s:a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">Other Pages:</h6>
-            <a class="dropdown-item" href="<%=request.getContextPath()%>/mapgyver/404.jsp">404 Page</a>
-            <a class="dropdown-item" href="<%=request.getContextPath()%>/mapgyver/blank.jsp">Blank Page</a>
+            <s:a class="dropdown-item" namespace="/mapgyver" action="page404">404 Page</s:a>
+            <s:a class="dropdown-item" namespace="/mapgyver" action="blank">Blank Page</s:a>
             <div class="dropdown-divider"></div>
           </div>
         </li>
