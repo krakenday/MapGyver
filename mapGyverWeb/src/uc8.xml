@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<package name="uc8" namespace="/mapgyver/utilisateur" extends="struts-default">
+		<action name="gererUtilisateur" class="webApp.uc8Utilisateur.CatalogueAction">
+			<result>/vue/uc8Utilisateur/getinfo.jsp</result>
+		</action>
+		<action name="register">
+			<result>/vue/register.jsp</result>
+		</action>
+		<action name="form*" class="webApp.uc8Utilisateur.UtilisateurAction" method="{1}">
+			<result name="error">/vue/register.jsp</result>
+			<result name="success">/vue/uc8Utilisateur/inscriptionOK.jsp</result>
+			<allowed-methods>inscription</allowed-methods>
+		</action>
+		<action name="if*" class="webApp.uc8Utilisateur.UtilisateurAction" method="{1}">
+			<result name="error">/vue/uc8Utilisateur/getinfo.jsp</result>
+			<result name="success">/vue/index.jsp</result>
+			<allowed-methods>delete</allowed-methods>
+		</action>
+		<action name="do*" class="webApp.uc8Utilisateur.CercleAction" method="{1}">
+			<result name="success">/vue/uc8Utilisateur/getinfo.jsp</result>
+			<result name="error">/vue/uc8Utilisateur/getinfo.jsp</result>
+			<allowed-methods>addGroupe, addListe</allowed-methods>
+		</action>
+	</package>
+</struts>

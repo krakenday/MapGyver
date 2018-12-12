@@ -26,7 +26,7 @@ import clientServeur.exception.ServiceFacadeExceptionUtilisateur;
  */
 @WebServlet(		name = "ControleurUtilisateur", 
 					description = "Controleur utilisateur", 
-					urlPatterns = {"/utilisateur/*"})
+					urlPatterns = {"/XXXutilisateur/*"})
 
 public class ControleurUtilisateur extends HttpServlet {
 	
@@ -58,23 +58,6 @@ public class ControleurUtilisateur extends HttpServlet {
 		}
 		else if (path.equals("/gererUtilisateur")) 	{
 			getMesinfos(request, response);
-//			iServiceFacade.deleteGroupe(15);
-			// Test des read 
-//			try {
-//				HttpSession session = request.getSession();
-//				Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-//				Utilisateur user= (Utilisateur) iServiceFacade.read(utilisateur.getId());
-//				user.setId(utilisateur.getId());
-//				System.out.println("*************** Controle utilisateur " + user.getId());
-//				System.out.println("**** controle utilisateur " + user.toString());
-//				System.out.println("********* Le groupe= " + creeGroupe(request).toString());
-//				
-//				Groupe gp= (Groupe) iServiceFacade.readGroupe(3);
-//				System.out.println("********* Le groupe read que je recup= " + gp.toString());
-//			} catch (ServiceFacadeExceptionUtilisateur e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 		}
 		else {
 			doAccueil(request, response);

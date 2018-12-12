@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+		"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+
+	<include file="uc1.xml" />
+	<include file="uc2.xml" />
+	<include file="uc3.xml" />
+	<include file="uc4.xml" />
+	<include file="uc6.xml" />
+	<include file="uc8.xml" />
+	
+	<package name="default" extends="struts-default">
+		<default-action-ref name="index" />
+		<action name="index">
+			<result>/vue/index.jsp</result>
+		</action>
+		<action name="page404">
+			<result>/vue/404.jsp</result>
+		</action>
+		<action name="blank">
+			<result>/vue/blank.jsp</result>
+		</action>
+
+     	<!-- ==================================
+     		         gestion page TODO.jsp
+     		 ==================================	--> 
+		<action name="TODO">
+			<result>/vue/TODO.jsp</result>
+		</action>
+
+     	<!-- ==================================
+     		         gestion des css 
+     		 ==================================	-->  
+     	
+     	<action name="bootstrap">
+			<result>/bootstrap/css/bootstrap.css</result>
+		</action>
+	</package>
+
+</struts>
