@@ -5,13 +5,12 @@
 
 <struts>
 	<package name="uc2" namespace="/mapgyver/uc2" extends="struts-default">
-		<action name="afficheSouvenir">
+		<action name="afficheSouvenir" >
 			<result>/vue/souvenirs.jsp</result>
 		</action>
-		<action name="do*" class="webApp.uc2Souvenir.AdministrerSouvenir" method="{1}">
-			<result name="error">/vue/login.jsp</result><!-- A modif -->
-			<result name="success">/vue/index.jsp</result>
-			<allowed-methods>login,logout,forgot</allowed-methods>			
+		<action name="doCreate" class="webApp.uc2Souvenir.AdministrerSouvenir">
+			<result name="error">www.google.fr</result><!-- A modif -->
+			<result name="success">/vue/souvenirs.jsp</result>			
 		</action>
 	</package>
 </struts>

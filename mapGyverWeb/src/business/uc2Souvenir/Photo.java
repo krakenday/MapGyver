@@ -10,6 +10,8 @@ package business.uc2Souvenir;
  */
 
 import java.time.LocalDate;
+import java.util.Arrays;
+
 import business.uc4Voyage.Voyage;
 
 
@@ -50,28 +52,10 @@ public class Photo extends Souvenir {
 
 
 
-	//TODO metre a jour commentaire
-	/**
-	 * @author Alejandro
-	 * 
-	 * Constructeur a utiliser dans la couche DAO
-	 * (proprietes necessaires au client)
-	 * 
-	 * @param id (genere par la bdd par autoincrementation)
-	 * @param dateEnregistre
-	 * @param nom
-	 * @param url (permet l acces a la photo enregistre sur AWS S3)
-	 */
-//	public Photo(int id, LocalDate dateEnregistre, String nom, String url) {
-//		super(id, dateEnregistre);
-//		this.nom = nom;
-//		this.url = url;
-//	}
-
-
 	@Override
 	public String toString() {
-		return "Photo [nom=" + nom + ", url=" + url + "]";
+		return "Photo [nom=" + nom + ", url=" + url + ", fileContent=" + Arrays.toString(fileContent) + ", commentaire="
+				+ commentaire + ", length=" + length + "]";
 	}
 
 	public String getNom() {

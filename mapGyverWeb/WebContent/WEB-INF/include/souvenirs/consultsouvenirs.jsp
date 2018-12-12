@@ -54,7 +54,8 @@
 	</div>
 	
 	<div class="col-4 form-group">
-		<s:form namespace="" action="" method="POST" enctype="multipart/form-data">
+		<s:form  namespace="/mapgyver/uc2" action="doCreate" theme="simple"
+				 method="POST" enctype="multipart/form-data">
 			 <p>
 			  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 			    Ajouter un souvenir
@@ -66,25 +67,23 @@
 				  <div class="input-group-prepend">
 				    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
 				  </div>
-				  <div class="custom-file">
-				    <input type="file" class="custom-file-input" name="file" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-				    <label class="custom-file-label" for="inputGroupFile01">Choisir image a ajouter</label>
-				  </div>
+				    <div class="custom-file">
+					    <s:file class="custom-file-input" name="file" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"/>
+					    <label class="custom-file-label" for="inputGroupFile01">Choisir image a ajouter</label>
+				  	</div>
 				</div>
+				<%--  <div>
+					<s:select label="Choisissez un point d interet" 
+						headerKey="0" headerValue="Select point of interest"
+						list="id" 
+						name="nom" />
+				</div>--%>
 				<div>
-					<select class="custom-select" name="pi">
-					  <option selected>Choisissez un point d interet</option>
-					  <option value="un">One</option>
-					  <option value="deux">Two</option>
-					  <option value="trois">Three</option>
-					</select>
-				</div>
-				<div>
-					<s:input type="hidden" name="idVoyage" value="747"><!-- me suis arrete la -->
+					<s:hidden name="idVoyage" value="747"/>
 				</div>
 				<div>
 				  <s:label for="comment">Commentaire:</s:label>
-				  <s:textarea class="form-control" rows="5" id="com" name="com"></s:textarea>
+				  <s:textarea class="form-control" rows="5" id="comm" name="comm"></s:textarea>
 				  <button type="submit" class="btn btn-dark mt-2 ">Enregistrer</button>
 				</div>
 			  </div>

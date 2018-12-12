@@ -53,10 +53,17 @@ public class ControlesAjouter {
 		else {
 			commentaire = new Commentaire(comm);
 			
-			souvenir = new Photo(LocalDate.now(), voyage, nomPhoto, content, commentaire, fileLength);	
+			souvenir = new Photo(LocalDate.now(), voyage, nomPhoto, content, commentaire, fileLength);
 		}
 		
+		System.out.println("ControlesAjouter-controleDesParametres: affichage données:");
+		System.out.println("valeur de : nomPhoto  =" +nomPhoto );
+		System.out.println("valeur de : content  =" +content );
+		System.out.println("valeur de : fileLength  =" +fileLength );
+		System.out.println("valeur de :  comm =" +comm );
 		
+		
+		//System.out.println("ControlesAjouter-controleDesParametres: AVANT RETURN, souvenir = "+souvenir);
 		return souvenir;
 	}
 	
