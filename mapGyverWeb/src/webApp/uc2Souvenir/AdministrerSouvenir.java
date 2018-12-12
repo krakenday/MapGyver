@@ -3,10 +3,14 @@ package webApp.uc2Souvenir;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.List;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import com.opensymphony.xwork2.Preparable;
+
+import business.uc2Souvenir.Photo;
 import business.uc2Souvenir.Souvenir;
 import clientServeur.IServiceFacade;
 import utilitaire.Constantes;
@@ -19,7 +23,7 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 	//recuperation contenu, titrePhoto, longueurFichier
 	private InputStream 		fileContent;
 	private File				file;
-	private String				fileContentType;
+	private String				fileContentType;//recupere le type de fichier (non utilise pourl'instant)
 	private String				fileFileName;
 	private String				comm;
 	private String				idVoyage;
@@ -49,7 +53,16 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 		System.out.println("****************ControlSouvenirAjouter- Valeur SOUVENIR =" + souvenir);
 		
 		//appel de mon service
-		iServiceFacade.createSouvenir(souvenir);
+		//iServiceFacade.createSouvenir(souvenir);
+		
+		//Test pour recup List de Souvenirs (voir si creer un autre ActionBean pour cela)
+		List<Souvenir> catalogueSouvenirs = iServiceFacade.getSouvenirsByIdVoyage("3");
+		for (Souvenir souvenir : catalogueSouvenirs) {
+			 if(souvenir instanceof Photo) {
+				 System.out.println(((Photo) souvenir).getNom());
+			 }
+			
+		}
 		
 		System.out.println("****************Apres appel du service");
 		
@@ -87,7 +100,7 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 	}
 
 
-
+	//méthode executée automatiquement
 	@Override
 	public void prepare() throws Exception {
 		try {

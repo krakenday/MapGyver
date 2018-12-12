@@ -314,14 +314,18 @@ public class ServiceFacade implements IServiceFacade {
 
 	
 	// ********************************************
-	// AlexB - UC2 Souvenir
+	// Alejandro - UC2 Souvenir
 	// ********************************************
 	
 	@Override
 	public void createSouvenir(Souvenir souvenir) {
 		System.out.println("*****je rentre dans ma facade SERVICE*****");
 		serviceFacadeSouvenir.createSouvenir(souvenir);
-		
+	}
+
+	@Override
+	public List<Souvenir> getSouvenirsByIdVoyage(String idVoyage) {
+		return serviceFacadeSouvenir.getSouvenirsByIdVoyage(idVoyage);
 	}
 	
 	

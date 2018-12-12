@@ -49,6 +49,12 @@ public class Photo extends Souvenir {
 	}
 
 
+	//TODO juste pour le test A RETIRER
+	public Photo(String string) {
+		this.nom = string;
+	}
+
+
 
 	//TODO metre a jour commentaire
 	/**

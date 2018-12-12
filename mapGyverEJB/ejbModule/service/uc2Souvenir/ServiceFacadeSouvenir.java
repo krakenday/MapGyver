@@ -1,5 +1,7 @@
 package service.uc2Souvenir;
 
+import java.util.List;
+
 /**
  * Classe de controles et de redirection
  * vers toutes les fonctionalites concernant l'UC2 Souvenirs
@@ -23,6 +25,11 @@ public class ServiceFacadeSouvenir {
 		System.out.println("*****Dans Service Facade Souvenir*****");
 		daoFacade.createSouvenir(souvenir);
 		
+	}
+
+	public List<Souvenir> getSouvenirsByIdVoyage(String idVoyage) {
+		System.out.println("*****Dans Service Facade Souvenir- getSouvenirByIdVoyage*****");
+		return daoFacade.getSouvenirsByIdVoyage(idVoyage);
 	}
 
 }

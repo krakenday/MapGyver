@@ -31,6 +31,7 @@ public interface IServiceFacade {
 	// ********************************************
 	
 	public void createSouvenir(Souvenir souvenir);
+	public List<Souvenir> getSouvenirsByIdVoyage(String idVoyage);
 	
 	
 	

@@ -295,6 +295,11 @@ public class DaoFacade {
 		daoFacadeSouvenir.createSouvenir(souvenir);
 		
 	}
+
+	public List<Souvenir> getSouvenirsByIdVoyage(String idVoyage) {
+		System.out.println("*****DaoFacade-getSouvenirByIdVoyage*****");
+		return daoFacadeSouvenir.getSouvenirsByIdVoyage(idVoyage);
+	}
 	
 	//FIN UC2 Alejandro
 

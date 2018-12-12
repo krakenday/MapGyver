@@ -1,5 +1,7 @@
 package dao.uc2Souvenir;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
@@ -18,6 +20,9 @@ public class DaoFacadeSouvenir {
 	
 	@EJB
 	DaoSouvenirCreateCommentaire daoSouvenirCreateCommentaire;
+	
+	@EJB
+	DaoSouvenirGetSouvenirsVoyage daoSouvenirGetSouvenirsVoyage;
 	
 	
 	//redirige vers la bonne fabrique selon qu'il faille persister une Photo ou un Commentaire
@@ -39,6 +44,12 @@ public class DaoFacadeSouvenir {
 			daoSouvenirCreateCommentaire.createSouvenir(souvenir);
 		}
 		
+	}
+
+
+	public List<Souvenir> getSouvenirsByIdVoyage(String idVoyage) {
+		System.out.println("*****DaoFacadeSouvenir-getSouvenirsByIdVoyage");
+		return daoSouvenirGetSouvenirsVoyage.getSouvenirsByIdVoyage(idVoyage);
 	}
 
 	
