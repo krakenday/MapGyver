@@ -9,11 +9,15 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public abstract class Souvenir implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private LocalDate dateEnregistre;
-	
+
+	public Souvenir() {
+
+	}
+
 	public Souvenir(int id, LocalDate dateEnregistre) {
 		this.id = id;
 		this.dateEnregistre = dateEnregistre;
@@ -28,7 +32,6 @@ public abstract class Souvenir implements Serializable {
 		return "Souvenir [id=" + id + ", dateEnregistre=" + dateEnregistre + "]";
 	}
 
-	
 	public int getId() {
 		return id;
 	}
@@ -44,6 +47,5 @@ public abstract class Souvenir implements Serializable {
 	public void setDateEnregistre(LocalDate dateEnregistre) {
 		this.dateEnregistre = dateEnregistre;
 	}
-	
 
 }

@@ -44,7 +44,6 @@ public class ServiceFacadeJouer {
 	}
 
 	public Jeu getJeuById(int idJeu) throws ExceptionSurDao {
-
 		return daoFacade.getJeuById(idJeu);
 	}
 }

@@ -21,6 +21,10 @@ public class Photo extends Souvenir {
 	private String url;
 	private File file;
 
+	public Photo() {
+
+	}
+
 	/**
 	 * Constructeur a utiliser par le clientWeb pour passer l'objet Photo au
 	 * service(ejb)

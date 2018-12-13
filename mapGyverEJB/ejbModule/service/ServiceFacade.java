@@ -281,7 +281,7 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	public Jeu getJeuById(int idJeu) throws ExceptionSurDao {
-		System.out.println(serviceFacadeJouer.getJeuById(idJeu));
+		System.out.println("Je suis dans la Facade" + serviceFacadeJouer.getJeuById(idJeu));
 		return serviceFacadeJouer.getJeuById(idJeu);
 	}
 

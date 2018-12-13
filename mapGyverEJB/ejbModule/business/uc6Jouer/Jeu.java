@@ -64,8 +64,12 @@ public abstract class Jeu implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Jeu [id=" + id + ", nom=" + nom + ", dateCreation=" + dateCreation + "Utilisateur Id"
-				+ utilisateur.getId() + "]";
+		try {
+			return "Jeu [id=" + id + ", nom=" + nom + ", dateCreation=" + dateCreation + ", utilisateur="
+					+ utilisateur.getId() + "Mail Utilisateur= " + utilisateur.getEmail() + "]";
+		} catch (NullPointerException e) {
+			return ("Erreur sur le ToString de Jeu");
+		}
 	}
 
 	/**

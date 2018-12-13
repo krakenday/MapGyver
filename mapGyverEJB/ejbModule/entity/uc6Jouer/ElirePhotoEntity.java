@@ -5,11 +5,13 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import business.uc6Jouer.ElirePhoto;
 import business.uc8Utilisateur.Utilisateur;
 import entity.uc2Souvenir.EntityPhoto;
 
@@ -93,8 +95,7 @@ public class ElirePhotoEntity extends JeuEntity {
 
 	@Override
 	public Class<?> getMappingMetier() {
-		// TODO Auto-generated method stub
-		return null;
+		return ElirePhoto.class;
 	}
 
 }

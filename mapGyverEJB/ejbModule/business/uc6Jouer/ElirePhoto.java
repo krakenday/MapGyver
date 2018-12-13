@@ -3,8 +3,8 @@ package business.uc6Jouer;
 import java.time.LocalDate;
 import java.util.Collection;
 
+import business.uc2Souvenir.Photo;
 import business.uc8Utilisateur.Utilisateur;
-import entity.uc2Souvenir.EntityPhoto;
 
 public class ElirePhoto extends Jeu {
 
@@ -13,14 +13,14 @@ public class ElirePhoto extends Jeu {
 	private LocalDate dateFinInscription;
 	private LocalDate dateDebut;
 	private LocalDate dateFin;
-	private Collection<EntityPhoto> photos;
+	private Collection<Photo> photos;
 
 	public ElirePhoto() {
 
 	}
 
 	public ElirePhoto(int id, String nom, LocalDate dateCreation, Utilisateur utilisateur, LocalDate dateFinInscription,
-			LocalDate dateDebut, LocalDate dateFin, Collection<EntityPhoto> photos) {
+			LocalDate dateDebut, LocalDate dateFin, Collection<Photo> photos) {
 		super(id, nom, dateCreation, utilisateur);
 		this.dateFinInscription = dateFinInscription;
 		this.dateDebut = dateDebut;
@@ -29,7 +29,7 @@ public class ElirePhoto extends Jeu {
 	}
 
 	public ElirePhoto(String nom, LocalDate dateCreation, Utilisateur utilisateur, LocalDate dateFinInscription,
-			LocalDate dateDebut, LocalDate dateFin, Collection<EntityPhoto> photos) {
+			LocalDate dateDebut, LocalDate dateFin, Collection<Photo> photos) {
 		super(nom, dateCreation, utilisateur);
 		this.dateFinInscription = dateFinInscription;
 		this.dateDebut = dateDebut;
@@ -61,11 +61,11 @@ public class ElirePhoto extends Jeu {
 		this.dateFin = dateFin;
 	}
 
-	public Collection<EntityPhoto> getPhotos() {
+	public Collection<Photo> getPhotos() {
 		return photos;
 	}
 
-	public void setPhotos(Collection<EntityPhoto> photos) {
+	public void setPhotos(Collection<Photo> photos) {
 		this.photos = photos;
 	}
 

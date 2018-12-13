@@ -35,7 +35,10 @@ public class JouerAction extends ApplicationSupport implements SessionAware {
 	public String repondreElire() throws ServiceInexistantException, ExceptionSurDao {
 		init();
 		Utilisateur Utilisateur = service.getUserByEmail(sessionAttributes.get("inputEmail").toString());
-		Jeu jeu = service.getJeuById(idJeu);
+		Jeu jeu = service.getJeuById(610);
+		System.out.println("***ActionJouer==>" + jeu.getId());
+		System.out.println("***ActionJouer==>" + jeu.getUtilisateur().getId());
+		System.out.println("***ActionJouer==>" + jeu);
 		System.out.println("***ActionJouer==>" + Utilisateur);
 
 //		try {

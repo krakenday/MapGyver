@@ -43,14 +43,14 @@ public abstract class JeuEntity implements Serializable {
 	public JeuEntity(String nom, LocalDate dateCreation, Utilisateur utilisateur) {
 		this.nom = nom;
 		this.dateCreation = dateCreation;
-		this.utilisateur = BusinessToEntity(utilisateur);
+		this.utilisateur = businessToEntity(utilisateur);
 	}
 
 	public JeuEntity(int id, String nom, LocalDate dateCreation, Utilisateur utilisateur) {
 		this.id = id;
 		this.nom = nom;
 		this.dateCreation = dateCreation;
-		this.utilisateur = BusinessToEntity(utilisateur);
+		this.utilisateur = businessToEntity(utilisateur);
 	}
 
 	public int getId() {
@@ -78,11 +78,11 @@ public abstract class JeuEntity implements Serializable {
 	}
 
 	public Utilisateur getUtilisateur() {
-		return EntityToBusiness(utilisateur);
+		return entityToBusiness(utilisateur);
 	}
 
 	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = BusinessToEntity(utilisateur);
+		this.utilisateur = businessToEntity(utilisateur);
 	}
 
 	@Override
@@ -98,15 +98,17 @@ public abstract class JeuEntity implements Serializable {
 	 */
 	public abstract Class<?> getMappingMetier();
 
-	private EntityUtilisateur BusinessToEntity(Utilisateur user) {
+	private EntityUtilisateur businessToEntity(Utilisateur user) {
 		EntityUtilisateur u = new EntityUtilisateur();
 		u.setId(user.getId());
+		u.setEmail(user.getEmail());
 		return u;
 	}
 
-	private Utilisateur EntityToBusiness(EntityUtilisateur user) {
+	private Utilisateur entityToBusiness(EntityUtilisateur user) {
 		Utilisateur u = new Utilisateur();
 		u.setId(user.getId());
+		u.setEmail(user.getEmail());
 		return u;
 	}
 }

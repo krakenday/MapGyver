@@ -1,12 +1,17 @@
 package dao.uc6Jouer.facade;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
+import business.uc2Souvenir.Photo;
 import business.uc6Jouer.ElirePhoto;
 import business.uc6Jouer.Jeu;
 import business.uc6Jouer.Reponse;
 import dao.exception.uc6Jouer.ConvertionException;
 import dao.uc8Utilisateur.FabriqueEntity;
+import entity.uc2Souvenir.EntityPhoto;
 import entity.uc6Jouer.ElirePhotoEntity;
 import entity.uc6Jouer.JeuEntity;
 import entity.uc6Jouer.ReponseEntity;
@@ -35,13 +40,33 @@ public final class Convertisseur {
 		return Convertisseur.instance;
 	}
 
+	/**
+	 * Permet la conversion d'un ElirePhotoEntity en ElirePhoto
+	 * 
+	 * @param jeuElireEntity
+	 * @return
+	 * @throws ConvertionException
+	 */
+
 	protected Jeu transformJeu(ElirePhotoEntity jeuElireEntity) throws ConvertionException {
 
 		ElirePhoto jeu = (ElirePhoto) new JeuEntityToMetier<>().jeuEntityToMetier(jeuElireEntity);
 		jeu.setDateFinInscription(jeuElireEntity.getDateFinInscription());
 		jeu.setDateDebut(jeuElireEntity.getDateDebut());
-		jeu.setDateFinInscription(jeuElireEntity.getDateFin());
-		// Collection<EntityPhoto> photos = jeuElireEntity.getPhotosEntity();
+		jeu.setDateFin(jeuElireEntity.getDateFin());
+
+		Collection<EntityPhoto> photosEntity = jeuElireEntity.getPhotosEntity();
+		Collection<Photo> photos = new ArrayList<Photo>();
+		Photo photo = new Photo();
+		EntityPhoto photoEntity = new EntityPhoto();
+		Iterator<EntityPhoto> it = photosEntity.iterator();
+		while (it.hasNext()) {
+			photoEntity = it.next();
+			photo.setId(photoEntity.getId());
+			photo.setNom(photoEntity.getNom());
+			photo.setUrl(photoEntity.getUrl());
+			photos.add(photo);
+		}
 		return jeu;
 	}
 }
@@ -141,6 +166,7 @@ class JeuEntityToMetier<T extends JeuEntity> {
 				| NoSuchMethodException | SecurityException e) {
 			throw new ConvertionException(e.getMessage(), e.getCause());
 		}
+
 		Jeu jeu = null;
 		if (object instanceof Jeu) {
 			jeu = (Jeu) object;
