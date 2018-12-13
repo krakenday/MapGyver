@@ -63,6 +63,8 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 	}
 	
 	public String getSouvenirsDuVoyage(String id) {
+		
+		System.out.println("je suis ");
 		//Test pour recup List de Souvenirs (voir si creer un autre ActionBean pour cela)
 		List<Souvenir> catalogueSouvenirs = iServiceFacade.getSouvenirsByIdVoyage("747");
 		

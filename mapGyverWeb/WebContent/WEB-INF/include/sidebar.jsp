@@ -25,9 +25,13 @@
         <!-- end link UC3 Partager -->
         
         <li class="nav-item">
-          <s:a class="nav-link" namespace="/mapgyver/uc2" action="afficheSouvenir">
+        <!-- Test URL pour fournir param a ma methode getSouvDuVoyage -->
+        <s:url  namespace="/mapgyver/uc2" action="afficheSouvenir"  var="getSouvVoyage">
+			<s:param name="idVoyage"><s:property value="747" /></s:param>
+		</s:url>
+          <a href= "${getSouvVoyage}" class="nav-link" >
             <i class="fas fa-fw fa-table"></i>
-            <span>souvenirs</span></s:a>
+            <span>souvenirs</span></a>
         </li>
         
         <li class="nav-item dropdown">
