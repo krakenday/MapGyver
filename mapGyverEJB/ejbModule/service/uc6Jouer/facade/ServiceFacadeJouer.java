@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import business.uc6Jouer.Jeu;
+import business.uc6Jouer.Jeux;
 import business.uc6Jouer.ReponseElire;
 import dao.DaoFacade;
 import dao.DaoParam;
@@ -45,5 +46,9 @@ public class ServiceFacadeJouer {
 
 	public Jeu getJeuById(int idJeu) throws ExceptionSurDao {
 		return daoFacade.getJeuById(idJeu);
+	}
+
+	public Jeux listJeu() throws ExceptionSurDao {
+		return daoFacade.listJeu();
 	}
 }

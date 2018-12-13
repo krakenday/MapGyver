@@ -2,6 +2,7 @@ package service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -13,8 +14,8 @@ import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
-import business.uc6Jouer.ElirePhoto;
 import business.uc6Jouer.Jeu;
+import business.uc6Jouer.Jeux;
 import business.uc6Jouer.ReponseElire;
 import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
@@ -23,6 +24,8 @@ import business.uc8Utilisateur.Utilisateur;
 import client.serveur.partager.exception.UserException;
 import clientServeur.IServiceFacade;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
+import entity.uc6Jouer.ElirePhotoEntity;
+import entity.uc6Jouer.JeuEntity;
 import service.exception.ViolationPersistenceException;
 import service.exception.uc1Administrer.ServiceInexistantException;
 import service.exception.uc4Voyage.ServiceVoyageException;
@@ -281,8 +284,16 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	public Jeu getJeuById(int idJeu) throws ExceptionSurDao {
-		System.out.println("Je suis dans la Facade" + serviceFacadeJouer.getJeuById(idJeu));
 		return serviceFacadeJouer.getJeuById(idJeu);
+	}
+
+	public Jeux listJeu() throws ExceptionSurDao {
+		Jeux jeux = serviceFacadeJouer.listJeu();
+		Iterator<Jeu> it = jeux.iterator();
+		while (it.hasNext()) {
+			System.out.println(it.next());
+		}
+		return serviceFacadeJouer.listJeu();
 	}
 
 	@Override

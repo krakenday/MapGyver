@@ -1,5 +1,7 @@
 package dao.uc6Jouer.facade;
 
+import java.util.Iterator;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
@@ -7,12 +9,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import business.uc6Jouer.Jeu;
+import business.uc6Jouer.Jeux;
 import business.uc6Jouer.ReponseElire;
 import dao.DaoParam;
 import dao.exception.uc6Jouer.ConvertionException;
 import dao.uc6Jouer.CrudDao;
 import entity.uc6Jouer.ElirePhotoEntity;
 import entity.uc6Jouer.JeuEntity;
+import entity.uc6Jouer.JeuxEntity;
 
 /**
  * Facade de Uc6 jouer pour la couche de Dao
@@ -61,5 +65,17 @@ public class DaoFacadeJouer {
 		Convertisseur convert = Convertisseur.getInstance();
 		Jeu jeu = convert.transformJeu((ElirePhotoEntity) jeuEntity);
 		return jeu;
+	}
+
+	public Jeux listJeu() throws ConvertionException {
+		Iterator<JeuEntity> it = crudao.listJeu().iterator();
+		Jeux jeux = new Jeux();
+		Convertisseur convert = Convertisseur.getInstance();
+		while (it.hasNext()) {
+			JeuEntity jeuEntity = it.next();
+			if (jeuEntity instanceof ElirePhotoEntity)
+				jeux.add(convert.transformJeu((ElirePhotoEntity) jeuEntity));
+		}
+		return null;
 	}
 }

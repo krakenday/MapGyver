@@ -10,6 +10,7 @@ import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
 import business.uc6Jouer.Jeu;
+import business.uc6Jouer.Jeux;
 import business.uc6Jouer.ReponseElire;
 import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
@@ -140,6 +141,14 @@ public interface IServiceFacade {
 	 * @return
 	 */
 	public Jeu getJeuById(int idJeu) throws ExceptionSurDao;
+
+	/**
+	 * Permet de retourner la liste de tout les jeux.
+	 * 
+	 * @return
+	 * @throws ExceptionSurDao
+	 */
+	public Jeux listJeu() throws ExceptionSurDao;
 
 	// ***** Fin AlexB - UC6 Jouer
 

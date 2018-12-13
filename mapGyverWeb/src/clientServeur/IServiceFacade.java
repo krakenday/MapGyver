@@ -1,17 +1,22 @@
 package clientServeur;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import business.uc2Souvenir.Photo;
+import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
 import business.uc6Jouer.Jeu;
+import business.uc6Jouer.Jeux;
 import business.uc6Jouer.ReponseElire;
 import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Password;
 import business.uc8Utilisateur.Utilisateur;
+import client.serveur.partager.exception.UserException;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
 import service.exception.uc1Administrer.ServiceInexistantException;
 import service.exception.uc6Jouer.ExceptionSurDao;
@@ -35,6 +40,11 @@ public interface IServiceFacade {
 	 * @throws ServiceInexistantException
 	 */
 	public Utilisateur getUserByEmail(String email) throws ServiceInexistantException;
+
+	/**
+	 * Retourne la liste de photos
+	 */
+	public ArrayList<Photo> uc1GetAllPhoto();
 
 	// ***** Fin DM - UC1 Administrer
 
@@ -117,16 +127,11 @@ public interface IServiceFacade {
 	public void deletePOInteret(int id);
 
 	public PointInteret findPOInteretByID(int id);
+
 	// ********************************************
 	// AlexB - UC6 Jouer
 	// ********************************************
 
-	/**
-	 * Permet la persistance d'une Reponse a un Jeu Elire photo
-	 * 
-	 * @param idJeu
-	 * @return
-	 */
 	public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao;
 
 	/**
@@ -136,6 +141,22 @@ public interface IServiceFacade {
 	 * @return
 	 */
 	public Jeu getJeuById(int idJeu) throws ExceptionSurDao;
+
+	/**
+	 * Permet de retourner la liste de tout les jeux.
+	 * 
+	 * @return
+	 * @throws ExceptionSurDao
+	 */
+	public Jeux listJeu() throws ExceptionSurDao;
+
 	// ***** Fin AlexB - UC6 Jouer
+
+	// ********************************************
+	// AlexM - Description
+	// ********************************************
+	public void addDescription(Description description) throws UserException;
+
+	public void updateDescription(Description description);
 
 }

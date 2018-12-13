@@ -13,6 +13,7 @@ import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
 import business.uc6Jouer.Jeu;
+import business.uc6Jouer.Jeux;
 import business.uc6Jouer.ReponseElire;
 import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
@@ -289,6 +290,14 @@ public class DaoFacade {
 			throw new ExceptionSurDao(e.getMessage(), e.getCause());
 		}
 
+	}
+
+	public Jeux listJeu() throws ExceptionSurDao {
+		try {
+			return daoFacadeJouer.listJeu();
+		} catch (ConvertionException e) {
+			throw new ExceptionSurDao(e.getMessage(), e.getCause());
+		}
 	}
 
 }
