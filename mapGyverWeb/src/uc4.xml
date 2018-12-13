@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
-"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
-"http://struts.apache.org/dtds/struts-2.5.dtd">
+		"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+		"http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
 	<package name="uc4" namespace="/mapgyver/voyages" extends="struts-default">
-		<default-action-ref name="index"/>
-		<action name="index">
-			<result>/vue/voyages.jsp</result>
-		</action>
-		<action name="roadBook">
+ 
+		
+		<action name="accueil">
 			<result>/vue/voyages/roadBook.jsp</result>
+		</action>
+		<action name="do*" class="webApp.uc4Voyage.VoyageAction" method="{1}">
+		<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="ROADBOOK_SUCCESS">/vue/voyages/roadBook.jsp</result>
+			<result name="ROADBOOK_ERROR">/vue/voyages/roadBook.jsp</result>
+			<result name="VOYAGE_SUCCESS">/vue/voyages.jsp</result>
+			<result name="VOYAGE_ERROR">/vue/voyages.jsp</result>
+			<allowed-methods>
+							createRoadBook,readRoadBook,updateRoadBook,deleteRoadBook, 
+							createVoyage,readVoyage,updateVoyage,deleteVoyage
+			</allowed-methods>			
 		</action>
 	</package>
 </struts>

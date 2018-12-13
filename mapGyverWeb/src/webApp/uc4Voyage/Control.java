@@ -3,64 +3,68 @@ package webApp.uc4Voyage;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
+import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.Voyage;
 
-public class FormVoyage {
+public class Control {
 
-	private HttpServletRequest request;
-
-
-	public FormVoyage(HttpServletRequest request) {
-		this.request = request;
+	public Control() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public Voyage createVoyage() throws ExceptionServiceVoyage {
-		Voyage voyage = new Voyage(controlTitre());
-		voyage.setDateDebut(controlDate());
-		voyage.setNbParticipant(controlParticipant());
+	public Voyage createVoyage(VoyageAction voyageAction) throws ExceptionServiceVoyage {
+		String nom 								= voyageAction.inputNomVoyage;
+		String dateDebut 						= voyageAction.inputDateDebut;
+		String nbParticipant 					= voyageAction.inputNbParticipant;
+		ArrayList<PointInteret> pointInteret 	= voyageAction.listPointInteret;
+		return controleVoyage(nom, dateDebut, nbParticipant, pointInteret);
+	}
+
+	private Voyage controleVoyage(String nom, String dateDebut, String nbParticipant,
+			ArrayList<PointInteret> pointInteret) throws ExceptionServiceVoyage {
+		Voyage voyage = new Voyage(controlTitre(nom));
+		voyage.setDateDebut(controlDate(dateDebut));
+		voyage.setNbParticipant(controlParticipant(nbParticipant));
+		voyage.setPointInteret(controlPOI(pointInteret));
 		return voyage;
 	}
-	
-	private String controlTitre() throws ExceptionServiceVoyage {
-		String titre = request.getParameter("titre");
-		if (titre==null || titre.isBlank())
+
+	private String controlTitre(String nom) throws ExceptionServiceVoyage {
+		if (nom==null || nom.isBlank())
 			throw new ExceptionServiceVoyage(ExceptionServiceVoyage.ERROR_MSG.TITRE);
-		return request.getParameter("titre");
+		return nom;
 	}
-	
-	private LocalDate controlDate() throws ExceptionServiceVoyage {
+
+	private Integer controlParticipant(String nbParticipant) throws ExceptionServiceVoyage {
+		Integer nb = null;
+		if (!nbParticipant.isBlank()) {
+			try {
+				nb = Integer.parseInt(nbParticipant);
+				if (nb<0) throw new ExceptionServiceVoyage(ExceptionServiceVoyage.ERROR_MSG.PARTICIPANTS);
+			} catch (NumberFormatException e) {
+				throw new ExceptionServiceVoyage(ExceptionServiceVoyage.ERROR_MSG.PARTICIPANTS);
+			}
+		}
+		return nb;
+	}
+
+	private LocalDate controlDate(String dateDebut) throws ExceptionServiceVoyage {
 		LocalDate date = null;
-		try {
-			if (!request.getParameter("depart").isEmpty())
-				date = LocalDate.parse(request.getParameter("depart"), DateTimeFormatter.ofPattern("uuuu-MM-dd"));
-		} catch (DateTimeParseException e) {
-			throw new ExceptionServiceVoyage(ExceptionServiceVoyage.ERROR_MSG.DATE);
+		if (!dateDebut.isBlank()) {
+			try {
+				date = LocalDate.parse((dateDebut), DateTimeFormatter.ofPattern("uuuu-MM-dd"));
+			}	catch (DateTimeParseException e) {
+				throw new ExceptionServiceVoyage(ExceptionServiceVoyage.ERROR_MSG.DATE);
+			}
 		}
 		return date;
 	}
 
-	private Integer controlParticipant() throws ExceptionServiceVoyage {
-		Integer nb = null;
-		try {
-			if (!request.getParameter("quantite").isEmpty()) {
-				nb = Integer.parseInt(request.getParameter("quantite"));
-				if (nb<0) throw new ExceptionServiceVoyage(ExceptionServiceVoyage.ERROR_MSG.PARTICIPANTS);
-			}
-		} catch (NumberFormatException e) {
-			throw new ExceptionServiceVoyage(ExceptionServiceVoyage.ERROR_MSG.PARTICIPANTS);
-		}
-		return nb;
-	}
-	
-	public HttpServletRequest getRequest() {
-		return request;
-	}
-	
-	public void setRequest(HttpServletRequest request) {
-		this.request = request;
+	private ArrayList<PointInteret> controlPOI(ArrayList<PointInteret> pointInteret) {
+		// TODO test ArrayList<PointInteret>
+		return pointInteret;
 	}
 
 }

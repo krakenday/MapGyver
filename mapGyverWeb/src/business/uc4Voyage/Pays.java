@@ -3,47 +3,23 @@ package business.uc4Voyage;
 
 public class Pays extends PointInteret{
 
-	private int 	id;
-	private String 	nom;
-	private int 	nbTotal;
+	private static final long serialVersionUID = 1L;
 	
-	public Pays(int id, String nom, int nbTotal) {
-		super();
-		this.id 		= id;
-		this.nom 		= nom;
-		this.nbTotal 	= nbTotal;
+	public static final int NB_TOTAL = 197;
+	
+	public Pays() {
 	}
-
-	public int getId() {
-		return id;
+	
+	public Pays(String nom) {
+		super(nom);
 	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public int getNbTotal() {
-		return nbTotal;
-	}
-
-	public void setNbTotal(int nbTotal) {
-		this.nbTotal = nbTotal;
-	}
+	
+	public Pays(String nom, Coordonnee coordonnee) {
+		super(nom, coordonnee);
+	}	
 
 	@Override
 	public String toString() {
-		return String.format("Pays [id= %s, nom= %s, nbTotal= %s]",
-				id, nom, nbTotal);
-	}
-
-	
-	
+		return "Pays " + super.toString();
+	}	
 }

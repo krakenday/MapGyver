@@ -214,11 +214,15 @@ public class FactoryEntity {
 	}
 	
 	public List<EntityPointInteret> createEntityFromPOI(List<PointInteret> listPOI) {
-		List<EntityPointInteret> entityListPOI = new ArrayList<>();
-		for (PointInteret pointInteret : listPOI) {
-			EntityPointInteret entityPointInteret = createEntityFrom(pointInteret);
-			entityListPOI.add(entityPointInteret);
+		List<EntityPointInteret> entityListPOI = null;
+		if (listPOI!=null) {
+			entityListPOI = new ArrayList<>();
+			for (PointInteret pointInteret : listPOI) {
+				EntityPointInteret entityPointInteret = createEntityFrom(pointInteret);
+				entityListPOI.add(entityPointInteret);
+			}
 		}
+		
 		return entityListPOI;
 	}
 

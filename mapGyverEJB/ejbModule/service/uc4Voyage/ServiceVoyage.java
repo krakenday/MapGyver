@@ -35,6 +35,7 @@ public class ServiceVoyage {
 
 	public Voyage updateVoyage(Voyage voyage) throws ServiceVoyageException {
 		try {
+			System.out.println("ServiceVoyage " + voyage);
 			return daoFacade.updateVoyage(voyage);
 		} catch (DaoFacadeExceptionVoyage e) {
 			throw new ServiceVoyageException(e.getCode(),e.getMessage());

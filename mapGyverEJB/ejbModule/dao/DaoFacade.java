@@ -151,6 +151,7 @@ public class DaoFacade {
 
 	public Voyage updateVoyage(Voyage voyage) throws DaoFacadeExceptionVoyage {
 		try {
+			System.out.println("DAoFacade " + voyage);
 			return daoFacadeVoyage.updateVoyage(voyage);	
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),

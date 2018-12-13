@@ -96,12 +96,12 @@ public class TestServiceCrudVoyage {
 	public void createVoyage() throws ServiceFacadeExceptionVoyage {
 		Voyage voyage = serviceMpg.createVoyage(voyageFrance);
 		assertEquals(voyage.getNom(), voyageFrance.getNom());
-//		assertEquals(voyage.getNbParticipant(), voyageFrance.getNbParticipant());
-//		assertEquals(voyage.getDateDebut(), voyageFrance.getDateDebut());
-//		for (int i=0; i<voyage.getPointInteret().size();i++) {
-//			assertEquals(voyage.getPointInteret().get(i).getNom(), voyageFrance.getPointInteret().get(i).getNom());
-//		}
-//		serviceMpg.deleteVoyage(voyage.getId());
+		assertEquals(voyage.getNbParticipant(), voyageFrance.getNbParticipant());
+		assertEquals(voyage.getDateDebut(), voyageFrance.getDateDebut());
+		for (int i=0; i<voyage.getPointInteret().size();i++) {
+			assertEquals(voyage.getPointInteret().get(i).getNom(), voyageFrance.getPointInteret().get(i).getNom());
+		}
+		serviceMpg.deleteVoyage(voyage.getId());
 	}
 
 	/**
@@ -116,7 +116,9 @@ public class TestServiceCrudVoyage {
 		assertEquals(voyageFrance.getNom(), testVoyage.getNom());
 		assertEquals(voyageFrance.getNbParticipant(), testVoyage.getNbParticipant());
 		assertEquals(voyageFrance.getDateDebut(), testVoyage.getDateDebut());
-		//assertEquals(voyageFrance.getPointInteret(), testVoyage.getPointInteret());
+		for (int i=0; i<voyage.getPointInteret().size();i++) {
+			assertEquals(voyageFrance.getPointInteret().get(i).getNom(), voyage.getPointInteret().get(i).getNom());
+		}
 		serviceMpg.deleteVoyage(voyage.getId());
 	}
 
@@ -137,4 +139,20 @@ public class TestServiceCrudVoyage {
 		}
 	}
 
+	/**
+	 * test : suppression d'un voyage existant en base
+	 * @throws ServiceFacadeExceptionVoyage
+	 */
+	@Test
+	public void updateVoyage() throws ServiceFacadeExceptionVoyage {
+		voyageFrance.setNom("Madagascar");
+		Voyage voyage = serviceMpg.updateVoyage(voyageFrance);
+		assertEquals("Madagascar", voyage.getNom());
+		assertEquals(voyageFrance.getNbParticipant(), voyage.getNbParticipant());
+		assertEquals(voyageFrance.getDateDebut(), voyage.getDateDebut());
+		for (int i=0; i<voyage.getPointInteret().size();i++) {
+			assertEquals(voyageFrance.getPointInteret().get(i).getNom(), voyage.getPointInteret().get(i).getNom());
+		}
+	}
+	
 }

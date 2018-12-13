@@ -152,14 +152,14 @@ public class ControleurRoadBook extends HttpServlet {
 		System.out.println("create");
 		try {
 			RoadBook roadBook= getOrCreateUserRoadBook(utilisateur);
-			Voyage voyage = new FormVoyage(request).createVoyage();
-			roadBook.addVoyage(voyage);
+//			Voyage voyage = new Factory(request).createVoyage();
+//			roadBook.addVoyage(voyage);
 			roadBook = serviceMpg.updateRoadBook(roadBook);
 			request.setAttribute("roadBook",roadBook);
 			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_INSERT.getMsg());
-		} catch (ExceptionServiceVoyage e) {
-			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
-					+" *Err. "+ e.getMessage());
+//		} catch (ExceptionServiceVoyage e) {
+//			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
+//					+" *Err. "+ e.getMessage());
 		} catch (ServiceFacadeExceptionVoyage e) {
 			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_INSERT.getSolution() 
 					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());

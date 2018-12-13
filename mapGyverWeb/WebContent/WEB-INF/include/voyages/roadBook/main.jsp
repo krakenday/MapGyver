@@ -1,16 +1,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ page import="business.uc4Voyage.Voyage"%>
-<%@ page import="java.util.Iterator"%>
-<%@page import="java.time.LocalDate"%>
-<%@page import="java.time.format.DateTimeFormatter"%>
-<jsp:useBean id="roadBook" scope="request" class="business.uc4Voyage.RoadBook" />
-<%
-	String success = (String) request.getAttribute("success");
-	String probleme = (String) request.getAttribute("probleme");
-%>
-
 <!-- Roadbook -->
 <div class="row ">
 	<div class="col-lg-12">
@@ -30,9 +22,10 @@
 									</h2>
 								</div>
 								<div class="col-sm-6">
-									<a href="<%=request.getContextPath()%>/mapgyver/voyages"
-										class="btn btn-success"><i class="material-icons">&#xE147;</i>
-										<span>Ajouter nouveau voyage</span></a> <a
+									<s:a namespace="/mapgyver/voyages" action="doreadVoyage"
+										class="btn btn-success">
+										<i class="material-icons">&#xE147;</i>
+										<span>Ajouter nouveau voyage</span></s:a> <a
 										href="#deleteModalVoyages" class="btn btn-danger"
 										data-toggle="modal"><i class="material-icons">&#xE15C;</i>
 										<span>Supprimer</span></a>
@@ -53,34 +46,26 @@
 								</tr>
 							</thead>
 							<tbody>
-								<%	Iterator<Voyage> iterVoyage = roadBook.getVoyages().iterator();
-										while (iterVoyage.hasNext()) {
-											Voyage voyage = iterVoyage.next();
-											String id 		= Integer.toString(voyage.getId());
-											String titre 	= voyage.getNom();
-											String date 	= "";
-											if(voyage.getDateDebut()!=null){
-												date = DateTimeFormatter.ofPattern("dd/MM/YYYY").format(voyage.getDateDebut());
-											}
-											String nbParts 	= voyage.getNbParticipant()==null? " " : Integer.toString(voyage.getNbParticipant());
-								%>
+							<s:iterator value="roadBook.voyages">
 								<tr>
 									<td><span class="custom-checkbox"> <input
-											type="checkbox" id="checkbox<%=id%>" name="options[]"
-											value="<%=id%>"> <label for="checkbox<%=id%>"></label>
+											type="checkbox" id="checkbox<s:property 	value="id"/>" name="options[]"
+											value="<s:property 	value="id"/>"> <label for="checkbox<s:property 	value="id"/>"></label>
 									</span></td>
-									<td><%=titre%></td>
-									<td><%=date%></td>
-									<td><%=nbParts%></td>
-									<td><a
-										href="<%=request.getContextPath()%>/mapgyver/voyages/<%=id%>"
-										class="edit"><i class="material-icons"
-											data-toggle="tooltip" title="Modifier">&#xE254;</i></a> <a
-										href="" data-id="<%=id%>" class="delete" data-toggle="modal"><i
+									<td><s:property 	value="nom"/></td>
+									<td><s:property 	value="DateDebutToString"/></td>
+									<td><s:property 	value="nbParticipant"/></td>
+									<s:url  namespace="/mapgyver/voyages" action="doreadVoyage"  var="readVoy">
+		     						<s:param name="id"><s:property value="id" /></s:param>
+		     						</s:url>
+									<td><a href="${readVoy}" class="edit">
+										<i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
+										<a	href="deleteModalVoyages" data-id="<s:property 	value="id"/>" class="delete" data-toggle="modal"><i
 											class="material-icons" data-toggle="tooltip"
-											title="Supprimer">&#xE872;</i></a></td>
+											title="Supprimer">&#xE872;</i></a>
+									</td>
 								</tr>
-									<%}%>
+									</s:iterator>
 							</tbody>
 						</table>
 					</div>

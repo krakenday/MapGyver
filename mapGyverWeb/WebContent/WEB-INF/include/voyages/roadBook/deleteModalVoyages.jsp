@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+	<%@ taglib uri="/struts-tags" prefix="s"%>
 <div id="deleteModalVoyages" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form  method="post" action="<%=request.getContextPath()%>/mapgyver/voyages/delete">
+			<s:form id="voyage"  method="post" action="dodeleteVoyage" theme="simple" > 
 				<div class="modal-header">
 					<h4 class="modal-title">Supprimer Voyage</h4>
 					<button type="button" class="close" data-dismiss="modal"
@@ -19,11 +20,12 @@
 			       <input type="hidden" name="id" id="id" value=""/>
 			      </div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal"
-						value="Annuler"> <input type="submit"
-						class="btn btn-danger" value="Supprimer">
+					<s:url  namespace="/mapgyver/voyages" action="dodeleteVoyage"  var="delVoy">
+					</s:url>	
+					<input type="button" class="btn btn-default" data-dismiss="modal"value="Annuler">
+						<s:submit class="btn btn-danger" value="Supprimer" 	formaction="${delVoy}" />
 				</div>
-			</form>
+			</s:form>
 		</div>
 	</div>
 </div>

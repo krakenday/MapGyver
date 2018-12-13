@@ -157,20 +157,20 @@ public class ControleurVoyage extends HttpServlet {
 
 	private void updateVoyage(HttpServletRequest request, String path)  {
 		System.out.println("update");
-		try {
-			int id = Integer.parseInt(path.replace("/update/", "").replace("/", ""));
-			Voyage voyage = new FormVoyage(request).createVoyage();
-			voyage.setId(id);
-			serviceMpg.updateVoyage(voyage);
-			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_UPDATE.getMsg() 
-					+" : "+ voyage.getNom());
-		} catch (ExceptionServiceVoyage e) {
-			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
-					+" *Err. "+ e.getMessage());
-		} catch (NumberFormatException | ServiceFacadeExceptionVoyage e ) {
-			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_UPDATE.getSolution() 
-					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
-		}
+//		try {
+//			int id = Integer.parseInt(path.replace("/update/", "").replace("/", ""));
+//			Voyage voyage = new VerificatorService(request).createVoyage();
+//			voyage.setId(id);
+//			serviceMpg.updateVoyage(voyage);
+//			request.setAttribute("success", ControleurVoyageMsg.SUCCESS_UPDATE.getMsg() 
+//					+" : "+ voyage.getNom());
+//		} catch (ExceptionServiceVoyage e) {
+//			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_SAISIES.getSolution() 
+//					+" *Err. "+ e.getMessage());
+//		} catch (NumberFormatException | ServiceFacadeExceptionVoyage e ) {
+//			request.setAttribute("probleme", ControleurVoyageMsg.ERROR_UPDATE.getSolution() 
+//					+" *Err. "+ ZONE_EXCEPTION+ e.getMessage());
+//		}
 	}
 
 	private void deleteVoyage(HttpServletRequest request, Utilisateur utilisateur) {

@@ -3,6 +3,8 @@ package test.uc4Voyage.dao;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.time.LocalDate;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -12,6 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import business.uc4Voyage.RoadBook;
+import business.uc4Voyage.Voyage;
 import business.uc8Utilisateur.Utilisateur;
 import clientServeur.IServiceFacade;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
@@ -89,5 +92,22 @@ public class TestServiceCrudRoadBook {
 		}
 	}
 
+	/**
+	 * test : creation d'un roadBook 
+	 * @throws ServiceFacadeExceptionVoyage
+	 */
+	@Test
+	public void updateRoadBook() throws ServiceFacadeExceptionVoyage {
+		RoadBook totoRoadBook = new RoadBook(toto);
+		Voyage voyageFrance = new Voyage("France", LocalDate.now(), 15,null);
+		totoRoadBook.addVoyage(voyageFrance);
+		RoadBook roadBook = serviceMpg.createRoadBook(totoRoadBook);
+		voyageFrance.setNom("Mada");
+		roadBook.addVoyage(voyageFrance);
+		roadBook = serviceMpg.updateRoadBook(roadBook);
+		assertEquals("France", roadBook.getVoyages().get(0).getNom());
+		assertEquals("Mada", roadBook.getVoyages().get(1).getNom());
+		serviceMpg.deleteRoadBook(roadBook.getId());
+	}
 
 }

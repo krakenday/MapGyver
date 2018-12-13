@@ -35,9 +35,7 @@ public class DaoFacadeVoyage {
 
 	public Voyage createVoyage(Voyage voyage) throws DaoVoyageException {
 		EntityVoyage entityVoyage = factoryEntity.createEntityFrom(voyage);
-	
 			return factoryEntity.createFromEntity(daoGenericVoyage.create(entityVoyage));
-
 	}
 
 	public List<Voyage> readVoyageOrderById() {
@@ -46,7 +44,9 @@ public class DaoFacadeVoyage {
 	}
 
 	public Voyage updateVoyage(Voyage voyage) throws DaoVoyageException {
+		System.out.println("DaoFacadeVoyage " + voyage);
 		EntityVoyage entityVoyage = factoryEntity.createEntityWithIdFrom(voyage);
+		System.out.println("daoFacade updateVoyage entity : "+ entityVoyage);
 			return factoryEntity.createFromEntity(daoGenericVoyage.update(entityVoyage));
 
 	}

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ page import="business.uc4Voyage.RoadBook"%>
-<%	RoadBook roadBook = (RoadBook) request.getAttribute("roadBook");%>
 <div id="deleteModalRoadBook" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form  method="post" action="<%=request.getContextPath()%>/mapgyver/voyages/roadBook/delete/<%=roadBook.getId()%>">
+			<s:form id="roadBook"  method="post" action="dodeleteRoadBook" theme="simple" > 
 				<div class="modal-header">
 					<h4 class="modal-title">Supprimer RoadBook</h4>
 					<button type="button" class="close" data-dismiss="modal"
@@ -20,7 +20,7 @@
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
 					<input type="submit" class="btn btn-danger" value="Supprimer">
 				</div>
-			</form>
+			</s:form>
 		</div>
 	</div>
 </div>

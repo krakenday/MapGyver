@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ page import="business.uc4Voyage.RoadBook"%>
-<%	RoadBook roadBook = (RoadBook) request.getAttribute("roadBook");
-	String success = (String) request.getAttribute("success");
-	String probleme = (String) request.getAttribute("probleme");
-%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -46,27 +43,28 @@
 						href="<%=request.getContextPath()%>">MapGyver</a></li>
 					<li class="breadcrumb-item active">RoadBook</li>
 				</ol>
-				<%if (roadBook != null) {%>
+				<s:if test="roadBook==null">
+					<s:a class="btn btn-success mb-3" namespace="/mapgyver/voyages" action="docreateRoadBook" role="button">Cr&eacute;er mon roadBook</s:a>
+				</s:if>
+				<s:else>
 						<jsp:include page="/WEB-INF/include/voyages/roadBook/main.jsp" />
 						<button type="button" class="btn btn-danger mb-3" data-toggle="modal"
 						data-target="#deleteModalRoadBook">Supprimer mon roadBook</button>
-				<%} else {%>
-						<a class="btn btn-success mb-3" href="<%=request.getContextPath()%>/mapgyver/voyages/roadBook/create" role="button">Cr&eacute;er mon roadBook</a>
-				<%}%>
-				<%if (success!=null) {%>
-				<div class="alert alert-success shadow alert-dismissible fade show" role="alert" id="success"><%=success%>
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				    <span aria-hidden="true">&times;</span>
-				  	</button>
-			  	</div>
-			<%}%> 
-			<%if (probleme!=null) {%>
-				<div class="alert alert-danger  shadow alert-dismissible fade show" role="alert" id="probleme"><%=probleme%>
+				</s:else>
+				<s:if test="success!=null">
+					<div class="alert alert-success shadow alert-dismissible fade show" role="alert" id="success"><s:property value="success" />
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  	</button>
+				  	</div>
+			  	</s:if>
+			  	<s:if test="probleme!=null">
+				<div class="alert alert-danger  shadow alert-dismissible fade show" role="alert" id="probleme"><s:property value="probleme" />
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				    <span aria-hidden="true">&times;</span>
 			  		</button>
 			  	</div>
-			<%}%>
+			  	</s:if>
 			</div>
 			<!-- /.container-fluid -->
 
@@ -77,12 +75,12 @@
 		<!-- /.content-wrapper -->
 
 	</div>
-	<%if (roadBook != null) {%>
+	<s:if test="roadBook!=null">
 	<!-- Delete Voyages Modal HTML -->
 	<jsp:include page="/WEB-INF/include/voyages/roadBook/deleteModalVoyages.jsp" />
 	<!-- Delete RoadBook Modal HTML -->
 	<jsp:include page="/WEB-INF/include/voyages/roadBook/deleteModalRoadBook.jsp" />
-	<%}%>
+	</s:if>
 	<!-- /#wrapper -->
 
 	<!-- Scroll to Top Button-->
