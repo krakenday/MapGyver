@@ -53,7 +53,11 @@ public class Photo extends Souvenir {
 	public Photo(String string) {
 		this.nom = string;
 	}
+	
 
+	public Photo() {
+		super();
+	}
 
 
 	//TODO metre a jour commentaire

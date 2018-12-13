@@ -6,6 +6,7 @@ import business.uc4Voyage.Voyage;
 
 public class Commentaire extends Souvenir {
 	
+	private static final long serialVersionUID = 1L;
 	private String description;
 
 	
@@ -28,10 +29,18 @@ public class Commentaire extends Souvenir {
 
 
 
+	public Commentaire() {
+		super();
+	}
+
+
+	
+
 	@Override
 	public String toString() {
-		return "Commentaire [description=" + description + "]";
+		return "Commentaire [description=" + description +super.toString()+ "]";
 	}
+
 
 	public String getDescription() {
 		return description;

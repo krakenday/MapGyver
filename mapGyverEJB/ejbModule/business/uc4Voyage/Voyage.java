@@ -60,6 +60,12 @@ public class Voyage implements Serializable {
 		this.nbParticipant 	= nbParticipant;
 		this.pointInteret 	= pointInteret;
 	}
+	
+	
+
+	public Voyage() {
+		super();
+	}
 
 	/**
 	 * @param nom           : nom du voyage

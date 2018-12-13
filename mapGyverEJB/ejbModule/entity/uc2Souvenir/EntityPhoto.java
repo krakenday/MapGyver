@@ -77,17 +77,11 @@ public class EntityPhoto extends EntitySouvenir {
 		this.nom = nom;
 	}
 	
-	
-
 
 	//cc par defaut necessaire a hibernate
 	public EntityPhoto() {
 		super();
 	}
-
-
-
-
 
 
 	@Override

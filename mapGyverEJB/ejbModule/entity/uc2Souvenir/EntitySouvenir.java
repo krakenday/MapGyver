@@ -91,6 +91,15 @@ public abstract class EntitySouvenir implements Serializable {
 	public void setDateEnregistre(LocalDate dateEnregistre) {
 		this.dateEnregistre = dateEnregistre;
 	}
+
+	public EntityVoyage getEntityVoyage() {
+		return entityVoyage;
+	}
+
+	public void setEntityVoyage(EntityVoyage entityVoyage) {
+		this.entityVoyage = entityVoyage;
+	}
+	
 	
 
 }

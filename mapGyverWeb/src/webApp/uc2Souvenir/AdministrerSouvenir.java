@@ -53,18 +53,18 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 		System.out.println("****************ControlSouvenirAjouter- Valeur SOUVENIR =" + souvenir);
 		
 		//appel de mon service
-		//iServiceFacade.createSouvenir(souvenir);
+		iServiceFacade.createSouvenir(souvenir);
 		
-		//Test pour recup List de Souvenirs (voir si creer un autre ActionBean pour cela)
-		List<Souvenir> catalogueSouvenirs = iServiceFacade.getSouvenirsByIdVoyage("3");
-		for (Souvenir souvenir : catalogueSouvenirs) {
-			 if(souvenir instanceof Photo) {
-				 System.out.println(((Photo) souvenir).getNom());
-			 }
-			
-		}
+		
 		
 		System.out.println("****************Apres appel du service");
+		
+		return "success";
+	}
+	
+	public String getSouvenirsDuVoyage(String id) {
+		//Test pour recup List de Souvenirs (voir si creer un autre ActionBean pour cela)
+		List<Souvenir> catalogueSouvenirs = iServiceFacade.getSouvenirsByIdVoyage("747");
 		
 		return "success";
 	}

@@ -34,24 +34,34 @@ public class EntityCommentaire extends EntitySouvenir {
 	
 	
 	
-//TODO decomenter
+
 //	public EntityCommentaire(int id, LocalDate dateEnregistre, String description) {
 //		super(id, dateEnregistre);
 //		this.description = description;
 //	}
-//
-//	@Override
-//	public String toString() {
-//		return "Commentaire [description=" + description + "]";
-//	}
-//
-//	public String getDescription() {
-//		return description;
-//	}
-//
-//	public void setDescription(String description) {
-//		this.description = description;
-//	}
+
+	public EntityCommentaire() {
+		super();
+	}
+
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "Commentaire [description=" + description + "]";
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
 	
 }
