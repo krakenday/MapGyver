@@ -29,4 +29,7 @@ public class EntityPays extends EntityPointInteret{
 	public String toString() {
 		return "EntityPays " + super.toString();
 	}
+	
+	
+	
 }

@@ -65,14 +65,15 @@ public class DaoGenericVoyage {
 	}
 
 	public <T> T update(T entity) throws DaoVoyageException {
+		T newEntity = null;
 		String daoExceptionMsg = ZONE_EXCEPTION_MSG + ".Update -> ";
 		try {
-			em.merge(entity);
+			newEntity = em.merge(entity);
 		} catch (PersistenceException e) {
 			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_UPDATE.getId(),
 					daoExceptionMsg + DaoVoyageErrorMessage.ERR_UPDATE.getMsg());
 		}
-		return entity;
+		return newEntity;
 	}
 
 	public <T> T find(int id, Class<T> classe) throws DaoVoyageException {

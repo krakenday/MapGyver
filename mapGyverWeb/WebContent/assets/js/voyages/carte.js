@@ -22,7 +22,6 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
  * action sur click
  */
 
-
 function onMapClick(e) {
 
 	L.marker(e.latlng,{
@@ -82,10 +81,10 @@ function onMapClick(e) {
 var HTMLcontent = '<form  id="popup-form">\
 	<div class="form-group">\
 		<label for="selectPOI">Selectionner le lieu</label>\
-		<input class="form-control" list=lieu>\
-		<datalist id="lieu" name="lieu" value="Marseille">\
-			<option value="Aix"></option>\
-			<option value="Auriol"></option>\
+		<input class="form-control" list=POI>\
+		<datalist id="POI" name="POI" value="France">\
+			<option value="France">France</option>\
+			<option value="Espagne">Espagne</option>\
 		</datalist>\
 	</div>\
 	<div class="mb-2">\

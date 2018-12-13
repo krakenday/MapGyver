@@ -33,7 +33,7 @@
 
 	</div>
 </div>
-<input type="hidden" name="id" id="id" value="<s:property value="id" />"/>
+<s:hidden  name="id" value="%{id}"/>
 <div class="container text-right">
 <div class="row mb-3 px-1 text-right">
 	<s:if test="voyage==null">

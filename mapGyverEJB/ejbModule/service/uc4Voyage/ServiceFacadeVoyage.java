@@ -24,7 +24,7 @@ public class ServiceFacadeVoyage {
 		return serviceVoyage.createVoyage(voyage);
 	}
 
-	public List<Voyage> readVoyageOrderById() {
+	public List<Voyage> readVoyageOrderById() throws ServiceVoyageException {
 		return serviceVoyage.readVoyageOrderById();
 	}
 
@@ -41,11 +41,10 @@ public class ServiceFacadeVoyage {
 	}
 
 	public RoadBook createRoadBook(RoadBook roadBook) throws ServiceVoyageException {
-		System.out.println("ServiceFAcadeVoyage createRoadBook");
 		return serviceVoyage.createRoadBook(roadBook);
 	}
 
-	public List<RoadBook> readRoadBookOrderById() {
+	public List<RoadBook> readRoadBookOrderById() throws ServiceVoyageException {
 		return serviceVoyage.readRoadBookOrderById();
 	}
 
@@ -57,11 +56,11 @@ public class ServiceFacadeVoyage {
 		serviceVoyage.deleteRoadBook(id);
 	}
 
-	public RoadBook getRoadBookById(int id) {
+	public RoadBook getRoadBookById(int id) throws ServiceVoyageException {
 		return serviceVoyage.getRoadBookById(id);
 	}
 
-	public RoadBook getRoadBookByUserId(int id) {
+	public RoadBook getRoadBookByUserId(int id) throws ServiceVoyageException {
 		return serviceVoyage.getRoadBookByUserId(id);
 	}
 
@@ -77,7 +76,7 @@ public class ServiceFacadeVoyage {
 		return serviceVoyage.readPOInteretOrderById();
 	}
 
-	public PointInteret updatePOInteret(PointInteret pointInteret) {
+	public PointInteret updatePOInteret(PointInteret pointInteret) throws ServiceVoyageException {
 		return serviceVoyage.updatePOInteret(pointInteret);
 	}
 

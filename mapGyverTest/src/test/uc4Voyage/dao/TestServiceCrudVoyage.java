@@ -145,8 +145,13 @@ public class TestServiceCrudVoyage {
 	 */
 	@Test
 	public void updateVoyage() throws ServiceFacadeExceptionVoyage {
+		System.out.println("local : " + voyageFrance);
+		voyageFrance = serviceMpg.createVoyage(voyageFrance);
+		System.out.println("getFromBdd : " + voyageFrance);
 		voyageFrance.setNom("Madagascar");
+		System.out.println("local modif : " + voyageFrance);
 		Voyage voyage = serviceMpg.updateVoyage(voyageFrance);
+		System.out.println("modifFromBdd modif : " + voyageFrance);
 		assertEquals("Madagascar", voyage.getNom());
 		assertEquals(voyageFrance.getNbParticipant(), voyage.getNbParticipant());
 		assertEquals(voyageFrance.getDateDebut(), voyage.getDateDebut());

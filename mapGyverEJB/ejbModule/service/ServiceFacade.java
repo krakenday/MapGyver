@@ -174,9 +174,13 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public List<Voyage> readVoyageOrderById() {
-		//return serviceFacadeVoyage.readVoyageOrderById();	
-		return null;
+	public List<Voyage> readVoyageOrderById() throws ServiceFacadeExceptionVoyage {
+		try {
+			return serviceFacadeVoyage.readVoyageOrderById();
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(),
+					e.getMessage());
+		}	
 	}
 
 	@Override
@@ -212,7 +216,6 @@ public class ServiceFacade implements IServiceFacade {
 	@Override
 	public RoadBook createRoadBook(RoadBook roadBook) throws ServiceFacadeExceptionVoyage {
 		try {
-			System.out.println("ServiceFAcade createRoadBook");
 			return serviceFacadeVoyage.createRoadBook(roadBook);
 		} catch (ServiceVoyageException e) {
 			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
@@ -220,15 +223,17 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public List<RoadBook> readRoadBookOrderById() {
-		//		return serviceFacadeVoyage.readRoadBookOrderById();
-		return null;
+	public List<RoadBook> readRoadBookOrderById() throws ServiceFacadeExceptionVoyage  {
+		try {
+			return serviceFacadeVoyage.readRoadBookOrderById();
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
+		}
 	}
 
 	@Override
 	public RoadBook updateRoadBook(RoadBook roadBook) throws ServiceFacadeExceptionVoyage {
 		try {
-			System.out.println("ServiceFAcade updateRoadBook");
 			return 		serviceFacadeVoyage.updateRoadBook(roadBook);
 		} catch (ServiceVoyageException e) {
 			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
@@ -246,20 +251,26 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public RoadBook getRoadBookById(int id) {
-		//		return serviceFacadeVoyage.getRoadBookById(id);
-		return null;
+	public RoadBook getRoadBookById(int id) throws ServiceFacadeExceptionVoyage {
+		try {
+			return serviceFacadeVoyage.getRoadBookById(id);
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
+		}
 	}
 
 	@Override
-	public RoadBook getRoadBookByUserId(int id) {
-		return serviceFacadeVoyage.getRoadBookByUserId(id);
+	public RoadBook getRoadBookByUserId(int id) throws ServiceFacadeExceptionVoyage {
+		try {
+			return serviceFacadeVoyage.getRoadBookByUserId(id);
+		} catch (ServiceVoyageException e) {
+			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
+		}
 	}
 
 	@Override
 	public RoadBook getRoadBookByUser(Utilisateur utilisateur)	throws ServiceFacadeExceptionVoyage {
 		try {
-			System.out.println("ServiceFAcade getRoadBookByUser");
 			return serviceFacadeVoyage.getRoadBookByUser(utilisateur);
 		} catch (ServiceVoyageException e) {
 			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
@@ -269,7 +280,6 @@ public class ServiceFacade implements IServiceFacade {
 	@Override
 	public PointInteret createPOInteret(PointInteret pointInteret) throws ServiceFacadeExceptionVoyage {
 		try {
-			System.out.println("ServiceFAcade createPOInteret");
 			return serviceFacadeVoyage.createPOInteret(pointInteret);
 		} catch (ServiceVoyageException e) {
 			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
@@ -279,7 +289,6 @@ public class ServiceFacade implements IServiceFacade {
 	@Override
 	public List<PointInteret> readPOInteretOrderById() throws ServiceFacadeExceptionVoyage {
 		try {
-			System.out.println("ServiceFAcade readPOInteretOrderById");
 			return serviceFacadeVoyage.readPOInteretOrderById();
 		} catch (ServiceVoyageException e) {
 			throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
@@ -287,9 +296,12 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public PointInteret updatePOInteret(PointInteret pointInteret) {
-		//		serviceFacadeVoyage.updatePOInteret(pointInteret);	
-		return null;
+	public PointInteret updatePOInteret(PointInteret pointInteret) throws ServiceFacadeExceptionVoyage {
+			try {
+				return serviceFacadeVoyage.updatePOInteret(pointInteret);	
+			} catch (ServiceVoyageException e) {
+				throw new ServiceFacadeExceptionVoyage(e.getCode(), e.getMessage());
+			}
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestServiceCrudVoyage.class, TestServiceCrudPOI.class,TestServiceCrudRoadBook.class, TestFactoryEntity.class })
+@SuiteClasses({TestServiceCrudRoadBook.class, TestServiceCrudVoyage.class, TestServiceCrudPOI.class,TestFactoryEntity.class })
 public class AllTestUC4Voyage {
 
 }

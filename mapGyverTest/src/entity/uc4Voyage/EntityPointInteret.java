@@ -42,28 +42,28 @@ public abstract class EntityPointInteret implements Serializable {
 	@JoinColumn(name = "id_Crd", unique = true, nullable = false)
 	private EntityCoordonnee entityCoordonnee;
 	
-	@ManyToMany(mappedBy = "entityPointInterets", fetch=FetchType.LAZY)
-	private List<EntityVoyage> entityVoyages = new ArrayList<EntityVoyage>();
+//	@ManyToMany(mappedBy = "entityPointInterets", fetch=FetchType.LAZY)
+//	private List<EntityVoyage> entityVoyages = new ArrayList<EntityVoyage>();
 	
 	
 	// avant remove : on parcourt la collection de documents et on enleve les themes � la main
-	@PreRemove
-	private void removePOIFromVoyage() {
-		if (entityVoyages != null) {
-			for (EntityVoyage entityVoyage : entityVoyages) {
-				entityVoyage.getEntityPointInterets().remove(this);
-			}
-		}
-	}
+//	@PreRemove
+//	private void removePOIFromVoyage() {
+//		if (entityVoyages != null) {
+//			for (EntityVoyage entityVoyage : entityVoyages) {
+//				entityVoyage.getEntityPointInterets().remove(this);
+//			}
+//		}
+//	}
 	
-	@PrePersist
-	private void addPoiInVoyage() {
-		if (entityVoyages != null) {
-			for (EntityVoyage entityVoyage : entityVoyages) {
-				entityVoyage.addPoi(this);
-			}
-		}
-	}
+//	@PrePersist
+//	private void addPoiInVoyage() {
+//		if (entityVoyages != null) {
+//			for (EntityVoyage entityVoyage : entityVoyages) {
+//				entityVoyage.addPoi(this);
+//			}
+//		}
+//	}
 	
 	
 	
@@ -95,13 +95,13 @@ public abstract class EntityPointInteret implements Serializable {
 		this.nom = nom;
 	}
 
-	public List<EntityVoyage> getEntityVoyages() {
-		return entityVoyages;
-	}
-
-	public void setEntityVoyages(List<EntityVoyage> voyages) {
-		this.entityVoyages = voyages;
-	}
+//	public List<EntityVoyage> getEntityVoyages() {
+//		return entityVoyages;
+//	}
+//
+//	public void setEntityVoyages(List<EntityVoyage> voyages) {
+//		this.entityVoyages = voyages;
+//	}
 
 	public EntityCoordonnee getEntityCoordonnee() {
 		return entityCoordonnee;
@@ -110,21 +110,45 @@ public abstract class EntityPointInteret implements Serializable {
 	public void setEntityCoordonnee(EntityCoordonnee coordonnee) {
 		this.entityCoordonnee = coordonnee;
 	}
+//	
+//	@Override
+//	public String toString() {
+//		return String.format("EntityPointInteret [id=%s, nom=%s, entityCoordonnee=%s, nb de voyages=%s]", id, nom,
+//				entityCoordonnee, entityVoyages.size());
+//	}
 	
 	@Override
 	public String toString() {
-		return String.format("EntityPointInteret [id=%s, nom=%s, entityCoordonnee=%s, nb de voyages=%s]", id, nom,
-				entityCoordonnee, entityVoyages.size());
+		return String.format("EntityPointInteret [id=%s, nom=%s, entityCoordonnee=%s]", id, nom,
+				entityCoordonnee);
 	}
 
-	public void add(EntityVoyage entityVoyage) {
-		if (entityVoyage != null) {
-			if (entityVoyages == null) entityVoyages = new ArrayList<EntityVoyage>();
-			if (!entityVoyages.contains(entityVoyage)) {
-				entityVoyages.add(entityVoyage);
-				entityVoyage.addPoi(this);
-			} 
-		}
+	@Override
+	public int hashCode() {
+		return Objects.hash(entityCoordonnee, id, nom);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof EntityPointInteret))
+			return false;
+		EntityPointInteret other = (EntityPointInteret) obj;
+		return Objects.equals(entityCoordonnee, other.entityCoordonnee) && id == other.id
+				&& Objects.equals(nom, other.nom);
+	}
+	
+//	public void add(EntityVoyage entityVoyage) {
+//		if (entityVoyage != null) {
+//			if (entityVoyages == null) entityVoyages = new ArrayList<EntityVoyage>();
+//			if (!entityVoyages.contains(entityVoyage)) {
+//				entityVoyages.add(entityVoyage);
+//				entityVoyage.addPoi(this);
+//			} 
+//		}
+//	}
 
 }

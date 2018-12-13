@@ -30,9 +30,8 @@ public class EntityVoyage implements Serializable{
 	@Column(name="part_voy")
 	private Integer 				nbParticipant;
 	
-	//TODO mettre en place le manytomany avec POI
 	@Column(name="poi_voy")
-	@ManyToMany(cascade= { CascadeType.PERSIST})
+	@ManyToMany(cascade= { CascadeType.ALL})
 	@JoinTable(name=UtilBdD.ENTITY_VOYPOI, joinColumns = {@JoinColumn(name="id_Voyage")}, inverseJoinColumns = {@JoinColumn(name="id_POI")})
 	private List<EntityPointInteret> entityPointInterets = new ArrayList<EntityPointInteret>();
 	
@@ -129,7 +128,7 @@ public class EntityVoyage implements Serializable{
 			if (entityPointInterets == null) entityPointInterets = new ArrayList<EntityPointInteret>();
 			if (!entityPointInterets.contains(entityPointInteret)) {
 				entityPointInterets.add(entityPointInteret);
-				entityPointInteret.add(this);
+//				entityPointInteret.add(this);
 			} 
 		}
 		

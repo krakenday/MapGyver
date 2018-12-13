@@ -57,7 +57,6 @@ public class VoyageAction extends ApplicationSupport implements SessionAware, Pr
 			serviceMpg = (IServiceFacade) context.lookup("ejb:/mapGyverEJB/ServiceFacade!clientServeur.IServiceFacade");
 			probleme = null;
 			success = null;
-			utilisateur = getUser();
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -101,10 +100,10 @@ public class VoyageAction extends ApplicationSupport implements SessionAware, Pr
 
 	public String createVoyage() {
 		try {
-			roadBook = getOrCreateUserRoadBook(utilisateur);
+			RoadBook oldRoadBook = getOrCreateUserRoadBook(utilisateur);
 			voyage = new Control().createVoyage(this);
-			roadBook.addVoyage(voyage);
-			roadBook = serviceMpg.updateRoadBook(roadBook);
+			oldRoadBook.addVoyage(voyage);
+			roadBook = serviceMpg.updateRoadBook(oldRoadBook);
 			success = ControleurVoyageMsg.SUCCESS_INSERT.getMsg();
 			return ROADBOOK_SUCCESS;
 		} catch (ExceptionServiceVoyage e) {
@@ -155,10 +154,12 @@ public class VoyageAction extends ApplicationSupport implements SessionAware, Pr
 
 	public String deleteVoyage() {
 		try {
-			roadBook = serviceMpg.getRoadBookByUser(utilisateur);
 			int idVoyage = Integer.parseInt(id);
+			roadBook = serviceMpg.getRoadBookByUser(utilisateur);
+			//TODO a faire dans ejb
 			roadBook.removeVoyageById(idVoyage);
 			roadBook = serviceMpg.updateRoadBook(roadBook);
+			//
 			serviceMpg.deleteVoyage(idVoyage);
 			success = ControleurVoyageMsg.SUCCESS_DELETE.getMsg() 
 					+ " voyage #"+idVoyage;
@@ -172,13 +173,6 @@ public class VoyageAction extends ApplicationSupport implements SessionAware, Pr
 					+" *Err. "+ e.getMessage();
 			return ROADBOOK_ERROR;
 		} 
-	}	
-
-	private Utilisateur getUser() {
-		Utilisateur user = new Utilisateur();
-		user.setId(401);
-		user.setEmail("i.mohamady@gmail.com");
-		return user;
 	}	
 
 	private RoadBook getOrCreateUserRoadBook(Utilisateur utilisateur) throws ServiceFacadeExceptionVoyage{

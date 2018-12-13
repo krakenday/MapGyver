@@ -113,8 +113,11 @@ public class Voyage implements Serializable {
 	 * @return date de debut du voyage
 	 */
 	public String getDateDebutToString() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String dateDebutToString = dateDebut.format(formatter);
+		String dateDebutToString = null;
+		if (dateDebut!=null) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			dateDebutToString = dateDebut.format(formatter);
+		}
 		return dateDebutToString;
 	}
 	

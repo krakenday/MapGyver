@@ -21,7 +21,6 @@ public class AuthenticationInterceptor implements Interceptor{
 		Utilisateur utilisateur = (Utilisateur) sessionAttributes.get("utilisateur");
 		System.out.println("***IDM AuthenticationInterceptor - intercept : personne = " + utilisateur);
 		if (utilisateur.getEmail() == null) {
-			System.out.println("Action.LOGIN");
 			return Action.LOGIN;
 		}
 		else {

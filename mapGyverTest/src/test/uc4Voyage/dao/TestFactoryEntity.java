@@ -91,7 +91,6 @@ public class TestFactoryEntity {
 		assertEquals(entityVoyageEspagne.getNom(), voyage.getNom());
 		assertEquals(entityVoyageEspagne.getDateDebut(), voyage.getDateDebut());
 		assertEquals(entityVoyageEspagne.getNbParticipant(), voyage.getNbParticipant());
-		System.out.println(voyage);
 	}	
 
 	@Test

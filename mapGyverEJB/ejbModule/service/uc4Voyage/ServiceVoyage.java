@@ -29,13 +29,16 @@ public class ServiceVoyage {
 		}
 	}
 
-	public List<Voyage> readVoyageOrderById() {
-		return daoFacade.readVoyageOrderById();
+	public List<Voyage> readVoyageOrderById() throws ServiceVoyageException {
+		try {
+			return daoFacade.readVoyageOrderById();
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 	}
 
 	public Voyage updateVoyage(Voyage voyage) throws ServiceVoyageException {
 		try {
-			System.out.println("ServiceVoyage " + voyage);
 			return daoFacade.updateVoyage(voyage);
 		} catch (DaoFacadeExceptionVoyage e) {
 			throw new ServiceVoyageException(e.getCode(),e.getMessage());
@@ -60,15 +63,18 @@ public class ServiceVoyage {
 
 	public RoadBook createRoadBook(RoadBook roadBook) throws ServiceVoyageException {
 		try {
-			System.out.println("ServiceVoyage createRoadBook");
 			return daoFacade.createRoadBook(roadBook);
 		} catch (DaoFacadeExceptionVoyage e) {
 			throw new ServiceVoyageException(e.getCode(),e.getMessage());
 		}
 	}
 
-	public List<RoadBook> readRoadBookOrderById() {
-		return daoFacade.readRoadBookOrderById();
+	public List<RoadBook> readRoadBookOrderById() throws ServiceVoyageException {
+		try {
+			return daoFacade.readRoadBookOrderById();
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 	}
 
 	public RoadBook updateRoadBook(RoadBook roadBook) throws ServiceVoyageException {
@@ -77,7 +83,6 @@ public class ServiceVoyage {
 		} catch (DaoFacadeExceptionVoyage e) {
 			throw new ServiceVoyageException(e.getCode(),e.getMessage());
 		}
-
 	}
 
 	public void deleteRoadBook(int id) throws ServiceVoyageException {
@@ -88,17 +93,24 @@ public class ServiceVoyage {
 		}
 	}
 
-	public RoadBook getRoadBookById(int id) {
-		return daoFacade.getRoadBookById(id);
+	public RoadBook getRoadBookById(int id) throws ServiceVoyageException {
+		try {
+			return daoFacade.getRoadBookById(id);
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 	}
 
-	public RoadBook getRoadBookByUserId(int id) {
-		return daoFacade.getRoadBookByUserId(id);
+	public RoadBook getRoadBookByUserId(int id) throws ServiceVoyageException {
+		try {
+			return daoFacade.getRoadBookByUserId(id);
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 	}
 
 	public RoadBook getRoadBookByUser(Utilisateur utilisateur) throws ServiceVoyageException {
 		try {
-			System.out.println("ServiceVoyage getRoadBookByUser");
 			return daoFacade.getRoadBookByUser(utilisateur);
 		} catch (DaoFacadeExceptionVoyage e) {
 			throw new ServiceVoyageException(e.getCode(),e.getMessage());
@@ -107,7 +119,6 @@ public class ServiceVoyage {
 
 	public PointInteret createPOInteret(PointInteret pointInteret) throws ServiceVoyageException {
 		try {
-			System.out.println("ServiceVoyage createPOInteret");
 			return daoFacade.createPOInteret(pointInteret);
 		} catch (DaoFacadeExceptionVoyage e) {
 			throw new ServiceVoyageException(e.getCode(),e.getMessage());
@@ -116,15 +127,18 @@ public class ServiceVoyage {
 
 	public List<PointInteret> readPOInteretOrderById() throws ServiceVoyageException {
 		try {
-			System.out.println("ServiceVoyage readPOInteretOrderById");
 			return daoFacade.readPOInteretOrderById();
 		} catch (DaoFacadeExceptionVoyage e) {
 			throw new ServiceVoyageException(e.getCode(),e.getMessage());
 		}
 	}
 
-	public PointInteret updatePOInteret(PointInteret pointInteret) {
-		return daoFacade.updatePOInteret(pointInteret);
+	public PointInteret updatePOInteret(PointInteret pointInteret) throws ServiceVoyageException {
+		try {
+			return daoFacade.updatePOInteret(pointInteret);
+		} catch (DaoFacadeExceptionVoyage e) {
+			throw new ServiceVoyageException(e.getCode(),e.getMessage());
+		}
 	}
 
 	public void deletePOInteret(int id) throws ServiceVoyageException {

@@ -5,13 +5,41 @@
 
 <struts>
 	<package name="uc4" namespace="/mapgyver/voyages" extends="struts-default">
+ 		<interceptors>
+ 		
+ 			<!-- Declaration de l'intercepteur -->
+			<interceptor name="DMAuthInterceptor" 
+						 class="webApp.uc4Voyage.auth.AuthenticationInterceptor">
+			</interceptor>
+			
+			<!-- creation d'une pile d'intercepteurs
+			     et positionnement de l'intercepteur DMInterceptor
+			     (en amont de la pile par defaut) -->
+			<interceptor-stack name="DMauthStack">
+				<interceptor-ref name="DMAuthInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>	
+				
+		</interceptors>
+
+		<!--  par defaut, toutes les actions utilisent la pile DMauthStack
+		      si on ne souhaite pas utiliser DMAuthIntercepteur, 
+		      alors il faut utiliser  defaultStack
+		-->
+		<default-interceptor-ref name="DMauthStack"></default-interceptor-ref>
+
+		<default-action-ref name="doreadRoadBook.action" />
  
-		
-		<action name="accueil">
-			<result>/vue/voyages/roadBook.jsp</result>
-		</action>
+		<!-- un result est cherché localement dans l'action si il n'est pas trouvé, 
+			 alors il est cherché dans les global-results 
+    		 Quand l intercepteur ne trouve pas le loginBean dans la session,
+    		 alors il retourne "login"
+	     -->
+		<global-results>
+			<result name="login" >/vue/login.jsp</result>
+		</global-results>
+			
 		<action name="do*" class="webApp.uc4Voyage.VoyageAction" method="{1}">
-		<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="ROADBOOK_SUCCESS">/vue/voyages/roadBook.jsp</result>
 			<result name="ROADBOOK_ERROR">/vue/voyages/roadBook.jsp</result>
 			<result name="VOYAGE_SUCCESS">/vue/voyages.jsp</result>

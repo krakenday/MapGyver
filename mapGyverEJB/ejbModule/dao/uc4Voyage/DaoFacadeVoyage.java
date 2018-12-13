@@ -38,15 +38,14 @@ public class DaoFacadeVoyage {
 			return factoryEntity.createFromEntity(daoGenericVoyage.create(entityVoyage));
 	}
 
-	public List<Voyage> readVoyageOrderById() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Voyage> readVoyageOrderById() throws DaoVoyageException {
+		List<EntityVoyage> listEntity = daoGenericVoyage.findAll(EntityVoyage.class, "id");
+		List<Voyage> list = factoryEntity.createFromEntity(listEntity);
+		return list;
 	}
 
 	public Voyage updateVoyage(Voyage voyage) throws DaoVoyageException {
-		System.out.println("DaoFacadeVoyage " + voyage);
-		EntityVoyage entityVoyage = factoryEntity.createEntityWithIdFrom(voyage);
-		System.out.println("daoFacade updateVoyage entity : "+ entityVoyage);
+		EntityVoyage entityVoyage = factoryEntity.createEntityFrom(voyage);
 			return factoryEntity.createFromEntity(daoGenericVoyage.update(entityVoyage));
 
 	}
@@ -60,8 +59,6 @@ public class DaoFacadeVoyage {
 	}
 
 	public RoadBook createRoadBook(RoadBook roadBook) throws DaoVoyageException {
-		System.out.println("daoFacadeVoyage createRoadBook");
-		System.out.println(roadBook);
 		try {
 			EntityRoadBook entityRoadBook = factoryEntity.createEntityFrom(roadBook);
 			Utilisateur utilisateur = roadBook.getUtilisateur();
@@ -73,16 +70,14 @@ public class DaoFacadeVoyage {
 		}
 	}
 
-	public List<RoadBook> readRoadBookOrderById() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<RoadBook> readRoadBookOrderById() throws DaoVoyageException {
+		List<EntityRoadBook> listEntity = daoGenericVoyage.findAll(EntityRoadBook.class, "id");
+		List<RoadBook> list = factoryEntity.createFromEntityRoadBook(listEntity);
+		return list;
 	}
 
 	public RoadBook updateRoadBook(RoadBook roadBook) throws DaoVoyageException {
-		EntityRoadBook entityRoadBook = factoryEntity.createEntityWithIdFrom(roadBook);
-		System.out.println("daoFacadeVoyage updateRoadBook");
-		System.out.println(roadBook);
-		System.out.println(entityRoadBook);
+		EntityRoadBook entityRoadBook = factoryEntity.createEntityFrom(roadBook);
 			entityRoadBook = daoGenericVoyage.update(entityRoadBook);
 			return factoryEntity.createFromEntity(entityRoadBook);
 	}
@@ -91,26 +86,26 @@ public class DaoFacadeVoyage {
 			daoGenericVoyage.delete(id, EntityRoadBook.class);
 	}
 
-	public RoadBook getRoadBookById(int id) {
-		return null;
+	public RoadBook getRoadBookById(int id) throws DaoVoyageException {
+		return factoryEntity.createFromEntity(daoGenericVoyage.find(id, EntityRoadBook.class));
 	}
 
-	public RoadBook getRoadBookByUserId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public RoadBook getRoadBookByUserId(int id) throws DaoVoyageException {
+		RoadBook roadBook = null;
+			EntityRoadBook entityRoadBook = daoGenericVoyage.getOneToOneBySecondClassId(
+					"EntityRoadBook", "entityUtilisateur", "id", id);
+			if (entityRoadBook!=null) roadBook = factoryEntity.createFromEntity(entityRoadBook);
+		return roadBook;
 	}
 
 	public RoadBook getRoadBookByUser(Utilisateur utilisateur) throws DaoVoyageException {
 		RoadBook roadBook = null;
-		try {
-			EntityUtilisateur entityUtilisateur = daoAdmin.getUserByEmail(utilisateur.getEmail());
-			EntityRoadBook entityRoadBook = daoGenericVoyage.getOneToOneBySecondClassId(
-					"EntityRoadBook", "entityUtilisateur", "id", entityUtilisateur.getId());
-			System.out.println(entityRoadBook);
-			if (entityRoadBook!=null) roadBook = factoryEntity.createFromEntity(entityRoadBook);
-		} catch (DaoInexistantException e) {
-			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_INEXISTANT);
-		}
+			try {
+				EntityUtilisateur entityUtilisateur = daoAdmin.getUserByEmail(utilisateur.getEmail());
+				roadBook = getRoadBookByUserId(entityUtilisateur.getId());
+			} catch (DaoInexistantException e) {
+				throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_INEXISTANT);
+			}
 		return roadBook;
 	}
 
@@ -126,9 +121,9 @@ public class DaoFacadeVoyage {
 		return listPOI;
 	}
 
-	public PointInteret updatePOInteret(PointInteret pointInteret) {
-		// TODO Auto-generated method stub
-		return null;
+	public PointInteret updatePOInteret(PointInteret pointInteret) throws DaoVoyageException {
+		EntityPointInteret entityPointInteret = factoryEntity.createEntityFrom(pointInteret);
+			return factoryEntity.createFromEntity(daoGenericVoyage.update(entityPointInteret));
 
 	}
 

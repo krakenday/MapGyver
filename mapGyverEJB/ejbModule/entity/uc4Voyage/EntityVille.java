@@ -1,6 +1,8 @@
 
 package entity.uc4Voyage;
 
+import java.util.Objects;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +18,7 @@ public class EntityVille extends EntityPointInteret {
 
 	private static final long serialVersionUID = 1L;
 	
-	@ManyToOne(fetch=FetchType.LAZY)  
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch=FetchType.LAZY)
 	@JoinColumn(name = "id_pay", unique = false, nullable = true) 
 	private EntityPays entityPays;
 
@@ -47,5 +49,22 @@ public class EntityVille extends EntityPointInteret {
 	@Override
 	public String toString() {
 		return "EntityVille " + super.toString() + String.format("[Pays=%s]", entityPays);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(entityPays);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (!(obj instanceof EntityVille))
+			return false;
+		EntityVille other = (EntityVille) obj;
+		return Objects.equals(entityPays, other.entityPays);
 	}
 }

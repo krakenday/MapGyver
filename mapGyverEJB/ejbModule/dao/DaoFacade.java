@@ -145,13 +145,17 @@ public class DaoFacade {
 		}
 	}
 
-	public List<Voyage> readVoyageOrderById() {
-		return daoFacadeVoyage.readVoyageOrderById();
+	public List<Voyage> readVoyageOrderById() throws DaoFacadeExceptionVoyage {
+		try {
+			return daoFacadeVoyage.readVoyageOrderById();
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					".Voyage"+ e.getMessage());
+		}
 	}
 
 	public Voyage updateVoyage(Voyage voyage) throws DaoFacadeExceptionVoyage {
 		try {
-			System.out.println("DAoFacade " + voyage);
 			return daoFacadeVoyage.updateVoyage(voyage);	
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
@@ -179,7 +183,6 @@ public class DaoFacade {
 
 	public RoadBook createRoadBook(RoadBook roadBook) throws DaoFacadeExceptionVoyage {
 		try {
-			System.out.println("daoFacade createRoadBook");
 			return daoFacadeVoyage.createRoadBook(roadBook);
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
@@ -187,13 +190,17 @@ public class DaoFacade {
 		}
 	}
 
-	public List<RoadBook> readRoadBookOrderById() {
-		return daoFacadeVoyage.readRoadBookOrderById();	
+	public List<RoadBook> readRoadBookOrderById() throws DaoFacadeExceptionVoyage {
+		try {
+			return daoFacadeVoyage.readRoadBookOrderById();	
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					".RoadBook"+ e.getMessage());
+		}
 	}
 
 	public RoadBook updateRoadBook(RoadBook roadBook) throws DaoFacadeExceptionVoyage {
 		try {
-			System.out.println("daoFacade updateRoadBook");
 			return daoFacadeVoyage.updateRoadBook(roadBook);
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
@@ -210,17 +217,26 @@ public class DaoFacade {
 		}
 	}
 
-	public RoadBook getRoadBookById(int id) {
-		return daoFacadeVoyage.getRoadBookById(id);
+	public RoadBook getRoadBookById(int id) throws DaoFacadeExceptionVoyage {
+		try {
+			return daoFacadeVoyage.getRoadBookById(id);
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					".RoadBook"+ e.getMessage());
+		}
 	}
 
-	public RoadBook getRoadBookByUserId(int id) {
-		return daoFacadeVoyage.getRoadBookByUserId(id);
+	public RoadBook getRoadBookByUserId(int id) throws DaoFacadeExceptionVoyage {
+		try {
+			return daoFacadeVoyage.getRoadBookByUserId(id);
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					".RoadBook"+ e.getMessage());
+		}
 	}
 
 	public RoadBook getRoadBookByUser(Utilisateur utilisateur) throws DaoFacadeExceptionVoyage {
 		try {
-			System.out.println("daoFacade getRoadBookByUser");
 			return daoFacadeVoyage.getRoadBookByUser(utilisateur);
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
@@ -230,7 +246,6 @@ public class DaoFacade {
 
 	public PointInteret createPOInteret(PointInteret pointInteret) throws DaoFacadeExceptionVoyage  {
 		try {
-			System.out.println("daoFacade createPOInteret");
 			return daoFacadeVoyage.createPOInteret(pointInteret);
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
@@ -241,7 +256,6 @@ public class DaoFacade {
 
 	public List<PointInteret> readPOInteretOrderById() throws DaoFacadeExceptionVoyage {
 		try {
-			System.out.println("daoFacade readPOInteretOrderById");
 			return daoFacadeVoyage.readPOInteretOrderById();
 		} catch (DaoVoyageException e) {
 			throw new DaoFacadeExceptionVoyage(e.getCode(),
@@ -249,8 +263,13 @@ public class DaoFacade {
 		}
 	}
 
-	public PointInteret updatePOInteret(PointInteret pointInteret) {
-		return daoFacadeVoyage.updatePOInteret(pointInteret);
+	public PointInteret updatePOInteret(PointInteret pointInteret) throws DaoFacadeExceptionVoyage {
+		try {
+			return daoFacadeVoyage.updatePOInteret(pointInteret);
+		} catch (DaoVoyageException e) {
+			throw new DaoFacadeExceptionVoyage(e.getCode(),
+					".POI"+ e.getMessage());
+		}
 	}
 
 	public void deletePOInteret(int id) throws DaoFacadeExceptionVoyage {
