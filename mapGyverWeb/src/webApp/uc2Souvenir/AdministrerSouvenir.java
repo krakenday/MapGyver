@@ -39,6 +39,8 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 
 	@Override
 	public String execute() throws Exception {
+		
+		//TODO tester si file est null
 		fileContent = new FileInputStream(file);
 		contentLenght =(long) fileContent.available();
 		System.out.println("AdministrerSouvenir-execute: hop je suis dans mon beab ACTION!");

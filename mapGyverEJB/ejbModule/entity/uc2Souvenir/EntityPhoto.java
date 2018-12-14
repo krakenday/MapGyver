@@ -39,7 +39,7 @@ public class EntityPhoto extends EntitySouvenir {
 	
 	@Column(name="nom", length=50)
 	private String nom;
-	@Column(name="url", length=150, nullable=true)
+	@Column(name="url", length=300, nullable=true)
 	private String url;
 	
 	
