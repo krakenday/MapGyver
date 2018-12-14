@@ -287,13 +287,18 @@ public class ServiceFacade implements IServiceFacade {
 		return serviceFacadeJouer.getJeuById(idJeu);
 	}
 
-	public Jeux listJeu() throws ExceptionSurDao {
-		Jeux jeux = serviceFacadeJouer.listJeu();
-		Iterator<Jeu> it = jeux.iterator();
-		while (it.hasNext()) {
-			System.out.println(it.next());
+	public Jeux listJeu() {
+		try {
+			Jeux jeux = serviceFacadeJouer.listJeu();
+			Iterator<Jeu> it = jeux.iterator();
+			while (it.hasNext()) {
+				System.out.println(it.next());
+			}
+			return serviceFacadeJouer.listJeu();
+		} catch (ExceptionSurDao e) {
+			System.out.println("j'ai une exeption");
 		}
-		return serviceFacadeJouer.listJeu();
+		return null;
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import javax.naming.NamingException;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import business.uc2Souvenir.Photo;
 import business.uc6Jouer.Jeu;
 import business.uc8Utilisateur.Utilisateur;
 import clientServeur.IServiceFacade;
@@ -19,8 +20,8 @@ public class JouerAction extends ApplicationSupport implements SessionAware {
 
 	private static final long serialVersionUID = 1L;
 	private IServiceFacade service;
-	private int idJeu;
-	private int idPhoto;
+	private Jeu jeu;
+	private Photo photo;
 	private Map<String, Object> sessionAttributes = null;
 
 	public void init() {
@@ -41,24 +42,25 @@ public class JouerAction extends ApplicationSupport implements SessionAware {
 		return retour;
 	}
 
-	public String listerJeu() {
-		init();
-		String retour = SUCCESS;
-		return retour;
+	public Jeu getJeu() {
+		return jeu;
 	}
 
-	public int getIdPhoto() {
-		return idPhoto;
+	public void setJeu(Jeu jeu) {
+		this.jeu = jeu;
 	}
 
-	public void setIdPhoto(int idPhoto) {
-		this.idPhoto = idPhoto;
+	public Photo getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(Photo photo) {
+		this.photo = photo;
 	}
 
 	@Override
 	public void setSession(Map<String, Object> sessionAttr) {
 		this.sessionAttributes = sessionAttr;
-
 	}
 
 }

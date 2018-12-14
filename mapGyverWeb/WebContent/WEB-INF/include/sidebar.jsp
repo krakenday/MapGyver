@@ -35,7 +35,11 @@
               <i class="fas fa-fw fa-table"></i>
             <span>Jouer</span></s:a>
         </li>
-        
+         <li class="nav-item">
+         <s:a class="nav-link" namespace="/mapgyver/uc6" action="listjeulisterJeu">
+              <i class="fas fa-fw fa-table"></i>
+            <span>Liste de jeu</span></s:a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-folder"></i>

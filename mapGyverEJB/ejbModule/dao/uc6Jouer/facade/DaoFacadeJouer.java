@@ -76,6 +76,6 @@ public class DaoFacadeJouer {
 			if (jeuEntity instanceof ElirePhotoEntity)
 				jeux.add(convert.transformJeu((ElirePhotoEntity) jeuEntity));
 		}
-		return null;
+		return jeux;
 	}
 }

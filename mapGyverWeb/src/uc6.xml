@@ -8,10 +8,18 @@
 		<action name="jouer">
 			<result>/vue/jouer.jsp</result>
 		</action>
+		<action name="listjeu">
+			<result>/vue/listjeu.jsp</result>
+		</action>
 <action name="jouer*" class="webApp.uc6Jouer.JouerAction" method="{1}">
 			<result name="error">/vue/login.jsp</result>
 			<result name="success">/vue/jouer.jsp</result>
 			<allowed-methods>repondreElire</allowed-methods>			
-		</action>		
+		</action>
+<action name="listjeu*" class="webApp.uc6Jouer.ListJeuAction" method="{1}">
+			<result name="error">/vue/login.jsp</result>
+			<result name="success">/vue/listjeu.jsp</result>
+			<allowed-methods>listerJeu</allowed-methods>			
+		</action>				
 	</package>
 </struts>

@@ -16,6 +16,8 @@
 	            	<input type="radio" name="radioId" value=10 checked>
 	    	</div>
 	    	
+	    	
+	    	
 	    	<div class="col-lg-3 col-md-4 col-xs-6 thumb">
 	        	<a class="thumbnail" href="http://localhost:8080/mapGyverWeb/assets/img/jouer1.jpg">
 	            	<img class="img-thumbnail"

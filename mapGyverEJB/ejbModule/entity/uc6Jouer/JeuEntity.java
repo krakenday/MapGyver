@@ -27,7 +27,7 @@ public abstract class JeuEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@Column(length = 75)
+	@Column(length = 75, nullable = false)
 	private String nom;
 	@Column(name = "d_crea", nullable = false)
 	private LocalDate dateCreation;
