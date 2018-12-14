@@ -13,16 +13,24 @@ import dao.DaoParam;
 import dao.exception.uc1Administrer.DaoInexistantException;
 import dao.exception.uc4Voyage.DaoVoyageErrorMessage;
 import dao.exception.uc4Voyage.DaoVoyageException;
+import entity.uc4Voyage.EntityPointInteret;
+import entity.uc4Voyage.EntityRoadBook;
+import entity.uc4Voyage.EntityVoyage;
 import entity.uc8Utilisateur.EntityUtilisateur;
 
 @Singleton
 @LocalBean
 public class DaoGenericVoyage {
 
+
 	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
 	private EntityManager em;
 
 	private static final String ZONE_EXCEPTION_MSG = ".Dao";
+
+	private static final String UC4_VOYAGE_FIND_ALL 	= "UC4_Voyage_findAll";
+	private static final String UC4_ROADBOOK_FIND_ALL 	= "UC4_RoadBook_findAll";
+	private static final String UC4_POI_FIND_ALL 		= "UC4_POI_findAll";
 
 	public <T> T create(T entity) throws DaoVoyageException {
 		String daoExceptionMsg = ZONE_EXCEPTION_MSG + ".Insert -> ";
@@ -105,11 +113,23 @@ public class DaoGenericVoyage {
 		}
 
 	}
+	
+	public List<EntityVoyage> findAllVoyage() throws DaoVoyageException {
+		return findAll(EntityVoyage.class, UC4_VOYAGE_FIND_ALL);
+	}
+	
+	public List<EntityRoadBook> findAllRoadBook() throws DaoVoyageException {
+		return findAll(EntityRoadBook.class, UC4_ROADBOOK_FIND_ALL);
+	}
+	
+	public List<EntityPointInteret> findAllPOI() throws DaoVoyageException {
+		return findAll(EntityPointInteret.class, UC4_POI_FIND_ALL);
+	}
 
-	public <T> List<T> findAll(Class<T> classe, String idName) throws DaoVoyageException {
+	private <T> List<T> findAll(Class<T> classe, String string) throws DaoVoyageException {
 		String daoExceptionMsg = ZONE_EXCEPTION_MSG + ".FindAll -> ";
 		try {
-			Query query = em.createQuery("select o from "+ classe +" o order by o."+ idName);
+			Query query = em.createNamedQuery(string);
 
 			@SuppressWarnings("unchecked")
 			List<T> listEntity = query.getResultList();
@@ -119,6 +139,8 @@ public class DaoGenericVoyage {
 		} catch (PersistenceException e) {
 			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_INEXISTANT.getId(),
 					daoExceptionMsg + DaoVoyageErrorMessage.ERR_INEXISTANT.getMsg());
+		} catch (Exception e) {
+			throw new DaoVoyageException(0,"Erreur HQL");
 		}
 	}
 

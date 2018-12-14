@@ -39,7 +39,7 @@ public class DaoFacadeVoyage {
 	}
 
 	public List<Voyage> readVoyageOrderById() throws DaoVoyageException {
-		List<EntityVoyage> listEntity = daoGenericVoyage.findAll(EntityVoyage.class, "id");
+		List<EntityVoyage> listEntity = daoGenericVoyage.findAllVoyage();
 		List<Voyage> list = factoryEntity.createFromEntity(listEntity);
 		return list;
 	}
@@ -71,7 +71,7 @@ public class DaoFacadeVoyage {
 	}
 
 	public List<RoadBook> readRoadBookOrderById() throws DaoVoyageException {
-		List<EntityRoadBook> listEntity = daoGenericVoyage.findAll(EntityRoadBook.class, "id");
+		List<EntityRoadBook> listEntity = daoGenericVoyage.findAllRoadBook();
 		List<RoadBook> list = factoryEntity.createFromEntityRoadBook(listEntity);
 		return list;
 	}
@@ -116,7 +116,7 @@ public class DaoFacadeVoyage {
 	}
 
 	public List<PointInteret> readPOInteretOrderById() throws DaoVoyageException {
-		List<EntityPointInteret> listEntityPOI = daoGenericVoyage.findAll(EntityPointInteret.class, "id");
+		List<EntityPointInteret> listEntityPOI = daoGenericVoyage.findAllPOI();
 		List<PointInteret> listPOI = factoryEntity.createFromEntityPOI(listEntityPOI);
 		return listPOI;
 	}

@@ -9,5 +9,6 @@
   <div class="dropdown-menu" aria-labelledby="pagesDropdown">
   <s:a class="dropdown-item" namespace="/mapgyver/voyages" action="doreadRoadBook">Mon RoadBook</s:a>
   <s:a class="dropdown-item" namespace="/mapgyver/voyages" action="doreadVoyage">Mon Voyage</s:a>
+  <s:a class="dropdown-item" namespace="/mapgyver/voyages" action="showallVoyages">Les Voyages</s:a>
   </div>
 </li>

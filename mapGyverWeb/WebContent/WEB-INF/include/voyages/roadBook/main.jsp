@@ -46,26 +46,34 @@
 								</tr>
 							</thead>
 							<tbody>
-							<s:iterator value="roadBook.voyages">
-								<tr>
-									<td><span class="custom-checkbox"> <input
-											type="checkbox" id="checkbox<s:property 	value="id"/>" name="options[]"
-											value="<s:property 	value="id"/>"> <label for="checkbox<s:property 	value="id"/>"></label>
-									</span></td>
-									<td><s:property 	value="nom"/></td>
-									<td><s:property 	value="DateDebutToString"/></td>
-									<td><s:property 	value="nbParticipant"/></td>
-									<s:url  namespace="/mapgyver/voyages" action="doreadVoyage"  var="readVoy">
-		     						<s:param name="id"><s:property value="id" /></s:param>
-		     						</s:url>
-									<td><a href="${readVoy}" class="edit">
-										<i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
-										<a	href="deleteModalVoyages" data-id="<s:property 	value="id"/>" class="delete" data-toggle="modal"><i
-											class="material-icons" data-toggle="tooltip"
-											title="Supprimer">&#xE872;</i></a>
-									</td>
-								</tr>
-									</s:iterator>
+								<s:iterator value="roadBook.voyages">
+									<tr>
+										<td>
+											<span class="custom-checkbox"> <input
+													type="checkbox" id="checkbox<s:property 	value="id"/>" name="options[]"
+													value="<s:property 	value="id"/>"> <label for="checkbox<s:property 	value="id"/>"></label>
+											</span>
+										</td>
+										<td><s:property 	value="nom"/></td>
+										<td><s:property 	value="DateDebutToString"/></td>
+										<td><s:property 	value="nbParticipant"/></td>
+										<td>
+											<s:url  namespace="/mapgyver/uc2" action="doconsultSouvenirs"  var="viewSouv">
+				     							<s:param name="id"><s:property value="id" /></s:param>
+				     						</s:url>
+											<a href="${viewSouv}" class="edit" data-toggle="tooltip" title="Souvenirs">
+											<i class="material-icons">&#xe8f4;</i></a>
+											<s:url  namespace="/mapgyver/voyages" action="doreadVoyage"  var="readVoy">
+				     							<s:param name="id"><s:property value="id" /></s:param>
+				     						</s:url>
+											<a href="${readVoy}" class="edit" data-toggle="tooltip" title="Modifier">
+											<i class="material-icons">&#xE254;</i></a>
+											<a	href="deleteModalVoyages" data-id="<s:property 	value="id"/>" class="delete" data-toggle="modal"><i
+												class="material-icons" data-toggle="tooltip"
+												title="Supprimer">&#xE872;</i></a>
+										</td>
+									</tr>
+								</s:iterator>
 							</tbody>
 						</table>
 					</div>

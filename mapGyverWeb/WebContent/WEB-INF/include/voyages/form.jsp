@@ -36,6 +36,7 @@
 <s:hidden  name="id" value="%{id}"/>
 <div class="container text-right">
 <div class="row mb-3 px-1 text-right">
+<s:if test="!isreadonly">
 	<s:if test="voyage==null">
 		<s:url namespace="/mapgyver/voyages" action="docreateVoyage" 		var="creaVoy" />
 		<s:submit class="btn btn-success" value="Créer" formaction="${creaVoy}" />
@@ -44,6 +45,7 @@
 		<s:url namespace="/mapgyver/voyages" action="doupdateVoyage" 		var="updateVoy" />
 		<s:submit class="btn btn-success" value="Modifier" formaction="${updateVoy}" />
 	</s:else>
+</s:if>
 	<button type="reset" class="btn btn-secondary ml-3" id="redo"
 		name="redo">Reset</button>
 		<s:a class="btn btn-dark ml-3" namespace="/mapgyver/voyages" action="doreadRoadBook" >Voir mon RoadBook</s:a>

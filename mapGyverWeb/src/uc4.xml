@@ -49,5 +49,12 @@
 							createVoyage,readVoyage,updateVoyage,deleteVoyage
 			</allowed-methods>			
 		</action>
+		<action name="show*" class="webApp.uc4Voyage.VoyageAction" method="{1}">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="ALL_VOYAGES">/vue/voyages/all.jsp</result>
+			<allowed-methods>
+							allVoyages
+			</allowed-methods>			
+		</action>
 	</package>
 </struts>

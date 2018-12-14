@@ -3,6 +3,7 @@ package webApp.uc4Voyage;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.naming.Context;
@@ -30,11 +31,13 @@ public class VoyageAction extends ApplicationSupport implements SessionAware, Pr
 	private static final String ROADBOOK_ERROR 		= "ROADBOOK_ERROR";
 	private static final String VOYAGE_SUCCESS 		= "VOYAGE_SUCCESS";
 	private static final String VOYAGE_ERROR 		= "VOYAGE_ERROR";
+	private static final String ALL_VOYAGES			= "ALL_VOYAGES";
 
 	private IServiceFacade serviceMpg;
 	private Utilisateur utilisateur;
 	private RoadBook roadBook;
 	private Voyage voyage;
+	private List<Voyage> voyages = new ArrayList<Voyage>();
 	private String success;
 	private String probleme;
 
@@ -49,6 +52,8 @@ public class VoyageAction extends ApplicationSupport implements SessionAware, Pr
 	public String 					inputDateDebut;
 	public String 					inputNbParticipant;
 	public ArrayList<PointInteret> 	listPointInteret;
+
+	private boolean readOnly = false;
 	
 	@Override
 	public void prepare() throws Exception {
@@ -116,21 +121,36 @@ public class VoyageAction extends ApplicationSupport implements SessionAware, Pr
 	}
 
 	public String readVoyage() {
+		int idVoyage=0;
 		try {
-			int idVoyage = Integer.parseInt(id);
-			voyage = serviceMpg.getVoyageById(idVoyage);
-			setInfoVoyage();
+			if (id!=null) {
+				idVoyage = Integer.parseInt(id);
+				voyage = serviceMpg.getVoyageById(idVoyage);
+				System.out.println(voyage);
+				setInfoVoyage();
+			}
+			setReadOnly(true);
 			return VOYAGE_SUCCESS;
-		} catch (Exception e) {
+		} catch (NumberFormatException | ServiceFacadeExceptionVoyage e) {
+			probleme = ControleurVoyageMsg.ERROR_GET.getSolution() +" *Err. Voyage"+ e.getMessage();
 			return VOYAGE_ERROR;
 		}	
+	}
+	
+	public String allVoyages() {
+		try {
+			voyages = serviceMpg.readVoyageOrderById();
+		} catch (ServiceFacadeExceptionVoyage e) {
+			probleme = ControleurVoyageMsg.ERROR_GET.getSolution() +" *Err. Voyage"+ e.getMessage();
+		}	
+		return ALL_VOYAGES;
 	}
 
 	private void setInfoVoyage() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
 		inputNomVoyage 		= voyage.getNom();
-		inputDateDebut 		= voyage.getDateDebut().format(formatter);
-		inputNbParticipant 	= voyage.getNbParticipant().toString();
+		inputDateDebut 		= (voyage.getDateDebut()!=null)? voyage.getDateDebut().format(formatter):"";
+		inputNbParticipant 	= (voyage.getNbParticipant()!=null)? voyage.getNbParticipant().toString():"";
 		// TODO set POInteret
 	}
 
@@ -269,6 +289,22 @@ public class VoyageAction extends ApplicationSupport implements SessionAware, Pr
 	}
 	public void setInputNbParticipant(String inputNbParticipant) {
 		this.inputNbParticipant = inputNbParticipant;
+	}
+
+	public List<Voyage> getVoyages() {
+		return voyages;
+	}
+
+	public void setVoyages(ArrayList<Voyage> voyages) {
+		this.voyages = voyages;
+	}
+
+	public boolean isReadOnly() {
+		return readOnly;
+	}
+
+	public void setReadOnly(boolean readOnly) {
+		this.readOnly = readOnly;
 	}
 
 
