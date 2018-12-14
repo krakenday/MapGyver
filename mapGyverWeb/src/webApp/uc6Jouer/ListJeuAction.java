@@ -10,8 +10,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.Preparable;
 
+import business.uc6Jouer.Jeu;
 import business.uc6Jouer.Jeux;
 import clientServeur.IServiceFacade;
+import freemarker.template.utility.Execute;
 import service.exception.uc6Jouer.ExceptionSurDao;
 import webApp.ApplicationSupport;
 
@@ -20,7 +22,8 @@ public class ListJeuAction extends ApplicationSupport implements SessionAware, P
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> sessionAttributes = null;
 	private IServiceFacade service;
-	Jeux jeux = new Jeux();
+	private Jeux jeux;
+	private Jeu jeu;
 
 	@Override
 	public void prepare() throws Exception {
@@ -53,6 +56,14 @@ public class ListJeuAction extends ApplicationSupport implements SessionAware, P
 
 	public void setJeux(Jeux jeux) {
 		this.jeux = jeux;
+	}
+
+	public Jeu getJeu() {
+		return jeu;
+	}
+
+	public void setJeu(Jeu jeu) {
+		this.jeu = jeu;
 	}
 
 }

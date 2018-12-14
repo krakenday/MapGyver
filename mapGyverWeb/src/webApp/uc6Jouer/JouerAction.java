@@ -63,4 +63,9 @@ public class JouerAction extends ApplicationSupport implements SessionAware {
 		this.sessionAttributes = sessionAttr;
 	}
 
+	@Override
+	public String execute() {
+		return SUCCESS;
+	}
+
 }
