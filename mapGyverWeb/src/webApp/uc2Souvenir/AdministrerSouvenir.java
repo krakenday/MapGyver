@@ -31,21 +31,17 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 	private IServiceFacade 		iServiceFacade;
 	private	ControlesAjouter 	controles;
 	private	Souvenir			souvenir;
+	private List<Souvenir> 		catalogueSouvenirs;
 	
 
 	
+	
+
 	@Override
 	public String execute() throws Exception {
 		fileContent = new FileInputStream(file);
 		contentLenght =(long) fileContent.available();
 		System.out.println("AdministrerSouvenir-execute: hop je suis dans mon beab ACTION!");
-//		System.out.println("Valeur de comm =" + comm);
-//		System.out.println("Valeur de idVoyage =" + idVoyage);
-//		System.out.println("Valeur de file =" + file);
-//		System.out.println("Valeur de fileContentType =" + fileContentType);
-//		System.out.println("Valeur de fileFileName =" + fileFileName);
-//		System.out.println("Valeur de InputStream ="+ fileContent);
-//		System.out.println("Valeur de contentLenght ="+ contentLenght);
 		
 		controles = new ControlesAjouter();
 		souvenir = controles.controleDesParametres(this.fileFileName, this.fileContent,
@@ -55,6 +51,8 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 		//appel de mon service
 		iServiceFacade.createSouvenir(souvenir);
 		
+		//rafraichir jsp
+		afficheSouvenirsVoyage();
 		
 		
 		System.out.println("****************Apres appel du service");
@@ -62,11 +60,12 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 		return "success";
 	}
 	
-	public String getSouvenirsDuVoyage(String id) {
+	public String afficheSouvenirsVoyage() {
 		
-		System.out.println("je suis ");
+		System.out.println("*****AdministrerSouvenir-afficheSouvenirsVoyage() ");
+		System.out.println("*****Valeur de idVoyage =  "+ this.idVoyage);
 		//Test pour recup List de Souvenirs (voir si creer un autre ActionBean pour cela)
-		List<Souvenir> catalogueSouvenirs = iServiceFacade.getSouvenirsByIdVoyage("747");
+		catalogueSouvenirs = iServiceFacade.getSouvenirsByIdVoyage(this.idVoyage);
 		
 		return "success";
 	}
@@ -100,6 +99,12 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 	public void setFileFileName(String fileFileName) {
 		this.fileFileName = fileFileName;
 	}
+	
+	public List<Souvenir> getCatalogueSouvenirs() {
+		return catalogueSouvenirs;
+	}
+	
+	
 
 
 	//méthode executée automatiquement

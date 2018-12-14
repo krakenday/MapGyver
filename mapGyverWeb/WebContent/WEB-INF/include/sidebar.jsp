@@ -26,7 +26,7 @@
         
         <li class="nav-item">
         <!-- Test URL pour fournir param a ma methode getSouvDuVoyage -->
-        <s:url  namespace="/mapgyver/uc2" action="afficheSouvenir"  var="getSouvVoyage">
+        <s:url  namespace="/mapgyver/uc2" action="doafficheSouvenirsVoyage"  var="getSouvVoyage">
 			<s:param name="idVoyage"><s:property value="747" /></s:param>
 		</s:url>
           <a href= "${getSouvVoyage}" class="nav-link" >

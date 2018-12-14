@@ -7,11 +7,29 @@
 		 <div class="album py-5 bg-light">
 	        <div class="container">
 	          <div class="row">
-	            <div class="col-md-4">
+	          
+	          <s:iterator value="catalogueSouvenirs" var="souvenir">
+	          
+	          	<div class="col-md-4">
 	              <div class="card mb-4 box-shadow">
-	                <img class="card-img-top" src="<%=request.getContextPath()%>/imagessouvenirs/perou.jpg" alt="Card image cap">
-	                <div class="card-body">										
-	                  <p class="card-text">cas 1 = photo + commentaire = 1 souvenir (il s agit forcement du commentaire de la photo)  .</p>
+	              <s:if test="%{#souvenir instanceof business.uc2Souvenir.Photo}">
+		                <img class="card-img-top" src="<s:property value='url'/>" alt="Card image cap">
+		                <div class="card-body">
+		                <p class="card-text">
+	                	<s:if test="%{#souvenir.commentaire !=null}">
+	                		<s:property value="commentaire.description"/>
+	                	</s:if>
+	                	</p>
+	              </s:if>
+	              <s:else >
+	              	 <div class="card-body">
+		                <p class="card-text">
+	                		<s:property value="description"/>
+	                	</p>
+	       	       </s:else>
+	                									
+	                  
+	                  
 	                  <div class="d-flex justify-content-between align-items-center">
 	                    <div class="btn-group">
 	                      <button type="button" class="btn btn-sm btn-outline-secondary">Supr</button>
@@ -21,33 +39,8 @@
 	                </div>
 	              </div>
 	            </div>
-	            <div class="col-md-4">
-	              <div class="card mb-4 box-shadow">
-	                <div class="card-body">										
-	                  <p class="card-text">Cas2: uniquement 1 commentaire: 1 commentaire = 1Souvenir  .</p>
-	                  <div class="d-flex justify-content-between align-items-center">
-	                    <div class="btn-group">
-	                      <button type="button" class="btn btn-sm btn-outline-secondary">Supr</button>
-	                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-	                    </div>
-	                  </div>
-	                </div>
-	              </div>
-	            </div>
-	            <div class="col-md-4">
-	              <div class="card mb-4 box-shadow">
-	                <img class="card-img-top" src="<%=request.getContextPath()%>/imagessouvenirs/manhatan.jpg" alt="Card image cap">
-	                <div class="card-body">										
-	                  <p class="card-text">cas3= pas de com. UnPhoto = 1souvenir.</p>
-	                  <div class="d-flex justify-content-between align-items-center">
-	                    <div class="btn-group">
-	                      <button type="button" class="btn btn-sm btn-outline-secondary">Supr</button>
-	                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-	                    </div>
-	                  </div>
-	                </div>
-	              </div>
-	            </div>
+	           </s:iterator>
+	            
 	          </div>
 	        </div>
       </div> 

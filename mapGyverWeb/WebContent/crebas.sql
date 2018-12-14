@@ -30,7 +30,18 @@ END;
 --------------------------------------
 --------------------------------------
 INSERT INTO MPG_PHOTO (IDD, ID_VOYAGE,NOM)
- VALUES (993,747, '   Bora   Bo  ra  ');
+ VALUES (222,747, '   Bora   Bo  ra  ');
  COMMIT;
+ 
+ 
+------------------------------------
+--------Test de requette----------
+------------------------------------
+SELECT * 
+  FROM MPG_COMENTAIRE, MPG_PHOTO
+    WHERE MPG_COMENTAIRE.IDD = MPG_PHOTO.ID_COM;
+
+
+
  
  

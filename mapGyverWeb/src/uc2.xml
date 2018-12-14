@@ -12,5 +12,16 @@
 			<result name="error">www.google.fr</result><!-- A modif -->
 			<result name="success">/vue/souvenirs.jsp</result>			
 		</action>
+		<action name="do*" class="webApp.uc2Souvenir.AdministrerSouvenir" method="{1}">
+		<!--  <interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="ROADBOOK_SUCCESS">/vue/voyages/roadBook.jsp</result>
+			<result name="ROADBOOK_ERROR">/vue/voyages/roadBook.jsp</result>
+			<result name="VOYAGE_SUCCESS">/vue/voyages.jsp</result>-->
+			<result name="success">/vue/souvenirs.jsp</result>
+			<allowed-methods>
+							createACHANGER,afficheSouvenirsVoyage
+			</allowed-methods>			
+		</action>
+		
 	</package>
 </struts>
