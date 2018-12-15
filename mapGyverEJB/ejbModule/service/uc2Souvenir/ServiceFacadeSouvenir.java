@@ -32,4 +32,9 @@ public class ServiceFacadeSouvenir {
 		return daoFacade.getSouvenirsByIdVoyage(idVoyage);
 	}
 
+	public void supprimeSouvenirById(int idSouvenir) {
+		daoFacade.supprimeSouvenirById(idSouvenir);
+		
+	}
+
 }

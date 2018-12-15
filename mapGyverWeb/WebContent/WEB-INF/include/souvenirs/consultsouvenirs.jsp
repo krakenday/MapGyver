@@ -32,8 +32,12 @@
 	                  
 	                  <div class="d-flex justify-content-between align-items-center">
 	                    <div class="btn-group">
-	                      <button type="button" class="btn btn-sm btn-outline-secondary">Supr</button>
-	                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+	                    <s:form  namespace="/mapgyver/uc2" action="dosupprimerSouvenir" theme="simple"
+				 			method="POST">
+				 		  	<s:hidden  value="%{#souvenir.id}" name="idSouvenir" />
+	                      	<button type="submit" class="btn btn-sm btn-outline-secondary">Supr</button>
+	                    </s:form>
+	                      <button type=button class="btn btn-sm btn-outline-secondary">Edit</button>
 	                    </div>
 	                  </div>
 	                </div>

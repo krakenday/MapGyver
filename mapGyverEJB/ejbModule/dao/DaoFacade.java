@@ -300,6 +300,11 @@ public class DaoFacade {
 		System.out.println("*****DaoFacade-getSouvenirByIdVoyage*****");
 		return daoFacadeSouvenir.getSouvenirsByIdVoyage(idVoyage);
 	}
+
+	public void supprimeSouvenirById(int idSouvenir) {
+		daoFacadeSouvenir.supprimeSouvenirById(idSouvenir);
+		
+	}
 	
 	//FIN UC2 Alejandro
 

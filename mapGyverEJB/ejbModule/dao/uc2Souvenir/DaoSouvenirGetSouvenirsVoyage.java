@@ -37,8 +37,8 @@ public class DaoSouvenirGetSouvenirsVoyage {
 		
 		Query query = em.createQuery
 //				("select s from EntitySouvenir s "
-//						+ "where s.entityVoyage.id =:entityVoyage "
-//						+ "and not exists (select n from EntityCommentaire n, EntityPhoto p where n.id = p.commentaire "
+//						+ "where not exists (select n from EntityCommentaire n, EntityPhoto p where n.id = p.commentaire "
+//						+ "and s.entityVoyage.id =:entityVoyage "
 //						+ "order by s.id asc");
 				("select s from EntitySouvenir s "
 						+ "where s.entityVoyage.id =:entityVoyage order by s.id asc");

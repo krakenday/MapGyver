@@ -30,10 +30,10 @@ public class EntityPhoto extends EntitySouvenir {
 	
 	private static final long serialVersionUID = 1L;
 	
-	//Pas de CascadeType Delete, car le commentaire peut exister sans photo associe
-	//fetch de type EAGER pour l'instant. Lazy plus approprie car pas besoin de 
-	//remonter systemetiquement un commentaire.
-	@OneToOne(fetch=FetchType.EAGER)
+	//Dans cette V1, quand un commentaire est associe a une photo
+	//on est oblige de supprimer tout l'ensemble, l'un ne peut
+	//exister sans l'autre
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
 	@JoinColumn(name="id_com",nullable=true)
 	private EntityCommentaire commentaire;
 	

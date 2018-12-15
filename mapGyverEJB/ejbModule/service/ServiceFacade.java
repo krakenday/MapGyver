@@ -319,13 +319,18 @@ public class ServiceFacade implements IServiceFacade {
 	
 	@Override
 	public void createSouvenir(Souvenir souvenir) {
-		System.out.println("*****je rentre dans ma facade SERVICE*****");
 		serviceFacadeSouvenir.createSouvenir(souvenir);
 	}
 
 	@Override
 	public List<Souvenir> getSouvenirsByIdVoyage(String idVoyage) {
 		return serviceFacadeSouvenir.getSouvenirsByIdVoyage(idVoyage);
+	}
+	
+	@Override
+	public void supprimeSouvenirById(int idSouvenir) {
+		System.out.println("*****je rentre dans ma facade SERVICE-supprimeSouvenirById*****");
+		serviceFacadeSouvenir.supprimeSouvenirById(idSouvenir);
 	}
 	
 	

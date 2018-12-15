@@ -24,6 +24,9 @@ public class DaoFacadeSouvenir {
 	@EJB
 	DaoSouvenirGetSouvenirsVoyage daoSouvenirGetSouvenirsVoyage;
 	
+	@EJB
+	DaoSouvenirSupprimerSouvenir daoSouvenirSupprimerSouvenir;
+	
 	
 	//redirige vers la bonne fabrique selon qu'il faille persister une Photo ou un Commentaire
 	public void createSouvenir(Souvenir souvenir) {
@@ -50,6 +53,13 @@ public class DaoFacadeSouvenir {
 	public List<Souvenir> getSouvenirsByIdVoyage(String idVoyage) {
 		System.out.println("*****DaoFacadeSouvenir-getSouvenirsByIdVoyage");
 		return daoSouvenirGetSouvenirsVoyage.getSouvenirsByIdVoyage(idVoyage);
+	}
+
+
+	public void supprimeSouvenirById(int idSouvenir) {
+		System.out.println("*****DaoFacadeSouvenir-supprimeSouvenirById");
+		daoSouvenirSupprimerSouvenir.supprimeSouvenirById(idSouvenir);
+		
 	}
 
 	

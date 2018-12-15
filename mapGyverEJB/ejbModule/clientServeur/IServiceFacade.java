@@ -32,6 +32,7 @@ public interface IServiceFacade {
 	
 	public void createSouvenir(Souvenir souvenir);
 	public List<Souvenir> getSouvenirsByIdVoyage(String idVoyage);
+	public void supprimeSouvenirById(int idSouvenir);
 	
 	
 	
@@ -142,6 +143,7 @@ public interface IServiceFacade {
 	public void addDescription(Description description) throws UserException;
 
 	public void updateDescription(Description description);
+	
 	
 
 }

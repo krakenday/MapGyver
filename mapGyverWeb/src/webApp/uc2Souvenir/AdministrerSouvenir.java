@@ -32,6 +32,7 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 	private	ControlesAjouter 	controles;
 	private	Souvenir			souvenir;
 	private List<Souvenir> 		catalogueSouvenirs;
+	private String				idSouvenir;
 	
 
 	
@@ -72,6 +73,17 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 		return "success";
 	}
 	
+	public String supprimerSouvenir() {
+		System.out.println("*****AdministrerSouvenir-supprimerSouvenir() ");
+		System.out.println("*****Valeur de idSouvenir =  "+ this.idSouvenir);
+		
+		//acces au service de suppression de souvenir
+		//si la suppression ne se fait pas un exception sera leve
+		iServiceFacade.supprimeSouvenirById(Integer.parseInt(this.idSouvenir));
+		
+		return "success";
+	}
+	
 	
 	
 	public void setComm(String comm) {
@@ -106,6 +118,14 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 		return catalogueSouvenirs;
 	}
 	
+	public String getIdSouvenir() {
+		return idSouvenir;
+	}
+
+	public void setIdSouvenir(String id) {
+		this.idSouvenir = id;
+	}
+	
 	
 
 
@@ -123,5 +143,7 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 		}
 		
 	}
+
+	
 
 }
