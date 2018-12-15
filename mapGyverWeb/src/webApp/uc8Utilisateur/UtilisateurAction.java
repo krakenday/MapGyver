@@ -7,72 +7,56 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import org.apache.struts2.interceptor.SessionAware;
+import com.opensymphony.xwork2.Preparable;
 
 import business.uc8Utilisateur.Password;
 import business.uc8Utilisateur.Utilisateur;
 import clientServeur.IServiceFacade;
 import clientServeur.exception.ServiceFacadeExceptionUtilisateur;
+import utilitaire.UtilAction;
 import webApp.ApplicationSupport;
 
-public class UtilisateurAction extends ApplicationSupport implements SessionAware {
+public class UtilisateurAction extends ApplicationSupport implements SessionAware, Preparable {
 
 	private static final long serialVersionUID = 1L;
-	private static final String SERVICE_FACADE_LOOKUP= "ejb:/mapGyverEJB/ServiceFacade!clientServeur.IServiceFacade";
+		
+	private IServiceFacade iServiceFacade;	
+	private Map<String, Object> sessionAttributes = null; 
 	private String msg;
 	
 	private String inputPassword;
 	private LocalDate inputDateNaiss;
 	private Utilisateur utilisateur;
-	
-	private IServiceFacade iServiceFacade;
-	
-	private Map<String, Object> sessionAttributes = null; 
-	
-	
-	// Initialiser le context	
-	public void init() {
-		System.out.println("Dans l'action interction");
-		try {
-			InitialContext context = new InitialContext();
-			iServiceFacade = (IServiceFacade) context.lookup(SERVICE_FACADE_LOOKUP);
-			msg= null ;
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}		
-	}
+		
 		
 	public String inscription() {
-		init();
+
 		System.out.println("*** UtilisateurAction - inscription ************");
-		try {
-			
+		try {			
 			Password motDePasse= new Password(inputPassword);
 			utilisateur.setMotDePasse(motDePasse);
 			utilisateur.setDateNaiss(inputDateNaiss);
 			utilisateur.setDateInscrip(LocalDate.now());
-			System.out.println("*** UtilisateurAction - inscription : "+ utilisateur.toString() + "************");
 			iServiceFacade.create(utilisateur);			
 			return SUCCESS;
 		} catch (ServiceFacadeExceptionUtilisateur e) {
-			msg= "<strong>ATTENTION!</strong> email existant!!";
+			msg= " email existant!!";
 			return ERROR;
 		}
 	}
 	
 	public String delete() {
-		init();
+
 		System.out.println("*** UtilisateurAction - delete **********");	
 		try {			
-			Utilisateur utilisateur= (Utilisateur) sessionAttributes.get("utilisateur");
-			System.out.println("*** UtilisateurAction - delete: id utilisateur= " + utilisateur.getId());			
+			Utilisateur utilisateur= (Utilisateur) sessionAttributes.get("utilisateur");			
 			iServiceFacade.delete(utilisateur.getId());
 			sessionAttributes.clear();
 			return SUCCESS;
-		} catch (ServiceFacadeExceptionUtilisateur e) {
+		} catch (Exception e) {
 			return ERROR;
 		}
-	}
-	
+	}	
 
 	// LES GETTERS ET SETTERS
 
@@ -104,7 +88,7 @@ public class UtilisateurAction extends ApplicationSupport implements SessionAwar
 			System.out.println(this.getClass().toString()+e);
 		}
 	}
-
+	
 	public String getMsg() {
 		return msg;
 	}
@@ -120,4 +104,14 @@ public class UtilisateurAction extends ApplicationSupport implements SessionAwar
 		this.sessionAttributes= sessionAttr;
 	}
 
+	@Override
+	public void prepare() throws Exception {
+		try {
+			InitialContext context = new InitialContext();
+			iServiceFacade = (IServiceFacade) context.lookup(UtilAction.SERVICE_FACADE_LOOKUP);
+			msg= null ;
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}			
+	}
 }

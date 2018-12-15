@@ -7,99 +7,80 @@ import javax.naming.NamingException;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.opensymphony.xwork2.Preparable;
+
 import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Utilisateur;
 import clientServeur.IServiceFacade;
+import utilitaire.UtilAction;
 import webApp.ApplicationSupport;
 
-public class CercleAction extends ApplicationSupport implements SessionAware {
+public class CercleAction extends ApplicationSupport implements SessionAware, Preparable {
 
 	private static final long serialVersionUID = 1L;
-	private static final String SERVICE_FACADE_LOOKUP= "ejb:/mapGyverEJB/ServiceFacade!clientServeur.IServiceFacade";
+	
 	private IServiceFacade iServiceFacade;
 	private Map<String, Object> sessionAttributes = null; 
 	
-	private String inputNomGroupe;
-	private String inputNomListe;
-	
-	
-	private String msg;
-	
-	// Initialiser le context	
-	public void init() {
+	private Groupe groupe;
+	private ListeDiffusion listeDiff;
 
-		try {
-			InitialContext context = new InitialContext();
-			iServiceFacade = (IServiceFacade) context.lookup(SERVICE_FACADE_LOOKUP);
-			msg= null ;
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}		
-	}
-
-	
+	// Ajouter un nouveau groupe
 	public String addGroupe() {
-		init();
-		System.out.println("*** UtilisateurAction - addGroupe **********");	
 		try {			
 			Utilisateur utilisateur= (Utilisateur) sessionAttributes.get("utilisateur");
-			System.out.println("*** UtilisateurAction - addGroupe: id utilisateur= " + utilisateur.getId());			
-
-			Groupe groupe= new Groupe(inputNomGroupe, utilisateur);
+			System.out.println("*** UtilisateurAction - addGroupe: id utilisateur= " + utilisateur.getId());
+			groupe.setUtilisateur(utilisateur);
 			iServiceFacade.createGroupe(groupe);
-
 			return SUCCESS;
 		} catch (Exception e) {
 			return ERROR;
 		}
 	}
-
+	
+	// Ajouter un nouvelle liste de diffusion
 	public String addListe() {
-		init();
-		System.out.println("*** UtilisateurAction - addListe **********");	
 		try {			
 			Utilisateur utilisateur= (Utilisateur) sessionAttributes.get("utilisateur");
-			System.out.println("*** UtilisateurAction - addGroupe: id utilisateur= " + utilisateur.getId());			
-
-			ListeDiffusion liste= new ListeDiffusion(inputNomListe, utilisateur);
-			iServiceFacade.createListeDiff(liste);
-
+			System.out.println("*** UtilisateurAction - addListeDiff: id utilisateur= " + utilisateur.getId());			
+			listeDiff.setUtilisateur(utilisateur);
+			iServiceFacade.createListeDiff(listeDiff);
 			return SUCCESS;
 		} catch (Exception e) {
 			return ERROR;
 		}
 	}
 	
-
-	public String getInputNomGroupe() {
-		return inputNomGroupe;
+	//GUETTERS ET SETTERS 
+	public Groupe getGroupe() {
+		return groupe;
 	}
 
-	public void setInputNomGroupe(String inputNomGroupe) {
-		this.inputNomGroupe = inputNomGroupe;
-	}
-
-	public String getInputNomListe() {
-		return inputNomListe;
-	}
-
-	public void setInputNomListe(String inputNomListe) {
-		this.inputNomListe = inputNomListe;
+	public void setGroupe(Groupe groupe) {
+		this.groupe = groupe;
 	}
 	
-	public String getMsg() {
-		return msg;
+	public ListeDiffusion getListeDiff() {
+		return listeDiff;
 	}
 
-	public void setMsg(String msg) {
-		this.msg = msg;
+	public void setListeDiff(ListeDiffusion listeDiff) {
+		this.listeDiff = listeDiff;
 	}
-
 
 	@Override
 	public void setSession(Map<String, Object> sessionAttr) {
 		this.sessionAttributes= sessionAttr;
 	}
 
+	@Override
+	public void prepare() throws Exception {
+		try {
+			InitialContext context = new InitialContext();
+			iServiceFacade = (IServiceFacade) context.lookup(UtilAction.SERVICE_FACADE_LOOKUP);
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}			
+	}
 }

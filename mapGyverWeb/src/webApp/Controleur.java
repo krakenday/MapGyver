@@ -45,7 +45,7 @@ public class Controleur extends HttpServlet {
 		else if (path.matches("/admin(.*)")) {
 			doPage(request, response, path);			
 		}
-		else if (path.matches("/utilisateur(.*)")) {
+		else if (path.matches("/utilisateur(.*)")) { // seulment ce bloque a été ajouté pour redirigé vers le controleur utilisateur
 			doPage(request, response, path);			
 		}
 		else {

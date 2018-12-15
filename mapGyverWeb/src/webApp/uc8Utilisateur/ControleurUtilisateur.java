@@ -64,7 +64,7 @@ public class ControleurUtilisateur extends HttpServlet {
 		}
 	}
 
-//La methode POST
+	//La methode POST
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String path= request.getPathInfo();
@@ -82,26 +82,25 @@ public class ControleurUtilisateur extends HttpServlet {
 				System.out.println("Je rentre dans mon controleur");
 				Utilisateur user= creerUtilisateur(request);
 				iServiceFacade.create(user);
-				System.out.println("Utilisateur enregistré");
+				System.out.println("********** Utilisateur enregistré");
 //				request.setAttribute("success", "Utilisateur enregistré");
 				doFeliciter(request, response);
 			} catch (ServiceFacadeExceptionUtilisateur e) {
 				request.setAttribute("messageErreur", "<strong>ATTENTION!</strong> email existant!!");
 				disp= request.getRequestDispatcher("/vue/register.jsp");
-				
-				System.out.println("tu rentres dans l'exception de controleur utilisateur");			
+				System.out.println("*************** tu rentres dans l'exception de controleur utilisateur");			
 			}
 			disp.forward(request, response);
 		}
 		else if (path.equals("/delete")) 	{ 
-			System.out.println("controleur utilisateur delete user");
-			try {
+			System.out.println("*********** controleur utilisateur delete user");
+//			try {
 				System.out.println(utilisateur.getId());
 				iServiceFacade.delete(utilisateur.getId());
 				logout(request, response);
-			} catch (ServiceFacadeExceptionUtilisateur e) {
-				e.printStackTrace();
-			}
+//			} catch (ServiceFacadeExceptionUtilisateur e) {
+//				e.printStackTrace();
+//			}
 		}
 		else if (path.equals("/addGroupe")) 	{  // ajouter les exceptions un peu partout
 			System.out.println("******************** "+ creeGroupe(request));

@@ -1,64 +1,75 @@
 package clientServeur;
 
+
 import java.time.LocalDate;
 import java.util.List;
 
-import business.uc4Voyage.PointInteret;
-import business.uc4Voyage.RoadBook;
-import business.uc4Voyage.Voyage;
 import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Password;
+
+//import business.uc6Jouer.ReponseElire;
+
 import business.uc8Utilisateur.Utilisateur;
+import client.serveur.partager.exception.UserException;
+import service.exception.uc1Administrer.ServiceInexistantException;
+//import service.exception.uc6Jouer.ExceptionSurDao;
+import business.uc3Partager.Description;
+import business.uc4Voyage.PointInteret;
+import business.uc4Voyage.RoadBook;
+import business.uc4Voyage.Voyage;
 import clientServeur.exception.ServiceFacadeExceptionUtilisateur;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
-import service.exception.uc1Administrer.ServiceInexistantException;
 
 
 
 public interface IServiceFacade {
 
 	// ********************************************
-	//  DM - UC1 Administrer
+	// DM - UC1 Administrer
 	// ********************************************
 
 	/**
 	 * Retourne un Utilisateur a partir de son id
-	 * @throws ServiceInexistantException 
+	 * 
+	 * @throws ServiceInexistantException
 	 */
-	public Utilisateur getUserById(int id) 			throws ServiceInexistantException;
+	public Utilisateur getUserById(int id) throws ServiceInexistantException;
+
 	/**
 	 * Retourne un Utilisateur a partir de son email
-	 * @throws ServiceInexistantException 
+	 * 
+	 * @throws ServiceInexistantException
 	 */
 	public Utilisateur getUserByEmail(String email) throws ServiceInexistantException;
+
 	
 	// *****  Fin DM - UC1 Administrer
 	
-	// ********************************************
-	//  DB - UC8 Utilisateur
-	// ********************************************
-	//LA Fabrique d'utilisateur
-	public Utilisateur creerUtilisateur();
+	/* ********************************************
+	  			DB - UC8 Utilisateur
+	  *********************************************/
 	
-	// le modifier apres l'ajout de la classe ville et pays
+	// Fabrique d'utilisateur et groupe (méthodes utilisées avec la servlet ControleurUtilisateur)
 	public Utilisateur creerUtilisateur(String nom, String prenom, String adresse, String email, String telephone,
-			LocalDate dateInscrip, LocalDate dateNaiss, Password motDePasse);
+										LocalDate dateInscrip, LocalDate dateNaiss, Password motDePasse);
 	
-//	public Groupe creerGroupe(String nom, Utilisateur utilisateur);
+	public Groupe creerGroupe(String nom, Utilisateur utilisateur);
 	
 	// Gerer l'utilisateur
+	/**
+	 * Crée un Utilisateur 
+	 * @param utilisateur
+	 * @throws ServiceFacadeExceptionUtilisateur
+	 */
 	public void create(Utilisateur utilisateur) throws ServiceFacadeExceptionUtilisateur;
 	
-	public Utilisateur read(int id) throws ServiceFacadeExceptionUtilisateur;
+	public Utilisateur read(int id);
 	
-	public void update(Utilisateur utilisateur) throws ServiceFacadeExceptionUtilisateur;
+	public void update(Utilisateur utilisateur);
 	
-	public void delete(int id) throws ServiceFacadeExceptionUtilisateur;
-	
-	// Catalogue utilisateur
-	public List<Utilisateur> listerTousLesUtilisateurs();
-	
+	public void delete(int id);
+
 	// Gerer un groupe
 	public void createGroupe(Groupe groupe);
 	
@@ -67,10 +78,7 @@ public interface IServiceFacade {
 	public void updateGroupe (Groupe groupe);
 	
 	public void deleteGroupe(int id);
-	
-	// Catalogue groupe
-	public List<Groupe> listerTousLesGroupes();
-	
+
 	// Gerer une Liste Diffusion
 	public void createListeDiff(ListeDiffusion listeDiff);
 	
@@ -80,8 +88,12 @@ public interface IServiceFacade {
 	
 	public void deleteListeDiff(int id);
 	
-	// Catalogue Liste diffusion
-	public List<ListeDiffusion> listerToutesLesListes();
+	// Catalogue
+	public List<Utilisateur> listerTousLesUtilisateurs();
+	
+	public List<Groupe> listerTousLesGroupes(int id);
+
+	public List<ListeDiffusion> listerToutesLesListes(int id);
 	// *****  Fin DB - UC8 Utilisateur
 		
 	// Voyage, offre de service : CRUD
@@ -105,5 +117,21 @@ public interface IServiceFacade {
 	public void 				deletePOInteret(int id);
 	public PointInteret 		findPOInteretByID(int id);
 	
+	// ********************************************
+	// AlexB - UC6 Jouer
+	// ********************************************
+
+//	public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao;
+
+
+	// ***** Fin AlexB - UC6 Jouer
 	
+	// ********************************************
+	// AlexM - Description
+	// ********************************************
+	public void addDescription(Description description) throws UserException;
+
+	public void updateDescription(Description description);
+	
+
 }

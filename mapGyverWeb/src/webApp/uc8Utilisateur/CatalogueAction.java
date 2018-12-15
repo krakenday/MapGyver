@@ -7,36 +7,34 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import org.apache.struts2.interceptor.SessionAware;
+import com.opensymphony.xwork2.Preparable;
 
 import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
+import business.uc8Utilisateur.Utilisateur;
 import clientServeur.IServiceFacade;
+import utilitaire.UtilAction;
 import webApp.ApplicationSupport;
 
-public class CatalogueAction extends ApplicationSupport implements SessionAware {
+public class CatalogueAction extends ApplicationSupport implements SessionAware, Preparable {
 
 	private static final long serialVersionUID = 1L;
-	private static final String SERVICE_FACADE_LOOKUP= "ejb:/mapGyverEJB/ServiceFacade!clientServeur.IServiceFacade";
+	
 	private IServiceFacade iServiceFacade;
 	private Map<String, Object> sessionAttributes = null; 
 	
-	
+	private List<Utilisateur> utilisateurs;
 	private List<Groupe> groupes;
 	private List<ListeDiffusion> listeDiff;
 
 
-
-	// Initialiser le context	
-	public void init() {
-		System.out.println("*************** CatalogueAction - init() : ");
-		try {
-			InitialContext context = new InitialContext();
-			iServiceFacade = (IServiceFacade) context.lookup(SERVICE_FACADE_LOOKUP);
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}		
+	public List<Utilisateur> getUtilisateurs() {
+		return utilisateurs;
 	}
-	
+
+	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
+		this.utilisateurs = utilisateurs;
+	}
 	
 	public List<Groupe> getGroupes() {
 		return groupes;
@@ -56,16 +54,29 @@ public class CatalogueAction extends ApplicationSupport implements SessionAware 
 
 	@Override
 	public String execute() throws Exception {
-		System.out.println("*************** CatalogueAction - execute() : ");
-		init();
-		groupes= iServiceFacade.listerTousLesGroupes();
-		listeDiff= iServiceFacade.listerToutesLesListes();
-	return SUCCESS;
+		
+		Utilisateur utilisateur= (Utilisateur) sessionAttributes.get("utilisateur");
+		System.out.println("*** UtilisateurAction - delete: id utilisateur= " + utilisateur.getId());
+		
+		utilisateurs= iServiceFacade.listerTousLesUtilisateurs();
+		groupes= iServiceFacade.listerTousLesGroupes(utilisateur.getId());
+		listeDiff= iServiceFacade.listerToutesLesListes(utilisateur.getId());
+		return SUCCESS;
 	}
 	
 	@Override
 	public void setSession(Map<String, Object> sessionAttr) {
 		this.sessionAttributes= sessionAttr;
+	}
+
+	@Override
+	public void prepare() throws Exception {
+		try {
+			InitialContext context = new InitialContext();
+			iServiceFacade = (IServiceFacade) context.lookup(UtilAction.SERVICE_FACADE_LOOKUP);
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}			
 	}
 
 }

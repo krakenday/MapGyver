@@ -7,6 +7,7 @@ import java.io.Serializable;
  * Cette classe premt d'instancier un objet de type ListeDiffusion, la liste de diffusion est créée par un utilisateur
  * ListeDiffusion hérite de la classe Cercle
  * <Br> 
+ * @see Cercle
  * @author Djallal
  * @version 1.0 AFPA ECF2 Projet MapGyver
  * 
@@ -20,8 +21,14 @@ public class ListeDiffusion extends Cercle implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public ListeDiffusion() {
+		super();
 	}
 	
+	/**
+	 * 
+	 * @param id : identifiant de la liste
+	 * @param nom : nom de la liste
+	 */
 	public ListeDiffusion(int id, String nom) {
 		super(id, nom);
 	}
@@ -29,7 +36,13 @@ public class ListeDiffusion extends Cercle implements Serializable {
 	public ListeDiffusion(String nom) {
 		super(nom);
 	}
-
+	
+	/**
+	 * 
+	 * @param id : identifiant de la liste
+	 * @param nom : nom de la liste
+	 * @param utilisateur : utilisateur de l'application
+	 */
 	public ListeDiffusion(int id, String nom, Utilisateur utilisateur) {
 		super(id, nom, utilisateur);
 	}
@@ -38,6 +51,4 @@ public class ListeDiffusion extends Cercle implements Serializable {
 		super(nom, utilisateur);
 	}
 	
-	
-
 }
