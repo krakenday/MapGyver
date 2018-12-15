@@ -18,16 +18,29 @@ public class ServiceUtilisateurCatalogue {
 	@EJB
 	private DaoFacade daoFacade;
 	
+	/**
+	 * 
+	 * @return une liste d'utilisateurs
+	 */
 	public List<Utilisateur> listerTousLesUtilisateurs() {
 		return daoFacade.listerTousLesUtilisateurs();
 	}
 
-	public List<Groupe> listerTousLesGroupes() {
-		System.out.println("************ ServiceCatalogue listeGroupe ***********");
-		return daoFacade.listerTousLesGroupes();
+	/**
+	 * 
+	 * @param id est l'identifiant d'un utilisateur
+	 * @return la liste de groupe d'un utilisateur triée par nom
+	 */
+	public List<Groupe> listerTousLesGroupes(int id) {
+		return daoFacade.listerTousLesGroupes(id);
 	}
-
-	public List<ListeDiffusion> listerToutesLesListes() {
-		return daoFacade.listerToutesLesListes();
+	
+	/**
+	 * 
+	 * @param id est l'identifiant d'un utilisateur
+	 * @return la liste des liste de diffusion d'un utilisateur triée par nom
+	 */
+	public List<ListeDiffusion> listerToutesLesListes(int id) {
+		return daoFacade.listerToutesLesListes(id);
 	}
 }

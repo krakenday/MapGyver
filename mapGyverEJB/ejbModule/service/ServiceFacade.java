@@ -70,7 +70,20 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	// Bloc Service Utilisateur
+	
+	// Fabrique utilisateur et groupe
+	@Override
+	public Utilisateur creerUtilisateur(String nom, String prenom, String adresse, String email, String telephone,
+			LocalDate dateInscrip, LocalDate dateNaiss, Password motDePasse) {
+		return serviceFacadeUtilisateur.creerUtilisateur(nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss, motDePasse);
+	}
+	
+	@Override
+	public Groupe creerGroupe(String nom, Utilisateur utilisateur) {
+		return serviceFacadeUtilisateur.creerGroupe(nom, utilisateur);
+	};
 
+	// Gestion utilisateur
 	@Override
 	public void create(Utilisateur utilisateur) throws ServiceFacadeExceptionUtilisateur {
 		try {
@@ -85,6 +98,9 @@ public class ServiceFacade implements IServiceFacade {
 		return serviceFacadeUtilisateur.read(id) ;
 	}
 
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	@Override
 	public void update(Utilisateur utilisateur) {
 		serviceFacadeUtilisateur.update(utilisateur);
@@ -95,41 +111,33 @@ public class ServiceFacade implements IServiceFacade {
 		serviceFacadeUtilisateur.delete(id);
 	}
 
-	// Fabrique Utilisateur
-	@Override
-	public Utilisateur creerUtilisateur() {
-		return serviceFacadeUtilisateur.creerUtilisateur();
-	}
-
-	@Override
-	public Utilisateur creerUtilisateur(String nom, String prenom, String adresse, String email, String telephone,
-			LocalDate dateInscrip, LocalDate dateNaiss, Password motDePasse) {
-		return serviceFacadeUtilisateur.creerUtilisateur(nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss, motDePasse);
-	}
-	
-	@Override
-	public Groupe creerGroupe(String nom, Utilisateur utilisateur) {
-		return serviceFacadeUtilisateur.creerGroupe(nom, utilisateur);
-	};
 
 	// Bloc service Groupe
 	@Override
 	public void createGroupe(Groupe groupe) {
-		System.out.println("********* createGroupe ===> ServiceFacade");
 		System.out.println("********* createGroupe ===> ServiceFacade " + groupe.toString());
 		serviceFacadeUtilisateur.createGroupe(groupe);
 	}
 
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	@Override
 	public Groupe readGroupe(int id) {
 		return serviceFacadeUtilisateur.readGroupe(id);
 	}
 
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	@Override
 	public void updateGroupe(Groupe groupe) {
 		serviceFacadeUtilisateur.updateGroupe(groupe);
 	}
 
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	@Override
 	public void deleteGroupe(int id) {
 		serviceFacadeUtilisateur.deleteGroupe(id);
@@ -141,16 +149,25 @@ public class ServiceFacade implements IServiceFacade {
 		serviceFacadeUtilisateur.createListeDiff(listeDiff);
 	}
 
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	@Override
 	public ListeDiffusion readListeDiff(int id) {
 		return serviceFacadeUtilisateur.readListeDiff(id);
 	}
-
+	
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	@Override
 	public void updateListeDiff(ListeDiffusion listeDiff) {
 		serviceFacadeUtilisateur.updateListeDiff(listeDiff);
 	}
 
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	@Override
 	public void deleteListeDiff(int id) {
 		serviceFacadeUtilisateur.deleteListeDiff(id);
@@ -163,14 +180,14 @@ public class ServiceFacade implements IServiceFacade {
 	}
 
 	@Override
-	public List<Groupe> listerTousLesGroupes() {
+	public List<Groupe> listerTousLesGroupes(int id) {
 		System.out.println("************ ServiceFacade listeGroupe ***********");
-		return serviceFacadeUtilisateur.listerTousLesGroupes();
+		return serviceFacadeUtilisateur.listerTousLesGroupes(id);
 	}
 
 	@Override
-	public List<ListeDiffusion> listerToutesLesListes() {
-		return serviceFacadeUtilisateur.listerToutesLesListes();
+	public List<ListeDiffusion> listerToutesLesListes(int id) {
+		return serviceFacadeUtilisateur.listerToutesLesListes(id);
 	}
 
 	// Bloc service voyage

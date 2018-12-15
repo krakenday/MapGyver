@@ -1,7 +1,6 @@
 package dao.uc8Utilisateur;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -14,6 +13,7 @@ import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Utilisateur;
 import dao.exception.uc8Utilisateur.DaoUtilisateurExistantException;
 import dao.uc8Utilisateur.catalogue.DaoUtilisateurCatalogue;
+import dao.uc8Utilisateur.fabrique.FabriqueEntity;
 import dao.uc8Utilisateur.gestion.DaoUtilisateurGestion;
 import entity.uc8Utilisateur.EntityGroupe;
 import entity.uc8Utilisateur.EntityListeDiffusion;
@@ -29,9 +29,15 @@ public class DaoFacadeUtilisateur {
 	@EJB
 	private DaoUtilisateurCatalogue daoCatalogue;
 	
-	FabriqueEntity fabriqueEntity= new FabriqueEntity();
+	@EJB
+	private FabriqueEntity fabriqueEntity;
 	
 	//Gestion de l'utilisateur
+	/**
+	 * Reçoit en parametres un Utilisateur, il passera par la fabrique pour le repasser en entityUtilisateur pour etre persister dans la classe DaoGestion
+	 * @param utilisateur
+	 * @throws DaoUtilisateurExistantException
+	 */
 	public void addUtilisateur(Utilisateur utilisateur) throws DaoUtilisateurExistantException {
 			EntityUtilisateur entityUtilisateur= fabriqueEntity.createEntityUser(utilisateur);
 			daoGestion.addUtilisateur(entityUtilisateur);		
@@ -43,6 +49,9 @@ public class DaoFacadeUtilisateur {
 		return utilisateur;
 	}
 	
+	/*
+	 * PAS FONCTIONNEL
+	 */
 	public void updateUtilisateur(Utilisateur utilisateur) {
 		EntityUtilisateur entityUtilisateur= fabriqueEntity.createEntityUser(utilisateur);
 		daoGestion.updateUtilisateur(entityUtilisateur);
@@ -53,6 +62,10 @@ public class DaoFacadeUtilisateur {
 	}
 	
 	//Gestion du groupe
+	/**
+	 * Reçoit en parametres un Groupe, il passera par la fabrique pour le repasser en entityUtilisateur pour etre persister dans la classe DaoGestion
+	 * @param groupe
+	 */
 	public void addGroupe(Groupe groupe) {
 		Utilisateur utilisateur= readUtilisateur(groupe.getUtilisateur().getId());
 		EntityUtilisateur entityUtilisateur= fabriqueEntity.createEntityUser(utilisateur);
@@ -61,17 +74,19 @@ public class DaoFacadeUtilisateur {
 		daoGestion.addGroupe(entityGroupe);
 	}
 	
+	/*
+	 * PAS FONCTIONNEL
+	 */
 	public Groupe readGroupe(int id) {
 		EntityGroupe entityGroupe= daoGestion.readGroupe(id);
-		System.out.println("************** readGroupe l'entity= "+ entityGroupe.toString());
 		Utilisateur utilisateur= fabriqueEntity.createUser(entityGroupe.getUtilisateur());
-		System.out.println("************** readGroupe user= "+ utilisateur.toString());
 		Groupe groupe= new Groupe(entityGroupe.getNom(), utilisateur);
-		System.out.println("************** readGroupe groupe= "+ groupe.toString());
-		
 		return groupe;
 	}
 	
+	/*
+	 * PAS FONCTIONNEL
+	 */
 	public void updateGroupe(Groupe groupe) {
 		EntityGroupe entityGroupe= fabriqueEntity.createEntityGroupe(groupe);
 		daoGestion.updateGroupe(entityGroupe);
@@ -89,17 +104,27 @@ public class DaoFacadeUtilisateur {
 		EntityListeDiffusion entityListeDiffusion= new EntityListeDiffusion (listeDiff.getNom(), entityUtilisateur);
 		daoGestion.addListeDiff(entityListeDiffusion);
 	}
+	
+	/*
+	 * PAS FONCTIONNEL
+	 */
 	public ListeDiffusion readListeDiff(int id) {
 		EntityListeDiffusion entityListeDiff= daoGestion.readListeDiff(id);
 		ListeDiffusion listeDiff= fabriqueEntity.creeListeDiff(entityListeDiff);
 		return listeDiff;
 	}
 	
+	/*
+	 * PAS FONCTIONNEL
+	 */
 	public void updateListeDiff(ListeDiffusion listeDiff) {
 		EntityListeDiffusion entityListeDiff= fabriqueEntity.creeEntityListeDiff(listeDiff);
 		daoGestion.updateListeDiff(entityListeDiff);
 	}
 	
+	/*
+	 * PAS FONCTIONNEL
+	 */
 	public void deleteListeDiff(int id) {
 		daoGestion.deleteListeDiff(id);
 	}
@@ -117,10 +142,10 @@ public class DaoFacadeUtilisateur {
 		return liste;
 	}
 
-	public List<Groupe> listerTousLesGroupes() {
+	public List<Groupe> listerTousLesGroupes(int id) {
 		System.out.println("************ DaoFacadeUtilisateur listeGroupe ***********");
 		ArrayList<Groupe> liste = new ArrayList<Groupe>();
-		for (EntityGroupe g : daoCatalogue.listerTousLesGroupes()) {   
+		for (EntityGroupe g : daoCatalogue.listerTousLesGroupes(id)) {   
 			if (g instanceof EntityGroupe) {
 				Utilisateur utilisateur= fabriqueEntity.createUser(((EntityGroupe) g).getUtilisateur());
 				utilisateur.setId(((EntityGroupe) g).getUtilisateur().getId());
@@ -132,10 +157,10 @@ public class DaoFacadeUtilisateur {
 		return liste;
 	}
 
-	public List<ListeDiffusion> listerToutesLesListes() {
+	public List<ListeDiffusion> listerToutesLesListes(int id) {
 		System.out.println("************ DaoFacadeUtilisateur listeDiffusion ***********");
 		ArrayList<ListeDiffusion> liste = new ArrayList<ListeDiffusion>();
-		for (EntityListeDiffusion f : daoCatalogue.listerToutesLesListes()) {   
+		for (EntityListeDiffusion f : daoCatalogue.listerToutesLesListes(id)) {   
 			if (f instanceof EntityListeDiffusion) {
 				Utilisateur utilisateur= fabriqueEntity.createUser(((EntityListeDiffusion) f).getUtilisateur());
 				utilisateur.setId(((EntityListeDiffusion) f).getUtilisateur().getId());

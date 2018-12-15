@@ -18,12 +18,12 @@ public class ServiceUtilisateurGestion  {
 	@EJB
 	private DaoFacade daoFacade;
 
-	// Bloc utilisateur
+	// Bloc Utilisateur
 	public void create(Utilisateur utilisateur) throws ServiceUtilisateurExistantException {
 		try {
 			daoFacade.addUtilisateur(utilisateur);
 		} catch (DaoFacadeExceptionUtilisateur e) {
-			System.out.println("Quelle vilaine faute service");
+			System.out.println("************** ServiceUtilisateurGestion - exception **** affichage du code et message d'exception : ");
 			throw new ServiceUtilisateurExistantException(e.getCode(),e.getMessage());
 		}
 	}
@@ -32,48 +32,66 @@ public class ServiceUtilisateurGestion  {
 		return daoFacade.readUtilisateur(id);
 	}
 
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public void update(Utilisateur utilisateur) {
 		daoFacade.updateUtilisateur(utilisateur);
-		
 	}
 
 	public void delete(int id) {
 		daoFacade.deleteUtilisateur(id);
 	}
 	
-	//Bloc groupe
+	//Bloc Groupe
 	public void createGroupe(Groupe groupe) {
-
-		System.out.println("********* createGroupe ===> ServiceUtilisateur");
-		System.out.println("********* createGroupe ===> ServiceUtilisateur " + groupe.toString());
+		System.out.println("********* ServiceUtilisateurGestion  ===> createGroupe" + groupe.toString());
 		daoFacade.addGroupe(groupe);
 	}
 
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public Groupe readGroupe(int id) {
 		return daoFacade.readGroupe(id);
 	}
 
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public void updateGroupe(Groupe groupe) {
 		daoFacade.updateGroupe(groupe);
 	}
 
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public void deleteGroupe(int id) {
 		daoFacade.deleteGroupe(id);
 	}
 	
-	// Bloc service Liste diffusion
+	// Bloc Liste diffusion
 	public void createListeDiff(ListeDiffusion listeDiff) {
 		daoFacade.addListeDiff(listeDiff);
 	}
 
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public ListeDiffusion readListeDiff(int id) {
 		return daoFacade.readListeDiff(id);
 	}
 	
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public void updateListeDiff(ListeDiffusion listeDiff) {
 		daoFacade.updateListeDiff(listeDiff);
 	}
 
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public void deleteListeDiff(int id) {
 		daoFacade.deleteListeDiff(id);
 	}

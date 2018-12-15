@@ -45,11 +45,8 @@ public class ServiceFacadeUtilisateur {
 	public void delete(int id) {
 		serviceUtilisateurGestion.delete(id);
 	}
+	
 	// Fabrique Utilisateur
-	public Utilisateur creerUtilisateur() {
-		return serviceUtilisateurFabrique.creerUtilisateur();
-	}
-
 	public Utilisateur creerUtilisateur(String nom, String prenom, String adresse, String email, String telephone,
 			LocalDate dateInscrip, LocalDate dateNaiss, Password motDePasse) {
 		return serviceUtilisateurFabrique.creerUtilisateur(nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss, motDePasse);
@@ -59,8 +56,7 @@ public class ServiceFacadeUtilisateur {
 		return serviceUtilisateurFabrique.creerGroupe(nom, utilisateur);
 	}
 	
-// Bloc service Groupe
-	
+	// Bloc service Groupe	
 	public void createGroupe(Groupe groupe) {
 		System.out.println("********* createGroupe ===> ServiceFacadeUtilisateur");
 		System.out.println("********* createGroupe ===> ServiceFacadeUtilisateur " + groupe.toString());
@@ -96,18 +92,18 @@ public class ServiceFacadeUtilisateur {
 		serviceUtilisateurGestion.deleteListeDiff(id);
 	}
 	
-// Catalogue 
+	// Catalogue 
 	public List<Utilisateur> listerTousLesUtilisateurs() {
 		return serviceUtilisateurCatalogue.listerTousLesUtilisateurs();
 	}
 
-	public List<Groupe> listerTousLesGroupes() {
+	public List<Groupe> listerTousLesGroupes(int id) {
 		System.out.println("************ ServiceFacadeUtilisateur listeGroupe ***********");
-		return serviceUtilisateurCatalogue.listerTousLesGroupes();
+		return serviceUtilisateurCatalogue.listerTousLesGroupes(id);
 	}
 
-	public List<ListeDiffusion> listerToutesLesListes() {
-		return serviceUtilisateurCatalogue.listerToutesLesListes();
+	public List<ListeDiffusion> listerToutesLesListes(int id) {
+		return serviceUtilisateurCatalogue.listerToutesLesListes(id);
 	}
 
 }

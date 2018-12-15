@@ -14,16 +14,31 @@ import business.uc8Utilisateur.Utilisateur;
 @LocalBean
 public class ServiceUtilisateurFabrique   {
 
-	
-	public Utilisateur creerUtilisateur() {
-		return new Utilisateur();
-	}
-
+	/**
+	 * 
+	 * Fabriquer un utilisateur
+	 * @param nom
+	 * @param prenom
+	 * @param adresse
+	 * @param email
+	 * @param telephone
+	 * @param dateInscrip
+	 * @param dateNaiss 
+	 * @param motDePasse 
+	 * @return Utilisateur
+	 */
 	public Utilisateur creerUtilisateur(String nom, String prenom, String adresse, String email, String telephone,
 			LocalDate dateInscrip, LocalDate dateNaiss, Password motDePasse) {
 		return new Utilisateur (nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss, motDePasse);
 	}
 	
+	/**
+	 * 
+	 * Fabriquer un groupe 
+	 * @param nom
+	 * @param utilisateur
+	 * @return Groupe
+	 */
 	public Groupe creerGroupe(String nom, Utilisateur utilisateur) {
 		return new Groupe(nom, utilisateur);
 	}

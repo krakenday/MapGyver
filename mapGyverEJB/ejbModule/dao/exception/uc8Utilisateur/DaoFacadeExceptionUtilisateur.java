@@ -19,7 +19,6 @@ public class DaoFacadeExceptionUtilisateur extends Exception {
 	/**
 	 * @return the code
 	 */
-	
 	public int getCode() {
 		return code;
 	}

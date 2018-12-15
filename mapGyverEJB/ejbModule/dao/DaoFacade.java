@@ -1,6 +1,5 @@
 package dao;
 
-
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -35,10 +34,10 @@ import service.exception.uc6Jouer.ExceptionSurDao;
 @LocalBean
 public class DaoFacade {
 
+	private static final String ZONE_EXCEPTION_MSG = ".Voyage";
+	
 	@EJB
 	private DaoFacadePartager daoFacadePartager;
-	
-	private static final String ZONE_EXCEPTION_MSG = ".Voyage";
 	
 	@EJB
 	private DaoFacadeAdmin daoFacadeAdmin;
@@ -51,6 +50,7 @@ public class DaoFacade {
 	
 	@EJB
 	private DaoFacadeJouer daoFacadeJouer;
+	
 
 	public Utilisateur getUserById(int id) throws ServiceInexistantException {
 		Utilisateur user = null;
@@ -59,7 +59,6 @@ public class DaoFacade {
 		} catch (DaoInexistantException e) {
 			throw new ServiceInexistantException();
 		}
-
 		return user;
 	}
 
@@ -70,13 +69,17 @@ public class DaoFacade {
 		} catch (DaoInexistantException e) {
 			throw new ServiceInexistantException();
 		}
-
 		return user;
 	}
 
+	//************ Utilisateur
+	// Gestion de l'utilisateur 
 	
-	//Ici commence le territoire de Djallel
-		// Gestion de l'utilisateur
+	/**
+	 * Creation d'un utilisateur
+	 * @param utilisateur
+	 * @throws DaoFacadeExceptionUtilisateur
+	 */
 	public void addUtilisateur(Utilisateur utilisateur) throws DaoFacadeExceptionUtilisateur {
 		try {
 			daoFacadeUtilisateur.addUtilisateur(utilisateur);				
@@ -85,67 +88,109 @@ public class DaoFacade {
 		}
 	}
 	
+	/**
+	 * 
+	 * Récuperer un utilisateur dans la BDD
+	 * @param id
+	 * 
+	 */	
 	public Utilisateur readUtilisateur(int id) {
 		return daoFacadeUtilisateur.readUtilisateur(id);
 	}
 	
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public void updateUtilisateur(Utilisateur utilisateur) {
 		daoFacadeUtilisateur.updateUtilisateur(utilisateur);
 	}
 	
+	/**
+	 * 
+	 * Suppression d'un utilisateur
+	 * @param id
+	 * 
+	 */
 	public void deleteUtilisateur(int id) {
 		daoFacadeUtilisateur.deleteUtilisateur(id);
 	}
 	
-	//Gestion du groupe
+	//Gestion de groupe
+	
+	/**
+	 * Creation d'un groupe d'utilisateur
+	 * @param groupe
+	 */
 	public void addGroupe(Groupe groupe) {
-
-		System.out.println("********* addGroupe ===> DaoFacade");
 		System.out.println("********* addGroupe ===> DaoFacade " + groupe.toString());
 		daoFacadeUtilisateur.addGroupe(groupe);
 	}
+	
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public Groupe readGroupe(int id) {
 		return daoFacadeUtilisateur.readGroupe(id);
 	}
 	
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public void updateGroupe(Groupe groupe) {
 		daoFacadeUtilisateur.updateGroupe(groupe);
 	}
 	
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public void deleteGroupe(int id) {
 		daoFacadeUtilisateur.deleteGroupe(id);
 	}
 	
 	//Gestion de liste de diffusion
+	
+	/**
+	 * Creation d'une liste de diffusion de contact 
+	 * @param listeDiff
+	 */
 	public void addListeDiff(ListeDiffusion listeDiff) {
+		System.out.println("********* addListeDiff ===> DaoFacade " + listeDiff.toString());
 		daoFacadeUtilisateur.addListeDiff(listeDiff);
 	}
+	
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public ListeDiffusion readListeDiff(int id) {
 		return daoFacadeUtilisateur.readListeDiff(id);
 	}
 	
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public void updateListeDiff(ListeDiffusion listeDiff) {
 		daoFacadeUtilisateur.updateListeDiff(listeDiff);
 	}
 	
+	/*
+	 * NON FONCTIONNELLE, PREVUE POUR LA VERSION 2.0
+	 */
 	public void deleteListeDiff(int id) {
 		daoFacadeUtilisateur.deleteListeDiff(id);
 	}
 	
-	//Catalogue
+	//Catalogue 
 	public List<Utilisateur> listerTousLesUtilisateurs() {
 		return daoFacadeUtilisateur.listerTousLesUtilisateurs();
 	}
 
-	public List<Groupe> listerTousLesGroupes() {
-		System.out.println("************ DaoFacade liste groupe ***********");
-		return daoFacadeUtilisateur.listerTousLesGroupes();
+	public List<Groupe> listerTousLesGroupes(int id) {
+		return daoFacadeUtilisateur.listerTousLesGroupes(id);
 	}
 
-	public List<ListeDiffusion> listerToutesLesListes() {
-		return daoFacadeUtilisateur.listerToutesLesListes();
+	public List<ListeDiffusion> listerToutesLesListes(int id) {
+		return daoFacadeUtilisateur.listerToutesLesListes(id);
 	}
-	//Merci de votre visite
 	
 	//***************** Voyage
 	public void createVoyage(Voyage voyage) throws DaoFacadeExceptionVoyage {

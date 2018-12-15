@@ -1,6 +1,9 @@
-package dao.uc8Utilisateur;
+package dao.uc8Utilisateur.fabrique;
 
 import java.time.LocalDate;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Singleton;
 
 import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
@@ -11,7 +14,8 @@ import entity.uc8Utilisateur.EntityListeDiffusion;
 import entity.uc8Utilisateur.EntityPassword;
 import entity.uc8Utilisateur.EntityUtilisateur;
 
-
+@Singleton
+@LocalBean
 public class FabriqueEntity {
 
 	public FabriqueEntity() {
@@ -40,9 +44,9 @@ public class FabriqueEntity {
 		String telephone= utilisateur.getTelephone();
 		LocalDate dateInscrip= utilisateur.getDateInscrip();
 		LocalDate dateNaiss= utilisateur.getDateNaiss();
-		Password motDePasse= utilisateur.getMotDePasse();
+		EntityPassword motDePasse= createEntityPassword(utilisateur.getMotDePasse());
 		
-		return new EntityUtilisateur(nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss, createEntityPassword(motDePasse));
+		return new EntityUtilisateur(nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss,motDePasse );
 	}
 	
 	// Fabriquer une utilisateur
@@ -55,9 +59,9 @@ public class FabriqueEntity {
 		String telephone= utilisateur.getTelephone();
 		LocalDate dateInscrip= utilisateur.getDateInscrip();
 		LocalDate dateNaiss= utilisateur.getDateNaiss();
-		EntityPassword motDePasse= utilisateur.getMotDePasse();
+		Password motDePasse= createPassword(utilisateur.getMotDePasse());
 		
-		return new Utilisateur(nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss, createPassword(motDePasse));
+		return new Utilisateur(nom, prenom, adresse, email, telephone, dateInscrip, dateNaiss, motDePasse);
 	}
 	
 	// Fabriquer un groupe
@@ -70,17 +74,17 @@ public class FabriqueEntity {
 	// Fabriquer une entity groupe
 	public EntityGroupe createEntityGroupe(Groupe groupe) {
 		EntityUtilisateur entityUtilisateur= createEntityUser(groupe.getUtilisateur());
-		String nom= groupe.getNom();
-		return new EntityGroupe(nom, entityUtilisateur);
+//		String nom= groupe.getNom();
+		return new EntityGroupe(groupe.getNom(), entityUtilisateur);
 	}
 	
-	// Fabriquer une liste
+	// Fabriquer une liste de diffusion
 	public ListeDiffusion creeListeDiff(EntityListeDiffusion listeDiff) {
 		String nom= listeDiff.getNom();
 		return new ListeDiffusion(nom);
 	}
 	
-	// Fabriquer une entity liste
+	// Fabriquer une entity liste diffusion
 	public EntityListeDiffusion creeEntityListeDiff(ListeDiffusion listeDiff) {
 		String nom= listeDiff.getNom();
 		return new EntityListeDiffusion(nom);

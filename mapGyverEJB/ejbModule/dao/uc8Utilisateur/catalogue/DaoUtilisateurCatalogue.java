@@ -20,6 +20,7 @@ public class DaoUtilisateurCatalogue {
 	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
 	private EntityManager em; 
 	
+	// Liste de tous les utilisateurs de l'application
 	public List<EntityUtilisateur> listerTousLesUtilisateurs() {
 		ArrayList<EntityUtilisateur> liste = new ArrayList<EntityUtilisateur>();
 
@@ -32,11 +33,15 @@ public class DaoUtilisateurCatalogue {
 		return liste;
 	}
 
-	public List<EntityGroupe> listerTousLesGroupes() {
+	/**
+	 * 
+	 * @param id est l'identifiant de l'utilisateur
+	 * @return liste des groupes de l'utilisateur
+	 */
+	public List<EntityGroupe> listerTousLesGroupes(int id) {
 		System.out.println("************ DaoUtilisateur - listerLesGroupes ***********");
-		
 		ArrayList<EntityGroupe> liste = new ArrayList<EntityGroupe>();
-		for (Object g : em.createQuery("select g from EntityGroupe g order by g.nom asc").getResultList())
+		for (Object g : em.createQuery("select g from EntityGroupe g where g.utilisateur.id=?1 order by g.nom asc").setParameter(1, id).getResultList())
 		{   
 			if (g instanceof EntityGroupe) {
 				liste.add((EntityGroupe)g);
@@ -45,10 +50,15 @@ public class DaoUtilisateurCatalogue {
 		return liste;
 	}
 
-	public List<EntityListeDiffusion> listerToutesLesListes() {
+	/**
+	 * 
+	 * @param id est l'identifiant de l'utilisateur
+	 * @return liste des liste de diffusion de l'utilisateur
+	 */
+	public List<EntityListeDiffusion> listerToutesLesListes(int id) {
+		System.out.println("************ DaoUtilisateur - listerLesGroupes ***********");
 		ArrayList<EntityListeDiffusion> liste = new ArrayList<EntityListeDiffusion>();
-
-		for (Object l : em.createQuery("select l from EntityListeDiffusion l order by l.nom asc").getResultList())
+		for (Object l : em.createQuery("select l from EntityListeDiffusion l where l.utilisateur.id=?1 order by l.nom asc").setParameter(1, id).getResultList())
 		{   
 			if (l instanceof EntityListeDiffusion) {
 				liste.add((EntityListeDiffusion)l);
