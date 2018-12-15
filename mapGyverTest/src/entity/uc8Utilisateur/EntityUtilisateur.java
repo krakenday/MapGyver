@@ -1,63 +1,101 @@
-package business.uc8Utilisateur;
+package entity.uc8Utilisateur;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 
 /**
+ * 
  * Projet - MapGyver
- * Cette classe premt d'instancier un objet de type utilisateur, cet utilisateur béneficiera d'un accès pour les fonctionnalités de l'application
- * <br> 
- * L'utilisateur à un : 
- * <br> id : référence unique
- * <br> nom : nom de l'utilisateur
- * <br> prenom : prenom de l'utilisateur
- * <br> adresse : adresse de l'utilisateur
- * <br> email : l'email de l'utilisateur pour s'authentifier
- * <br> telephone : le numéro de téléphone (portable) de l'utilisateur
- * <br> dateInscrip : date d'inscription de l'utilisateur sur l'application
- * <br> dateNaiss : la date de naissance de l'utilisateur pour connaitre et afficher son age
- * <br> motDePasse : mot de passe de l'utilisateur pour s'authentifier
+ * <Br> 
  * @author Djallal
  * @version 1.0 AFPA ECF2 Projet MapGyver
  * 
- *
+ * Un utilisateur a un compte avec un email unique
+ * Un utilisateur a un password 
+ * Un utilisateur peut avoir plusieurs groupes et plusieurs liste de diffusion
+ * 
  */
 
-public class Utilisateur implements Serializable{
+@Entity
+@Table(name="UTILISATEUR")
+public class EntityUtilisateur implements Serializable{
+	
 
 	private static final long serialVersionUID = 1L;
-
-	private int id;
-	private String nom;
-	private String prenom;
-	private String adresse;
-	private String email;
-	private String telephone;
-	private LocalDate dateInscrip;
-	private LocalDate dateNaiss;
-	private Password motDePasse;
 	
-	public Utilisateur() {
-		super();
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	private int id;
+	@Column(length=50, nullable= false)
+	private String nom;
+	@Column(length=50, nullable= false)
+	private String prenom;
+	@Column(length=100, nullable= false)
+	private String adresse;
+	@Column(length=50,  unique= true, nullable= false)
+	private String email;
+	@Column(length=20, nullable= false)
+	private String telephone; 
+	@Column(nullable= false)
+	private LocalDate dateInscrip;
+	@Column(nullable= false)
+	private LocalDate dateNaiss;
+	@Column(length=100, name="pw", nullable= false)
+	@Embedded
+	private EntityPassword motDePasse;
+	
+	/*
+	 * AJOUT PREVU POUR LA VERSION 2.0, A RECUPERE DANS LE UC4
+	 */
+//	private Ville ville;
+//	private Pays pays
+	
+	@OneToMany(mappedBy="utilisateur", cascade= {CascadeType.ALL}, fetch=FetchType.LAZY)
+	private Collection<EntityCercle> lesCercles= new ArrayList<EntityCercle>();
+	
+	
+	@ManyToMany
+	@JoinTable(name="UTILISATEUR_CERCLE",
+	joinColumns = @JoinColumn(name="id_utilisateur") ,
+	inverseJoinColumns = @JoinColumn(name="id_cercle") )
+	private Collection<EntityCercle> cercles = new ArrayList<EntityCercle>();
+	
+	public EntityUtilisateur() {
 	}
 	
 	/**
 	 * @param id : id de l'utilisateur
 	 * @param nom : nom de l'utilisateur
 	 * @param prenom : prenom de l'utilisateur
-	 */
-	public Utilisateur(int id, String nom, String prenom) {
+	 * */
+	public EntityUtilisateur(int id, String nom, String prenom) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 	}
-
 	/**
 	 * @param nom : nom de l'utilisateur
 	 * @param prenom : prenom de l'utilisateur
 	 * */
-	public Utilisateur( String nom, String prenom) {
+	public EntityUtilisateur( String nom, String prenom) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -69,9 +107,9 @@ public class Utilisateur implements Serializable{
 	 * @param prenom : prenom de l'utilisateur
 	 * @param email : email de l'utilisateur
 	 * */
-	public Utilisateur(int id, String nom, String prenom, String email) {
+	public EntityUtilisateur(int id, String nom, String prenom, String email) {
 		super();
-		this.id= id;
+		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
@@ -82,13 +120,12 @@ public class Utilisateur implements Serializable{
 	 * @param prenom : prenom de l'utilisateur
 	 * @param email : email de l'utilisateur
 	 * */
-	public Utilisateur(String nom, String prenom, String email) {
+	public EntityUtilisateur(String nom, String prenom, String email) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 	}
-	
 	
 	/**
 	 * @param id : id de l'utilisateur 
@@ -97,7 +134,7 @@ public class Utilisateur implements Serializable{
 	 * @param adresse : adresse de l'utilisateur
 	 * @param telephone : telephone de l'utilisateur
 	 */
-	public Utilisateur(int id, String nom, String prenom, String adresse, String telephone) {
+	public EntityUtilisateur(int id, String nom, String prenom, String adresse, String telephone) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -112,15 +149,14 @@ public class Utilisateur implements Serializable{
 	 * @param adresse : adresse de l'utilisateur
 	 * @param telephone : telephone de l'utilisateur
 	 */
-	public Utilisateur(String nom, String prenom, String adresse, String telephone) {
+	public EntityUtilisateur(String nom, String prenom, String adresse, String telephone) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
 		this.telephone = telephone;
 	}
-
-
+	
 	/**
 	 * @param id : id de l'utilisateur
 	 * @param nom : nom de l'utilisateur
@@ -131,7 +167,7 @@ public class Utilisateur implements Serializable{
 	 * @param dateInscrip : date d'inscription de l'utilisateur sur l'application
 	 * @param dateNaiss : date de naissance de l'utilisateur
 	 * */
-	public Utilisateur(int id, String nom, String prenom, String adresse, String email, String telephone,
+	public EntityUtilisateur(int id, String nom, String prenom, String adresse, String email, String telephone,
 			LocalDate dateInscrip, LocalDate dateNaiss) {
 		super();
 		this.id = id;
@@ -154,8 +190,8 @@ public class Utilisateur implements Serializable{
 	 * @param dateNaiss : date de naissance de l'utilisateur
 	 * @param motDePasse : mot de passe de l'utilisateur
 	 * */
-	public Utilisateur( String nom, String prenom, String adresse, String email, String telephone,
-			LocalDate dateInscrip, LocalDate dateNaiss, Password motDePasse) {
+	public EntityUtilisateur( String nom, String prenom, String adresse, String email, String telephone,
+			LocalDate dateInscrip, LocalDate dateNaiss, EntityPassword motDePasse) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -279,20 +315,18 @@ public class Utilisateur implements Serializable{
 		this.dateNaiss = dateNaiss;
 	}
 	
-	public Password getMotDePasse() {
+	public EntityPassword getMotDePasse() {
 		return motDePasse;
 	}
 
-	public void setMotDePasse(Password motDePasse) {
+	public void setMotDePasse(EntityPassword motDePasse) {
 		this.motDePasse = motDePasse;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+
 	@Override
 	public String toString() {
-		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email="
+		return "EntityUtilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email="
 				+ email + ", telephone=" + telephone + ", dateInscrip=" + dateInscrip + ", dateNaiss=" + dateNaiss
 				+ "]";
 	}
