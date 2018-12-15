@@ -16,8 +16,8 @@ $().ready(function() {
 	// valider formulaire
 	$("#inscription").validate({
 		rules: {
-			inputNom: "required",
-			inputPrenom: "required",
+			"utilisateur.nom": "required",
+			"utilisateur.prenom": "required",
 			inputPassword: {
 				required: true,
 				minlength: 6
@@ -27,7 +27,7 @@ $().ready(function() {
 				minlength: 6,
 				equalTo: "#inputPassword"
 			},
-			inputEmail: {
+			"utilisateur.email": {
 				required: true,
 				email: true
 			},
@@ -36,18 +36,18 @@ $().ready(function() {
             	date: true,
             	dateFormat: true
             },
-            inputTelephone: {
+            "utilisateur.telephone": {
             	required: true,
             	// maxlength: 13,
             	"regex": /^(\+33\.|0)[0-9]{9}$/
             },
-            inputAdresse: "required",             
+            "utilisateur.adresse" : "required",             
             inputVille: "required",
             inputPays: "required"
 		},
 		messages: {
-			inputNom: "Veuillez entrez votre nom",
-			inputPrenom: "Veuillez entrez votre pr&eacute;nom",
+			"utilisateur.nom": "Veuillez entrez votre nom",
+			"utilisateur.prenom": "Veuillez entrez votre pr&eacute;nom",
 			inputPassword: {
 				required: "Veuillez de fournir votre mot de passe",
 				minlength: "Votre mot de passe doit contenir au moins 6 caract&eacute;res"
@@ -57,18 +57,16 @@ $().ready(function() {
 				minlength: "Votre mot de passe doit contenir au moins 6 caract&eacute;res",
 				equalTo: "Veuillez entrez un mot de passe identique",
 			},
-			inputEmail: {
+			"utilisateur.email": {
 				required: "Veuillez entrez une adresse email",
 				email : "Veuillez entrez une adresse email valide"
 			},
 	        inputDateNaiss : "Veuillez entrez votre de date de naissance",
-	        inputTelephone: {
+	        "utilisateur.telephone": {
 	            required: "Veuillez entrez votre numéro de téléphone",
 	            number: "Le numéro de téléphone c'est seulement des chiffre, pas besoin du minitel"
 	        },
-	        inputAdresse: "Veuillez entrez votre adresse",
-	        inputVille: "Veuillez entrez votre ville",
-	        inputPays: "Veuillez entrez votre pays"
+	        "utilisateur.adresse": "Veuillez entrez votre adresse"
 		}
 	});
 });
@@ -96,9 +94,7 @@ $().ready(function() {
 	            required: "Veuillez entrez votre numéro de téléphone",
 	            number: "Le numéro de téléphone c'est seulement des chiffre, pas besoin du minitel"
 	        },
-	        inputAdresse: "Veuillez entrez votre adresse",
-	        inputVille: "Veuillez entrez votre ville",
-	        inputPays: "Veuillez entrez votre pays"
+	        inputAdresse: "Veuillez entrez votre adresse"
 		}
 	});
 });

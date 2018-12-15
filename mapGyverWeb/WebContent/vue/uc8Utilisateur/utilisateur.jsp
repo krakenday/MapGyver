@@ -1,3 +1,5 @@
+<!-- Ce fichier contient du code jsp pour récupérer des données sans passer par Struts afin de permettre à la formatrice d'evaluer le module précédent jsp servlet-->
+
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="modal-body">
   <h1 class="display-4">G&eacute;rer mon compte</h1>
@@ -8,6 +10,9 @@
           <strong class="d-inline-block mb-0 text-primary">Mes infos</strong>
         </div>
         <div class="card-body">
+        
+        <!-- par ici le code jsp -->
+        
           <jsp:useBean id="utilisateur" scope="session" class="business.uc8Utilisateur.Utilisateur" />
           <div class="offset-1">
             <div class="row">
@@ -52,22 +57,6 @@
             </div>
             <div class="row">
               <div class="col-md-4">
-                <h5>Ville:</h5>
-              </div>
-              <div class="col-md-7">
-                <p>Marseille</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <h5>Pays:</h5>
-              </div>
-              <div class="col-md-7">
-                <p>France</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
                 <h5>Date inscription:</h5>
               </div>
               <div class="col-md-7">
@@ -87,6 +76,7 @@
       <jsp:include page= "/vue/uc8Utilisateur/listeDiff.jsp" />
     </div>
   </div>
+  <jsp:include page= "/vue/uc8Utilisateur/listeUtilisateurs.jsp" />
   <div id="confirmSupp" class="col-md-10 mt-4 offset-1" style="display: none">
     <div class="card">
       <div class="card-header">
@@ -101,7 +91,9 @@
       </div>
     </div>
   </div> 
-  <!-- Fenetre de formulaire de modification de l'utilisateur -->
+  
+  <!-- Fenetre de formulaire de modification de l'utilisateur à finaliser-->
+  
   <div id="modifierUtilisateurModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -127,14 +119,6 @@
               <label>Adresse</label>
               <input type="text" id="inputAdresse" name="inputAdresse" class="form-control" value="<%=utilisateur.getAdresse() %>" required>
             </div>
-            <div class="form-group">
-              <label>Ville</label>
-              <input type="text" id="inputVille" name="inputVille" class="form-control" value="Marseille" required>
-            </div>
-            <div class="form-group">
-              <label>Pays</label>
-              <input type="text" id="inputPays" name="inputPays" class="form-control" value="Suisse" required>
-            </div>
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
@@ -148,6 +132,9 @@
   <div id="supprimerUtilisateurModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
+      
+      <!-- Formulaire en Struts -->
+      
         <s:form namespace="/mapgyver/utilisateur" method="post" action="ifdelete" theme="simple">
         <div class="modal-header">
           <h4 class="modal-title">Supprimer mon compte</h4>
@@ -160,52 +147,6 @@
         <div class="modal-footer">
           <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
           <s:submit cssClass="btn btn-danger" value="Supprimer"/>
-        </div>
-      </s:form>
-    </div>
-  </div>
-</div>
-<!-- Fenetre de formulaire de l'ajout d'un groupe -->
-<div id="ajouterGroupeModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <s:form namespace="/mapgyver/utilisateur" method="post" id="addGroupe" action="doaddGroupe" theme="simple">
-        <div class="modal-header">
-          <h4 class="modal-title">Ajouter un groupe</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <s:label>Nom</s:label>
-            <s:textfield type="text" id="inputNomGroupe" name="inputNomGroupe" cssClass="form-control" required="required"/>
-          </div>            
-        </div>
-        <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
-          <s:submit cssClass="btn btn-success" value="Enregistrer"/>
-        </div>
-      </s:form>
-    </div>
-  </div>
-</div>
-<!-- Fenetre de formulaire de l'ajout d'une liste -->
-<div id="ajouterListeModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <s:form namespace="/mapgyver/utilisateur" method="post" id="addListe" action="doaddListe" theme="simple">
-        <div class="modal-header">
-          <h4 class="modal-title">Ajouter une liste</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <s:label>Nom</s:label>
-            <s:textfield type="text" id="inputNomListe" name="inputNomListe" cssClass="form-control" required="required"/>
-          </div>            
-        </div>
-        <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
-          <s:submit cssClass="btn btn-success" value="Enregistrer"/>
         </div>
       </s:form>
     </div>

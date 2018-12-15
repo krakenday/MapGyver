@@ -34,7 +34,9 @@
 				  </li>
 				  <li class="breadcrumb-item active">Gestion utilisateur</li>
 				</ol>
-          	<!-- les infos de mon utlisateurs -->
+				
+          	<!-- les infos de mon utlisateurs, dans la jsp utilisateur je recupérer l'utilisateur authentifié et j'affiche ses infos en jsp -->
+          	
 			<jsp:include page="/vue/uc8Utilisateur/utilisateur.jsp" />
         </div>
         <jsp:include page="/WEB-INF/include/footer.jsp" />
