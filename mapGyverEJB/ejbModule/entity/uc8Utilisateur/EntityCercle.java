@@ -16,11 +16,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-
 /**
- * @author Djallal
  * 
- * Classe entity Cercle
+ * Projet - MapGyver
+ * <Br> 
+ * @author Djallal
+ * @version 1.0 AFPA ECF2 Projet MapGyver
+ * 
+ * Un Cercle appartient à un seul utilisateur
+ * Un utilisateur peut avoir plusieurs cercles
+ * Un cercle peut contenir plusieurs utilisateurs
+ *  
  */
 
 @Entity

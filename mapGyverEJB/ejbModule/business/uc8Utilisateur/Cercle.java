@@ -3,9 +3,18 @@ package business.uc8Utilisateur;
 import java.io.Serializable;
 
 /**
- * @author Djallal
+ * Projet - MapGyver
  * 
- * Classe metier Cercle
+ * La classe Cercle est abstraite
+ * <Br> 
+ * Le Cercle à un : 
+ * <br> id : référence unique
+ * <br> nom : nom du cercle
+ * <br> utilisateur : l'utilisateur a qui appartient le cercle 
+ * @see Utilisateur
+ * @author Djallal
+ * @version 1.0 AFPA ECF2 Projet MapGyver
+ * 
  */
 public abstract class Cercle implements Serializable {
 

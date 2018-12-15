@@ -5,6 +5,16 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+/**
+ * 
+ * Projet - MapGyver
+ * <Br> 
+ * @author Djallal
+ * @version 1.0 AFPA ECF2 Projet MapGyver
+ * 
+ * Un password appartient à un seul utilisateur 
+ */
+
 @Embeddable
 public class EntityPassword implements Serializable{
 

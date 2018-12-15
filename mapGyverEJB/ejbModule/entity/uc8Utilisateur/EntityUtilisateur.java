@@ -27,6 +27,10 @@ import javax.persistence.Table;
  * @author Djallal
  * @version 1.0 AFPA ECF2 Projet MapGyver
  * 
+ * Un utilisateur a un compte avec un email unique
+ * Un utilisateur a un password 
+ * Un utilisateur peut avoir plusieurs groupes et plusieurs liste de diffusion
+ * 
  */
 
 @Entity
@@ -57,15 +61,15 @@ public class EntityUtilisateur implements Serializable{
 	@Embedded
 	private EntityPassword motDePasse;
 	
+	/*
+	 * AJOUT PREVU POUR LA VERSION 2.0, A RECUPERE DANS LE UC4
+	 */
 //	private Ville ville;
 //	private Pays pays
 	
 	@OneToMany(mappedBy="utilisateur", cascade= {CascadeType.ALL}, fetch=FetchType.LAZY)
 	private Collection<EntityCercle> lesCercles= new ArrayList<EntityCercle>();
 	
-	//A voir plus tard
-//	@OneToMany(mappedBy="utilisateur", cascade= {CascadeType.ALL}, fetch=FetchType.LAZY)
-//	private Collection<EntityUtilisateurCercle> cercles= new ArrayList<EntityUtilisateurCercle>();
 	
 	@ManyToMany
 	@JoinTable(name="UTILISATEUR_CERCLE",

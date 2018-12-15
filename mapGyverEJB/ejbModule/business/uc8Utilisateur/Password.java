@@ -3,12 +3,11 @@ package business.uc8Utilisateur;
 import java.io.Serializable;
 /**
  * Projet - MapGyver
- * Cette classe premt d'instancier un objet de type Password, le mot de passe d'un utilisateur qui s'enregistre ou s'authentifie sur l'application
+ * Cette classe permet d'instancier un objet de type Password, le mot de passe d'un utilisateur qui s'enregistre ou s'authentifie sur l'application
  * <Br> 
  * @author Djallal
  * @version 1.0 AFPA ECF2 Projet MapGyver
  * 
- * TODO renseigner les régles de gestions possible
  * 
  */
 
@@ -18,9 +17,6 @@ public class Password implements Serializable {
 	
 	private String password;
 
-
-	public Password() {
-	}
 	
 	public Password(String password) {
 		super();

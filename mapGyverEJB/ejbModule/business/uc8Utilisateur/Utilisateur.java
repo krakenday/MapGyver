@@ -5,19 +5,27 @@ import java.time.LocalDate;
 
 /**
  * Projet - MapGyver
- * Cette classe premt d'instancier un objet de type utilisateur, cet utilisateur beneficiera d'un accès pour les fonctionnalités de l'application
- * <Br> 
+ * Cette classe premt d'instancier un objet de type utilisateur, cet utilisateur béneficiera d'un accès pour les fonctionnalités de l'application
+ * <br> 
+ * L'utilisateur à un : 
+ * <br> id : référence unique
+ * <br> nom : nom de l'utilisateur
+ * <br> prenom : prenom de l'utilisateur
+ * <br> adresse : adresse de l'utilisateur
+ * <br> email : l'email de l'utilisateur pour s'authentifier
+ * <br> telephone : le numéro de téléphone (portable) de l'utilisateur
+ * <br> dateInscrip : date d'inscription de l'utilisateur sur l'application
+ * <br> dateNaiss : la date de naissance de l'utilisateur pour connaitre et afficher son age
+ * <br> motDePasse : mot de passe de l'utilisateur pour s'authentifier
  * @author Djallal
  * @version 1.0 AFPA ECF2 Projet MapGyver
  * 
- * TODO renseigner les régles de gestions possible
- * 
+ *
  */
 
 public class Utilisateur implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
 
 	private int id;
 	private String nom;
@@ -28,8 +36,6 @@ public class Utilisateur implements Serializable{
 	private LocalDate dateInscrip;
 	private LocalDate dateNaiss;
 	private Password motDePasse;
-//	private Ville ville;
-//	private Pays pays;
 	
 	public Utilisateur() {
 		super();

@@ -81,7 +81,7 @@ public class ServiceFacade implements IServiceFacade {
 	@Override
 	public Groupe creerGroupe(String nom, Utilisateur utilisateur) {
 		return serviceFacadeUtilisateur.creerGroupe(nom, utilisateur);
-	};
+	}
 
 	// Gestion utilisateur
 	@Override
