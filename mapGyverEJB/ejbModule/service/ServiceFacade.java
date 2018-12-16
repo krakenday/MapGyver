@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import business.uc2Souvenir.Photo;
 import business.uc2Souvenir.Souvenir;
 import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
@@ -332,6 +333,12 @@ public class ServiceFacade implements IServiceFacade {
 	public void supprimeSouvenirById(int idSouvenir) {
 		System.out.println("*****je rentre dans ma facade SERVICE-supprimeSouvenirById*****");
 		serviceFacadeSouvenir.supprimeSouvenirById(idSouvenir);
+	}
+	
+	//pour AlexB
+	@Override
+	public Photo getPhotoById(int idPhoto) {
+		return serviceFacadeSouvenir.getPhotoById(idPhoto);
 	}
 	
 	

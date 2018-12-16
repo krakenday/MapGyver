@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
+import business.uc2Souvenir.Photo;
 import business.uc2Souvenir.Souvenir;
 import dao.DaoFacade;
 import dao.exception.uc2Souvenir.DaoSouvenirException;
@@ -39,6 +40,11 @@ public class ServiceFacadeSouvenir {
 
 	public void supprimeSouvenirById(int idSouvenir) {
 		daoFacade.supprimeSouvenirById(idSouvenir);
+		
+	}
+
+	public Photo getPhotoById(int idPhoto) {
+		return daoFacade.getPhotoById(idPhoto);
 		
 	}
 

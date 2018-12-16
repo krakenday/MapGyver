@@ -15,6 +15,7 @@ import client.serveur.partager.exception.UserException;
 import service.exception.uc1Administrer.ServiceInexistantException;
 import service.exception.uc2Souvenir.ServiceSouvenirException;
 import service.exception.uc6Jouer.ExceptionSurDao;
+import business.uc2Souvenir.Photo;
 import business.uc2Souvenir.Souvenir;
 import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
@@ -34,6 +35,7 @@ public interface IServiceFacade {
 	public void createSouvenir(Souvenir souvenir) throws ServiceSouvenirException;
 	public List<Souvenir> getSouvenirsByIdVoyage(String idVoyage);
 	public void supprimeSouvenirById(int idSouvenir);
+	public Photo getPhotoById(int idPhoto);
 	
 	
 	
@@ -144,6 +146,7 @@ public interface IServiceFacade {
 	public void addDescription(Description description) throws UserException;
 
 	public void updateDescription(Description description);
+	
 	
 	
 

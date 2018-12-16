@@ -17,16 +17,19 @@ import dao.exception.uc2Souvenir.DaoSouvenirException;
 public class DaoFacadeSouvenir {
 	
 	@EJB
-	DaoSouvenirCreatePhoto daoSouvenirCreatePhoto;
+	DaoSouvenirCreatePhoto 			daoSouvenirCreatePhoto;
 	
 	@EJB
-	DaoSouvenirCreateCommentaire daoSouvenirCreateCommentaire;
+	DaoSouvenirCreateCommentaire 	daoSouvenirCreateCommentaire;
 	
 	@EJB
-	DaoSouvenirGetSouvenirsVoyage daoSouvenirGetSouvenirsVoyage;
+	DaoSouvenirGetSouvenirsVoyage 	daoSouvenirGetSouvenirsVoyage;
 	
 	@EJB
-	DaoSouvenirSupprimerSouvenir daoSouvenirSupprimerSouvenir;
+	DaoSouvenirSupprimerSouvenir 	daoSouvenirSupprimerSouvenir;
+	
+	@EJB
+	DaoSouvenirGetPhoto				daoSouvenirGetPhoto;
 	
 	
 	//redirige vers la bonne fabrique selon qu'il faille persister une Photo ou un Commentaire
@@ -60,6 +63,12 @@ public class DaoFacadeSouvenir {
 	public void supprimeSouvenirById(int idSouvenir) {
 		System.out.println("*****DaoFacadeSouvenir-supprimeSouvenirById");
 		daoSouvenirSupprimerSouvenir.supprimeSouvenirById(idSouvenir);
+		
+	}
+
+
+	public Photo getPhotoById(int idPhoto) {
+		return daoSouvenirGetPhoto.getPhotoById(idPhoto);
 		
 	}
 

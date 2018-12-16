@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
+import business.uc2Souvenir.Photo;
 import business.uc2Souvenir.Souvenir;
 import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
@@ -304,6 +305,11 @@ public class DaoFacade {
 
 	public void supprimeSouvenirById(int idSouvenir) {
 		daoFacadeSouvenir.supprimeSouvenirById(idSouvenir);
+		
+	}
+
+	public Photo getPhotoById(int idPhoto) {
+		return daoFacadeSouvenir.getPhotoById(idPhoto);
 		
 	}
 	
