@@ -81,9 +81,9 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 	private void createSouvenir(Souvenir souvenir) {
 		try {
 			iserviceFacade.createSouvenir(souvenir);
-		} catch (ServiceSouvenirException e) {
-			System.out.println("**********je catch dans mon client");
-			System.out.println("**********Message solution= " + e.getSolution());
+		} catch (service.exception.uc2Souvenir.ServiceSouvenirException e) {
+			System.out.println("je catch enfin dans mon service!!!! MOTHER FU****");
+			
 		}
 		
 	}
