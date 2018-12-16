@@ -10,6 +10,7 @@ import business.uc2Souvenir.Commentaire;
 import business.uc2Souvenir.Photo;
 import business.uc2Souvenir.Souvenir;
 import business.uc4Voyage.Voyage;
+import dao.exception.uc2Souvenir.DaoSouvenirException;
 
 @Singleton
 @LocalBean
@@ -29,7 +30,7 @@ public class DaoFacadeSouvenir {
 	
 	
 	//redirige vers la bonne fabrique selon qu'il faille persister une Photo ou un Commentaire
-	public void createSouvenir(Souvenir souvenir) {
+	public void createSouvenir(Souvenir souvenir) throws DaoSouvenirException {
 		
 		System.out.println("*****Je suis au niveau de DaoFacadeSouvenir *****");
 		System.out.println("*****affichage de souvenir = *****" + souvenir);

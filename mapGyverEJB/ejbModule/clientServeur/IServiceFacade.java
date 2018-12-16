@@ -13,6 +13,7 @@ import business.uc6Jouer.ReponseElire;
 import business.uc8Utilisateur.Utilisateur;
 import client.serveur.partager.exception.UserException;
 import service.exception.uc1Administrer.ServiceInexistantException;
+import service.exception.uc2Souvenir.ServiceSouvenirException;
 import service.exception.uc6Jouer.ExceptionSurDao;
 import business.uc2Souvenir.Souvenir;
 import business.uc3Partager.Description;
@@ -30,7 +31,7 @@ public interface IServiceFacade {
 	// Alejandro - UC2 Souvenir
 	// ********************************************
 	
-	public void createSouvenir(Souvenir souvenir);
+	public void createSouvenir(Souvenir souvenir) throws ServiceSouvenirException;
 	public List<Souvenir> getSouvenirsByIdVoyage(String idVoyage);
 	public void supprimeSouvenirById(int idSouvenir);
 	

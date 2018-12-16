@@ -18,6 +18,7 @@ import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Utilisateur;
 import dao.exception.ViolationPersistenceException;
 import dao.exception.uc1Administrer.DaoInexistantException;
+import dao.exception.uc2Souvenir.DaoSouvenirException;
 import dao.exception.uc4Voyage.DaoFacadeExceptionVoyage;
 import dao.exception.uc4Voyage.DaoVoyageException;
 import dao.exception.uc6Jouer.ConvertionException;
@@ -291,7 +292,7 @@ public class DaoFacade {
 	 * UC2 Souvenir
 	 * Alejandro
 	 */
-	public void createSouvenir(Souvenir souvenir) {
+	public void createSouvenir(Souvenir souvenir) throws DaoSouvenirException {
 		daoFacadeSouvenir.createSouvenir(souvenir);
 		
 	}

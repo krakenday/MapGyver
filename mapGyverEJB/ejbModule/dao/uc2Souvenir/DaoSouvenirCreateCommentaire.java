@@ -39,7 +39,7 @@ public class DaoSouvenirCreateCommentaire {
 		System.out.println("*****/////////Je suis dans DaoSouvenirCreateCommentaire--EntityCommentaire OK");
 		try {
 			
-			System.out.println("*****entityPhoto:" + entityCommentaire);
+			System.out.println("*****entityCommentaire:" + entityCommentaire);
 			em.persist(entityCommentaire);
 			System.out.println("*****APRES PERSIST Commentaire");
 			em.flush();

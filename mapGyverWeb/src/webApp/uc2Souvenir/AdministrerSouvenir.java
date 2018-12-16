@@ -10,9 +10,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import com.opensymphony.xwork2.Preparable;
 
-import business.uc2Souvenir.Photo;
 import business.uc2Souvenir.Souvenir;
 import clientServeur.IServiceFacade;
+import clientServeur.exception.ServiceSouvenirException;
 import utilitaire.Constantes;
 import webApp.ApplicationSupport;
 
@@ -28,14 +28,27 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 	private String				comm;
 	private String				idVoyage;
 	private	Long 				contentLenght;
-	private IServiceFacade 		iServiceFacade;
 	private	ControlesAjouter 	controles;
 	private	Souvenir			souvenir;
 	private List<Souvenir> 		catalogueSouvenirs;
 	private String				idSouvenir;
+	private IServiceFacade		iserviceFacade;
 	
 
-	
+	//méthode executée automatiquement
+	@Override
+	public void prepare() throws Exception {
+		try {
+			Context context = new InitialContext();
+
+			iserviceFacade = (IServiceFacade) context.lookup(Constantes.LOOKUP_SOUVENIR_AJOUTER);
+
+		} catch (NamingException e) {
+			e.printStackTrace();
+			// TODO exception
+		}
+		
+	}
 	
 
 	@Override
@@ -52,8 +65,9 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 		System.out.println("****************ControlSouvenirAjouter- Valeur SOUVENIR =" + souvenir);
 		
 		//appel de mon service
-		iServiceFacade.createSouvenir(souvenir);
+		createSouvenir(souvenir);
 		
+			
 		//rafraichir jsp
 		afficheSouvenirsVoyage();
 		
@@ -63,12 +77,24 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 		return "success";
 	}
 	
+	
+	private void createSouvenir(Souvenir souvenir) {
+		try {
+			iserviceFacade.createSouvenir(souvenir);
+		} catch (ServiceSouvenirException e) {
+			System.out.println("**********je catch dans mon client");
+			System.out.println("**********Message solution= " + e.getSolution());
+		}
+		
+	}
+
+
 	public String afficheSouvenirsVoyage() {
 		
 		System.out.println("*****AdministrerSouvenir-afficheSouvenirsVoyage() ");
 		System.out.println("*****Valeur de idVoyage =  "+ this.idVoyage);
 		//Test pour recup List de Souvenirs (voir si creer un autre ActionBean pour cela)
-		catalogueSouvenirs = iServiceFacade.getSouvenirsByIdVoyage(this.idVoyage);
+		catalogueSouvenirs = iserviceFacade.getSouvenirsByIdVoyage(this.idVoyage);
 		
 		return "success";
 	}
@@ -79,7 +105,7 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 		
 		//acces au service de suppression de souvenir
 		//si la suppression ne se fait pas un exception sera leve
-		iServiceFacade.supprimeSouvenirById(Integer.parseInt(this.idSouvenir));
+		iserviceFacade.supprimeSouvenirById(Integer.parseInt(this.idSouvenir));
 		
 		return "success";
 	}
@@ -125,25 +151,6 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 	public void setIdSouvenir(String id) {
 		this.idSouvenir = id;
 	}
-	
-	
-
-
-	//méthode executée automatiquement
-	@Override
-	public void prepare() throws Exception {
-		try {
-			Context context = new InitialContext();
-
-			iServiceFacade = (IServiceFacade) context.lookup(Constantes.LOOKUP_SOUVENIR_AJOUTER);
-
-		} catch (NamingException e) {
-			e.printStackTrace();
-			// TODO exception
-		}
-		
-	}
-
 	
 
 }

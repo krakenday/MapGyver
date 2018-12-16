@@ -7,15 +7,18 @@ import java.util.List;
 import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Password;
+
 import business.uc8Utilisateur.Utilisateur;
 import client.serveur.partager.exception.UserException;
 import service.exception.uc1Administrer.ServiceInexistantException;
+
 import business.uc2Souvenir.Souvenir;
 import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;
 import business.uc4Voyage.Voyage;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
+import clientServeur.exception.ServiceSouvenirException;
 
 
 
@@ -26,8 +29,11 @@ public interface IServiceFacade {
 	// Alejandro - UC2 Souvenir
 	// ********************************************
 	
-	public void createSouvenir(Souvenir souvenir);
+	
+	public void createSouvenir(Souvenir souvenir) throws ServiceSouvenirException;
+	
 	public List<Souvenir> getSouvenirsByIdVoyage(String idVoyage);
+	
 	public void supprimeSouvenirById(int idSouvenir);
 	
 	
@@ -128,8 +134,6 @@ public interface IServiceFacade {
 	// AlexB - UC6 Jouer
 	// ********************************************
 
-	//TODO Decomenter
-	//public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao;
 
 
 	// ***** Fin AlexB - UC6 Jouer
@@ -141,7 +145,6 @@ public interface IServiceFacade {
 
 	public void updateDescription(Description description);
 	
-
 	
 
 }

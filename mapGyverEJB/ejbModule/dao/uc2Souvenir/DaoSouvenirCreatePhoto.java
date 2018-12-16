@@ -1,5 +1,7 @@
 package dao.uc2Souvenir;
 
+import java.sql.SQLException;
+
 /**
  * Les souvenirs a persister peuvent etre de 3 types:
  * 	- photo + commentaire
@@ -18,12 +20,15 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.transaction.Transaction;
 
 import business.uc2Souvenir.Commentaire;
 import business.uc2Souvenir.Photo;
 import business.uc2Souvenir.Souvenir;
 import dao.DaoParam;
+import dao.exception.uc2Souvenir.DaoSouvenirErrorMessage;
+import dao.exception.uc2Souvenir.DaoSouvenirException;
 import entity.uc2Souvenir.EntityCommentaire;
 import entity.uc2Souvenir.EntityPhoto;
 
@@ -38,7 +43,7 @@ public class DaoSouvenirCreatePhoto {
 	private EntityPhoto entityPhoto;
 
 	//TODO cette classe se prete bien aux controles + JUnit
-	public void createSouvenir(Souvenir souvenir) {
+	public void createSouvenir(Souvenir souvenir) throws DaoSouvenirException {
 
 		System.out.println("*****dao.DaoSouvenirCreatePhoto-createSouvenir : debut methode");
 
@@ -65,10 +70,22 @@ public class DaoSouvenirCreatePhoto {
 			em.flush();
 			System.out.println("*****APRES FLUSH");
 			
-			
-		} catch (Exception e) {
-			System.out.println("*****dao.DaoSouvenirCreatePhoto-createSouvenir: dans le catch EXCEPTION de Persistence");
-			e.printStackTrace();
+		//je recupere le code erreur SQL 12899 qui correspond a une valeur trop importante
+		//Ici l'exception declenche si le commentaire depasse les 500 caracteres. 
+		} catch (PersistenceException e) {
+			Throwable t = e.getCause();
+			while (t != null) {
+				if (t instanceof java.sql.SQLException) {
+					System.out.println("je suis une instance de SQL Exception");
+					System.out.println("Error code = " + ((java.sql.SQLException) t).getErrorCode());
+					if(((java.sql.SQLException) t).getErrorCode()== 12899) {
+						System.out.println("je suis un code erreur 12899");
+						throw new DaoSouvenirException(DaoSouvenirErrorMessage.ERR_LONGUEUR);
+					}
+				} else {
+					t = t.getCause();
+				}
+			}
 		}
 		
 

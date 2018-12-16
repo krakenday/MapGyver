@@ -22,6 +22,7 @@ import clientServeur.IServiceFacade;
 import clientServeur.exception.ServiceFacadeExceptionVoyage;
 import service.exception.ViolationPersistenceException;
 import service.exception.uc1Administrer.ServiceInexistantException;
+import service.exception.uc2Souvenir.ServiceSouvenirException;
 import service.exception.uc4Voyage.ServiceVoyageException;
 import service.exception.uc6Jouer.ExceptionSurDao;
 import service.uc1Administrer.ServiceFacadeAdmin;
@@ -318,7 +319,7 @@ public class ServiceFacade implements IServiceFacade {
 	// ********************************************
 	
 	@Override
-	public void createSouvenir(Souvenir souvenir) {
+	public void createSouvenir(Souvenir souvenir) throws ServiceSouvenirException {
 		serviceFacadeSouvenir.createSouvenir(souvenir);
 	}
 

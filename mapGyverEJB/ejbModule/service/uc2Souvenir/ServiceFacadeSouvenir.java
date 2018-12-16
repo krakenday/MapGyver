@@ -13,6 +13,8 @@ import javax.ejb.Singleton;
 
 import business.uc2Souvenir.Souvenir;
 import dao.DaoFacade;
+import dao.exception.uc2Souvenir.DaoSouvenirException;
+import service.exception.uc2Souvenir.ServiceSouvenirException;
 
 @Singleton
 @LocalBean
@@ -21,9 +23,12 @@ public class ServiceFacadeSouvenir {
 	@EJB
 	private DaoFacade daoFacade;
 	
-	public void createSouvenir(Souvenir souvenir) {
+	@EJB
+	private ServiceSouvenirCreate serviceSouvenirCreate;
+	
+	public void createSouvenir(Souvenir souvenir) throws ServiceSouvenirException {
 		System.out.println("*****Dans Service Facade Souvenir*****");
-		daoFacade.createSouvenir(souvenir);
+		serviceSouvenirCreate.createSouvenir(souvenir);
 		
 	}
 
