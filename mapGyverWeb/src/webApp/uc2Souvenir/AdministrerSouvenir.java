@@ -33,6 +33,7 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 	private List<Souvenir> 		catalogueSouvenirs;
 	private String				idSouvenir;
 	private IServiceFacade		iserviceFacade;
+	private String				erreurDetecte;
 	
 
 	//méthode executée automatiquement
@@ -43,9 +44,9 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 
 			iserviceFacade = (IServiceFacade) context.lookup(Constantes.LOOKUP_SOUVENIR_AJOUTER);
 
+			erreurDetecte=null;
 		} catch (NamingException e) {
 			e.printStackTrace();
-			// TODO exception
 		}
 		
 	}
@@ -67,10 +68,8 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 		//appel de mon service
 		createSouvenir(souvenir);
 		
-			
 		//rafraichir jsp
 		afficheSouvenirsVoyage();
-		
 		
 		System.out.println("****************Apres appel du service");
 		
@@ -82,8 +81,7 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 		try {
 			iserviceFacade.createSouvenir(souvenir);
 		} catch (service.exception.uc2Souvenir.ServiceSouvenirException e) {
-			System.out.println("je catch enfin dans mon service!!!! MOTHER FU****");
-			
+			this.erreurDetecte= e.getSolution();
 		}
 		
 	}
@@ -104,8 +102,11 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 		System.out.println("*****Valeur de idSouvenir =  "+ this.idSouvenir);
 		
 		//acces au service de suppression de souvenir
-		//si la suppression ne se fait pas un exception sera leve
+		//si la suppression ne se fait pas un exception sera leve dans v2
 		iserviceFacade.supprimeSouvenirById(Integer.parseInt(this.idSouvenir));
+		
+		//rafraichir jsp
+		afficheSouvenirsVoyage();
 		
 		return "success";
 	}
@@ -151,6 +152,13 @@ public class AdministrerSouvenir extends ApplicationSupport implements Preparabl
 	public void setIdSouvenir(String id) {
 		this.idSouvenir = id;
 	}
+
+
+	public String getErreurDetecte() {
+		return erreurDetecte;
+	}
+
+
 	
 
 }

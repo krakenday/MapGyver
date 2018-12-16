@@ -57,6 +57,7 @@ public class DaoSouvenirGetSouvenirsVoyage {
 				photo = new Photo();
 				photo.setUrl(entPhoto.getUrl());
 				photo.setNom(entPhoto.getNom());
+				photo.setId(entPhoto.getId());
 				
 				if(entPhoto.getCommentaire() != null) {
 					commentaire = new Commentaire();

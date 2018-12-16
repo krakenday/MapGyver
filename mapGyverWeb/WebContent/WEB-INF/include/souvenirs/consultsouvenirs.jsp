@@ -35,6 +35,7 @@
 	                    <s:form  namespace="/mapgyver/uc2" action="dosupprimerSouvenir" theme="simple"
 				 			method="POST">
 				 		  	<s:hidden  value="%{#souvenir.id}" name="idSouvenir" />
+							<s:hidden name="idVoyage" value="747"/>
 	                      	<button type="submit" class="btn btn-sm btn-outline-secondary">Supr</button>
 	                    </s:form>
 	                      <button type=button class="btn btn-sm btn-outline-secondary">Edit</button>
@@ -86,5 +87,12 @@
 			  </div>
 			</div>
 		</s:form>
+		<s:if test="erreurDetecte!=null">
+			<div class="alert alert-danger  shadow alert-dismissible fade show" role="alert" id="erreurDetecte"><s:property value="erreurDetecte" />
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    	<span aria-hidden="true">&times;</span>
+			  	</button>
+		  	</div>
+		</s:if>
 	</div>
 </div>
