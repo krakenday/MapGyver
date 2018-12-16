@@ -168,7 +168,7 @@ public class Utilisateur implements Serializable{
 	}
 
 	/**
-	 * @return the id
+	 * @return id de l'utilisateur
 	 */
 	public int getId() {
 		return id;
@@ -182,7 +182,7 @@ public class Utilisateur implements Serializable{
 	}
 
 	/**
-	 * @return the nom
+	 * @return le nom de l'utilisateur
 	 */
 	public String getNom() {
 		return nom;
@@ -196,7 +196,7 @@ public class Utilisateur implements Serializable{
 	}
 
 	/**
-	 * @return the prenom
+	 * @return le prenom de l'utilisateur
 	 */
 	public String getPrenom() {
 		return prenom;
@@ -210,7 +210,7 @@ public class Utilisateur implements Serializable{
 	}
 
 	/**
-	 * @return the adresse
+	 * @return l'adresse de l'utilisateur
 	 */
 	public String getAdresse() {
 		return adresse;
@@ -224,7 +224,7 @@ public class Utilisateur implements Serializable{
 	}
 
 	/**
-	 * @return the email
+	 * @return l'email de l'utilisateur
 	 */
 	public String getEmail() {
 		return email;
@@ -238,7 +238,7 @@ public class Utilisateur implements Serializable{
 	}
 
 	/**
-	 * @return the telephone
+	 * @return le telephone de l'utilisateur
 	 */
 	public String getTelephone() {
 		return telephone;
@@ -252,7 +252,7 @@ public class Utilisateur implements Serializable{
 	}
 
 	/**
-	 * @return the dateInscrip
+	 * @return date d'inscription de l'utilisateur 
 	 */
 	public LocalDate getDateInscrip() {
 		return dateInscrip;
@@ -266,7 +266,7 @@ public class Utilisateur implements Serializable{
 	}
 
 	/**
-	 * @return the dateNaiss
+	 * @return date de naissance de l'utilisateur
 	 */
 	public LocalDate getDateNaiss() {
 		return dateNaiss;
@@ -279,6 +279,10 @@ public class Utilisateur implements Serializable{
 		this.dateNaiss = dateNaiss;
 	}
 	
+	/**
+	 * 
+	 * @return l'objet Password 
+	 */
 	public Password getMotDePasse() {
 		return motDePasse;
 	}
