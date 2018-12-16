@@ -16,7 +16,8 @@ import entity.uc4Voyage.EntityVoyage;
 
 @Singleton
 @LocalBean
-//TODO dans cette classe beaucoup de choses en commun avec DaoSouvenirCreatePhoto et les Factorys
+//TODO dans cette classe beaucoup de choses en commun avec
+//DaoSouvenirCreatePhoto et les Factorys
 //Voir si possible de factoriser.
 public class DaoSouvenirCreateCommentaire {
 

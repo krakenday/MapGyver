@@ -17,8 +17,8 @@ BEFORE INSERT
 ON MPG_PHOTO 
 FOR EACH ROW
 DECLARE 
-url_base VARCHAR2(20);
-nomtrim VARCHAR2(20);
+url_base VARCHAR2(50);
+nomtrim VARCHAR2(50);
 
 BEGIN
   nomtrim := REPLACE(:new.NOM ,' ','');
@@ -39,7 +39,17 @@ INSERT INTO MPG_PHOTO (IDD, ID_VOYAGE,NOM)
 ------------------------------------
 SELECT * 
   FROM MPG_COMENTAIRE, MPG_PHOTO
-    WHERE MPG_COMENTAIRE.IDD = MPG_PHOTO.ID_COM;
+    where id_voyage = 747;
+    
+    SELECT *
+      FROM MPG_COMENTAIRE
+        INNER JOIN MPG_PHOTO on MPG_COMENTAIRE.IDD.idd = MPG_PHOTO.ID_COM
+          WHERE MPG_PHOTO.ID_VOYAGE = 747;
+    
+      and not in (SELECT * 
+                    FROM MPG_COMENTAIRE, MPG_PHOTO
+                      WHERE MPG_COMENTAIRE.IDD = MPG_PHOTO.ID_COM;)
+
 
 
 

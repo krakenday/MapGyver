@@ -11,7 +11,12 @@ import business.uc2Souvenir.Photo;
 import business.uc2Souvenir.Souvenir;
 import business.uc4Voyage.Voyage;
 import dao.exception.uc2Souvenir.DaoSouvenirException;
-
+/**
+ * Classe permettant la redirection vers les differentes
+ * actions qui interagisent avec la Bdd 
+ * @author alejandro
+ *
+ */
 @Singleton
 @LocalBean
 public class DaoFacadeSouvenir {

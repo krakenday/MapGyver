@@ -1,7 +1,5 @@
 package dao.uc2Souvenir;
 
-import java.sql.SQLException;
-
 /**
  * Les souvenirs a persister peuvent etre de 3 types:
  * 	- photo + commentaire
@@ -21,15 +19,11 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
-import javax.transaction.Transaction;
-
-import business.uc2Souvenir.Commentaire;
 import business.uc2Souvenir.Photo;
 import business.uc2Souvenir.Souvenir;
 import dao.DaoParam;
 import dao.exception.uc2Souvenir.DaoSouvenirErrorMessage;
 import dao.exception.uc2Souvenir.DaoSouvenirException;
-import entity.uc2Souvenir.EntityCommentaire;
 import entity.uc2Souvenir.EntityPhoto;
 
 @Singleton
