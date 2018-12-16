@@ -337,4 +337,12 @@ public class ServiceFacade implements IServiceFacade {
 		}
 	}
 
+	// ToDo a supprimer une fois celle de Uc2 ajouter
+	public Photo getPhotoById(int idPhoto) {
+		Photo photo = new Photo();
+		photo.setId(idPhoto);
+		photo.setUrl("http://localhost:8080/mapGyverWeb/assets/img/jouer1.jpg");
+		return photo;
+	}
+
 }

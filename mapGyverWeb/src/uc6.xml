@@ -6,21 +6,22 @@
 <struts>
 	<package name="uc6" namespace="/mapgyver/uc6" extends="struts-default">
 		<action name="jouer" class="webApp.uc6Jouer.JouerAction">
-			<result name="success">/vue/jouerb.jsp</result>
+			<result name="success">/vue/jouer.jsp</result>
+			<result name="input">/vue/index.jsp</result>
 		</action>
 		<action name="listjeu">
-			<result>/vue/listjeub.jsp</result>
+			<result>/vue/listjeu.jsp</result>
 		</action>
 <action name="jouer*" class="webApp.uc6Jouer.JouerAction" method="{1}">
 			<result name="error">/vue/login.jsp</result>
-			<result name="success">/vue/jouerb.jsp</result>
+			<result name="success">/vue/jouer.jsp</result>
 			
 			<allowed-methods>repondreElire</allowed-methods>			
 		</action>
 
 <action name="listjeu*" class="webApp.uc6Jouer.ListJeuAction" method="{1}">
 			<result name="error">/vue/login.jsp</result>
-			<result name="success">/vue/listjeub.jsp</result>
+			<result name="success">/vue/listjeu.jsp</result>
 			<allowed-methods>listerJeu</allowed-methods>			
 		</action>				
 	</package>

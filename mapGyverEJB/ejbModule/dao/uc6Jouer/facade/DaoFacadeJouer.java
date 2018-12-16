@@ -61,7 +61,7 @@ public class DaoFacadeJouer {
 
 	public Jeu getJeuById(int idJeu) throws ConvertionException {
 
-		JeuEntity jeuEntity = crudao.getJeuById(610);
+		JeuEntity jeuEntity = crudao.getJeuById(idJeu);
 		Convertisseur convert = Convertisseur.getInstance();
 		Jeu jeu = convert.transformJeu((ElirePhotoEntity) jeuEntity);
 		return jeu;

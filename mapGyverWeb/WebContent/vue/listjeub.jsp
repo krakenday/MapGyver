@@ -57,7 +57,7 @@
     </thead>
     <tbody>
        <s:iterator value="jeux" status="jeuxStatus">
-       <s:url  namespace="/mapgyver/uc6" action="joueraffJeu"  var="urlAffJouer">
+       <s:url  namespace="/mapgyver/uc6" action="jouer"  var="urlAffJouer">
 		     						<s:param name="jeu"><s:property/></s:param>
 		     						</s:url>
       <tr>

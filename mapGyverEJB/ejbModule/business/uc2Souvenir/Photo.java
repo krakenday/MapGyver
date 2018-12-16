@@ -58,7 +58,7 @@ public class Photo extends Souvenir {
 
 	@Override
 	public String toString() {
-		return "Photo [nom=" + nom + ", url=" + url + "]";
+		return "Photo [ id=" + getId() + "nom=" + nom + ", url=" + url + "]";
 	}
 
 	public String getNom() {

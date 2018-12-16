@@ -35,7 +35,7 @@ public class ReponseElire extends Reponse {
 
 	@Override
 	public String toString() {
-		return "ReponseElireEntity [photoEntity=" + photo + "]";
+		return "Reponse [photo=" + photo + "]";
 	}
 
 	@Override

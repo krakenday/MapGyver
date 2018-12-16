@@ -56,17 +56,19 @@ public final class Convertisseur {
 		jeu.setDateFin(jeuElireEntity.getDateFin());
 
 		Collection<EntityPhoto> photosEntity = jeuElireEntity.getPhotosEntity();
-		Collection<Photo> photos = new ArrayList<Photo>();
-		Photo photo = new Photo();
+		ArrayList<Photo> convPhotos = new ArrayList<Photo>();
 		EntityPhoto photoEntity = new EntityPhoto();
 		Iterator<EntityPhoto> it = photosEntity.iterator();
+
 		while (it.hasNext()) {
 			photoEntity = it.next();
-			photo.setId(photoEntity.getId());
-			photo.setNom(photoEntity.getNom());
-			photo.setUrl(photoEntity.getUrl());
-			photos.add(photo);
+			Photo convPhoto = new Photo();
+			convPhoto.setId(photoEntity.getId());
+			convPhoto.setNom(photoEntity.getNom());
+			convPhoto.setUrl(photoEntity.getUrl());
+			convPhotos.add(convPhoto);
 		}
+		jeu.setPhotos(convPhotos);
 		return jeu;
 	}
 }

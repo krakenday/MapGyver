@@ -159,4 +159,7 @@ public interface IServiceFacade {
 
 	public void updateDescription(Description description);
 
+	// ToDo a supprimer une fois celle de Uc2 ajouter
+	public Photo getPhotoById(int idPhoto);
+
 }

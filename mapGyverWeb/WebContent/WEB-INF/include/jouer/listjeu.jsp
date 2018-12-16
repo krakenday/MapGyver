@@ -15,16 +15,14 @@
     </thead>
     <tbody>
        <s:iterator value="jeux" status="jeuxStatus">
-       <s:url  namespace="/mapgyver/uc6" action="joueraffJeu"  var="urlAffJouer">
-		     						<s:param name="jeu"><s:property/></s:param>
-		     						</s:url>
       <tr>
         <th scope="row"><s:property value="%{#jeuxStatus.count}"/></th>
         <td class="text-center"><s:property value="nom"/></td>
         <td class="text-right"><s:form namespace="/mapgyver/uc6" action="jouer" method="post" theme="simple">
-        	<s:hidden name="jeu" value="<s:property/>" />
-        	<s:submit cssClass="btn btn-dark btn-sm" value="jouer"></s:submit></s:form></td>
-        <td class="text-right"><a href="${urlAffJouer}" class="btn btn-dark btn-sm">Jouer</a></td>
+        	  <td class="text-center">
+        	  <s:hidden name="idJeu" value="%{id}"/>
+        	  <s:submit cssClass="btn btn-dark btn-sm" value="jouer"></s:submit>
+        	</s:form></td>
       </tr>
       </s:iterator>
     </tbody>
