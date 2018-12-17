@@ -8,12 +8,12 @@ import business.uc8Utilisateur.Groupe;
 import business.uc8Utilisateur.ListeDiffusion;
 import business.uc8Utilisateur.Password;
 
-//import business.uc6Jouer.ReponseElire;
+import business.uc6Jouer.ReponseElire;
 
 import business.uc8Utilisateur.Utilisateur;
 import client.serveur.partager.exception.UserException;
 import service.exception.uc1Administrer.ServiceInexistantException;
-//import service.exception.uc6Jouer.ExceptionSurDao;
+import service.exception.uc6Jouer.ExceptionSurDao;
 import business.uc3Partager.Description;
 import business.uc4Voyage.PointInteret;
 import business.uc4Voyage.RoadBook;

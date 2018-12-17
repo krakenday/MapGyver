@@ -1,16 +1,12 @@
 package business.uc2Souvenir;
 
-import java.io.Serializable;
-
 /**
  * Un Souvenir est soit un Commentaire, soit une Photo
  */
 
 import java.time.LocalDate;
 
-public abstract class Souvenir implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+public abstract class Souvenir {
 	
 	private int id;
 	private LocalDate dateEnregistre;

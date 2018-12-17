@@ -42,7 +42,6 @@ public class TestFabriqueUtilisateur {
 	
 	@Test
 	public void fabriqueUser() {
-		eUser.setId(5);
 		Password passoword= fabrique.createPassword(ePw);
 		Utilisateur utilisateur= fabrique.createUser(eUser);
 		utilisateur.setMotDePasse(passoword);

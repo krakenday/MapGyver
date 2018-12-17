@@ -1,6 +1,6 @@
 /* 
- Traitement des messages de vérifications & d'erreurs, TODO possibilité d'ameleorer le code 
- 	Penser à porter si besoin les modifications sur sb-admin.css ou bien sb-admin.min.css et en fin sur _login.scss 
+ Traitement des messages de vérifications & d'erreurs, TODO possibilité d'améleorer le code avec sass et les mixins
+ 	Penser à porter si besoin les modifications sur sb-admin.css ou bien sb-admin.min.css et enfin sur _login.scss 
 */
 #inputNom-error{
   font-size: 12px;
