@@ -13,7 +13,6 @@ import com.opensymphony.xwork2.Preparable;
 import business.uc6Jouer.Jeu;
 import business.uc6Jouer.Jeux;
 import clientServeur.IServiceFacade;
-import freemarker.template.utility.Execute;
 import service.exception.uc6Jouer.ExceptionSurDao;
 import webApp.ApplicationSupport;
 
@@ -22,8 +21,11 @@ public class ListJeuAction extends ApplicationSupport implements SessionAware, P
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> sessionAttributes = null;
 	private IServiceFacade service;
+	private int idJeu;
+	private int idPhoto;
 	private Jeux jeux;
 	private Jeu jeu;
+	private String msg;
 
 	@Override
 	public void prepare() throws Exception {
@@ -33,6 +35,21 @@ public class ListJeuAction extends ApplicationSupport implements SessionAware, P
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String deletJeu() {
+		String retour = "succesDelet";
+		try {
+			setJeu(service.getJeuById(idJeu));
+			service.removeJeu(jeu);
+			jeux = service.listJeu();
+			addActionMessage("La suppression a ete effectué avec succes");
+
+		} catch (ExceptionSurDao e) {
+			addActionError("La suppression n'a pas été effectué");
+			retour = ERROR;
+		}
+		return retour;
 	}
 
 	public String listerJeu() {
@@ -45,9 +62,25 @@ public class ListJeuAction extends ApplicationSupport implements SessionAware, P
 		return retour;
 	}
 
+	public int getIdJeu() {
+		return idJeu;
+	}
+
+	public void setIdJeu(int idJeu) {
+		this.idJeu = idJeu;
+	}
+
 	@Override
 	public void setSession(Map<String, Object> sessionAttr) {
 		this.sessionAttributes = sessionAttr;
+	}
+
+	public int getIdPhoto() {
+		return idPhoto;
+	}
+
+	public void setIdPhoto(int idPhoto) {
+		this.idPhoto = idPhoto;
 	}
 
 	public Jeux getJeux() {
@@ -64,6 +97,14 @@ public class ListJeuAction extends ApplicationSupport implements SessionAware, P
 
 	public void setJeu(Jeu jeu) {
 		this.jeu = jeu;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 
 }

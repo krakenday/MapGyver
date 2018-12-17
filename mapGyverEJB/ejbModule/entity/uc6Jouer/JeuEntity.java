@@ -87,8 +87,7 @@ public abstract class JeuEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Jeu [id=" + id + ", nom=" + nom + ", dateCreation=" + dateCreation + "Utilisateur Id "
-				+ utilisateur.getId() + "]";
+		return "Jeu [id=" + id + ", nom=" + nom + ", dateCreation=" + dateCreation + "Utilisateur Id " + "]";
 	}
 
 	/**

@@ -16,6 +16,7 @@
 	            </a>
 	          <s:form namespace="/mapgyver/uc6" action="jouerrepondreElire" method="post" theme="simple"> 
         	  <td class="text-center">
+        	   <s:hidden name="idJeu" value="%{jeu.id}"/>
         	  <s:hidden name="idPhoto" value="%{id}"/>
         	  <s:submit cssClass="btn btn-dark btn-sm" value="Voter"></s:submit>
         	</s:form>

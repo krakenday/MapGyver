@@ -89,7 +89,7 @@ public class ElirePhotoEntity extends JeuEntity {
 
 	@Override
 	public String toString() {
-		return "ElirePhoto=>" + super.toString() + "[dateFinInscription=" + dateFinInscription + ", dateDebut="
+		return "ElirePhotoEntity=>" + super.toString() + "[dateFinInscription=" + dateFinInscription + ", dateDebut="
 				+ dateDebut + ", dateFin=" + dateFin + "]";
 	}
 

@@ -60,6 +60,11 @@ public abstract class ReponseEntity implements Serializable {
 		this.jeuEntity = jeuEntity;
 	}
 
+	public void setGenId() {
+		getId().setIdJeu(jeuEntity.getId());
+		getId().setIdJoueur(utilisateurEntity.getId());
+	}
+
 	public GestId getId() {
 		return id;
 	}

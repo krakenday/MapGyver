@@ -61,6 +61,13 @@ public class FabriqueEntity {
 				createPassword(motDePasse));
 	}
 
+	public EntityUtilisateur createEntityUserJeu(Utilisateur utilisateur) {
+
+		String nom = utilisateur.getNom();
+		String email = utilisateur.getEmail();
+		return new EntityUtilisateur(nom, email);
+	}
+
 	// Fabriquer un groupe
 	public Groupe creeGroupe(EntityGroupe groupe) {
 		String nom = groupe.getNom();

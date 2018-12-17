@@ -31,9 +31,9 @@
         </li>
         
         <li class="nav-item">
-         <s:a class="nav-link" namespace="/mapgyver/uc6" action="jouer">
+         <s:a class="nav-link" namespace="/mapgyver/uc6" action="jeu">
               <i class="fas fa-fw fa-table"></i>
-            <span>Jouer</span></s:a>
+            <span>Cree un jeu</span></s:a>
         </li>
          <li class="nav-item">
          <s:a class="nav-link" namespace="/mapgyver/uc6" action="listjeulisterJeu">

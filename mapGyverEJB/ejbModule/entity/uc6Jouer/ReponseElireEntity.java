@@ -37,17 +37,17 @@ public class ReponseElireEntity extends ReponseEntity {
 //		super(dateEmission, utilisateurEntity, jeuEntity);
 //	}
 
-	public EntityPhoto getPhoto() {
+	public EntityPhoto getPhotoEntity() {
 		return photoEntity;
 	}
 
-	public void setPhoto(EntityPhoto photoEntity) {
+	public void setPhotoEntity(EntityPhoto photoEntity) {
 		this.photoEntity = photoEntity;
 	}
 
 	@Override
 	public String toString() {
-		return "ReponseElireEntity [photoEntity=" + photoEntity + "]";
+		return "ReponseElireEntity" + super.toString() + "] [photoEntity=" + photoEntity.getId() + "]";
 	}
 
 	@Override

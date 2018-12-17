@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import business.uc2Souvenir.Photo;
 import business.uc8Utilisateur.Utilisateur;
+import entity.uc6Jouer.ElirePhotoEntity;
 
 public class ElirePhoto extends Jeu {
 
@@ -77,6 +78,6 @@ public class ElirePhoto extends Jeu {
 
 	@Override
 	public Class<?> getMappingEntity() {
-		return ReponseElire.class;
+		return ElirePhotoEntity.class;
 	}
 }

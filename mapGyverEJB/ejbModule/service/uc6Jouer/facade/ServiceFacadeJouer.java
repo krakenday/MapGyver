@@ -51,4 +51,8 @@ public class ServiceFacadeJouer {
 	public Jeux listJeu() throws ExceptionSurDao {
 		return daoFacade.listJeu();
 	}
+
+	public void removeJeu(Jeu jeu) throws ExceptionSurDao {
+		daoFacade.removeJeu(jeu);
+	}
 }

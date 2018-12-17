@@ -20,10 +20,6 @@ public class ReponseElire extends Reponse {
 		this.photo = photo;
 	}
 
-//	public ReponseElireEntity(LocalDate dateEmission, EntityUtilisateur utilisateurEntity, JeuEntity jeuEntity) {
-//		super(dateEmission, utilisateurEntity, jeuEntity);
-//	}
-
 	public Photo getPhoto() {
 		return photo;
 	}
@@ -34,7 +30,7 @@ public class ReponseElire extends Reponse {
 
 	@Override
 	public String toString() {
-		return "ReponseElireEntity [photoEntity=" + photo + "]";
+		return "Reponse [photo=" + photo + "]";
 	}
 
 }

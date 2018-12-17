@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -46,32 +45,7 @@
 					<a href="<%=request.getContextPath()%>">MapGyver</a></li>
 					<li class="breadcrumb-item active">Jouer</li>
 				</ol>
-				<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <td class="text-center">liste des Jeux</td>
-       <td></td>
-      </tr>
-    </thead>
-    <tbody>
-       <s:iterator value="jeux" status="jeuxStatus">
-       <s:url  namespace="/mapgyver/uc6" action="jouer"  var="urlAffJouer">
-		     						<s:param name="jeu"><s:property/></s:param>
-		     						</s:url>
-      <tr>
-        <th scope="row"><s:property value="%{#jeuxStatus.count}"/></th>
-        <td class="text-center"><s:property value="nom"/></td>
-        <td class="text-right"><s:form namespace="/mapgyver/uc6" action="jouer" method="post" theme="simple">
-        	<s:hidden name="jeu" value="<s:property/>" />
-        	<s:submit cssClass="btn btn-dark btn-sm" value="jouer"></s:submit></s:form></td>
-        <td class="text-right"><a href="${urlAffJouer}" class="btn btn-dark btn-sm">Jouer</a></td>
-      </tr>
-      </s:iterator>
-    </tbody>
-  </table>
-</div>
+				<jsp:include page="/WEB-INF/include/jouer/jeu.jsp" />
 
 			</div>
 			<!-- /.container-fluid -->

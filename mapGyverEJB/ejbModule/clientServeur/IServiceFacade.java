@@ -150,6 +150,8 @@ public interface IServiceFacade {
 	 */
 	public Jeux listJeu() throws ExceptionSurDao;
 
+	public void removeJeu(Jeu jeu) throws ExceptionSurDao;
+
 	// ***** Fin AlexB - UC6 Jouer
 
 	// ********************************************

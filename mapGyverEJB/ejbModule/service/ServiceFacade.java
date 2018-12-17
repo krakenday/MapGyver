@@ -301,6 +301,10 @@ public class ServiceFacade implements IServiceFacade {
 		return null;
 	}
 
+	public void removeJeu(Jeu jeu) throws ExceptionSurDao {
+		serviceFacadeJouer.removeJeu(jeu);
+	}
+
 	@Override
 	public ArrayList<Photo> uc1GetAllPhoto() {
 		ArrayList<Photo> photos = serviceFacadeAdmin.uc1GetAllPhoto();

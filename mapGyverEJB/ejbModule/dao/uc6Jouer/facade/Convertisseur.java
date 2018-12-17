@@ -9,12 +9,15 @@ import business.uc2Souvenir.Photo;
 import business.uc6Jouer.ElirePhoto;
 import business.uc6Jouer.Jeu;
 import business.uc6Jouer.Reponse;
+import business.uc6Jouer.ReponseElire;
 import dao.exception.uc6Jouer.ConvertionException;
 import dao.uc8Utilisateur.FabriqueEntity;
 import entity.uc2Souvenir.EntityPhoto;
 import entity.uc6Jouer.ElirePhotoEntity;
 import entity.uc6Jouer.JeuEntity;
+import entity.uc6Jouer.ReponseElireEntity;
 import entity.uc6Jouer.ReponseEntity;
+import entity.uc8Utilisateur.EntityUtilisateur;
 
 public final class Convertisseur {
 
@@ -71,6 +74,27 @@ public final class Convertisseur {
 		jeu.setPhotos(convPhotos);
 		return jeu;
 	}
+
+	protected JeuEntity transformJeu(ElirePhoto elirePhoto) throws ConvertionException {
+		ElirePhotoEntity jeuEntity = (ElirePhotoEntity) new JeuMetierToEntity<>().jeuMetierToEntity(elirePhoto);
+		return jeuEntity;
+	}
+
+	protected JeuEntity transformJeu(Jeu jeu) throws ConvertionException {
+		JeuEntity jeuEntity = new JeuMetierToEntity<>().jeuMetierToEntity(jeu);
+		return jeuEntity;
+	}
+
+	protected ReponseElireEntity transformReponse(ReponseElire reponseElire) throws ConvertionException {
+		ReponseElireEntity reponseElireEntity = (ReponseElireEntity) new ReponseMetierToEntity<>()
+				.reponseMetierToEntity(reponseElire);
+		Photo photo = reponseElire.getPhoto();
+		EntityPhoto photoEntity = new EntityPhoto();
+		photoEntity.setId(photo.getId());
+		photoEntity.setUrl(photo.getUrl());
+		reponseElireEntity.setPhotoEntity(photoEntity);
+		return reponseElireEntity;
+	}
 }
 
 /**
@@ -122,8 +146,7 @@ class ReponseEntityToMetier<T extends ReponseEntity> {
 class ReponseMetierToEntity<T extends Reponse> {
 
 	protected ReponseEntity reponseMetierToEntity(T reponse) throws ConvertionException {
-
-		FabriqueEntity fabriqueEntity = new FabriqueEntity();
+		Convertisseur convert = Convertisseur.getInstance();
 		Class<?> type = reponse.getMappingEntity();
 		Object object = null;
 		try {
@@ -135,8 +158,13 @@ class ReponseMetierToEntity<T extends Reponse> {
 		ReponseEntity reponseEntity = null;
 		if (object instanceof ReponseEntity) {
 			reponseEntity = (ReponseEntity) object;
-			reponseEntity.setDateEmission(reponseEntity.getDateEmission());
-			reponseEntity.setUtilisateurEntity(fabriqueEntity.createEntityUser(reponse.getUtilisateur()));
+			reponseEntity.setJeuEntity(convert.transformJeu(reponse.getJeu()));
+			reponseEntity.setDateEmission(reponse.getDateEmission());
+			EntityUtilisateur entityUtilisateur = new EntityUtilisateur();
+			entityUtilisateur.setId(reponse.getUtilisateur().getId());
+			entityUtilisateur.setEmail(reponse.getUtilisateur().getEmail());
+			reponseEntity.setUtilisateurEntity(entityUtilisateur);
+			reponseEntity.setGenId();
 		}
 		return reponseEntity;
 	}
@@ -178,5 +206,41 @@ class JeuEntityToMetier<T extends JeuEntity> {
 			jeu.setUtilisateur(jeuEntity.getUtilisateur());
 		}
 		return jeu;
+	}
+}
+
+/**
+ * Permet de convertir un Jeu Metier en JeuEntity
+ * 
+ * @author lours
+ *
+ * @param <T>
+ */
+class JeuMetierToEntity<T extends Jeu> {
+	/**
+	 * Permet de convertir un JeuEntity en Jeu Metier
+	 * 
+	 * @author lours
+	 *
+	 * @param <T>
+	 */
+	protected JeuEntity jeuMetierToEntity(T jeu) throws ConvertionException {
+		Class<?> type = jeu.getMappingEntity();
+		Object object = null;
+		try {
+			object = type.getConstructor().newInstance();
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			throw new ConvertionException(e.getMessage(), e.getCause());
+		}
+		JeuEntity jeuEntity = null;
+		if (object instanceof JeuEntity) {
+			jeuEntity = (JeuEntity) object;
+			jeuEntity.setId(jeu.getId());
+			jeuEntity.setNom(jeu.getNom());
+			jeuEntity.setDateCreation(jeu.getDateCreation());
+			jeuEntity.setUtilisateur(jeu.getUtilisateur());
+		}
+		return jeuEntity;
 	}
 }

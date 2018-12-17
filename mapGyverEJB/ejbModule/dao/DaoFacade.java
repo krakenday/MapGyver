@@ -1,11 +1,15 @@
 package dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
+import javax.persistence.PersistenceException;
+import javax.transaction.TransactionRolledbackException;
 
 import business.uc2Souvenir.Photo;
 import business.uc3Partager.Description;
@@ -278,7 +282,7 @@ public class DaoFacade {
 	public void createReponseElire(ReponseElire reponseElire) throws ExceptionSurDao {
 		try {
 			daoFacadeJouer.createReponseElire(reponseElire);
-		} catch (ConvertionException e) {
+		} catch (ConvertionException | TransactionRolledbackException | SQLException | PersistenceException e) {
 			throw new ExceptionSurDao(e.getMessage(), e.getCause());
 		}
 	}
@@ -286,7 +290,7 @@ public class DaoFacade {
 	public Jeu getJeuById(int idJeu) throws ExceptionSurDao {
 		try {
 			return daoFacadeJouer.getJeuById(idJeu);
-		} catch (ConvertionException e) {
+		} catch (ConvertionException | EJBTransactionRolledbackException | IllegalArgumentException | SQLException e) {
 			throw new ExceptionSurDao(e.getMessage(), e.getCause());
 		}
 
@@ -295,7 +299,15 @@ public class DaoFacade {
 	public Jeux listJeu() throws ExceptionSurDao {
 		try {
 			return daoFacadeJouer.listJeu();
-		} catch (ConvertionException e) {
+		} catch (ConvertionException | EJBTransactionRolledbackException | IllegalArgumentException | SQLException e) {
+			throw new ExceptionSurDao(e.getMessage(), e.getCause());
+		}
+	}
+
+	public void removeJeu(Jeu jeu) throws ExceptionSurDao {
+		try {
+			daoFacadeJouer.removeJeu(jeu);
+		} catch (EJBTransactionRolledbackException | IllegalArgumentException | SQLException e) {
 			throw new ExceptionSurDao(e.getMessage(), e.getCause());
 		}
 	}

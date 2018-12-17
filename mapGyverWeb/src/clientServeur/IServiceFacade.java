@@ -162,4 +162,6 @@ public interface IServiceFacade {
 	// ToDo a supprimer une fois celle de Uc2 ajouter
 	public Photo getPhotoById(int idPhoto);
 
+	public void removeJeu(Jeu jeu) throws ExceptionSurDao;
+
 }

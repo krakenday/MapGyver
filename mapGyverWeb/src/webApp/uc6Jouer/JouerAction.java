@@ -41,13 +41,22 @@ public class JouerAction extends ApplicationSupport implements SessionAware {
 		}
 	}
 
-	public String repondreElire() throws ServiceInexistantException, ExceptionSurDao {
+	public String repondreElire() {
 		init();
-		Utilisateur utilisateur = service.getUserByEmail(sessionAttributes.get("inputEmail").toString());
-		setPhoto(service.getPhotoById(idPhoto));
-		ReponseElire reponseElire = new ReponseElire(jeu, utilisateur, LocalDate.now(), photo);
-		System.out.println("ReponseElireAction ==>" + reponseElire);
-		String retour = SUCCESS;
+		String retour = "succesRepondreElire";
+		Utilisateur utilisateur;
+		try {
+			utilisateur = service.getUserByEmail(sessionAttributes.get("inputEmail").toString());
+			setPhoto(service.getPhotoById(idPhoto));
+			setJeu(idJeu);
+			ReponseElire reponseElire = new ReponseElire(jeu, utilisateur, LocalDate.now(), photo);
+			service.createReponseElire(reponseElire);
+			addActionMessage("Votre reponse a ete prise en compte");
+		} catch (ServiceInexistantException | ExceptionSurDao e) {
+			addActionError("Erreur lors de votre vote");
+			retour = ERROR;
+		}
+
 		return retour;
 	}
 
@@ -76,7 +85,6 @@ public class JouerAction extends ApplicationSupport implements SessionAware {
 		try {
 			this.jeu = service.getJeuById(idJeu);
 		} catch (ExceptionSurDao e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
