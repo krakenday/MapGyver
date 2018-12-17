@@ -24,7 +24,14 @@ import entity.uc8Utilisateur.EntityUtilisateur;
 @Singleton
 @LocalBean
 public class DaoFacadeVoyage {
-
+	
+	/** Recuperer tous les roadBook (Requete nommee Voir META-INF orm.xml)  */
+	private static final String UC4_FINDALL_ROADBOOK 	= "UC4_findAll_RoadBook";
+	/** Recuperer tous les voyages (Requete nommee Voir META-INF orm.xml)  */
+	private static final String UC4_FINDALL_VOYAGES 	= "UC4_findAll_Voyage";
+	/** Recuperer tous les point d'interet (Requete nommee Voir META-INF orm.xml)  */
+	private static final String UC4_FINDALL_POI 		= "UC4_findAll_POI";
+	
 	@EJB
 	private DaoGenericVoyage daoGenericVoyage;
 	
@@ -39,7 +46,8 @@ public class DaoFacadeVoyage {
 	}
 
 	public List<Voyage> readVoyageOrderById() throws DaoVoyageException {
-		List<EntityVoyage> listEntity = daoGenericVoyage.findAllVoyage();
+		List<EntityVoyage> listEntity = 
+				daoGenericVoyage.findAll(EntityVoyage.class, UC4_FINDALL_VOYAGES);
 		List<Voyage> list = factoryEntity.createFromEntity(listEntity);
 		return list;
 	}
@@ -71,7 +79,8 @@ public class DaoFacadeVoyage {
 	}
 
 	public List<RoadBook> readRoadBookOrderById() throws DaoVoyageException {
-		List<EntityRoadBook> listEntity = daoGenericVoyage.findAllRoadBook();
+		List<EntityRoadBook> listEntity = 
+				daoGenericVoyage.findAll(EntityRoadBook.class, UC4_FINDALL_ROADBOOK);
 		List<RoadBook> list = factoryEntity.createFromEntityRoadBook(listEntity);
 		return list;
 	}
@@ -116,7 +125,8 @@ public class DaoFacadeVoyage {
 	}
 
 	public List<PointInteret> readPOInteretOrderById() throws DaoVoyageException {
-		List<EntityPointInteret> listEntityPOI = daoGenericVoyage.findAllPOI();
+		List<EntityPointInteret> listEntityPOI = 
+				daoGenericVoyage.findAll(EntityPointInteret.class, UC4_FINDALL_POI);
 		List<PointInteret> listPOI = factoryEntity.createFromEntityPOI(listEntityPOI);
 		return listPOI;
 	}
@@ -134,7 +144,5 @@ public class DaoFacadeVoyage {
 	public PointInteret getPOInteretById(int id) throws DaoVoyageException {
 		return factoryEntity.createFromEntity(daoGenericVoyage.find(id, EntityPointInteret.class));
 	}
-
-
 
 }

@@ -19,8 +19,11 @@ public class ServiceFacadeVoyage {
 
 	@EJB
 	private ServiceVoyage serviceVoyage;
+	
+	private ControlVoyage controlVoyage = new ControlVoyage();
 
 	public Voyage createVoyage(Voyage voyage) throws ServiceVoyageException {
+		checkRGVoyage(voyage);
 		return serviceVoyage.createVoyage(voyage);
 	}
 
@@ -29,6 +32,7 @@ public class ServiceFacadeVoyage {
 	}
 
 	public Voyage updateVoyage(Voyage voyage) throws ServiceVoyageException {
+		checkRGVoyage(voyage);
 		return serviceVoyage.updateVoyage(voyage);
 	}
 
@@ -49,6 +53,9 @@ public class ServiceFacadeVoyage {
 	}
 
 	public RoadBook updateRoadBook(RoadBook roadBook) throws ServiceVoyageException {
+		for (Voyage voyage : roadBook.getVoyages()) {
+			checkRGVoyage(voyage);
+		}
 		return serviceVoyage.updateRoadBook(roadBook);
 	}
 
@@ -88,6 +95,13 @@ public class ServiceFacadeVoyage {
 		return serviceVoyage.getPOInteretById(id);
 	}
 
+	private void checkRGVoyage(Voyage voyage) throws ServiceVoyageException {
+		try {
+			controlVoyage.checkVoyage(voyage);
+		} catch (VoyageRGException e) {
+			throw new ServiceVoyageException(e.getMessage());
+		}
+	}
 
 
 

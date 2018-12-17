@@ -88,7 +88,7 @@ public class TestServiceCrudRoadBook {
 		try {
 			serviceMpg.getRoadBookByUser(toto);
 		} catch (ServiceFacadeExceptionVoyage e) {
-			assertEquals(".RoadBook.Dao.Find -> inexistant", e.getMessage());
+			assertEquals(".RoadBook.Dao.Find -> impossible", e.getMessage());
 		}
 	}
 

@@ -98,7 +98,7 @@ public class VoyageAction extends ApplicationSupport implements SessionAware, Pr
 			return ROADBOOK_SUCCESS;
 		} catch (ServiceFacadeExceptionVoyage e) {
 			probleme = ControleurVoyageMsg.ERROR_DELETE.getSolution() 
-					+" *Err. "+ " *Err. RoadBook" + e.getMessage();
+					+" *Err. RoadBook" + e.getMessage();
 			return ROADBOOK_ERROR;
 		}	
 	}
@@ -112,10 +112,10 @@ public class VoyageAction extends ApplicationSupport implements SessionAware, Pr
 			success = ControleurVoyageMsg.SUCCESS_INSERT.getMsg();
 			return ROADBOOK_SUCCESS;
 		} catch (ExceptionServiceVoyage e) {
-			probleme = ControleurVoyageMsg.ERROR_GET.getSolution() +" *Err. RoadBook"+ e.getMessage();
+			probleme = ControleurVoyageMsg.ERROR_GET.getSolution() +" : "+ e.getMessage();
 			return VOYAGE_ERROR;
 		}	catch (ServiceFacadeExceptionVoyage e) {
-			probleme = ControleurVoyageMsg.ERROR_INSERT.getSolution() +" *Err. RoadBook"+ e.getMessage();
+			probleme = ControleurVoyageMsg.ERROR_INSERT.getSolution() +" : "+ e.getMessage();
 			return VOYAGE_ERROR;
 		}
 	}
@@ -141,7 +141,7 @@ public class VoyageAction extends ApplicationSupport implements SessionAware, Pr
 		try {
 			voyages = serviceMpg.readVoyageOrderById();
 		} catch (ServiceFacadeExceptionVoyage e) {
-			probleme = ControleurVoyageMsg.ERROR_GET.getSolution() +" *Err. Voyage"+ e.getMessage();
+			probleme = ControleurVoyageMsg.ERROR_FIND.getSolution();
 		}	
 		return ALL_VOYAGES;
 	}
@@ -163,10 +163,10 @@ public class VoyageAction extends ApplicationSupport implements SessionAware, Pr
 			success = ControleurVoyageMsg.SUCCESS_UPDATE.getMsg();
 			return ROADBOOK_SUCCESS;
 		} catch (ExceptionServiceVoyage e) {
-			probleme = ControleurVoyageMsg.ERROR_SAISIES.getSolution() +" *Err. "+ e.getMessage();
+			probleme = ControleurVoyageMsg.ERROR_SAISIES.getSolution() +" : "+ e.getMessage();
 			return VOYAGE_ERROR;
 		} catch (ServiceFacadeExceptionVoyage e) {
-			probleme = ControleurVoyageMsg.ERROR_UPDATE.getSolution() +" *Err. Voyage"+ e.getMessage();
+			probleme = ControleurVoyageMsg.ERROR_UPDATE.getSolution() +" : "+ e.getMessage();
 			return VOYAGE_ERROR;
 		}
 

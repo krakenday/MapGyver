@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Projet MapGyver
@@ -160,6 +161,25 @@ public class Voyage implements Serializable {
 	public String toString() {
 		return String.format("Voyage [id= %s, nom= %s, dateDebut= %s, nbParticipant= %s, pointInteret= %s]",
 				id, nom, dateDebut, nbParticipant, pointInteret);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(dateDebut, id, nbParticipant, nom, pointInteret);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Voyage))
+			return false;
+		Voyage other = (Voyage) obj;
+		return Objects.equals(dateDebut, other.dateDebut) && id == other.id
+				&& Objects.equals(nbParticipant, other.nbParticipant) && Objects.equals(nom, other.nom)
+				&& Objects.equals(pointInteret, other.pointInteret);
 	}
 	
 }

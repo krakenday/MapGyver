@@ -10,28 +10,25 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import dao.DaoParam;
-import dao.exception.uc1Administrer.DaoInexistantException;
 import dao.exception.uc4Voyage.DaoVoyageErrorMessage;
 import dao.exception.uc4Voyage.DaoVoyageException;
-import entity.uc4Voyage.EntityPointInteret;
-import entity.uc4Voyage.EntityRoadBook;
-import entity.uc4Voyage.EntityVoyage;
-import entity.uc8Utilisateur.EntityUtilisateur;
 
 @Singleton
 @LocalBean
 public class DaoGenericVoyage {
-
 
 	@PersistenceContext(unitName = DaoParam.CONTEXT_PERSISTANCE)
 	private EntityManager em;
 
 	private static final String ZONE_EXCEPTION_MSG = ".Dao";
 
-	private static final String UC4_VOYAGE_FIND_ALL 	= "UC4_Voyage_findAll";
-	private static final String UC4_ROADBOOK_FIND_ALL 	= "UC4_RoadBook_findAll";
-	private static final String UC4_POI_FIND_ALL 		= "UC4_POI_findAll";
-
+	
+	/**
+	 * Persiste un objet dans la Bdd
+	 * @param entity a faire persister
+	 * @return l'entity sauvegardé avec son Id
+	 * @throws DaoVoyageException
+	 */
 	public <T> T create(T entity) throws DaoVoyageException {
 		String daoExceptionMsg = ZONE_EXCEPTION_MSG + ".Insert -> ";
 		try {
@@ -51,13 +48,19 @@ public class DaoGenericVoyage {
 			e.printStackTrace();
 			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_INSERT.getId(),
 					daoExceptionMsg + DaoVoyageErrorMessage.ERR_INSERT.getMsg());
-		}
-		catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_BDD.getId(),
+					daoExceptionMsg + DaoVoyageErrorMessage.ERR_BDD.getMsg());
 		}
 		return entity;
 	}
 
+	/**
+	 * Supprime un element sauvegardé dans la Bdd
+	 * @param id de l'element a supprimer
+	 * @param classe de l'element a supprimer
+	 * @throws DaoVoyageException
+	 */
 	public <T> void delete(int id, Class<T> classe) throws DaoVoyageException {
 		String daoExceptionMsg = ZONE_EXCEPTION_MSG + ".Delete -> ";
 		try {
@@ -68,10 +71,18 @@ public class DaoGenericVoyage {
 		} catch (PersistenceException e) {
 			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_DELETE.getId(),
 					daoExceptionMsg + DaoVoyageErrorMessage.ERR_DELETE.getMsg());
+		} catch (Exception e) {
+			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_BDD.getId(),
+					daoExceptionMsg + DaoVoyageErrorMessage.ERR_BDD.getMsg());
 		}
-
 	}
 
+	/**
+	 * Met a jour une entity prealablement sauvegardé dans la Bdd
+	 * @param entity déjà sauvegardé, contenant les nouveaux éléments a sauvegardé
+	 * @return l'entity mis a jour
+	 * @throws DaoVoyageException
+	 */
 	public <T> T update(T entity) throws DaoVoyageException {
 		T newEntity = null;
 		String daoExceptionMsg = ZONE_EXCEPTION_MSG + ".Update -> ";
@@ -80,10 +91,20 @@ public class DaoGenericVoyage {
 		} catch (PersistenceException e) {
 			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_UPDATE.getId(),
 					daoExceptionMsg + DaoVoyageErrorMessage.ERR_UPDATE.getMsg());
+		} catch (Exception e) {
+			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_BDD.getId(),
+					daoExceptionMsg + DaoVoyageErrorMessage.ERR_BDD.getMsg());
 		}
 		return newEntity;
 	}
 
+	/**
+	 * Récupere un objet sauvegardé, selon son id
+	 * @param id de l'objet a recuperer
+	 * @param classe de l'objet a recuperer
+	 * @return l'objet dont l'id et la classe correspond aux parametres
+	 * @throws DaoVoyageException
+	 */
 	public <T> T find(int id, Class<T> classe) throws DaoVoyageException {
 		String daoExceptionMsg = ZONE_EXCEPTION_MSG + ".Find -> ";
 		T entity = em.find(classe,id);
@@ -92,10 +113,25 @@ public class DaoGenericVoyage {
 		} catch (PersistenceException e) {
 			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_INEXISTANT.getId(),
 					daoExceptionMsg + DaoVoyageErrorMessage.ERR_INEXISTANT.getMsg());
+		} catch (Exception e) {
+			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_BDD.getId(),
+					daoExceptionMsg + DaoVoyageErrorMessage.ERR_BDD.getMsg());
 		}
 		return entity;
 	}
 
+	/**
+	 * Recupere un objet d'une classe qui est en relation OneToOne
+	 * avec un objet d'une seconde classe dont on connait l'id 
+	 * @param className classe de l'objet que l'on souhaite recuperer
+	 * @param joinAttributeName attribut qui met en relation les 2 classes
+	 * @param idSecondClasseName nom de l'attribut dans la premiere classe
+	 *  qui permet de referencer un objet de la seconde classe
+	 * @param idSecondClasse numero de l'id du second objet
+	 * @return un objet de la premiere classe qui est en relation OneToOne 
+	 * avec un objet d'une seconde classe dont on connait l'id.
+	 * @throws DaoVoyageException
+	 */
 	public <T> T getOneToOneBySecondClassId(String className, String joinAttributeName, 
 			String idSecondClasseName, int idSecondClasse) throws DaoVoyageException {
 		String daoExceptionMsg = ZONE_EXCEPTION_MSG + ".Find -> ";
@@ -110,26 +146,24 @@ public class DaoGenericVoyage {
 		} catch (PersistenceException e) {
 			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_INEXISTANT.getId(),
 					daoExceptionMsg + DaoVoyageErrorMessage.ERR_INEXISTANT.getMsg());
+		} catch (Exception e) {
+			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_BDD.getId(),
+					daoExceptionMsg + DaoVoyageErrorMessage.ERR_BDD.getMsg());
 		}
-
-	}
-	
-	public List<EntityVoyage> findAllVoyage() throws DaoVoyageException {
-		return findAll(EntityVoyage.class, UC4_VOYAGE_FIND_ALL);
-	}
-	
-	public List<EntityRoadBook> findAllRoadBook() throws DaoVoyageException {
-		return findAll(EntityRoadBook.class, UC4_ROADBOOK_FIND_ALL);
-	}
-	
-	public List<EntityPointInteret> findAllPOI() throws DaoVoyageException {
-		return findAll(EntityPointInteret.class, UC4_POI_FIND_ALL);
 	}
 
-	private <T> List<T> findAll(Class<T> classe, String string) throws DaoVoyageException {
+	/**
+	 * Liste tous les objets sauvegardés d'une classe
+	 * @param classe des objets à retourner
+	 * @param requeteName nom de la requete 
+	 * @return une liste d'objet retourner par la requete dont la classe 
+	 * correspond à la classe indiqué en parametre
+	 * @throws DaoVoyageException
+	 */
+	public <T> List<T> findAll(Class<T> classe, String requeteName) throws DaoVoyageException {
 		String daoExceptionMsg = ZONE_EXCEPTION_MSG + ".FindAll -> ";
 		try {
-			Query query = em.createNamedQuery(string);
+			Query query = em.createNamedQuery(requeteName);
 
 			@SuppressWarnings("unchecked")
 			List<T> listEntity = query.getResultList();
@@ -140,7 +174,8 @@ public class DaoGenericVoyage {
 			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_INEXISTANT.getId(),
 					daoExceptionMsg + DaoVoyageErrorMessage.ERR_INEXISTANT.getMsg());
 		} catch (Exception e) {
-			throw new DaoVoyageException(0,"Erreur HQL");
+			throw new DaoVoyageException(DaoVoyageErrorMessage.ERR_BDD.getId(),
+					daoExceptionMsg + DaoVoyageErrorMessage.ERR_BDD.getMsg());
 		}
 	}
 

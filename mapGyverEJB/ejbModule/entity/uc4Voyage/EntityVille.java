@@ -18,7 +18,7 @@ public class EntityVille extends EntityPointInteret {
 
 	private static final long serialVersionUID = 1L;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch=FetchType.LAZY)
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.MERGE }, fetch=FetchType.LAZY)
 	@JoinColumn(name = "id_pay", unique = false, nullable = true) 
 	private EntityPays entityPays;
 

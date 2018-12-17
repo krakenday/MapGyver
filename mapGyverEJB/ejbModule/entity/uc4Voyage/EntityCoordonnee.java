@@ -3,6 +3,7 @@ package entity.uc4Voyage;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,15 +12,12 @@ import javax.persistence.Table;
 
 import dao.util.UtilBdD;
 
-@Entity
-@Table(name=UtilBdD.ENTITY_COORDONNEE)
+@Embeddable
 public class EntityCoordonnee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@Column(name="id_Crd")
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="seqCoord")
+	
 	private int 	id;
 	
 	/**

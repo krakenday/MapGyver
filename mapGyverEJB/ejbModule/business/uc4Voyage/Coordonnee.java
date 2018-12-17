@@ -1,6 +1,7 @@
 package business.uc4Voyage;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Coordonnee implements Serializable  {
 
@@ -55,6 +56,24 @@ public class Coordonnee implements Serializable  {
 	@Override
 	public String toString() {
 		return "Coordonnee [id=" + id + ", lat.=" + latitude + ", long.=" + longitude + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, latitude, longitude);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Coordonnee))
+			return false;
+		Coordonnee other = (Coordonnee) obj;
+		return id == other.id && Double.doubleToLongBits(latitude) == Double.doubleToLongBits(other.latitude)
+				&& Double.doubleToLongBits(longitude) == Double.doubleToLongBits(other.longitude);
 	}
 	
 }

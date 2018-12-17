@@ -7,6 +7,7 @@ public enum DaoVoyageErrorMessage {
 	ERR_DELETE				(302, "delete", "verifié les données"), 
 	ERR_UPDATE				(303, "update", "verifié les données"), 
 	ERR_INEXISTANT			(304, "inexistant", "verifié les données"), 
+	ERR_BDD					(305, "impossible", "verifié BDD"),
 	;
 
 	private final int id;

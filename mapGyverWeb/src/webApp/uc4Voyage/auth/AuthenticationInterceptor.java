@@ -27,8 +27,8 @@ public class AuthenticationInterceptor implements Interceptor{
 			System.out.println("***IDM AuthenticationInterceptor - actionInvocation.invoke()");
 			// on recupère l'action demandée
 			Action action = (Action) actionInvocation.getAction();
-			// si l'action implements LoginAware, on injecte le loginBean de la session
-			// dans l'instance d'action
+			// si l'action est VoyageAction , on injecte le loginBean de la session
+			// dans l'instance d'action (penser a utiliser une interface pour ameliorer)
 			if(action instanceof VoyageAction){
 				((VoyageAction) action).setUtilisateur(utilisateur);
 			}

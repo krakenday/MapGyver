@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -90,9 +93,13 @@ public class TestServiceCrudPOI {
 
 	@Test
 	public void createVILLEoldElement() throws ServiceFacadeExceptionVoyage {
+		System.out.println(france);
 		Pays pays = (Pays)serviceMpg.createPOInteret(france);
+		System.out.println(pays);
 		marseille.setPays(pays);
+		System.out.println(marseille);
 		Ville poi = (Ville)serviceMpg.createPOInteret(marseille);
+		System.out.println(marseille);
 		assertNotNull(poi.getId());
 		assertEquals(marseille.getNom(), poi.getNom());
 		assertEquals(marseille.getPays().getNom(), poi.getPays().getNom());
@@ -160,19 +167,19 @@ public class TestServiceCrudPOI {
 	}
 	
 	//TODO decommenter les methodes dans l'EJB service
-//	@Test
-//	public void getPOI() throws ServiceFacadeExceptionVoyage {
-//
-//		System.out.println("afpa "+afpa);
-//		PointInteret poi1= serviceMpg.createPOInteret(afpa);
-//		System.out.println("create getPOI "+poi1);
-//		PointInteret poi = serviceMpg.getPOInteretById(poi1.getId());
-//		System.out.println("get getPOI "+poi);
-//		assertEquals(poi1.getId(), poi.getId());
-//		assertEquals(poi1.getNom(), poi.getNom());
-//		assertEquals(poi1.getCoordonnee().getLatitude(), poi.getCoordonnee().getLatitude(), 0.0f);
-//		assertEquals(poi1.getCoordonnee().getLongitude(), poi.getCoordonnee().getLongitude(), 0.0f);
-//	}
+	@Test
+	public void getPOI() throws ServiceFacadeExceptionVoyage {
+
+		System.out.println("afpa "+afpa);
+		PointInteret poi1= serviceMpg.createPOInteret(afpa);
+		System.out.println("create getPOI "+poi1);
+		PointInteret poi = serviceMpg.getPOInteretById(poi1.getId());
+		System.out.println("get getPOI "+poi);
+		assertEquals(poi1.getId(), poi.getId());
+		assertEquals(poi1.getNom(), poi.getNom());
+		assertEquals(poi1.getCoordonnee().getLatitude(), poi.getCoordonnee().getLatitude(), 0.0f);
+		assertEquals(poi1.getCoordonnee().getLongitude(), poi.getCoordonnee().getLongitude(), 0.0f);
+	}
 	
 	@Test
 	public void deletePOI() throws ServiceFacadeExceptionVoyage {
@@ -186,5 +193,16 @@ public class TestServiceCrudPOI {
 		} catch (ServiceFacadeExceptionVoyage e) {
 			assertEquals(".POI.Dao.Find -> inexistant", e.getMessage());
 		}
+	}
+	
+	@Test
+	public void findAllPOI() throws ServiceFacadeExceptionVoyage {
+		Pays poiEspagne = (Pays)serviceMpg.createPOInteret(espagne);
+		Ville poiMarseille = (Ville)serviceMpg.createPOInteret(marseille);
+		List<PointInteret> listPOI = new ArrayList<>();
+		listPOI = serviceMpg.readPOInteretOrderById();
+		assertNotNull(listPOI);
+		assertTrue(listPOI.contains(poiEspagne));
+		assertTrue(listPOI.contains(poiMarseille));
 	}
 }

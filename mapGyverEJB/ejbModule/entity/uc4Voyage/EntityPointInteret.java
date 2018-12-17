@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ import dao.util.UtilBdD;
 
 @Entity
 @Table(name=UtilBdD.ENTITY_POINT_INTERET)
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class EntityPointInteret implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,8 +34,7 @@ public abstract class EntityPointInteret implements Serializable {
 	@Column(name="nom_POI", length=60, nullable=false)
 	private String  nom;
 	
-	@OneToOne (cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name = "id_Crd", unique = true, nullable = false)
+	@Embedded
 	private EntityCoordonnee entityCoordonnee;
 	
 //	@ManyToMany(mappedBy = "entityPointInterets", fetch=FetchType.LAZY)

@@ -30,6 +30,7 @@
 									<th>Titre</th>
 									<th>Date de départ</th>
 									<th>Nbr Participants</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -39,6 +40,7 @@
 									<td><s:property 	value="nom"/></td>
 									<td><s:property 	value="DateDebutToString"/></td>
 									<td><s:property 	value="nbParticipant"/></td>
+									<td>-</td>
 								</tr>
 							</s:iterator>
 							</tbody>

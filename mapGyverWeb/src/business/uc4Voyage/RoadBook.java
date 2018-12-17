@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+
 import business.uc8Utilisateur.Utilisateur;
 
 /**
@@ -88,6 +90,24 @@ public class RoadBook implements Serializable{
 	@Override
 	public String toString() {
 		return "RoadBook [id=" + id + ", voyages=" + voyages + ", utilisateur=" + utilisateur + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, utilisateur, voyages);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof RoadBook))
+			return false;
+		RoadBook other = (RoadBook) obj;
+		return id == other.id && Objects.equals(utilisateur, other.utilisateur)
+				&& Objects.equals(voyages, other.voyages);
 	}
 	
 }

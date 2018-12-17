@@ -1,6 +1,7 @@
 package business.uc4Voyage;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public abstract class PointInteret implements Serializable {
 
@@ -49,6 +50,23 @@ public abstract class PointInteret implements Serializable {
 	@Override
 	public String toString() {
 		return "PointInteret [id=" + id + ", nom=" + nom + ", coordonnee=" + coordonnee + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(coordonnee, id, nom);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof PointInteret))
+			return false;
+		PointInteret other = (PointInteret) obj;
+		return Objects.equals(coordonnee, other.coordonnee) && id == other.id && Objects.equals(nom, other.nom);
 	}
 	
 }
