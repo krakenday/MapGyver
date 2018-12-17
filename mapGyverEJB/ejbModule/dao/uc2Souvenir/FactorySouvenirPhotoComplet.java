@@ -17,7 +17,7 @@ public class FactorySouvenirPhotoComplet extends FactorySouvenirPhoto implements
 		EntityCommentaire	entityCommentaire; 
 		Voyage 				voyage;
 
-		//permet de stocker l'image au format jpeg su aws S3
+		//permet de stocker l'image au format jpeg sur aws S3
 		sauvegardeImageCloud(photo);
 		
 		

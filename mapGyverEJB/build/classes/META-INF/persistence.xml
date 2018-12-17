@@ -8,16 +8,15 @@
 		
 		<persistence-unit name="mpgHibernate">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<jta-data-source>java:jboss/datasources/OracleDSxe</jta-data-source>
+		<jta-data-source>java:jboss/datasources/OracleDS</jta-data-source>
 		
 		<properties>
-			<property name="hibernate.dialect"
-			value="org.hibernate.dialect.Oracle10gDialect"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="false" />
 			<property name="hibernate.use_sql_comments" value="true" />
-			<property name="hibernate.default_schema" value="alejandro"/>
+			<property name="hibernate.default_schema" value="stag03"/>
 		</properties>
 </persistence-unit>
 		

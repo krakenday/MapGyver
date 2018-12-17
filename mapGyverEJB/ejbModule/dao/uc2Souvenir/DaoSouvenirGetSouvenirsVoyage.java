@@ -1,6 +1,5 @@
 package dao.uc2Souvenir;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +8,6 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import business.uc2Souvenir.Commentaire;
 import business.uc2Souvenir.Photo;
 import business.uc2Souvenir.Souvenir;
@@ -18,7 +16,6 @@ import dao.DaoParam;
 import entity.uc2Souvenir.EntityCommentaire;
 import entity.uc2Souvenir.EntityPhoto;
 import entity.uc2Souvenir.EntitySouvenir;
-import entity.uc8Utilisateur.EntityUtilisateur;
 
 @Singleton
 @LocalBean
@@ -35,13 +32,16 @@ public class DaoSouvenirGetSouvenirsVoyage {
 		
 		System.out.println("je suis dans DaoSouvenirGetSouvenirsVoyage-getSouvenirsByIdVoyage");
 		
-		Query query = em.createQuery
+		Query query = em.createQuery("select s from EntitySouvenir s "
+										+ "where s.entityVoyage.id = :entityVoyage "
+										+ "and not exists (select p.commentaire.id from EntityPhoto p "
+										+ "where p.commentaire is not null "
+										+ "and s.id = p.commentaire.id) "
+										+ "order by s.id ");
+
+				
 //				("select s from EntitySouvenir s "
-//						+ "where s.entityVoyage.id =:entityVoyage "
-//						+ "and not exists (select n from EntityCommentaire n, EntityPhoto p where n.id = p.commentaire) "
-//						+ "order by s.id asc");
-				("select s from EntitySouvenir s "
-						+ "where s.entityVoyage.id =:entityVoyage order by s.id asc");
+//						+ "where s.entityVoyage.id =:entityVoyage order by s.id asc");
 		query.setParameter("entityVoyage", Integer.parseInt(idVoyage));
 		List<EntitySouvenir> liste = query.getResultList();
 		

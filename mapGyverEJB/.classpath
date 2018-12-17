@@ -10,5 +10,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/AWS"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/WildFly"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JunitHamcrest"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
