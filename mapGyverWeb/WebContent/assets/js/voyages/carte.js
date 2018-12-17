@@ -3,15 +3,21 @@
  */
 
 /**
- * Utilitaire Map 
- * contributeurs
+ * affiche la map au demarrage de la page aux coordonnéees et au Zoom indiqué
+ * .setView([lat, long], Zoom);
  */
 
 var map = L.map('mapid').setView([47, 2], 5);
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+/**
+ * affiche les references des contributeurs
+ */
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?' + 
+		'access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYy' + 
+		'cXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 	maxZoom: 18,
-	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">' + 
+	'OpenStreetMap</a> contributors, ' +
 	'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 	'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 	id: 'mapbox.streets'
@@ -19,31 +25,12 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
 
 
 /**
- * action sur click
+ * Lance l'action onMapCLick, lorsque l'on clique sur la carte
  */
-
-function onMapClick(e) {
-
-	L.marker(e.latlng,{
-		title : 'Yeah!!!',
-		riseOnHover: true,
-		draggable : false,
-	}).addTo(mymap);
-
-}
-
 map.on('click', onMapClick);
-
-
-
-
-/**
- * Controles
+/**
+ *Function qui affiche un marker avec une popup
  */
-
-
-
-//Script for adding marker on map click
 function onMapClick(e) {
 
 	var geojsonFeature = {
@@ -75,8 +62,16 @@ function onMapClick(e) {
 			return marker;
 		}
 	}).addTo(map);
-	marker.openPopup();
-}
+	marker.openPopup();
+
+}/**
+ * Html de la popup du marker
+ * la fenetre comprend 
+ * les coordonnées du point
+ * une liste de POI
+ * un bouton ajouter
+ * un bouton supprimer
+ */
 
 var HTMLcontent = '<form  id="popup-form">\
 	<div class="form-group">\
@@ -95,7 +90,9 @@ var HTMLcontent = '<form  id="popup-form">\
 
 
 
-//Function to handle delete as well as other events on marker popup open
+/**
+ * Function qui affecte les methodes aux boutons delete et add de la popup
+ */
 function onPopupOpen() {
 
 	var tempMarker = this;
@@ -114,24 +111,24 @@ function onPopupOpen() {
 	});
 }
 
-
 //getting all the markers at once
-function getAllMarkers() {
-
-	var allMarkersObjArray = [];//new Array();
-	var allMarkersGeoJsonArray = [];//new Array(); 
-
-	$.each(map._layers, function (ml) {
-		//console.log(map._layers)
-		if (map._layers[ml].feature) {
-
-			allMarkersObjArray.push(this)
-			allMarkersGeoJsonArray.push(JSON.stringify(this.toGeoJSON()))
-		}
-	})
-
-	console.log(allMarkersObjArray);
-	alert("total Markers : " + allMarkersGeoJsonArray.length + "\n\n" + allMarkersGeoJsonArray + "\n\n Also see your console for object view of this array" );
-}
-
-$(".get-markers").on("click", getAllMarkers);
+//function getAllMarkers() {
+//
+//	var allMarkersObjArray = [];//new Array();
+//	var allMarkersGeoJsonArray = [];//new Array(); 
+//
+//	$.each(map._layers, function (ml) {
+//		//console.log(map._layers)
+//		if (map._layers[ml].feature) {
+//
+//			allMarkersObjArray.push(this)
+//			allMarkersGeoJsonArray.push(JSON.stringify(this.toGeoJSON()))
+//		}
+//	})
+//
+//	console.log(allMarkersObjArray);
+//	alert("total Markers : " + allMarkersGeoJsonArray.length + "\n\n" + 
+//			allMarkersGeoJsonArray + "\n\n Also see your console for object view of this array" );
+//}
+//
+//$(".get-markers").on("click", getAllMarkers);
